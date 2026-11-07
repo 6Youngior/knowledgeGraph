@@ -9,9 +9,10 @@
 | 组件 | 用途 | 许可证 |
 |---|---|---|
 | React / React DOM 18.3.1 | 界面与交互 | MIT |
-| Apache ECharts 5.6.0 | 图谱与事件行情 | Apache-2.0 |
+| React Flow 12.12.1 | 图谱节点、连线与视图交互 | MIT |
+| Apache ECharts 6.1.0 | 事件行情图 | Apache-2.0 |
 | [Dagre](https://github.com/dagrejs/dagre) | 有向图的层次布局 | MIT |
-| ZRender 5.6.1 | 图形渲染 | BSD-3-Clause |
+| ZRender 6.1.0 | 图形渲染 | BSD-3-Clause |
 | Lucide React 0.468.0 | 图标 | ISC |
 | TanStack React Query | 请求缓存与状态刷新 | MIT |
 | Vite 6.4.5 | 前端构建 | MIT |
@@ -28,4 +29,4 @@ Demo 截图来自本项目真实运行界面；Schema、架构和路径图由本
 
 ## 设计参考
 
-图谱布局参考 [React Flow 官方 Dagre 示例](https://reactflow.dev/examples/layout/dagre)，在 ECharts 中使用 Dagre 排列实体。界面信息组织参考 [OpenBB Design System](https://github.com/OpenBB-finance/design-system)。行情汇报图由 Matplotlib 从随附缓存生成。
+图谱布局参考 [React Flow 官方 Dagre 示例](https://reactflow.dev/examples/layout/dagre)，使用 React Flow 显示节点与连线，Dagre 排列实体。界面信息组织参考 [OpenBB Design System](https://github.com/OpenBB-finance/design-system)。行情汇报图由 Matplotlib 从随附缓存生成。

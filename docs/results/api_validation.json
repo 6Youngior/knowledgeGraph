@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "created_at": "2026-11-07T02:12:37.411722+00:00",
+  "created_at": "2026-11-07T05:59:18.515216+00:00",
   "live_model_called": false,
   "checks": [
     {
@@ -428,7 +428,7 @@
       "passed": true,
       "detail": {
         "model": "DeepSeek V4.1 Flash",
-        "elapsed_ms": 1,
+        "elapsed_ms": 2,
         "new_stocks": {
           "event:glm5-release": [],
           "event:minimax-m25-release": [],
@@ -495,8 +495,8 @@
       "name": "production HTML and bundled assets served",
       "passed": true,
       "detail": [
-        "/assets/index-DkOE0hZg.js",
-        "/assets/index-BWvKfJRj.css"
+        "/assets/index-DKrGm8Cy.js",
+        "/assets/index-BUJx5oti.css"
       ]
     }
   ],

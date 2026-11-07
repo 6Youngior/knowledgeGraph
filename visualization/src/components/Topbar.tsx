@@ -9,8 +9,8 @@ import { formatDate } from '../lib/format';
 
 const VIEW_LABEL: Record<ViewKey, string> = {
   research: '事件研究',
-  cases: '案例库',
-  update: '知识更新',
+  cases: '事件目录',
+  update: '资料导入',
   sources: '资料与方法',
 };
 
@@ -99,7 +99,7 @@ export function Topbar({
     <header className="topbar">
       <div className="topbar-left">
         <div className="breadcrumb"><span>FinGraph</span><i>/</i><strong>{VIEW_LABEL[view]}</strong></div>
-        <span className="topbar-date">数据截至 {formatDate(overview?.as_of)}</span>
+        <span className="topbar-date">资料登记至 {formatDate(overview?.as_of)}</span>
       </div>
 
       <div className="topbar-right">

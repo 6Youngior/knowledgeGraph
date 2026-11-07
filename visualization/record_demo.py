@@ -1,460 +1,269 @@
-"""FinGraph final demo recording (Playwright + Edge).
+"""Record the real research workflow using Playwright and Edge.
 
-The script drives the real, frozen UI at http://127.0.0.1:8000:
-research roles -> path evidence -> historical lens -> replay extraction ->
-ingest -> focused new stock -> market observation -> DeepSeek temporal build-up.
-
-It only injects a recording caption and a visible pointer into the page DOM.
-No product source is modified. It resets the graph before and after recording.
-
-Usage:
-    python visualization/record_demo.py
-    python visualization/record_demo.py --url http://127.0.0.1:8000
-
-Outputs:
-    visualization/FinGraph-demo.webm
-    visualization/FinGraph-demo.mp4   (H.264, yuv420p, CRF 18, faststart)
+The recording adds a subtitle strip and a pointer. It uses the visible replay
+option for extraction, and restores the initial graph before and after use.
+Requires the running service, Playwright, Edge and ffmpeg.
 """
 from __future__ import annotations
 
+from datetime import datetime, timezone
+import hashlib
 import json
-import os
 import re
+from pathlib import Path
 import shutil
 import subprocess
 import sys
 import tempfile
 import time
 import urllib.request
-from pathlib import Path
 
-from playwright.sync_api import Page, sync_playwright
+from PIL import Image, ImageChops, ImageStat
+from playwright.sync_api import Page, expect, sync_playwright
 
-ROOT = Path(__file__).resolve().parent
-WEBM = ROOT / "FinGraph-demo.webm"
-MP4 = ROOT / "FinGraph-demo.mp4"
+ROOT = Path(__file__).resolve().parents[1]
+OUT = ROOT / "visualization"
+REVIEW = ROOT / "docs" / "tasks" / "demo_redesign"
 EDGE = Path("C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe")
 
 
-def request_json(base: str, path: str, method: str = "GET") -> dict:
-    request = urllib.request.Request(base + path, method=method)
+def reset(base: str) -> dict:
+    request = urllib.request.Request(base + "/api/reset", method="POST")
     with urllib.request.urlopen(request, timeout=30) as response:
-        return json.loads(response.read().decode("utf-8"))
+        return json.load(response)["stats"]
 
 
-def reset_graph(base: str) -> dict:
-    return request_json(base, "/api/reset", "POST").get("stats", {})
+def subtitle(page: Page, chapter: str, note: str) -> None:
+    page.evaluate("""([chapter, note]) => {
+      let band = document.getElementById('record-subtitle');
+      if (!band) {
+        band = document.createElement('div'); band.id = 'record-subtitle';
+        band.innerHTML = '<span></span><p></p>';
+        document.body.appendChild(band);
+      }
+      band.querySelector('span').textContent = chapter;
+      band.querySelector('p').textContent = note;
+    }""", [chapter, note])
 
 
-def caption(page: Page, number: str, title: str, note: str) -> None:
-    page.evaluate(
-        """([number, title, note]) => {
-          let el = document.getElementById('rec-caption');
-          if (!el) {
-            el = document.createElement('div');
-            el.id = 'rec-caption';
-            document.body.appendChild(el);
-          }
-          el.style.cssText = [
-            'position:fixed','left:270px','bottom:18px','z-index:2147483000',
-            'display:flex','align-items:center','gap:12px',
-            'padding:11px 16px','max-width:940px',
-            'border:1px solid #dce3ea','border-radius:4px',
-            'background:rgba(255,255,255,.97)','pointer-events:none',
-            'font-family:Inter,-apple-system,Segoe UI,PingFang SC,Microsoft YaHei,sans-serif',
-            'color:#20364b'
-          ].join(';');
-          el.innerHTML = `
-            <span style="flex:none;color:#336a9a;font-size:16px;font-weight:600;">${number}</span>
-            <span style="display:flex;flex-direction:column;gap:2px;min-width:0;">
-              <b style="font-size:18px;line-height:1.35;font-weight:600;white-space:nowrap;">${title}</b>
-              <small style="font-size:14px;line-height:1.45;color:#64748b;white-space:normal;">${note}</small>
-            </span>`;
-        }""",
-        [number, title, note],
-    )
+def install_recording_ui(page: Page) -> None:
+    page.add_style_tag(content="""
+      body.recording .research-main { height: calc(100dvh - 420px); min-height: 500px; }
+      body.recording .update-input, body.recording .update-result { height: calc(100dvh - 300px); }
+      body.recording .toast-stack { bottom: 88px; }
+      #record-subtitle {
+        position:fixed; z-index:2000; inset:auto 0 0; height:72px;
+        display:flex; align-items:center; gap:26px; padding:0 32px;
+        background:#fff; border-top:1px solid #cbd5df; color:#253b50;
+        font-family:"Segoe UI","Microsoft YaHei",sans-serif; pointer-events:none;
+      }
+      #record-subtitle > span { flex:none; font-size:19px; font-weight:600; }
+      #record-subtitle > p { margin:0; padding-left:26px; border-left:1px solid #cbd5df; font-size:21px; line-height:1.5; font-weight:400; }
+      #record-pointer { position:fixed; z-index:2100; pointer-events:none; display:none; width:21px; height:26px; left:0; top:0; }
+    """)
+    page.evaluate("""() => {
+      document.body.classList.add('recording');
+      const pointer = document.createElement('div'); pointer.id='record-pointer';
+      pointer.innerHTML='<svg width="21" height="26" viewBox="0 0 21 26"><path d="M2 2V21L7.5 16.5L11 24L14 22.5L10.5 15H18Z" fill="#244e73" stroke="white" stroke-width="1.5" stroke-linejoin="round"/></svg>';
+      document.body.appendChild(pointer);
+      document.addEventListener('mousemove', event => {
+        pointer.style.display='block'; pointer.style.left=event.clientX+'px'; pointer.style.top=event.clientY+'px';
+      });
+    }""")
 
 
-def install_pointer(page: Page) -> None:
-    page.evaluate(
-        """() => {
-          const el = document.createElement('div');
-          el.id = 'rec-pointer';
-          el.style.cssText = [
-            'position:fixed','left:0','top:0','z-index:2147483001',
-            'width:18px','height:18px','border-radius:50%',
-            'border:2px solid rgba(255,255,255,.95)',
-            'background:rgba(37,99,235,.34)',
-            'box-shadow:0 2px 9px rgba(15,23,42,.45)',
-            'transform:translate(-50%,-50%)','pointer-events:none',
-            'transition:left .10s linear,top .10s linear'
-          ].join(';');
-          document.body.appendChild(el);
-        }"""
-    )
-
-
-def cursor(page: Page, x: float, y: float) -> None:
-    page.mouse.move(x, y, steps=10)
-    page.evaluate(
-        "([x, y]) => { const el = document.getElementById('rec-pointer'); if (el) { el.style.left = x + 'px'; el.style.top = y + 'px'; } }",
-        [x, y],
-    )
-
-
-def move_to(page: Page, selector: str, wait_ms: int = 450) -> None:
-    locator = page.locator(selector).first
+def click(page: Page, locator, pause: int = 500) -> None:
     locator.scroll_into_view_if_needed()
     box = locator.bounding_box()
     if box:
-        cursor(page, box["x"] + box["width"] / 2, box["y"] + box["height"] / 2)
-    page.wait_for_timeout(wait_ms)
-
-
-def click(page: Page, selector: str, wait_ms: int = 650) -> None:
-    move_to(page, selector, 500)
-    page.locator(selector).first.click()
-    page.wait_for_timeout(wait_ms)
-
-
-def click_text(page: Page, selector: str, text: str, wait_ms: int = 650) -> None:
-    locator = page.locator(selector, has_text=text).first
-    locator.scroll_into_view_if_needed()
-    box = locator.bounding_box()
-    if box:
-        cursor(page, box["x"] + box["width"] / 2, box["y"] + box["height"] / 2)
-    page.wait_for_timeout(400)
+        page.mouse.move(box["x"] + box["width"] / 2, box["y"] + box["height"] / 2, steps=22)
+    page.wait_for_timeout(350)
     locator.click()
-    page.wait_for_timeout(wait_ms)
+    page.wait_for_timeout(pause)
 
 
-def scroll_to(page: Page, selector: str, offset: int = 90, wait_ms: int = 1200) -> None:
-    page.evaluate(
-        """([selector, offset]) => {
-          const el = document.querySelector(selector);
-          if (!el) return;
-          const top = el.getBoundingClientRect().top + window.scrollY - offset;
-          window.scrollTo({ top, behavior: 'smooth' });
-        }""",
-        [selector, offset],
-    )
-    page.wait_for_timeout(wait_ms)
+def park(page: Page) -> None:
+    page.mouse.move(196, 160, steps=18)
 
 
-def cleanup_temp(path: Path) -> None:
-    target = path.resolve()
-    intended_parent = Path(tempfile.gettempdir()).resolve()
-    if target.parent != intended_parent or not target.name.startswith("fingraph-final-"):
-        raise ValueError("Unexpected temporary recording directory")
-    shutil.rmtree(target, ignore_errors=True)
+def assert_graph_fits(page: Page) -> None:
+    page.wait_for_timeout(200)
+    counts=re.findall(r"\d+",page.locator(".graph-count").inner_text())
+    expect(page.locator(".react-flow__edge-path")).to_have_count(int(counts[-1]))
+    outside=page.evaluate("""() => {
+        const area=document.querySelector('.research-graph-canvas').getBoundingClientRect();
+        return [...document.querySelectorAll('.react-flow__node')].filter(el=>{
+            const r=el.getBoundingClientRect();
+            return getComputedStyle(el).visibility==='hidden'||r.x<area.x-2||r.y<area.y-2||r.right>area.right+2||r.bottom>area.bottom+2;
+        }).map(el=>el.dataset.id);
+    }""")
+    assert not outside, outside
 
 
 def main() -> int:
-    base = "http://127.0.0.1:8000"
-    if "--url" in sys.argv:
-        base = sys.argv[sys.argv.index("--url") + 1]
-
-    before = reset_graph(base)
-    print("reset before:", before, flush=True)
-
-    temp_dir = Path(tempfile.mkdtemp(prefix="fingraph-final-"))
-    video_path: Path | None = None
-    success = False
-    browser = None
-    context = None
-    console_errors: list[str] = []
-
+    base = sys.argv[sys.argv.index("--url") + 1] if "--url" in sys.argv else "http://127.0.0.1:8000"
+    REVIEW.mkdir(parents=True, exist_ok=True)
+    temp = Path(tempfile.mkdtemp(prefix="fingraph-record-")).resolve()
+    before = reset(base)
+    errors: list[str] = []
+    chapters: list[dict] = []
+    browser = context = None
+    video = None
+    trim = 0.0
     try:
-        with sync_playwright() as playwright:
-            launch_options = {
-                "headless": True,
-                "args": ["--force-device-scale-factor=1", "--hide-scrollbars"],
-            }
-            if EDGE.exists():
-                launch_options["executable_path"] = str(EDGE)
-            browser = playwright.chromium.launch(**launch_options)
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True, executable_path=str(EDGE), args=["--hide-scrollbars", "--force-device-scale-factor=1"])
             context = browser.new_context(
-                viewport={"width": 1920, "height": 1080},
-                record_video_dir=str(temp_dir),
-                record_video_size={"width": 1920, "height": 1080},
-                device_scale_factor=1,
-                locale="zh-CN",
-                timezone_id="Asia/Shanghai",
+                viewport={"width":1920,"height":1080}, record_video_dir=str(temp),
+                record_video_size={"width":1920,"height":1080}, device_scale_factor=1,
+                locale="zh-CN", timezone_id="Asia/Shanghai", accept_downloads=True,
             )
+            epoch = time.monotonic()
             page = context.new_page()
-            page.on(
-                "console",
-                lambda msg: console_errors.append(msg.text)
-                if msg.type == "error" and "favicon" not in msg.text
-                else None,
-            )
-            page.on("pageerror", lambda exc: console_errors.append(str(exc)))
+            page.set_default_timeout(20000)
+            page.on("pageerror", lambda error: errors.append(str(error)))
+            page.goto(base, wait_until="networkidle")
+            page.get_by_label("选择研究案例").select_option("event:glm5-release")
+            expect(page.locator(".stock-row")).to_have_count(2)
+            expect(page.locator(".react-flow__node")).to_have_count(7)
+            install_recording_ui(page)
+            subtitle(page, "01  关联查询", "GLM-5 发布后，哪些上市公司有明确的关系记录？")
+            page.wait_for_timeout(1800)
+            assert_graph_fits(page)
+            page.screenshot(path=str(REVIEW / "opening-reference.png"))
+            # The first browser frames may precede viewport setup. Keep only
+            # the stable opening, with an extra second of timing margin.
+            trim = time.monotonic() - epoch + 1.0
+            page.wait_for_timeout(8000)
+            def mark(title: str) -> None:
+                chapters.append({"seconds": round(max(0,time.monotonic()-epoch-trim),2), "title":title})
+                print(title, flush=True)
+            mark("关联证券与研发原文")
+            click(page, page.locator('.stock-row[data-symbol="02513.HK"]'))
+            subtitle(page, "01  关联查询", "智谱是研发主体。右侧逐条列出模型、公司、证券之间的关系与原文。")
+            park(page);page.wait_for_timeout(6500)
+            click(page, page.locator(".evidence-step .step-meta button").nth(1))
+            expect(page.locator(".evidence-card")).to_contain_text("研发主体")
+            park(page);page.wait_for_timeout(6500)
+            click(page, page.locator(".back-action"))
+            click(page, page.locator('.stock-row[data-symbol="09988.HK"]'))
+            subtitle(page, "01  关联查询", "阿里巴巴经百炼云服务接入 GLM-5，产业角色与模型研发不同。")
+            park(page);page.wait_for_timeout(5000)
 
-            page.goto(base + "/", wait_until="domcontentloaded", timeout=60000)
-            page.locator(".research-page").wait_for(timeout=30000)
-            page.wait_for_timeout(2600)
-            install_pointer(page)
-            page.locator(".event-select select").select_option("event:glm5-release")
-            page.wait_for_timeout(1700)
+            mark("导入适配公告")
+            click(page, page.get_by_role("button", name="导入资料", exact=True))
+            expect(page.locator(".sample-picker")).to_be_visible()
+            subtitle(page, "02  资料入图", "这篇适配公告提到 MTT S5000 和 GLM-5，没有证券代码。")
+            park(page);page.wait_for_timeout(8500)
+            click(page, page.locator(".mode-card").nth(2))
+            subtitle(page, "02  资料入图", "选择样例回放，读取已保存的模型抽取结果，再核对候选关系。")
+            park(page);page.wait_for_timeout(2500)
+            click(page, page.get_by_role("button", name="抽取关系", exact=True))
+            expect(page.locator(".validation.ok")).to_be_visible()
+            expect(page.locator(".result-summary")).to_contain_text("3")
+            park(page);page.wait_for_timeout(6500)
+            click(page, page.locator(".alignment-details summary"))
+            subtitle(page, "02  资料入图", "产品和模型对齐到已有实体；本次增加 1 个适配事件、3 条关系。")
+            park(page);page.wait_for_timeout(4500)
+            click(page, page.locator(".alignment-details summary"))
+            click(page, page.get_by_role("button", name="确认入图", exact=True))
+            expect(page.locator(".ingest-success")).to_contain_text("已写入图谱")
+            park(page);page.wait_for_timeout(3500)
+            click(page, page.get_by_role("button", name="查看新增证券", exact=True))
+            expect(page.locator(".stock-row")).to_have_count(3)
+            expect(page.locator(".path-heading")).to_contain_text("摩尔线程")
+            assert_graph_fits(page)
+            subtitle(page, "02  资料入图", "关联证券由 2 只变为 3 只，新增摩尔线程（688795.SH）。")
+            park(page);page.wait_for_timeout(8500)
+            click(page, page.locator(".evidence-step .step-meta button").nth(1))
+            expect(page.locator(".edge-statement")).to_contain_text("MTT S5000")
+            expect(page.locator(".quote")).to_contain_text("适配")
+            park(page);page.wait_for_timeout(5000)
+            click(page, page.locator(".back-action"))
 
-            # 01 — problem and roles
-            caption(
-                page,
-                "01",
-                "GLM-5 关联公司",
-                "初始资料关联智谱与阿里巴巴，分别对应模型研发和云服务接入。",
-            )
-            # Hold on the event title for about four seconds before moving.
-            page.wait_for_timeout(4500)
-            move_to(page, ".roles-panel", 700)
-            page.wait_for_timeout(6000)
+            mark("行情对照与简报")
+            click(page, page.locator('.stock-row[data-symbol="02513.HK"]'))
+            click(page, page.get_by_role("tab", name="行情对照", exact=True))
+            expect(page.locator(".return-table")).to_contain_text("+56.22%")
+            subtitle(page, "03  行情与简报", "选中智谱，对照恒生指数的同窗口走势；行情结果作描述性比较。")
+            park(page);page.wait_for_timeout(8500)
+            with page.expect_download() as info:
+                click(page, page.get_by_role("button", name="导出简报", exact=True))
+            info.value.save_as(str(temp / "research-brief.md"))
+            brief = (temp / "research-brief.md").read_text(encoding="utf-8-sig")
+            assert "688795.SH" in brief and "https://" in brief
+            subtitle(page, "03  行情与简报", "导出的简报包含关联证券、关系路径、原文链接和行情结果。")
+            park(page);page.wait_for_timeout(5000)
 
-            # 02 — click a stock, read the path and original evidence
-            caption(
-                page,
-                "02",
-                "查看原文",
-                "选中智谱，查看研发关系、来源及公开日期。",
-            )
-            move_to(page, ".stock-row", 600)
-            click(page, ".stock-row", 1200)
-            scroll_to(page, ".research-main", 80, 1200)
-            page.wait_for_timeout(4200)
-            move_to(page, ".evidence-step", 700)
-            page.wait_for_timeout(3700)
-            click(page, ".evidence-step .step-meta button", 1000)
-            page.wait_for_timeout(4200)
-            click(page, ".back-action", 1200)
-
-            # 03 — time lens: excluded and historical
-            caption(
-                page,
-                "03",
-                "按日期查询",
-                "切换历史日期，检查哪些资料在当时已公开。",
-            )
-            scroll_to(page, ".temporal-panel", 80, 1100)
-            click_text(page, ".lens-tabs button", "其他候选", 1000)
-            page.wait_for_timeout(5000)
-            click_text(page, ".lens-tabs button", "历史日期", 1200)
-            page.wait_for_timeout(4700)
-            click_text(page, ".lens-tabs button", "全部资料", 1200)
-
-            # 04 — replay extraction
-            caption(
-                page,
-                "04",
-                "导入适配公告",
-                "选择摩尔线程的 GLM-5 适配资料，以回放方式预览结果。",
-            )
-            page.locator(".side-nav button").nth(2).click()
-            page.locator(".update-grid").wait_for(timeout=15000)
-            page.wait_for_timeout(1500)
-            click(page, ".mode-card:nth-child(3)", 1000)
-            move_to(page, ".sample-item", 700)
-            page.wait_for_timeout(3700)
-
-            # 05 — validation preview
-            click(page, ".update-actions .button.primary", 500)
-            page.locator(".mode-badge.replay").wait_for(timeout=60000)
-            page.wait_for_timeout(1200)
-            caption(
-                page,
-                "05",
-                "查看新增内容",
-                "新增 1 个适配事件、3 条关系。已有产品、公司和证券继续使用。",
-            )
-            scroll_to(page, ".preview-metrics", 100, 1300)
-            page.wait_for_timeout(5200)
-            scroll_to(page, ".ingest-block", 160, 1100)
-            move_to(page, ".ingest-block", 700)
-            page.wait_for_timeout(3400)
-
-            # 06 — ingest
-            click(page, ".ingest-block .button.primary", 500)
-            page.locator(".ingested-panel").wait_for(timeout=30000)
-            caption(
-                page,
-                "06",
-                "确认入图",
-                "保存结果后，返回 GLM-5 查看新增关联。",
-            )
-            page.wait_for_timeout(5000)
-
-            click(page, ".ingest-actions .button.primary", 700)
-            page.locator(".research-page").wait_for(timeout=15000)
-            page.wait_for_timeout(2600)
-
-            # 07 — new focused path
-            caption(
-                page,
-                "07",
-                "摩尔线程的关联路径",
-                "GLM-5 经 MTT S5000 连接摩尔线程及 688795.SH。",
-            )
-            scroll_to(page, ".research-main", 80, 1300)
-            page.wait_for_timeout(5900)
-
-            # 08 — market observation
-            caption(
-                page,
-                "08",
-                "查看行情",
-                "比较股票与基准的同窗口累计收益。",
-            )
-            scroll_to(page, ".research-bottom", 80, 1300)
-            move_to(page, ".market-panel", 700)
-            page.wait_for_timeout(7400)
-
-            # 09 — real research brief download
-            # Hide only the transient toast layer, not any research content.
-            page.add_style_tag(content=".toast-stack{display:none !important;}")
-            caption(
-                page,
-                "09",
-                "导出研究简报",
-                "简报保存关联公司、关系原文、来源链接和行情。",
-            )
-            with page.expect_download(timeout=30000) as download_info:
-                click(page, ".brief-button", 400)
-            download = download_info.value
-            brief_path = temp_dir / "research-brief.md"
-            download.save_as(str(brief_path))
-            print(f"brief: {brief_path} ({brief_path.stat().st_size:,} bytes)", flush=True)
-            page.wait_for_timeout(6500)
-
-            # 10 — DeepSeek temporal accumulation
-            caption(
-                page,
-                "10",
-                "DeepSeek-R1 历史查询",
-                "切换研究事件，按不同截止日期查看关联公司。",
-            )
-            page.locator(".event-select select").select_option("event:deepseek-r1-release")
-            page.wait_for_timeout(1900)
-            scroll_to(page, ".temporal-panel", 80, 1200)
-            click_text(page, ".lens-tabs button", "历史日期", 1200)
-            caption(
-                page,
-                "10",
-                "2025-01-20：0 只",
-                "已收集资料在发布日尚未形成完整的证券路径。",
-            )
-            page.wait_for_timeout(5600)
-            click_text(page, ".date-chips button", "2025-02-03", 1300)
-            caption(
-                page,
-                "10",
-                "2025-02-03：2 只",
-                "腾讯与百度的云接入资料已公开。",
-            )
-            page.wait_for_timeout(5600)
-            click_text(page, ".date-chips button", "2025-02-05", 1300)
-            caption(
-                page,
-                "10",
-                "2025-02-05：4 只",
-                "加入海光适配及中国电信云接入的资料。",
-            )
-            page.wait_for_timeout(6000)
-
-            # 11 — close
-            click_text(page, ".lens-tabs button", "全部资料", 1100)
-            caption(
-                page,
-                "11",
-                "DeepSeek-R1：全部资料",
-                "当前关联腾讯、百度、海光和中国电信。",
-            )
-            window = page.evaluate(
-                """() => {
-                  const el = document.querySelector('.research-heading h1');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                  return el ? el.textContent : '';
-                }"""
-            )
-            page.wait_for_timeout(7000)
-            print("final heading:", window, flush=True)
-
+            mark("按历史日期查看资料")
+            subtitle(page, "04  历史资料", "切换到 DeepSeek-R1，按当时已公开的资料查看关联变化。")
+            page.get_by_label("选择研究案例").select_option("event:deepseek-r1-release")
+            expect(page.locator(".stock-row")).to_have_count(4)
+            click(page, page.get_by_role("button", name="历史日期", exact=True))
+            expect(page.locator(".stock-row")).to_have_count(0)
+            assert_graph_fits(page)
+            subtitle(page, "04  历史资料", "2025-01-20：本次已收集资料在发布日还没有形成完整的证券路径。")
+            park(page);page.wait_for_timeout(5000)
+            subtitle(page, "04  历史资料", "查询截至 2025-02-03 已公开的资料。")
+            click(page, page.locator(".date-chips button").filter(has_text="2025-02-03"))
+            expect(page.locator(".stock-row")).to_have_count(2)
+            assert_graph_fits(page)
+            subtitle(page, "04  历史资料", "截至 2025-02-03，腾讯与百度的云接入资料支持 2 只证券的关联。")
+            park(page);page.wait_for_timeout(5500)
+            subtitle(page, "04  历史资料", "查询截至 2025-02-05 已公开的资料。")
+            click(page, page.locator(".date-chips button").filter(has_text="2025-02-05"))
+            expect(page.locator(".stock-row")).to_have_count(4)
+            assert_graph_fits(page)
+            subtitle(page, "04  历史资料", "截至 2025-02-05，再加入海光适配与中国电信云接入，累计 4 只证券。")
+            park(page);page.wait_for_timeout(6000)
+            page.get_by_label("选择研究案例").select_option("event:glm5-release")
+            expect(page.locator(".stock-row")).to_have_count(3)
+            assert_graph_fits(page)
+            subtitle(page, "FinGraph", "公告入图后，GLM-5 新增摩尔线程的证券路径；每条关系仍可查看原文。")
+            park(page);page.wait_for_timeout(6500)
+            assert not errors, errors
             video = page.video
-            context.close()
-            context = None
-            browser.close()
-            browser = None
-            video_path = Path(video.path())
-            success = True
-    except Exception as exc:  # noqa: BLE001
-        print(f"recording failed: {exc}", file=sys.stderr, flush=True)
-        if context is not None:
-            try:
-                context.close()
-            except Exception:
-                pass
-        if browser is not None:
-            try:
-                browser.close()
-            except Exception:
-                pass
+            context.close();context=None
+            assert video is not None
+            raw = Path(video.path())
+            browser.close();browser=None
+        ffmpeg = shutil.which("ffmpeg")
+        assert ffmpeg, "ffmpeg is required"
+        webm = OUT / "FinGraph-demo.webm"
+        mp4 = OUT / "FinGraph-demo.mp4"
+        # Both formats start on the same complete, verified product frame.
+        subprocess.run([ffmpeg,"-y","-v","error","-ss",str(trim),"-i",str(raw),"-c:v","libvpx-vp9","-crf","26","-b:v","0","-deadline","realtime","-cpu-used","6","-row-mt","1","-an",str(webm)],check=True)
+        print("WebM encoded",flush=True)
+        subprocess.run([ffmpeg,"-y","-v","error","-ss",str(trim),"-i",str(raw),"-c:v","libx264","-preset","slow","-crf","18","-pix_fmt","yuv420p","-movflags","+faststart","-an",str(mp4)],check=True)
+        cover = OUT / "FinGraph-demo-cover.png"
+        subprocess.run([ffmpeg,"-y","-v","error","-i",str(mp4),"-frames:v","1",str(cover)],check=True)
+        expected=Image.open(REVIEW/"opening-reference.png").convert("RGB")
+        actual=Image.open(cover).convert("RGB")
+        assert actual.size == expected.size == (1920,1080)
+        difference=sum(ImageStat.Stat(ImageChops.difference(expected,actual)).mean)/3
+        assert difference < 8, "Opening frame does not match the stable product page"
+        probe=json.loads(subprocess.check_output([shutil.which("ffprobe"),"-v","error","-show_format","-show_streams","-of","json",str(mp4)],text=True))
+        duration=float(probe["format"]["duration"])
+        assert 120 <= duration <= 180, duration
+        report={"created_at":datetime.now(timezone.utc).isoformat(),"duration_seconds":duration,"trimmed_warmup_seconds":round(trim,3),
+                "opening_frame_mean_error":round(difference,3),"opening_frame_matches_ready_ui":True,
+                "chapters":chapters,"page_errors":errors,"mp4_sha256":hashlib.sha256(mp4.read_bytes()).hexdigest()}
+        (REVIEW/"recording.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+        print(json.dumps(report,ensure_ascii=False),flush=True)
+        return 0
     finally:
-        after = reset_graph(base)
-        print("reset after:", after, flush=True)
-        if before and after and any(after.get(k) != v for k, v in before.items()):
-            print("warning: stats not restored to initial snapshot", before, after, file=sys.stderr)
-
-    if not success or video_path is None or not video_path.exists():
-        print("no video produced", file=sys.stderr)
-        cleanup_temp(temp_dir)
-        return 1
-
-    shutil.move(str(video_path), str(WEBM))
-    cleanup_temp(temp_dir)
-    print(f"webm: {WEBM} ({WEBM.stat().st_size:,} bytes)", flush=True)
-
-    ffmpeg = shutil.which("ffmpeg")
-    if not ffmpeg:
-        print("ffmpeg not found; keeping webm only", file=sys.stderr)
-        return 1
-    subprocess.run(
-        [
-            ffmpeg,
-            "-y",
-            "-hide_banner",
-            "-loglevel",
-            "error",
-            "-i",
-            str(WEBM),
-            "-c:v",
-            "libx264",
-            "-preset",
-            "slow",
-            "-crf",
-            "18",
-            "-pix_fmt",
-            "yuv420p",
-            "-movflags",
-            "+faststart",
-            "-an",
-            str(MP4),
-        ],
-        check=True,
-    )
-    print(f"mp4: {MP4} ({MP4.stat().st_size:,} bytes)", flush=True)
-
-    probe = subprocess.run(
-        [ffmpeg, "-hide_banner", "-i", str(MP4)],
-        capture_output=True,
-        text=True,
-        errors="replace",
-    )
-    match = re.search(r"Duration:\s*(\d+):(\d+):(\d+\.\d+)", probe.stderr)
-    if match:
-        hours, minutes, seconds = match.groups()
-        duration = int(hours) * 3600 + int(minutes) * 60 + float(seconds)
-        print(f"duration: {duration:.1f}s", flush=True)
-        if duration < 100 or duration > 210:
-            print("warning: target is about 2–3 minutes", file=sys.stderr)
-    print("console errors:", console_errors[:5], flush=True)
-    return 0
+        for item in (context, browser):
+            if item:
+                try:
+                    item.close()
+                except Exception:
+                    pass
+        after=reset(base)
+        assert before == after, (before,after)
+        intended_parent=Path(tempfile.gettempdir()).resolve()
+        if temp.parent != intended_parent or not temp.name.startswith("fingraph-record-"):
+            raise ValueError("Unexpected temporary recording directory")
+        shutil.rmtree(temp)
 
 
 if __name__ == "__main__":

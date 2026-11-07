@@ -174,13 +174,45 @@ export function KnowledgeUpdateView({
     ingestMutation.reset();
   };
 
+  const ingestControls = result ? <>
+                <div className="ingest-block">
+                  {ingestResult ? (
+                    <>
+                      <div className="ingest-success ingested-panel">
+                        <CheckCircle2 size={18} />
+                        <div>
+                          <strong>{ingestResult.added_nodes + ingestResult.added_edges > 0 ? '已写入图谱' : '没有新增内容'}</strong>
+                          <span>新增 {ingestResult.added_nodes} 节点 / {ingestResult.added_edges} 关系；更新 {ingestResult.updated_nodes} 节点 / {ingestResult.updated_edges} 关系。</span>
+                        </div>
+                      </div>
+                      <div className="ingest-actions">
+                        <button type="button" className="button primary" onClick={() => onNavigateResearch(preferredGroup, focusSymbol)}>
+                          查看新增证券 <ArrowRight size={14} />
+                        </button>
+                        <button type="button" className="button ghost" onClick={() => ingestMutation.mutate(result.extraction_id)} disabled={ingestMutation.isPending}>
+                          {ingestMutation.isPending ? <Spinner size={13} /> : null} 再次导入
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div><Database size={16} /><span>确认后将 {result.preview.new_nodes ?? 0} 个节点与 {result.preview.new_edges ?? 0} 条关系写入当前图谱。</span></div>
+                      <button type="button" className="button primary" onClick={() => ingestMutation.mutate(result.extraction_id)} disabled={!result.validation.valid || ingestMutation.isPending}>
+                        {ingestMutation.isPending ? <Spinner size={14} /> : <Plus size={14} />} 确认入图
+                      </button>
+                    </>
+                  )}
+                </div>
+                {ingestMutation.isError ? <ErrorState title="入图失败" error={ingestMutation.error} onRetry={() => ingestMutation.mutate(result.extraction_id)} compact /> : null}
+  </> : null;
+
   return (
     <div className="update-page">
       <header className="page-header">
         <div>
-          <span className="section-kicker">知识更新</span>
-          <h1>用新资料更新图谱</h1>
-          <p>选择或粘贴一篇资料，抽取实体与关系；核对原文后写入图谱。</p>
+          <span className="section-kicker">资料导入</span>
+          <h1>导入一篇新资料</h1>
+          <p>抽取候选关系，与已有实体对齐；核对后加入图谱。</p>
         </div>
         {event ? (
           <div className="context-pill">
@@ -206,9 +238,9 @@ export function KnowledgeUpdateView({
           <div className="panel-head">
             <div>
               <span className="panel-kicker">资料输入</span>
-              <h2>选择资料</h2>
+              <h2>原始资料</h2>
             </div>
-            <span className="count-note"><FileText size={12} /> 单篇增量</span>
+
           </div>
 
           <div className="tab-row">
@@ -229,22 +261,12 @@ export function KnowledgeUpdateView({
               ) : samples.length === 0 ? (
                 <p className="muted">后端没有返回已验证样例。</p>
               ) : (
-                <div className="sample-list">
-                  {samples.map((sample) => (
-                    <button
-                      type="button"
-                      key={sample.id}
-                      className={`sample-item ${sample.id === sampleId ? 'selected' : ''}`}
-                      onClick={() => { setSampleId(sample.id); resetResults(); }}
-                    >
-                      <span className="sample-radio" />
-                      <span>
-                        <strong>{sample.title}</strong>
-                        <small>{sample.notes}</small>
-                      </span>
-                    </button>
-                  ))}
-                </div>
+                <label className="sample-picker">
+                  <span>示例资料</span>
+                  <select aria-label="选择示例资料" value={sampleId ?? ''} onChange={(e) => { setSampleId(e.target.value); resetResults(); }}>
+                    {samples.map((sample) => <option key={sample.id} value={sample.id}>{sample.title}</option>)}
+                  </select>
+                </label>
               )}
               {selectedSample ? (
                 <div className="sample-excerpt">
@@ -298,7 +320,7 @@ export function KnowledgeUpdateView({
               onClick={() => { ingestMutation.reset(); if (request) extractMutation.mutate(request); }}
               disabled={!request || extractMutation.isPending}
             >
-              {extractMutation.isPending ? <><Spinner size={15} /> 正在抽取 · {elapsed}s</> : <><Sparkles size={15} /> 执行知识抽取</>}
+              {extractMutation.isPending ? <><Spinner size={15} /> 正在抽取 · {elapsed}s</> : <><GitBranch size={15} /> 抽取关系</>}
             </button>
             <span>抽取结果需要确认后才会写入图谱。</span>
           </div>
@@ -315,9 +337,9 @@ export function KnowledgeUpdateView({
           <div className="panel-head">
             <div>
               <span className="panel-kicker">抽取结果</span>
-              <h2>实体、关系与校验</h2>
+              <h2>候选关系</h2>
             </div>
-            {result ? <ModeBadge mode={result.mode} /> : <span className="count-note">等待抽取</span>}
+            {result ? <ModeBadge mode={result.mode} /> : null}
           </div>
 
           <div className="result-body">
@@ -338,14 +360,14 @@ export function KnowledgeUpdateView({
             ) : !result ? (
               <div className="result-empty">
                 <GitBranch size={24} />
-                <h3>抽取结果会在这里展开</h3>
-                <p>实体、关系、校验警告与入图预览都会保留，技术 JSON 默认折叠。</p>
-                <div><span>实体对齐</span><span>Schema 校验</span><span>增量预览</span></div>
+                <h3>抽取后核对关系</h3>
+                <p>先选择左侧资料，再运行抽取。核对结果后可以确认入图。</p>
+
               </div>
             ) : (
               <div className="result-content">
                 <div className="result-top">
-                  <div><span className="mono">{result.model}</span><small>{formatNumber(result.elapsed_ms)} ms</small></div>
+                  <div><span className="mono">{result.mode === 'replay' ? '保存结果的模型：' : '抽取模型：'}{result.model}</span><small>{result.mode === 'live' ? '耗时 ' : '读取耗时 '}{formatNumber(result.elapsed_ms)} ms</small></div>
                   <p className={result.mode}>{result.mode === 'live' ? '本次结果由模型实时生成。' : '本次使用已保存的抽取结果，未调用模型。'}</p>
                 </div>
 
@@ -358,33 +380,16 @@ export function KnowledgeUpdateView({
                 <div className={`validation ${result.validation.valid ? 'ok' : 'bad'}`}>
                   {result.validation.valid ? <CheckCircle2 size={16} /> : <AlertTriangle size={16} />}
                   <div>
-                    <strong>{result.validation.valid ? '关系与原文证据校验通过' : '校验未通过，暂不可入图'}</strong>
+                    <strong>{result.validation.valid ? '类型与引用检查通过' : '校验未通过，暂不可入图'}</strong>
                     {result.validation.warnings.length === 0 ? <span>没有额外警告。</span> : (
                       <ul>{result.validation.warnings.map((warning) => <li key={warning}>{warning}</li>)}</ul>
                     )}
                   </div>
                 </div>
 
-                <div className="result-metrics">
-                  <div><span>实体</span><b>{result.entities.length}</b></div>
-                  <div><span>关系</span><b>{result.relations.length}</b></div>
-                  <div><span>事件</span><b>{result.events.length}</b></div>
-                  <div><span>预计新增</span><b>{result.preview.new_nodes ?? 0} 节点 / {result.preview.new_edges ?? 0} 关系</b></div>
-                </div>
+                <p className="result-summary">预计新增 <strong>{result.preview.new_nodes ?? 0}</strong> 个节点、<strong>{result.preview.new_edges ?? 0}</strong> 条关系；已有实体继续使用原 ID。</p>
 
-                <section className="result-section">
-                  <h3>实体预览 <span>{result.entities.length}</span></h3>
-                  <div className="entity-groups">
-                    {entityGroups.map(([type, entities]) => (
-                      <div key={type}>
-                        <TypeBadge type={type} small />
-                        <span className="chips">
-                          {entities.map((entity) => <em key={entity.id} style={{ borderColor: `${nodeColor(entity.type)}55` }}>{entity.label}</em>)}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </section>
+
 
                 <section className="result-section">
                   <h3>关系预览 <span>{result.relations.length}</span></h3>
@@ -400,17 +405,24 @@ export function KnowledgeUpdateView({
                   </div>
                 </section>
 
-                <section className="result-section">
-                  <h3>新增内容 <span>入图前预览</span></h3>
-                  <div className="align-grid">
-                    <div><span>新增节点</span><b>{result.preview.new_nodes ?? 0}</b></div>
-                    <div><span>新增关系</span><b>{result.preview.new_edges ?? 0}</b></div>
-                    <div className="align-matches">
-                      <span>已对齐</span>
-                      <p>{(result.preview.matched_entities ?? []).length === 0 ? '无已有实体匹配' : (result.preview.matched_entities ?? []).map((match) => `${match.input} → ${match.label}`).join(' · ')}</p>
-                    </div>
+                <details className="alignment-details">
+                  <summary>实体对齐 · {result.preview.matched_entities?.length ?? 0} 项已有实体</summary>
+                  <div className="alignment-list">{(result.preview.matched_entities ?? []).map((match, i) => <p key={i}><span>{match.input}</span><ArrowRight size={13} /><strong>{match.label}</strong></p>)}</div>
+                </details>
+
+                <details className="result-section entity-details">
+                  <summary>实体与类型 · {result.entities.length}</summary>
+                  <div className="entity-groups">
+                    {entityGroups.map(([type, entities]) => (
+                      <div key={type}>
+                        <TypeBadge type={type} small />
+                        <span className="chips">
+                          {entities.map((entity) => <em key={entity.id} style={{ borderColor: `${nodeColor(entity.type)}55` }}>{entity.label}</em>)}
+                        </span>
+                      </div>
+                    ))}
                   </div>
-                </section>
+                </details>
 
                 <details className="raw-json">
                   <summary><ChevronDown size={14} /> 原始抽取 JSON <span>{formatNumber(rawText.length)} 字符</span></summary>
@@ -422,38 +434,11 @@ export function KnowledgeUpdateView({
                   <pre>{rawText}</pre>
                 </details>
 
-                <div className="ingest-block">
-                  {ingestResult ? (
-                    <>
-                      <div className="ingest-success ingested-panel">
-                        <CheckCircle2 size={18} />
-                        <div>
-                          <strong>{ingestResult.added_nodes + ingestResult.added_edges > 0 ? '已写入图谱' : '没有新增内容'}</strong>
-                          <span>新增 {ingestResult.added_nodes} 节点 / {ingestResult.added_edges} 关系；更新 {ingestResult.updated_nodes} 节点 / {ingestResult.updated_edges} 关系。</span>
-                        </div>
-                      </div>
-                      <div className="ingest-actions">
-                        <button type="button" className="button primary" onClick={() => onNavigateResearch(preferredGroup, focusSymbol)}>
-                          查看更新后的图谱 <ArrowRight size={14} />
-                        </button>
-                        <button type="button" className="button ghost" onClick={() => ingestMutation.mutate(result.extraction_id)} disabled={ingestMutation.isPending}>
-                          {ingestMutation.isPending ? <Spinner size={13} /> : null} 再次导入
-                        </button>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div><Database size={16} /><span>确认后将 {result.preview.new_nodes ?? 0} 个节点与 {result.preview.new_edges ?? 0} 条关系写入当前图谱。</span></div>
-                      <button type="button" className="button primary" onClick={() => ingestMutation.mutate(result.extraction_id)} disabled={!result.validation.valid || ingestMutation.isPending}>
-                        {ingestMutation.isPending ? <Spinner size={14} /> : <Plus size={14} />} 确认入图
-                      </button>
-                    </>
-                  )}
-                </div>
-                {ingestMutation.isError ? <ErrorState title="入图失败" error={ingestMutation.error} onRetry={() => ingestMutation.mutate(result.extraction_id)} compact /> : null}
+
               </div>
             )}
           </div>
+          {ingestControls}
         </section>
       </div>
 

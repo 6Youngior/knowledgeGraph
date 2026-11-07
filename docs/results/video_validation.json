@@ -1,8 +1,8 @@
 {
-  "created_at": "2026-11-07T02:16:52.551041+00:00",
+  "created_at": "2026-11-07T05:59:25.158213+00:00",
   "file": "visualization/FinGraph-demo.mp4",
-  "sha256": "83e5f10ee642b2e7eb2384333f5900083c04e9343c310c280d4cdee53c69821c",
-  "duration_seconds": 148.28,
+  "sha256": "139c98a5c5760251197b9813ac72c5a706fc38d640924166395eac691b1779c1",
+  "duration_seconds": 131.56,
   "width": 1920,
   "height": 1080,
   "fps": "25/1",
@@ -13,36 +13,63 @@
     "duration_between_2_and_3_minutes": true,
     "full_hd_16_9": true,
     "portable_h264": true,
-    "webm_also_present": true
+    "webm_also_present": true,
+    "complete_ready_ui_on_first_frame": true
   },
   "mechanical_passed": true,
+  "full_decode_passed": true,
+  "faststart_verified": true,
+  "opening_frame_mean_error": 1.216,
+  "trimmed_warmup_seconds": 4.453,
+  "cover": "visualization/FinGraph-demo-cover.png",
+  "cover_sha256": "ac19626d3737610ada378c511b26d73c805ba14c8edbdb34b693711a84642c54",
+  "webm_sha256": "3dd9679d47f8405f01ed2788072cf3f454b3ba9e5070c4ec4a13784f2786e6d4",
+  "chapters": [
+    {
+      "seconds": 7.02,
+      "title": "关联证券与研发原文"
+    },
+    {
+      "seconds": 31.16,
+      "title": "导入适配公告"
+    },
+    {
+      "seconds": 84.39,
+      "title": "行情对照与简报"
+    },
+    {
+      "seconds": 102.64,
+      "title": "按历史日期查看资料"
+    }
+  ],
   "reviewed_frame_times": [
-    5,
+    0,
+    3,
+    12,
     20,
-    32,
-    45,
-    49,
+    28,
+    36,
+    47,
     56,
-    68,
-    80,
-    92,
-    103,
+    66,
+    74,
+    82,
+    91,
+    100,
     109,
-    115,
-    120,
-    126,
-    138,
-    146
+    112,
+    117,
+    122,
+    127
   ],
   "visual_review": "completed",
   "passed": true,
-  "full_decode_passed": true,
-  "faststart_verified": true,
-  "reviewed_at": "2026-11-07T02:19:00.663161+00:00",
-  "webm_sha256": "9c85e08b371f6796255d2dc1ed813af77cb7d3dc200189f5faf4f042d6a66ae5",
-  "notes": [
-    "Reviewed actual UI chapters, original quotes, explicit replay and incremental update.",
-    "Checked newly linked 688795 path, market panel, brief download and historical dates.",
-    "Plain captions describe operations; no synthesized product screens."
+  "reviewed_at": "2026-11-07T06:00:46.347922+00:00",
+  "visual_review_notes": [
+    "Reviewed 18 extracted video frames and enlarged the opening, import preview, historical graph and closing frame.",
+    "The first frame displays the complete research workspace and matches the ready-page reference.",
+    "Checked original quotations, replay labelling, the two-to-three security update and market comparison.",
+    "Checked the zero, two and four security historical views, including all diagram nodes and relation lines.",
+    "The closing GLM-5 view displays all ten diagram nodes and ten relations after switching cases."
   ]
 }

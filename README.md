@@ -6,9 +6,9 @@
 
 ## 演示
 
-关系查询、适配公告入图、历史日期筛选及研究简报导出，时长 2 分 28 秒。
+关系查询、适配公告入图、历史日期筛选及研究简报导出，时长 2 分 12 秒。
 
-https://github.com/user-attachments/assets/5c69311d-610b-43f3-9f69-233c86efd28e
+https://github.com/user-attachments/assets/ec6aabb3-9543-4a88-8c19-6920ac20c110
 
 ## 数据范围
 
@@ -47,7 +47,7 @@ npm run build
 
 1. 选择 GLM-5 发布事件，查看智谱和阿里巴巴的不同关联路径，点击关系查看来源与原句。
 2. 选择历史日期，检查哪些关系在当时已有资料支持。
-3. 导入留出的 MTT S5000 适配公告，预览后入图；GLM-5 的关联证券由 2 只变为 3 只，新增摩尔线程。
+3. 导入 MTT S5000 适配公告中暂未录入的事实，预览后入图；GLM-5 的关联证券由 2 只变为 3 只，新增摩尔线程。
 4. 查看证券与基准的同窗口行情，下载包含关系和来源的研究简报。
 
 关系查询区分模型研发、硬件适配与云服务接入，行业分类不用于推导合作。行情用于描述性比较，未进行因果识别。构建方法见 [docs/METHOD.md](docs/METHOD.md)。
@@ -76,6 +76,6 @@ python code/validate_demo.py          # API 检查，使用回放
 |---|---|
 | `code/` | 图谱、抽取、查询、行情及 API，验证与导出脚本 |
 | `data/` | 事实、来源摘录、抽取样例、行情原始响应与 CSV |
-| `visualization/` | React/ECharts 前端、构建产物及录像 |
+| `visualization/` | React/React Flow/ECharts 前端、构建产物及录像 |
 | `docs/presentation/` | Beamer 源码、PDF、图表、主题及讲稿 |
 | `docs/results/` | 抽取输出、数据审计和功能检查结果 |

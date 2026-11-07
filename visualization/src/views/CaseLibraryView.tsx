@@ -1,10 +1,9 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useQueries, useQuery } from '@tanstack/react-query';
-import { ArrowRight, CalendarDays, Database, GitBranch, Layers3, Link2, Waypoints } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { api } from '../api';
 import type { EventDetail, EventItem, Overview } from '../types';
 import { Skeleton } from '../components/Ui';
-import { groupColor, groupLabel } from '../lib/palette';
 import { formatDate, formatNumber } from '../lib/format';
 
 interface CaseModel {
@@ -30,6 +29,7 @@ export function CaseLibraryView({
   overview?: Overview;
   onOpenEvent: (eventId: string) => void;
 }) {
+  const [filter, setFilter] = useState('all');
   const research = useQuery({
     queryKey: ['research-overview'],
     queryFn: api.research,
@@ -87,68 +87,20 @@ export function CaseLibraryView({
 
   const loading = !research.data && detailQueries.some((query) => query.isLoading);
 
+  const models = [...new Set(cases.map((item) => item.model))];
   return (
     <div className="cases-page">
-      <header className="cases-header">
-        <span className="section-kicker">案例库</span>
-        <h1>AI 产业事件案例</h1>
-        <p>选择事件，查看关联证券、产业角色、日期和行情。</p>
-        <div className="case-stats">
-          <span><Database size={14} /> {formatNumber(overview?.stats.entities)} 个实体</span>
-          <span><GitBranch size={14} /> {formatNumber(overview?.stats.relations)} 条关系</span>
-          <span><Link2 size={14} /> {formatNumber(overview?.stats.documents)} 条来源</span>
-          <span><Waypoints size={14} /> {formatNumber(events.length)} 个事件</span>
-        </div>
-      </header>
-
-      {research.isError ? (
-        <p className="case-fallback">案例数据暂未加载，以下由事件列表汇总。</p>
-      ) : null}
-
-      <div className="case-grid">
-        {loading
-          ? events.map((event) => <Skeleton key={event.id} height={280} />)
-          : cases.map((item, index) => (
-              <button
-                type="button"
-                className="case-card"
-                key={item.id}
-                onClick={() => onOpenEvent(item.id)}
-              >
-                <div className="case-card-top">
-                  <span className="case-number">{String(index + 1).padStart(2, '0')}</span>
-                  <span className="case-date"><CalendarDays size={13} /> {formatDate(item.date)}</span>
-                </div>
-                <h2>{item.title}</h2>
-                <div className="case-model"><Layers3 size={13} /> {item.model}</div>
-                {item.summary ? <p className="case-summary">{item.summary}</p> : null}
-                {item.temporalSummary ? <p className="case-temporal">{item.temporalSummary}</p> : null}
-                <div className="case-metrics">
-                  <div><span>关联证券</span><b>{formatNumber(item.stockCount)}</b></div>
-                  <div><span>来源</span><b>{formatNumber(item.sourceCount)}</b></div>
-                  <div><span>最大路径</span><b>{formatNumber(item.maxHops)} 跳</b></div>
-                </div>
-                <div className="case-roles">
-                  {(['direct', 'adaptation', 'distribution'] as const).map((group) =>
-                    item.roleCounts[group] ? (
-                      <span key={group}>
-                        <i style={{ background: groupColor(group) }} />
-                        {groupLabel(group)} {item.roleCounts[group]}
-                      </span>
-                    ) : null,
-                  )}
-                </div>
-                <span className="case-open">查看案例 <ArrowRight size={14} /></span>
-              </button>
-            ))}
+      <header className="cases-header"><h1>事件目录</h1><p>围绕四个模型主题整理发布、适配和云服务接入资料，选择事件查看关联证券。</p></header>
+      <div className="case-filters" aria-label="按模型筛选">
+        {['all', ...models].map((model) => <button type="button" key={model} className={filter === model ? 'active' : ''} onClick={() => setFilter(model)}>{model === 'all' ? '全部事件' : model}<span> · {model === 'all' ? cases.length : cases.filter((item) => item.model === model).length}</span></button>)}
       </div>
-
-      <div className="case-note">
-        <strong>数据范围</strong>
-        <span>
-          当前覆盖有公开原文和日线的 AI 产业事件；行业分类与晚于所选日期的记录不进入关联。
-        </span>
-      </div>
+      {loading ? <Skeleton height={420} /> : <div className="case-table">
+        <div className="case-table-row head"><span>日期</span><span>产业事件</span><span>模型主题</span><span>关联证券</span><span>来源</span><span /></div>
+        {cases.filter((item) => filter === 'all' || item.model === filter).map((item) => <button type="button" className="case-table-row" key={item.id} onClick={() => onOpenEvent(item.id)}>
+          <span className="mono">{formatDate(item.date)}</span><strong>{item.title}</strong><span>{item.model}</span><span>{item.stockCount} 只</span><span>{item.sourceCount} 项</span><ArrowRight size={15} />
+        </button>)}
+      </div>}
+      <p className="case-note">当前图谱：{formatNumber(overview?.stats.entities)} 个实体、{formatNumber(overview?.stats.relations)} 条关系、{formatNumber(overview?.stats.documents)} 项来源。证券数按当前已收集资料计算。</p>
     </div>
   );
 }

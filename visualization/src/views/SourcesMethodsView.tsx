@@ -99,7 +99,7 @@ export function SourcesMethodsView({
       <header className="page-header">
         <div>
           <span className="section-kicker">资料与方法</span>
-          <h1>资料来源与研究方法</h1>
+          <h1>资料与方法</h1>
           <p>当前数据范围、关系规则、日期口径与行情计算方式。</p>
         </div>
         <div className="page-tabs">
@@ -120,14 +120,10 @@ export function SourcesMethodsView({
               <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="搜索标题、发布方或原文摘录…" />
               {search ? <button type="button" onClick={() => setSearch('')} aria-label="清空"><X size={13} /></button> : null}
             </div>
-            <div className="filter-chips">
-              <button type="button" className={typeFilter === 'all' ? 'active' : ''} onClick={() => setTypeFilter('all')}>全部 {sources.length}</button>
-              {types.map((type) => (
-                <button type="button" key={type} className={typeFilter === type ? 'active' : ''} onClick={() => setTypeFilter(type)}>
-                  {sourceTypeLabel(type)} {sources.filter((source) => source.source_type === type).length}
-                </button>
-              ))}
-            </div>
+            <select className="source-type-select" aria-label="筛选来源类型" value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}>
+              <option value="all">全部来源类型 · {sources.length}</option>
+              {types.map((type) => <option key={type} value={type}>{sourceTypeLabel(type)} · {sources.filter((source) => source.source_type === type).length}</option>)}
+            </select>
             <span className="toolbar-count"><Filter size={12} /> {filtered.length} 条</span>
           </div>
 
@@ -174,7 +170,7 @@ export function SourcesMethodsView({
             ].map(([label, value]) => (
               <div key={label as string}><span>{label}</span><b>{formatNumber(value as number | undefined)}</b></div>
             ))}
-            <div><span>数据截至</span><b className="small">{formatDate(overview?.as_of)}</b></div>
+            <div><span>资料登记至</span><b className="small">{formatDate(overview?.as_of)}</b></div>
           </section>
 
           <div className="method-grid">
@@ -241,7 +237,7 @@ export function SourcesMethodsView({
               <div className="system-rows">
                 <div><span>图引擎</span><b>{health?.engine ?? '—'}</b></div>
                 <div><span>抽取方式</span><b>{overview?.llm.available ? '实时 / 回放' : '回放'}</b></div>
-                <div><span>数据截至</span><b>{formatDate(overview?.as_of)}</b></div>
+                <div><span>资料登记至</span><b>{formatDate(overview?.as_of)}</b></div>
                 <div><span>最近更新</span><b>{formatDateTime(overview?.updated_at)}</b></div>
               </div>
             </section>

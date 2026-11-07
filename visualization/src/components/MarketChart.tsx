@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import * as echarts from 'echarts';
 import type { EChartsOption } from 'echarts';
 import { CalendarClock, ExternalLink, LineChart, TrendingDown, TrendingUp } from 'lucide-react';
 import { api } from '../api';
@@ -73,26 +72,20 @@ export function MarketChart({
       animationDuration: 450,
       grid: { left: 44, right: 16, top: 28, bottom: 26 },
       tooltip: {
-        trigger: 'axis',
-        backgroundColor: 'rgba(15,23,42,.96)',
-        borderColor: 'rgba(148,163,184,.3)',
-        textStyle: { color: '#f8fafc', fontSize: 12 },
-        extraCssText: 'border-radius:9px;box-shadow:0 12px 32px rgba(15,23,42,.22);',
+        trigger: 'axis', renderMode: 'richText', confine: true,
+        backgroundColor: '#ffffff', borderColor: '#d7e0e8',
+        textStyle: { color: '#33475b', fontSize: 13 },
         formatter: (params: unknown) => {
-          const list = (Array.isArray(params) ? params : [params]) as Array<{
-            dataIndex: number;
-            seriesName: string;
-            value: number | null;
-          }>;
-          const index = list[0]?.dataIndex ?? 0;
-          const point = data.prices[index];
+          const list = (Array.isArray(params) ? params : [params]) as Array<{ dataIndex: number; value: number | null }>;
+          const point = data.prices[list[0]?.dataIndex ?? 0];
           if (!point) return '';
-          const fmt = (value: number | null | undefined) =>
-            value === null || value === undefined ? '—' : `${value > 0 ? '+' : ''}${value.toFixed(2)}%`;
-          return `<div style="font-size:10px;color:#5eead4;margin-bottom:5px;">T${point.relative_day >= 0 ? '+' : ''}${point.relative_day} · ${point.date}</div>
-            <div style="display:flex;justify-content:space-between;gap:20px;"><span style="color:#94a3b8;">${data.name}</span><b>${fmt(list[0]?.value)}</b></div>
-            ${data.benchmark ? `<div style="display:flex;justify-content:space-between;gap:20px;"><span style="color:#94a3b8;">${data.benchmark.name}</span><b>${fmt(list[1]?.value)}</b></div>` : ''}
-            <div style="display:flex;justify-content:space-between;gap:20px;color:#64748b;"><span>收盘</span><span>${point.close ?? '—'} ${data.currency}</span></div>`;
+          const fmt = (value: number | null | undefined) => value === null || value === undefined ? '—' : (value > 0 ? '+' : '') + value.toFixed(2) + '%';
+          return [
+            point.date + '  T' + (point.relative_day >= 0 ? '+' : '') + point.relative_day,
+            data.name + '  ' + fmt(list[0]?.value),
+            data.benchmark ? data.benchmark.name + '  ' + fmt(list[1]?.value) : '',
+            '收盘 ' + (point.close ?? '—') + ' ' + data.currency,
+          ].filter(Boolean).join('\n');
         },
       },
       xAxis: {
@@ -101,12 +94,12 @@ export function MarketChart({
         boundaryGap: false,
         axisLine: { lineStyle: { color: '#e2e8f0' } },
         axisTick: { show: false },
-        axisLabel: { color: '#94a3b8', fontSize: 10, formatter: (value: string) => value.slice(5) },
+        axisLabel: { color: '#94a3b8', fontSize: 12, formatter: (value: string) => value.slice(5) },
       },
       yAxis: {
         type: 'value',
         scale: true,
-        axisLabel: { color: '#94a3b8', fontSize: 10, formatter: (value: number) => `${value.toFixed(0)}%` },
+        axisLabel: { color: '#94a3b8', fontSize: 12, formatter: (value: number) => `${value.toFixed(0)}%` },
         splitLine: { lineStyle: { color: '#eef2f7' } },
       },
       series: [
@@ -116,19 +109,13 @@ export function MarketChart({
           data: stockSeries,
           showSymbol: false,
           connectNulls: false,
-          lineStyle: { width: 2.4, color: '#2563eb' },
-          itemStyle: { color: '#2563eb' },
-          areaStyle: {
-            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-              { offset: 0, color: 'rgba(37,99,235,.18)' },
-              { offset: 1, color: 'rgba(37,99,235,.01)' },
-            ]),
-          },
+          lineStyle: { width: 2.4, color: '#234f78' },
+          itemStyle: { color: '#234f78' },
           markLine: {
             symbol: 'none',
             silent: true,
-            label: { formatter: 'T0', color: '#b45309', fontSize: 10, rotate: 0 },
-            lineStyle: { color: '#f59e0b', type: 'dashed', width: 1 },
+            label: { formatter: 'T0', color: '#607b94', fontSize: 12, rotate: 0 },
+            lineStyle: { color: '#8ca1b4', type: 'dashed', width: 1 },
             data: [{ xAxis: data.anchor_date }],
           },
         },

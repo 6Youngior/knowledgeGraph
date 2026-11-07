@@ -1,62 +1,35 @@
-# Third-party notices
+# Frontend dependencies
 
-## @dagrejs/dagre 3.1.3
+Runtime dependency licenses are retained in [licenses/](licenses/).
 
-License: MIT
+| Package | Installed version | License |
+|---|---|---|
+| @dagrejs/dagre | 3.1.3 | MIT |
+| @dagrejs/graphlib | 4.0.6 | MIT |
+| @tanstack/query-core | 5.106.1 | MIT |
+| @tanstack/react-query | 5.106.1 | MIT |
+| @xyflow/react | 12.12.1 | MIT |
+| @xyflow/system | 0.0.84 | MIT |
+| classcat | 5.0.5 | MIT |
+| d3-color | 3.1.1 | ISC |
+| d3-dispatch | 3.0.2 | ISC |
+| d3-drag | 3.0.1 | ISC |
+| d3-ease | 3.0.2 | BSD-3-Clause |
+| d3-interpolate | 3.0.2 | ISC |
+| d3-selection | 3.0.1 | ISC |
+| d3-timer | 3.0.2 | ISC |
+| d3-transition | 3.0.2 | ISC |
+| d3-zoom | 3.0.1 | ISC |
+| echarts | 6.1.0 | Apache-2.0 |
+| js-tokens | 4.0.0 | MIT |
+| loose-envify | 1.4.0 | MIT |
+| lucide-react | 0.468.0 | ISC |
+| react | 18.3.1 | MIT |
+| react-dom | 18.3.1 | MIT |
+| scheduler | 0.23.2 | MIT |
+| tslib | 2.3.0 | 0BSD |
+| use-sync-external-store | 1.7.0 | MIT |
+| zrender | 6.1.0 | BSD-3-Clause |
+| zustand | 4.5.7 | MIT |
 
-```text
-Copyright (c) 2012-2014 Chris Pettitt
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-```
-
-## @dagrejs/graphlib 4.0.6
-
-License: MIT
-
-```text
-Copyright (c) 2012-2014 Chris Pettitt
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-```
-
-## References (no source code copied)
-
-- React Flow official layout example, `dagre`:
-  <https://reactflow.dev/examples/layout/dagre> — layout approach reference.
-- OpenBB finance design-system:
-  <https://github.com/OpenBB-finance/design-system> — information hierarchy and
-  financial research UI reference only; no brand assets or framework code used.
-- ECharts 5: Apache-2.0, see `node_modules/echarts/LICENSE`.
+The graph uses [React Flow](https://reactflow.dev/) and [Dagre](https://github.com/dagrejs/dagre), following the [official layout example](https://reactflow.dev/examples/layout/dagre). Market charts use [Apache ECharts](https://echarts.apache.org/). No third-party brand assets are used.

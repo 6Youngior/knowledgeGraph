@@ -45,7 +45,7 @@ export function App() {
   }, [view]);
 
   useEffect(() => {
-    const label = view === 'research' ? '事件研究' : view === 'cases' ? '案例库' : view === 'update' ? '知识更新' : '资料与方法';
+    const label = view === 'research' ? '事件研究' : view === 'cases' ? '事件目录' : view === 'update' ? '资料导入' : '资料与方法';
     document.title = `${label} · FinGraph`;
   }, [view]);
 
@@ -104,6 +104,7 @@ export function App() {
         <div className="content">
           {view === 'research' ? (
             <ResearchView
+              key={eventId ?? 'initial'}
               events={events}
               eventId={eventId}
               overview={overview}
@@ -154,10 +155,7 @@ export function App() {
           ) : null}
         </div>
 
-        <footer className="app-footer">
-          <span>FinGraph · AI 产业事件关联证券研究</span>
-          <span>数据来自知识图谱与本地行情缓存</span>
-        </footer>
+
       </main>
 
       {demoStep !== null ? (

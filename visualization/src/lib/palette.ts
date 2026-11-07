@@ -1,15 +1,15 @@
 import type { RelationGroup } from '../types';
 
 export const NODE_COLORS: Record<string, string> = {
-  Company: '#38bdf8',
-  Stock: '#f5b544',
-  Model: '#a78bfa',
-  Product: '#2dd4bf',
-  Industry: '#94a3b8',
-  Event: '#f472b6',
+  Company: '#356389',
+  Stock: '#8a673c',
+  Model: '#4c628b',
+  Product: '#318279',
+  Industry: '#7c8794',
+  Event: '#566172',
 };
 
-export const NODE_COLOR_FALLBACK = '#7dd3fc';
+export const NODE_COLOR_FALLBACK = '#64748b';
 
 export const TYPE_ORDER = [
   'Event',
@@ -51,10 +51,10 @@ export const GROUP_LABEL: Record<string, string> = {
 };
 
 export const GROUP_COLOR: Record<string, string> = {
-  direct: '#5b8cff',
-  adaptation: '#2dd4bf',
-  distribution: '#c084fc',
-  industry: '#94a3b8',
+  direct: '#356389',
+  adaptation: '#168578',
+  distribution: '#70648c',
+  industry: '#8d98a5',
 };
 
 export const SOURCE_TYPE_LABEL: Record<string, string> = {

@@ -77,14 +77,14 @@ export function ModeBadge({ mode }: { mode: 'live' | 'replay' }) {
     return (
       <span className="mode-badge live">
         <Radio size={13} />
-        LIVE 实时抽取
+        实时抽取
       </span>
     );
   }
   return (
     <span className="mode-badge replay">
       <History size={13} />
-      REPLAY 已验证回放
+      样例回放
     </span>
   );
 }

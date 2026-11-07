@@ -1,434 +1,173 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import type { EChartsOption, EChartsType } from 'echarts';
+import { memo, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {
-  Eye,
-  EyeOff,
-  Maximize2,
-  Minimize2,
-  Network,
-  RotateCcw,
-  ZoomIn,
-  ZoomOut,
-} from 'lucide-react';
+  Background, getViewportForBounds, Handle, MarkerType, Position, ReactFlow, useUpdateNodeInternals,
+  type Edge, type Node, type NodeProps, type ReactFlowInstance,
+} from '@xyflow/react';
+import '@xyflow/react/dist/style.css';
+import { Eye, EyeOff, Maximize2, Minimize2, RotateCcw, ZoomIn, ZoomOut } from 'lucide-react';
 import type { GraphEdge, GraphNode, GraphPayload, RelationGroup, RelatedStock } from '../types';
 import { buildRoleLayout } from '../lib/roleLayout';
-import {
-  groupColor,
-  groupLabel,
-  nodeColor,
-  relationLabel,
-  typeLabel,
-  TYPE_ORDER,
-} from '../lib/palette';
-import { truncate } from '../lib/format';
-import { EChart } from './EChart';
+import { nodeColor, relationLabel, typeLabel } from '../lib/palette';
 import { EmptyState } from './Ui';
 
-export interface GraphSelection {
-  kind: 'node' | 'edge';
-  id: string;
-}
-
-const GROUPS: Array<{ value: 'all' | RelationGroup; label: string }> = [
-  { value: 'all', label: '全部关系' },
-  { value: 'direct', label: '研发 / 上市' },
-  { value: 'adaptation', label: '硬件适配' },
-  { value: 'distribution', label: '云服务接入' },
-];
-
-function symbolFor(type: string): string {
-  if (type === 'Event') return 'roundRect';
-  if (type === 'Model') return 'diamond';
-  if (type === 'Product' || type === 'Stock') return 'roundRect';
-  return 'circle';
-}
-
-function sizeFor(type: string): number | [number, number] {
-  if (type === 'Event') return [60, 30];
-  if (type === 'Model') return 42;
-  if (type === 'Product') return [42, 27];
-  if (type === 'Stock') return [54, 27];
-  if (type === 'Company') return 38;
-  return 28;
-}
-
-export function ResearchGraph({
-  graph,
-  group,
-  onGroupChange,
-  selection,
-  path,
-  stocks,
-  onSelectNode,
-  onSelectEdge,
-  onClearPath,
-  onToggleFullscreen,
-  fullscreen,
-}: {
-  graph: GraphPayload;
-  group: 'all' | RelationGroup;
-  onGroupChange: (group: 'all' | RelationGroup) => void;
-  selection: GraphSelection | null;
-  path: { nodes: GraphNode[]; edges: GraphEdge[] } | null;
-  stocks: RelatedStock[];
-  onSelectNode: (node: GraphNode) => void;
-  onSelectEdge: (edge: GraphEdge) => void;
-  onClearPath: () => void;
-  onToggleFullscreen: () => void;
-  fullscreen: boolean;
-}) {
-  const chartRef = useRef<EChartsType | null>(null);
-  const zoomRef = useRef(1);
-  const [showIndustry, setShowIndustry] = useState(false);
-
-  const baseNodes = useMemo(
-    () => graph.nodes.filter((node) => showIndustry || node.type !== 'Industry'),
-    [graph.nodes, showIndustry],
-  );
-  const baseNodeIds = useMemo(
-    () => new Set(baseNodes.map((node) => node.id)),
-    [baseNodes],
-  );
-
-  const rolePaths = useMemo(() => {
-    if (group === 'all') return null;
-    const edgeIds = new Set<string>();
-    const nodeIds = new Set<string>();
-    stocks.forEach((stock) => {
-      const groups = stock.relation_groups ?? [stock.relation_group];
-      if (!groups.includes(group)) return;
-      const rolePath =
-        stock.paths?.find((item) => item.relation_group === group) ?? stock.path;
-      rolePath.edges.forEach((edge) => edgeIds.add(edge.id));
-      rolePath.nodes.forEach((node) => nodeIds.add(node.id));
-    });
-    return { edgeIds, nodeIds };
-  }, [stocks, group]);
-
-  const visibleEdges = useMemo(() => {
-    const sourceEdges = rolePaths
-      ? graph.edges.filter((edge) => rolePaths.edgeIds.has(edge.id))
-      : graph.edges;
-    return sourceEdges.filter(
-      (edge) =>
-        baseNodeIds.has(edge.source) &&
-        baseNodeIds.has(edge.target) &&
-        (group === 'all' || rolePaths !== null),
-    );
-  }, [graph.edges, group, baseNodeIds, rolePaths]);
-
-  const visibleNodes = useMemo(() => {
-    if (rolePaths) {
-      return baseNodes.filter((node) => rolePaths.nodeIds.has(node.id));
-    }
-    if (group === 'all') return baseNodes;
-    const ids = new Set<string>();
-    visibleEdges.forEach((edge) => {
-      ids.add(edge.source);
-      ids.add(edge.target);
-    });
-    if (graph.focus_id) ids.add(graph.focus_id);
-    return baseNodes.filter((node) => ids.has(node.id));
-  }, [graph, group, visibleEdges, baseNodes, rolePaths]);
-
-  const layout = useMemo(() => buildRoleLayout(visibleNodes, visibleEdges), [visibleNodes, visibleEdges]);
-  const nodeMap = useMemo(
-    () => new Map(visibleNodes.map((node) => [node.id, node])),
-    [visibleNodes],
-  );
-  const pathNodeIds = useMemo(
-    () => new Set(path?.nodes.map((node) => node.id) ?? []),
-    [path],
-  );
-  const pathEdgeIds = useMemo(
-    () => new Set(path?.edges.map((edge) => edge.id) ?? []),
-    [path],
-  );
-  const hasPath = pathEdgeIds.size > 0;
-
-  const applyZoom = useCallback((next: number) => {
-    zoomRef.current = next;
-    chartRef.current?.setOption({ series: [{ zoom: next, center: null }] });
-  }, []);
-
-  useEffect(() => {
-    zoomRef.current = layout.zoom;
-    chartRef.current?.setOption({ series: [{ zoom: layout.zoom, center: null }] });
-  }, [layout.zoom, graph.focus_id]);
-
-  const option = useMemo<EChartsOption>(() => {
-    const data = visibleNodes.map((node) => {
-      const position = layout.positions.get(node.id) ?? { x: 0, y: 0 };
-      const color = nodeColor(node.type);
-      const selected = selection?.kind === 'node' && selection.id === node.id;
-      const onPath = hasPath && pathNodeIds.has(node.id);
-      const dim = hasPath && !onPath;
-      const code =
-        node.type === 'Stock'
-          ? String(
-              node.properties?.symbol ??
-                node.aliases?.find((alias) => /^\d{4,5}\./.test(alias)) ??
-                node.label.match(/\(([^)]+)\)/)?.[1] ??
-                '',
-            )
-          : '';
-      const displayName =
-        node.type === 'Stock'
-          ? node.label.replace(/\s*\([^)]*\)\s*$/, '')
-          : node.label;
-      const meta =
-        node.type === 'Stock'
-          ? `${code || '证券'} · 证券`
-          : typeLabel(node.type);
-      return {
-        id: node.id,
-        nodeId: node.id,
-        name: node.label,
-        x: position.x,
-        y: position.y,
-        symbol: 'roundRect',
-        symbolSize: node.type === 'Industry' ? [116, 44] : [142, 50],
-        itemStyle: {
-          color: onPath || selected ? `${color}33` : '#101c30',
-          borderColor: selected ? '#ffffff' : color,
-          borderWidth: selected ? 2.6 : 1.8,
-          opacity: dim ? 0.62 : 1,
-          shadowBlur: selected ? 12 : 0,
-          shadowColor: `${color}55`,
-        },
-        label: {
-          show: true,
-          position: 'inside' as const,
-          formatter: `{name|${displayName}}\n{meta|${meta}}`,
-          rich: {
-            name: {
-              fontSize: displayName.length > 9 ? 13 : 14.5,
-              fontWeight: 650,
-              color: dim ? 'rgba(226,232,240,.68)' : '#f8fafc',
-              lineHeight: 19,
-              width: 126,
-              overflow: 'break' as const,
-            },
-            meta: {
-              fontSize: 10.5,
-              fontWeight: 400,
-              color: dim ? 'rgba(148,163,184,.52)' : color,
-              lineHeight: 13,
-            },
-          },
-        },
-      };
-    });
-
-    const links = visibleEdges.map((edge) => {
-      const onPath = pathEdgeIds.has(edge.id);
-      const selected = selection?.kind === 'edge' && selection.id === edge.id;
-      const dim = (hasPath && !onPath) || (selection?.kind === 'edge' && !selected);
-      const color = onPath || selected ? '#67e8f9' : groupColor(edge.relation_group);
-      return {
-        id: edge.id,
-        edgeId: edge.id,
-        source: edge.source,
-        target: edge.target,
-        value: 1,
-        lineStyle: {
-          color,
-          width: onPath || selected ? 2.8 : 1.5,
-          opacity: dim ? 0.14 : 0.7,
-          curveness: 0.04,
-          shadowBlur: onPath ? 12 : 0,
-          shadowColor: 'rgba(34,211,238,.5)',
-        },
-        label: {
-          show: false,
-          formatter: relationLabel(edge.type, edge.label),
-          color: '#a5f3fc',
-          fontSize: 9.5,
-          rotate: 0,
-          backgroundColor: 'rgba(7,15,28,.86)',
-          padding: [2, 5],
-          borderRadius: 4,
-        },
-      };
-    });
-
-    const sourceLabel = (id: string) => nodeMap.get(id)?.label ?? id;
-
-    return {
-      animationDuration: 500,
-      animationDurationUpdate: 300,
-      tooltip: {
-        trigger: 'item',
-        confine: true,
-        backgroundColor: 'rgba(7,15,28,.97)',
-        borderColor: 'rgba(148,163,184,.3)',
-        textStyle: { color: '#e2e8f0', fontSize: 12 },
-        extraCssText: 'border-radius:10px;box-shadow:0 18px 44px rgba(0,0,0,.5);max-width:340px;',
-        formatter: (params: unknown) => {
-          const item = params as { dataType?: string; data?: Record<string, unknown> };
-          if (item.dataType === 'edge') {
-            const edge = visibleEdges.find((entry) => entry.id === item.data?.edgeId);
-            if (!edge) return '';
-            return `<div style="font-size:10px;letter-spacing:.12em;color:#5eead4;margin-bottom:5px;">关系</div>
-              <div style="font-weight:600;margin-bottom:3px;">${sourceLabel(edge.source)} → ${sourceLabel(edge.target)}</div>
-              <div style="color:#94a3b8;">${relationLabel(edge.type, edge.label)} · ${edge.type}</div>
-              ${edge.evidence ? `<div style="margin-top:7px;color:#cbd5e1;line-height:1.55;">${truncate(edge.evidence, 120)}</div>` : ''}
-              ${edge.disclosed_at ? `<div style="margin-top:5px;color:#64748b;">披露 ${edge.disclosed_at}</div>` : ''}`;
-          }
-          const node = visibleNodes.find((entry) => entry.id === item.data?.nodeId);
-          if (!node) return '';
-          return `<div style="font-size:10px;letter-spacing:.12em;color:${nodeColor(node.type)};margin-bottom:5px;">${typeLabel(node.type)}</div>
-            <div style="font-weight:600;margin-bottom:3px;">${node.label}</div>
-            ${node.description ? `<div style="color:#94a3b8;line-height:1.55;">${truncate(node.description, 130)}</div>` : ''}
-            ${node.source_ids?.length ? `<div style="margin-top:5px;color:#64748b;">${node.source_ids.length} 条来源</div>` : ''}`;
-        },
-      },
-      series: [
-        {
-          type: 'graph',
-          layout: 'none',
-          roam: true,
-          draggable: false,
-          selectedMode: false,
-          data,
-          links,
-          edgeSymbol: ['none', 'arrow'],
-          edgeSymbolSize: 7,
-          lineStyle: { curveness: 0.04 },
-          emphasis: {
-            focus: 'adjacency',
-            scale: 1.06,
-            lineStyle: { width: 2.6, opacity: 1 },
-            label: { show: true, color: '#ffffff' },
-          },
-          blur: {
-            itemStyle: { opacity: 0.35 },
-            lineStyle: { opacity: 0.1 },
-            label: { opacity: 0.45 },
-          },
-        },
-      ],
-    };
-  }, [
-    visibleNodes,
-    visibleEdges,
-    layout.positions,
-    selection,
-    pathEdgeIds,
-    pathNodeIds,
-    hasPath,
-    nodeMap,
-  ]);
-
-  const onReady = useCallback((chart: EChartsType) => {
-    chartRef.current = chart;
-  }, []);
-
-  const handleClick = useCallback(
-    (params: unknown) => {
-      const clicked = params as { dataType?: string; data?: { nodeId?: string; edgeId?: string } };
-      if (clicked.dataType === 'node' && clicked.data?.nodeId) {
-        const node = visibleNodes.find((entry) => entry.id === clicked.data?.nodeId);
-        if (node) onSelectNode(node);
-      } else if (clicked.dataType === 'edge' && clicked.data?.edgeId) {
-        const edge = visibleEdges.find((entry) => entry.id === clicked.data?.edgeId);
-        if (edge) onSelectEdge(edge);
-      }
-    },
-    [visibleNodes, visibleEdges, onSelectNode, onSelectEdge],
-  );
-
-  const types = [...new Set(visibleNodes.map((node) => node.type))].sort(
-    (a, b) =>
-      (TYPE_ORDER.indexOf(a) === -1 ? 99 : TYPE_ORDER.indexOf(a)) -
-      (TYPE_ORDER.indexOf(b) === -1 ? 99 : TYPE_ORDER.indexOf(b)),
-  );
-
+export interface GraphSelection { kind: 'node' | 'edge'; id: string; }
+type EvidenceNode = Node<{ entity: GraphNode; horizontal: boolean; active: boolean }, 'evidence'>;
+const EntityNode = memo(function EntityNode({ id, data }: NodeProps<EvidenceNode>) {
+  const updateInternals = useUpdateNodeInternals();
+  useLayoutEffect(() => { updateInternals(id); }, [id, updateInternals]);
+  const node = data.entity;
+  const name = node.type === 'Stock' ? node.label.replace(/\s*\([^)]*\)\s*$/, '') : node.label;
+  const code = node.type === 'Stock' ? String(node.properties?.symbol ?? '') : typeLabel(node.type);
   return (
-    <section className={`research-graph ${fullscreen ? 'fullscreen' : ''}`}>
+    <div className={'entity-node ' + (data.active ? 'on-path' : '')} style={{ borderLeftColor: nodeColor(node.type) }} title={node.label}>
+      {([Position.Left, Position.Right, Position.Top, Position.Bottom] as const).flatMap((position) => [
+        <Handle key={'s-' + position} id={'s-' + position} type="source" position={position} isConnectable={false} />,
+        <Handle key={'t-' + position} id={'t-' + position} type="target" position={position} isConnectable={false} />,
+      ])}
+      <span className="entity-type">{node.type === 'Stock' ? code : typeLabel(node.type)}</span>
+      <strong>{name}</strong>
+    </div>
+  );
+});
+const nodeTypes = { evidence: EntityNode };
+const GROUPS: Array<{ value: 'all' | RelationGroup; label: string }> = [
+  { value: 'all', label: '全部关系' }, { value: 'direct', label: '研发 / 上市' },
+  { value: 'adaptation', label: '硬件适配' }, { value: 'distribution', label: '云服务接入' },
+];
+export function ResearchGraph({
+  graph, group, onGroupChange, selection, path, stocks, onSelectNode, onSelectEdge, onClearPath,
+  onToggleFullscreen, fullscreen,
+}: {
+  graph: GraphPayload; group: 'all' | RelationGroup; onGroupChange: (group: 'all' | RelationGroup) => void;
+  selection: GraphSelection | null; path: { nodes: GraphNode[]; edges: GraphEdge[] } | null;
+  stocks: RelatedStock[]; onSelectNode: (node: GraphNode) => void; onSelectEdge: (edge: GraphEdge) => void;
+  onClearPath: () => void; onToggleFullscreen: () => void; fullscreen: boolean;
+}) {
+  const container = useRef<HTMLDivElement>(null);
+  const [flow, setFlow] = useState<ReactFlowInstance<EvidenceNode, Edge> | null>(null);
+  const [horizontal, setHorizontal] = useState(false);
+  const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
+  const [showIndustry, setShowIndustry] = useState(false);
+  useEffect(() => {
+    if (!fullscreen) return;
+    const handle = (event: KeyboardEvent) => { if (event.key === 'Escape') onToggleFullscreen(); };
+    window.addEventListener('keydown', handle);
+    return () => window.removeEventListener('keydown', handle);
+  }, [fullscreen, onToggleFullscreen]);
+  useEffect(() => {
+    if (!container.current) return;
+    const observer = new ResizeObserver(([entry]) => {
+      setHorizontal(entry.contentRect.width >= 1120);
+      const width = Math.round(entry.contentRect.width);
+      const height = Math.round(entry.contentRect.height);
+      setCanvasSize((old) => old.width === width && old.height === height ? old : { width, height });
+    });
+    observer.observe(container.current);
+    return () => observer.disconnect();
+  }, []);
+  const filtered = useMemo(() => {
+    let nodes = graph.nodes.filter((node) => showIndustry || node.type !== 'Industry');
+    let edges = graph.edges;
+    if (group !== 'all') {
+      const nodeIds = new Set<string>(); const edgeIds = new Set<string>();
+      stocks.forEach((stock) => {
+        if (!(stock.relation_groups ?? [stock.relation_group]).includes(group)) return;
+        const rolePath = stock.paths?.find((item) => item.relation_group === group) ?? stock.path;
+        rolePath.nodes.forEach((node) => nodeIds.add(node.id));
+        rolePath.edges.forEach((edge) => edgeIds.add(edge.id));
+      });
+      nodes = nodes.filter((node) => nodeIds.has(node.id));
+      edges = edges.filter((edge) => edgeIds.has(edge.id));
+    }
+    const ids = new Set(nodes.map((node) => node.id));
+    return { nodes, edges: edges.filter((edge) => ids.has(edge.source) && ids.has(edge.target)) };
+  }, [graph, showIndustry, group, stocks]);
+  const layout = useMemo(() => buildRoleLayout(filtered.nodes, filtered.edges, horizontal), [filtered, horizontal]);
+  const structureKey = (horizontal ? 'horizontal:' : 'vertical:')
+    + filtered.nodes.map((node) => node.id).join('|') + '>'
+    + filtered.edges.map((edge) => edge.id).join('|');
+  const viewport = useMemo(() => {
+    const points = [...layout.positions.values()];
+    if (!points.length || !canvasSize.width || !canvasSize.height) return { x: 0, y: 0, zoom: 1 };
+    const x = Math.min(...points.map((point) => point.x));
+    const y = Math.min(...points.map((point) => point.y));
+    const width = Math.max(...points.map((point) => point.x + 174)) - x;
+    const height = Math.max(...points.map((point) => point.y + 60)) - y;
+    return getViewportForBounds({ x, y, width, height }, canvasSize.width, canvasSize.height, 0.3, 1.1, 0.05);
+  }, [layout, canvasSize]);
+  const pathNodes = new Set(path?.nodes.map((node) => node.id));
+  const pathEdges = new Set(path?.edges.map((edge) => edge.id));
+  const nodes: EvidenceNode[] = filtered.nodes.map((entity) => ({
+    id: entity.id, type: 'evidence', data: { entity, horizontal, active: pathNodes.has(entity.id) },
+    position: layout.positions.get(entity.id) ?? { x: 0, y: 0 },
+    className: path && !pathNodes.has(entity.id) ? 'off-path' : '',
+    selected: selection?.kind === 'node' && selection.id === entity.id,
+    ariaLabel: typeLabel(entity.type) + '：' + entity.label,
+    style: { width: 174, height: 60 }, draggable: false, connectable: false, deletable: false,
+  }));
+  const edges: Edge[] = filtered.edges.map((edge) => {
+    const a = layout.positions.get(edge.source); const b = layout.positions.get(edge.target);
+    const forward = horizontal ? (a?.x ?? 0) < (b?.x ?? 0) : (a?.y ?? 0) < (b?.y ?? 0);
+    const from = horizontal ? (forward ? 'right' : 'left') : (forward ? 'bottom' : 'top');
+    const to = horizontal ? (forward ? 'left' : 'right') : (forward ? 'top' : 'bottom');
+    const active = pathEdges.has(edge.id) || (selection?.kind === 'edge' && selection.id === edge.id);
+    const color = active ? '#157d72' : '#8998a9';
+    const span = horizontal ? Math.abs((b?.x ?? 0) - (a?.x ?? 0)) : Math.abs((b?.y ?? 0) - (a?.y ?? 0));
+    return {
+      id: edge.id, source: edge.source, target: edge.target, type: 'smoothstep',
+      // Turn in the first gap when an edge skips a layer, so it does not
+      // pass through an unrelated product in the intermediate column.
+      pathOptions: { borderRadius: 5, offset: 18, stepPosition: span > (horizontal ? 350 : 150) ? 0.12 : 0.5 },
+      sourceHandle: 's-' + from, targetHandle: 't-' + to, label: relationLabel(edge.type, edge.label),
+      markerEnd: { type: MarkerType.ArrowClosed, color, width: 18, height: 18 },
+      style: { stroke: color, strokeWidth: active ? 2.3 : 1.5, opacity: path && !active ? 0.4 : 1 },
+      labelStyle: { fill: active ? '#126e64' : '#526273', fontSize: 13, fontWeight: active ? 600 : 400 },
+      labelBgStyle: { fill: '#fff', fillOpacity: 0.97 }, labelBgPadding: [5, 3], labelBgBorderRadius: 3,
+      interactionWidth: 22, focusable: true, ariaLabel: relationLabel(edge.type, edge.label),
+    };
+  });
+  useLayoutEffect(() => {
+    if (flow && canvasSize.width && canvasSize.height && filtered.nodes.length) {
+      void flow.setViewport(viewport);
+    }
+  }, [flow, viewport, canvasSize.width, canvasSize.height, filtered.nodes.length]);
+  return (
+    <>
       {fullscreen ? <div className="graph-backdrop" onClick={onToggleFullscreen} /> : null}
+    <section className={'research-graph ' + (fullscreen ? 'fullscreen' : '')}>
       <div className="graph-top">
-        <div>
-          <span className="graph-kicker">关系图</span>
-          <h2>事件关联网络</h2>
-        </div>
+        <h2>事件与证券的关系</h2>
         <div className="graph-top-right">
-          <span className="graph-count">
-            {visibleNodes.length} 实体 · {visibleEdges.length} 关系
-          </span>
-          <button type="button" className="icon-button" aria-label="放大" onClick={() => applyZoom(Math.min(2, zoomRef.current * 1.18))}>
-            <ZoomIn size={16} />
-          </button>
-          <button type="button" className="icon-button" aria-label="缩小" onClick={() => applyZoom(Math.max(0.4, zoomRef.current * 0.85))}>
-            <ZoomOut size={16} />
-          </button>
-          <button type="button" className="icon-button" aria-label="重置视图" onClick={() => applyZoom(layout.zoom)}>
-            <RotateCcw size={15} />
-          </button>
-          <button type="button" className="icon-button" aria-label="全屏" onClick={onToggleFullscreen}>
-            {fullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
-          </button>
+          <span className="graph-count">{filtered.nodes.length} 个实体 · {filtered.edges.length} 条关系</span>
+          <button type="button" className="icon-button" aria-label="放大" onClick={() => flow?.zoomIn({ duration: 200 })}><ZoomIn size={16} /></button>
+          <button type="button" className="icon-button" aria-label="缩小" onClick={() => flow?.zoomOut({ duration: 200 })}><ZoomOut size={16} /></button>
+          <button type="button" className="icon-button" aria-label="重置视图" onClick={() => flow?.setViewport(viewport, { duration: 200 })}><RotateCcw size={15} /></button>
+          <button type="button" className="icon-button" aria-label={fullscreen ? '退出全屏' : '全屏'} onClick={onToggleFullscreen}>{fullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}</button>
         </div>
       </div>
-
       <div className="graph-filters">
-        {GROUPS.map((item) => (
-          <button
-            key={item.value}
-            type="button"
-            className={group === item.value ? 'active' : ''}
-            onClick={() => onGroupChange(item.value)}
-          >
-            {item.label}
-          </button>
-        ))}
-        <button
-          type="button"
-          className={`industry-toggle ${showIndustry ? 'active' : ''}`}
-          onClick={() => setShowIndustry((value) => !value)}
-          title="行业节点只用于分类，不参与证券路径"
-        >
-          {showIndustry ? <Eye size={12} /> : <EyeOff size={12} />}
-          {showIndustry ? '隐藏行业' : '显示行业'}
-        </button>
+        {GROUPS.map((item) => <button type="button" key={item.value} className={group === item.value ? 'active' : ''} onClick={() => onGroupChange(item.value)}>{item.label}</button>)}
+        <button type="button" className={'industry-toggle ' + (showIndustry ? 'active' : '')} onClick={() => setShowIndustry(!showIndustry)} title="行业分类不用于查询证券路径">{showIndustry ? <Eye size={13} /> : <EyeOff size={13} />} 行业分类</button>
       </div>
-
-      {hasPath && path ? (
-        <div className="graph-path-note">
-          <span className="path-dot" />
-          已选中：{path.nodes[path.nodes.length - 1]?.label} 的关联路径
-          <button type="button" onClick={onClearPath}>取消选中</button>
-        </div>
-      ) : null}
-
-      <div className="graph-canvas-wrap">
-        {visibleNodes.length === 0 ? (
-          <EmptyState title="没有符合条件的关系" description="切换关系类型后查看。" compact />
-        ) : (
-          <EChart option={option} className="research-graph-canvas" onReady={onReady} onClick={handleClick} />
-        )}
+      <div className="graph-selection-slot">
+        {path ? <div className="graph-path-note"><span>已选中 {path.nodes[path.nodes.length - 1]?.label} 的路径</span><button type="button" onClick={onClearPath}>取消选中</button></div> : <p>选择右侧证券可突出显示其路径；点击连线可查看原文。</p>}
       </div>
-
-      <div className="graph-bottom">
-        <div className="graph-legend">
-          {types.map((type) => (
-            <span key={type}>
-              <i style={{ background: nodeColor(type) }} />
-              {typeLabel(type)}
-            </span>
-          ))}
-          <b />
-          {(['direct', 'adaptation', 'distribution', 'industry'] as const).map((value) => (
-            <span key={value}>
-              <i className="line" style={{ background: groupColor(value) }} />
-              {groupLabel(value)}
-            </span>
-          ))}
-        </div>
-        <span className="graph-tip">
-          <Network size={12} /> 滚轮缩放 · 点击节点或关系查看详情
-        </span>
+      <div className="graph-canvas-wrap research-graph-canvas" ref={container}>
+        {!filtered.nodes.length ? <EmptyState title="该日期没有可显示的关系" description="切换日期或关系类型。" compact /> :
+          <ReactFlow<EvidenceNode, Edge> key={structureKey} nodes={nodes} edges={edges}
+            nodeTypes={nodeTypes} onInit={setFlow} defaultViewport={viewport}
+            nodesDraggable={false} nodesConnectable={false} edgesReconnectable={false}
+            minZoom={0.3} maxZoom={2} zoomOnDoubleClick={false} deleteKeyCode={null}
+            onNodeClick={(_, node) => onSelectNode(node.data.entity)}
+            onEdgeClick={(_, item) => { const edge = filtered.edges.find((entry) => entry.id === item.id); if (edge) onSelectEdge(edge); }}
+            ariaLabelConfig={{ 'node.a11yDescription.default': '按 Enter 查看实体资料。', 'edge.a11yDescription.default': '按 Enter 查看关系原文。' }}>
+            <Background gap={24} size={1} color="#e7ebef" />
+          </ReactFlow>}
       </div>
+      <div className="graph-bottom"><div className="graph-legend">
+        {[...new Set(filtered.nodes.map((node) => node.type))].map((type) => <span key={type}><i style={{ background: nodeColor(type) }} />{typeLabel(type)}</span>)}
+      </div><span className="graph-tip">拖动平移 · 滚轮缩放</span></div>
     </section>
+    </>
   );
 }

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
@@ -25,31 +25,6 @@ function idsOf(value: string[] | string | undefined): string[] {
   if (Array.isArray(value)) return value;
   if (!value) return [];
   return [value];
-}
-
-function describePath(stock: RelatedStock, nodes: Map<string, GraphNode>): string {
-  const phrases = stock.path.edges.map((edge) => {
-    const source = nodes.get(edge.source)?.label ?? edge.source;
-    const target = nodes.get(edge.target)?.label ?? edge.target;
-    switch (edge.type) {
-      case 'DEVELOPED_BY':
-        return `${source} 由 ${target} 研发`;
-      case 'LISTED_AS':
-        return `${source} 对应上市证券 ${target}`;
-      case 'PRODUCES':
-        return `${source} 提供 ${target}`;
-      case 'SUPPORTS_MODEL':
-        return `${source} 完成对 ${target} 的适配`;
-      case 'HOSTS_MODEL':
-        return `${source} 在云服务中接入 ${target}`;
-      case 'RELEASED_MODEL':
-      case 'CONCERNS':
-        return `${source} 涉及 ${target}`;
-      default:
-        return `${source} ${relationLabel(edge.type, edge.label)} ${target}`;
-    }
-  });
-  return phrases.length ? `${phrases.join('；')}。` : '这条路径暂无已登记的关系。';
 }
 
 function disclosureText(edge: GraphEdge, asOf: string): string {
@@ -89,6 +64,8 @@ export function PathEvidence({
   onBack: () => void;
   onSelectEdge: (edge: GraphEdge) => void;
 }) {
+  const panelRef = useRef<HTMLElement>(null);
+  useEffect(() => { panelRef.current?.scrollTo({ top: 0 }); }, [stock?.symbol, stock?.relation_group, node?.id, edge?.id]);
   const nodes = useMemo(
     () => new Map(graph.nodes.map((item) => [item.id, item])),
     [graph.nodes],
@@ -102,7 +79,7 @@ export function PathEvidence({
     const target = nodes.get(edge.target);
     const sourceItem = sourceFor(edge.source_ids);
     return (
-      <section className="evidence-card evidence-panel">
+      <section ref={panelRef} className="evidence-card evidence-panel">
         <button type="button" className="back-action" onClick={onBack}>
           <ArrowLeft size={14} /> 返回关联路径
         </button>
@@ -142,7 +119,7 @@ export function PathEvidence({
       (item) => item.source === node.id || item.target === node.id,
     );
     return (
-      <section className="evidence-card evidence-panel">
+      <section ref={panelRef} className="evidence-card evidence-panel">
         <button type="button" className="back-action" onClick={onBack}>
           <ArrowLeft size={14} /> 返回关联路径
         </button>
@@ -184,7 +161,7 @@ export function PathEvidence({
 
   if (!stock) {
     return (
-      <section className="evidence-card evidence-empty-card evidence-panel">
+      <section ref={panelRef} className="evidence-card evidence-empty-card evidence-panel">
         <span className="evidence-kicker">证据</span>
         <h2>该日期没有关联证券</h2>
         <p className="evidence-lead">
@@ -205,27 +182,22 @@ export function PathEvidence({
     );
   }
 
-  const narrative = describePath(stock, nodes);
   const allSourceIds = [...new Set(stock.path.edges.flatMap((item) => idsOf(item.source_ids)))];
   const asOfPublic = stock.path.edges.every(
     (item) => !item.disclosed_at || !asOf || item.disclosed_at.slice(0, 10) <= asOf,
   );
 
   return (
-    <section className="evidence-card evidence-panel">
-      <span className="evidence-kicker">关联公司 · {groupLabel(stock.relation_group)}</span>
+    <section ref={panelRef} className="evidence-card evidence-panel">
+      <span className="evidence-kicker">关联依据 · {groupLabel(stock.relation_group)}</span>
       <div className="path-heading">
         <h2>{stock.company_name || stock.label}</h2>
         <span className="symbol-pill">{stock.symbol}</span>
       </div>
-      <p className="path-narrative">{narrative}</p>
       <div className="path-facts">
-        <span><GitBranch size={13} /> {stock.path.edges.length} 跳路径</span>
+        <span><GitBranch size={13} /> {stock.path.edges.length} 条关系</span>
         <span><Link2 size={13} /> {allSourceIds.length} 条来源</span>
-        <span className={asOfPublic ? 'ok' : 'warn'}>
-          {asOfPublic ? <CheckCircle2 size={13} /> : <Clock3 size={13} />}
-          {asOf ? (asOfPublic ? '所选日期前已披露' : '含晚于日期的记录') : '全部已收集资料'}
-        </span>
+        {asOf ? <span className={asOfPublic ? '' : 'warn'}><Clock3 size={13} /> 截至 {formatDate(asOf)}</span> : null}
       </div>
 
       <h3 className="evidence-subtitle"><ShieldCheck size={14} /> 关系与原文</h3>
@@ -259,7 +231,7 @@ export function PathEvidence({
                     </a>
                   ) : null}
                   <button type="button" onClick={() => onSelectEdge(item)}>
-                    查看关系
+                    关系详情
                   </button>
                 </div>
               </div>

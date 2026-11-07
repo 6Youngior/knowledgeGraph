@@ -1,0 +1,165 @@
+{
+  "extraction_id": "extract:364a0ab2abba46a5b38b33400cecc0e8",
+  "mode": "live",
+  "model": "DeepSeek V4.1 Flash",
+  "elapsed_ms": 14517,
+  "document": {
+    "id": "src:mthreads-glm5",
+    "title": "Day-0 支持｜摩尔线程 MTT S5000 率先完成对 GLM-5 的适配",
+    "url": "https://www.mthreads.com/news/280",
+    "publisher": "摩尔线程",
+    "published_at": "2026-02-12",
+    "event_at": "2026-02-12",
+    "source_type": "official_news",
+    "retrieved_at": "2026-11-06T22:33:01+08:00",
+    "text": "2月12日，智谱正式发布新一代大模型GLM-5。摩尔线程基于SGLang推理框架，在旗舰级AI训推一体全功能GPU MTT S5000上，Day-0完成了全流程适配与验证。凭借MUSA架构广泛的算子覆盖与强大的生态兼容能力，摩尔线程成功打通了模型推理全链路，并深度释放MTT S5000的原生FP8加速能力，在确保模型精度的同时显著降低了显存占用，实现了GLM-5的高性能推理。"
+  },
+  "entities": [
+    {
+      "id": "company:zhipu",
+      "label": "智谱",
+      "type": "Company",
+      "aliases": [
+        "Zhipu",
+        "Z.ai"
+      ],
+      "description": "GLM-5 的发布方",
+      "source_ids": [
+        "src:mthreads-glm5"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "company:mthreads",
+      "label": "摩尔线程",
+      "type": "Company",
+      "aliases": [
+        "Moore Threads"
+      ],
+      "description": "完成 MTT S5000 对 GLM-5 适配的 GPU 厂商",
+      "source_ids": [
+        "src:mthreads-glm5"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "model:glm5",
+      "label": "GLM-5",
+      "type": "Model",
+      "aliases": [
+        "GLM5"
+      ],
+      "description": "智谱发布的新一代大模型",
+      "source_ids": [
+        "src:mthreads-glm5"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product:mtt-s5000",
+      "label": "MTT S5000",
+      "type": "Product",
+      "aliases": [
+        "S5000"
+      ],
+      "description": "摩尔线程旗舰级 AI 训推一体全功能 GPU",
+      "source_ids": [
+        "src:mthreads-glm5"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "event:glm5-release",
+      "label": "GLM-5 发布",
+      "type": "Event",
+      "aliases": [],
+      "description": "智谱正式发布 GLM-5",
+      "source_ids": [
+        "src:mthreads-glm5"
+      ],
+      "properties": {}
+    }
+  ],
+  "relations": [
+    {
+      "source": "product:mtt-s5000",
+      "target": "model:glm5",
+      "type": "SUPPORTS_MODEL",
+      "label": "技术适配",
+      "evidence": "在旗舰级AI训推一体全功能GPU MTT S5000上，Day-0完成了全流程适配与验证",
+      "source_ids": [
+        "src:mthreads-glm5"
+      ],
+      "disclosed_at": "2026-02-12",
+      "relation_group": "adaptation",
+      "id": "rel:42cf7fb08ed76451"
+    },
+    {
+      "source": "event:glm5-release",
+      "target": "model:glm5",
+      "type": "RELEASED_MODEL",
+      "label": "发布模型",
+      "evidence": "智谱正式发布新一代大模型GLM-5",
+      "source_ids": [
+        "src:mthreads-glm5"
+      ],
+      "disclosed_at": "2026-02-12",
+      "relation_group": "direct",
+      "id": "rel:191fa6a1f2c33e6d"
+    },
+    {
+      "source": "event:glm5-release",
+      "target": "company:zhipu",
+      "type": "CONCERNS",
+      "label": "事件涉及",
+      "evidence": "智谱正式发布新一代大模型GLM-5",
+      "source_ids": [
+        "src:mthreads-glm5"
+      ],
+      "disclosed_at": "2026-02-12",
+      "relation_group": "direct",
+      "id": "rel:779fbeb8379137ee"
+    }
+  ],
+  "events": [],
+  "validation": {
+    "valid": true,
+    "warnings": [
+      "关系分组已按 Schema 校正，区分研发、技术适配和云服务接入。",
+      "关系分组已按 Schema 校正，区分研发、技术适配和云服务接入。"
+    ]
+  },
+  "preview": {
+    "new_nodes": 0,
+    "new_edges": 1,
+    "matched_entities": [
+      {
+        "input": "智谱",
+        "canonical_id": "company:zhipu",
+        "label": "智谱"
+      },
+      {
+        "input": "摩尔线程",
+        "canonical_id": "company:mthreads",
+        "label": "摩尔线程"
+      },
+      {
+        "input": "GLM-5",
+        "canonical_id": "model:glm5",
+        "label": "GLM-5"
+      },
+      {
+        "input": "MTT S5000",
+        "canonical_id": "product:mtt-s5000",
+        "label": "MTT S5000"
+      },
+      {
+        "input": "GLM-5 发布",
+        "canonical_id": "event:glm5-release",
+        "label": "GLM-5 发布"
+      }
+    ]
+  },
+  "raw_output": "{\"entities\":[{\"id\":\"company:zhipu\",\"label\":\"智谱\",\"type\":\"Company\",\"aliases\":[\"Zhipu\",\"Z.ai\"],\"description\":\"GLM-5 的发布方\",\"source_ids\":[\"src:mthreads-glm5\"],\"properties\":{}},{\"id\":\"company:mthreads\",\"label\":\"摩尔线程\",\"type\":\"Company\",\"aliases\":[\"Moore Threads\"],\"description\":\"完成 MTT S5000 对 GLM-5 适配的 GPU 厂商\",\"source_ids\":[\"src:mthreads-glm5\"],\"properties\":{}},{\"id\":\"model:glm5\",\"label\":\"GLM-5\",\"type\":\"Model\",\"aliases\":[\"GLM5\"],\"description\":\"智谱发布的新一代大模型\",\"source_ids\":[\"src:mthreads-glm5\"],\"properties\":{}},{\"id\":\"product:mtt-s5000\",\"label\":\"MTT S5000\",\"type\":\"Product\",\"aliases\":[\"S5000\"],\"description\":\"摩尔线程旗舰级 AI 训推一体全功能 GPU\",\"source_ids\":[\"src:mthreads-glm5\"],\"properties\":{}},{\"id\":\"event:glm5-release\",\"label\":\"GLM-5 发布\",\"type\":\"Event\",\"aliases\":[],\"description\":\"智谱正式发布 GLM-5\",\"source_ids\":[\"src:mthreads-glm5\"],\"properties\":{}}],\"relations\":[{\"source\":\"product:mtt-s5000\",\"target\":\"model:glm5\",\"type\":\"SUPPORTS_MODEL\",\"label\":\"技术适配\",\"evidence\":\"在旗舰级AI训推一体全功能GPU MTT S5000上，Day-0完成了全流程适配与验证\",\"source_ids\":[\"src:mthreads-glm5\"],\"disclosed_at\":\"2026-02-12\",\"relation_group\":\"adaptation\"},{\"source\":\"event:glm5-release\",\"target\":\"model:glm5\",\"type\":\"RELEASED_MODEL\",\"label\":\"发布模型\",\"evidence\":\"智谱正式发布新一代大模型GLM-5\",\"source_ids\":[\"src:mthreads-glm5\"],\"disclosed_at\":\"2026-02-12\",\"relation_group\":\"release\"},{\"source\":\"event:glm5-release\",\"target\":\"company:zhipu\",\"type\":\"CONCERNS\",\"label\":\"涉及公司\",\"evidence\":\"智谱正式发布新一代大模型GLM-5\",\"source_ids\":[\"src:mthreads-glm5\"],\"disclosed_at\":\"2026-02-12\",\"relation_group\":\"release\"}],\"events\":[]}",
+  "created_at": "2026-11-06T20:28:08.581805+00:00"
+}

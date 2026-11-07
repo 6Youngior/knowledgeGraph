@@ -1,0 +1,103 @@
+% !TeX program = xelatex
+\documentclass[aspectratio=169,12pt,fontset=none,usepdftitle=false]{ctexbeamer}
+\usepackage{fontspec,amsmath,booktabs,array,tabularx,graphicx,etoolbox}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
+% sonnyhcl/beamerthemefdu (Apache-2.0); original kept in vendor-fdu/.
+\makeatletter
+\def\input@path{{vendor-fdu/}}
+\makeatother
+\usetheme{fdu}
+\usefonttheme{professionalfonts}
+\setsansfont{Arial}
+\setmainfont{Arial}
+\setCJKmainfont{Microsoft YaHei}[BoldFont=Microsoft YaHei Bold]
+\setCJKsansfont{Microsoft YaHei}[BoldFont=Microsoft YaHei Bold]
+\setCJKmonofont{Microsoft YaHei}
+\definecolor{Navy}{HTML}{173955}
+\definecolor{Blue}{HTML}{1C61A0}
+\definecolor{Teal}{HTML}{137E79}
+\definecolor{Ochre}{HTML}{A47422}
+\definecolor{Ink}{HTML}{253544}
+\definecolor{Muted}{HTML}{697987}
+\definecolor{Line}{HTML}{D5DEE5}
+\definecolor{Pale}{HTML}{F2F5F8}
+\definecolor{PaleBlue}{HTML}{ECF2F9}
+\definecolor{PaleTeal}{HTML}{EAF5F2}
+\definecolor{PaleGold}{HTML}{F8F2E6}
+\setbeamercolor{normal text}{fg=Ink,bg=white}
+\setbeamercolor{structure}{fg=Blue}
+\setbeamercolor{frametitle}{fg=Navy,bg=white}
+\setbeamercolor{title}{fg=Navy,bg=white}
+\setbeamercolor{subtitle}{fg=Ink,bg=white}
+\setbeamerfont{frametitle}{size=\fontsize{21}{26}\selectfont,series=\bfseries}
+\setbeamersize{text margin left=8mm,text margin right=8mm}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{background canvas}{}
+\setbeamertemplate{itemize item}{\raisebox{.2ex}{\scriptsize\textcolor{Blue}{\textbullet}}}
+\setlength{\parskip}{.12em}
+\renewcommand{\arraystretch}{1.18}
+\newcommand{\NavItem}[2]{\ifnum\value{section}=#1\textcolor{Blue}{\bfseries #2}\else\textcolor{Muted}{#2}\fi}
+\setbeamertemplate{headline}{%
+  \vspace{2mm}\hspace{8mm}%
+  {\fontsize{9}{11}\selectfont\NavItem{1}{选题与数据}\hspace{8mm}\NavItem{2}{当前进展}\hspace{8mm}\NavItem{3}{后续计划}}\par\vspace{1mm}%
+}
+\setbeamertemplate{frametitle}{%
+  \vspace{-1mm}\usebeamerfont{frametitle}\insertframetitle\par\vspace{1.2mm}%
+  {\color{Line}\hrule height .6pt}%
+}
+\setbeamertemplate{footline}{%
+  \hspace{8mm}\begin{minipage}{\dimexpr\paperwidth-16mm\relax}%
+  {\color{Line}\hrule height .35pt}\vspace{1mm}%
+  {\fontsize{7.5}{9}\selectfont\color{Muted}FinGraph\hfill 知识图谱课程 · 期中汇报\hfill\insertframenumber\,/\,\inserttotalframenumber}\par\vspace{1mm}%
+  \end{minipage}%
+}
+\newcommand{\Intro}[1]{{\fontsize{12.2}{16}\selectfont #1}\par\vspace{2mm}}
+\newcommand{\Head}[1]{\par{\color{Blue}\bfseries #1}\par\vspace{.5mm}}
+\newcommand{\Caption}[1]{\par{\fontsize{9.5}{12}\selectfont\color{Muted}#1}\par}
+\newcommand{\Gap}{\par\vspace{2mm}}
+\tikzset{entity/.style={draw=Line,fill=white,rounded corners=1mm,align=center,
+  minimum height=.8cm,text width=2.2cm,inner sep=1.4mm,font=\fontsize{11.5}{14}\selectfont},
+  rel/.style={-{Stealth[length=1.8mm]},draw=Blue,line width=.9pt},
+  edge label/.style={font=\fontsize{10}{12}\selectfont,text=Muted,fill=white,inner sep=.7mm}}
+\graphicspath{{resources/}{generated/}}
+\input{generated/metrics.tex}
+\input{derived/research.tex}
+\title[FinGraph]{FinGraph}
+\subtitle{AI 产业事件的多源信息融合与投资研究}
+\author{}
+\institute{知识图谱课程 · 期中汇报}
+\date{2026 年 11 月}
+\hypersetup{pdftitle={FinGraph：AI产业事件的多源信息融合与投资研究},pdfauthor={},
+  pdfsubject={选题5：股票量化情报；期中汇报},colorlinks=true,urlcolor=Blue,linkcolor=Blue}
+\setbeamertemplate{title page}{%
+  \centering\vspace{1mm}
+  \includegraphics[width=6.3cm]{resources/fudan.pdf}\par\vspace{7mm}
+  {\fontsize{31}{36}\selectfont\bfseries\color{Navy}FinGraph}\par\vspace{2mm}
+  {\fontsize{17}{22}\selectfont\color{Navy}\insertsubtitle}\par\vspace{5mm}
+  {\color{Blue}\rule{35mm}{1.2pt}}\par\vspace{4mm}
+  {\fontsize{10.5}{14}\selectfont 选题 5：股票量化情报——多源市场信息融合与投资研究系统}\par\vspace{5mm}
+  {\fontsize{11}{15}\selectfont\color{Muted}\insertinstitute\qquad\insertdate}\par}
+\begin{document}
+\begin{frame}[plain]\titlepage\end{frame}
+\section{选题与数据}
+\input{sections/01_topic.tex}
+\input{sections/02_data.tex}
+\section{当前进展}
+\input{sections/03_pipeline.tex}
+\input{sections/04_schema.tex}
+\input{sections/05_extraction.tex}
+\input{sections/06_paths.tex}
+\input{sections/07_demo.tex}
+\input{sections/08_update.tex}
+\input{sections/09_time.tex}
+\input{sections/10_evaluation.tex}
+\input{sections/11_market.tex}
+\section{后续计划}
+\input{sections/12_plan.tex}
+\appendix
+\section*{}
+\input{sections/A1_schema.tex}
+\input{sections/A2_market.tex}
+\input{sections/A3_sources.tex}
+\end{document}

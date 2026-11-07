@@ -1,0 +1,1082 @@
+{
+  "created_at": "2026-11-06T20:17:19.639641+00:00",
+  "sources": [
+    {
+      "source_id": "src:zai-glm5",
+      "url": "https://z.ai/blog/glm-5",
+      "facts": [
+        {
+          "edge_id": "rel:glm5-developed-by-zhipu",
+          "located": true,
+          "evidence": "GLM-4.5 is our first step for reasoning, coding, and agent, enabling the model to complete complex tasks. With GLM-5, we further enhance complex systems engineering and long-horizon agent capabilities.",
+          "candidate_quotes": [
+            "GLM-4.5 is our first step for reasoning, coding, and agent, enabling the model to complete complex tasks. With GLM-5, we further enhance complex systems engineering and long-horizon agent capabilities."
+          ],
+          "method": "rendered source page"
+        },
+        {
+          "edge_id": "rel:zhipu-produces-zai",
+          "located": true,
+          "evidence": "GLM-5 is also available on developer platform api.z.ai and BigModel.cn",
+          "candidate_quotes": [
+            "GLM-5 is also available on developer platform api.z.ai and BigModel.cn"
+          ],
+          "method": "rendered source page"
+        },
+        {
+          "edge_id": "rel:zhipu-produces-bigmodel",
+          "located": true,
+          "evidence": "GLM-5 is also available on developer platform api.z.ai and BigModel.cn",
+          "candidate_quotes": [
+            "GLM-5 is also available on developer platform api.z.ai and BigModel.cn"
+          ],
+          "method": "rendered source page"
+        }
+      ],
+      "http_status": 200,
+      "sha256": "0a15784b1b8803e955e3024158fea5c0dbe412b4cf8cecf90192cbd5e7788755",
+      "status": "fetched",
+      "rendered_text_sha256": "f8d18a2250750ce461975367c8c006fcfff35216103f74fec7284be262c7e7cb",
+      "rendered_chars": 12949
+    },
+    {
+      "source_id": "src:bigmodel-glm5",
+      "url": "https://docs.bigmodel.cn/cn/guide/models/text/glm-5",
+      "facts": [
+        {
+          "edge_id": "rel:glm5-developed-by-zhipu",
+          "located": true,
+          "evidence": "GLM-5 是智谱的基座模型",
+          "candidate_quotes": [
+            "GLM-5 是智谱的基座模型"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "e7cf202959c73b1d122abb66b3a3eb79c28110529a048b4b28f0273bd76ca841",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:github-glm5",
+      "url": "https://github.com/zai-org/GLM-5",
+      "facts": [],
+      "status": "bibliography_only"
+    },
+    {
+      "source_id": "src:mthreads-glm5",
+      "url": "https://www.mthreads.com/news/280",
+      "facts": [
+        {
+          "edge_id": "rel:mthreads-produces-s5000",
+          "located": true,
+          "evidence": "MTT S5000是专为大模型训练、推理及高性能计算而设计的全功能GPU智算卡",
+          "candidate_quotes": [
+            "MTT S5000是专为大模型训练、推理及高性能计算而设计的全功能GPU智算卡"
+          ],
+          "method": "rendered source page"
+        },
+        {
+          "edge_id": "rel:mthreads-produces-musa",
+          "located": true,
+          "evidence": "MUSA软件栈的敏捷性是实现Day-0适配的关键",
+          "candidate_quotes": [
+            "MUSA软件栈的敏捷性是实现Day-0适配的关键"
+          ],
+          "method": "rendered source page"
+        },
+        {
+          "edge_id": "rel:mthreads-belongs-to-gpu",
+          "located": true,
+          "evidence": "全功能GPU",
+          "candidate_quotes": [
+            "全功能GPU"
+          ]
+        },
+        {
+          "edge_id": "rel:glm5-release-released-model",
+          "located": true,
+          "evidence": "智谱正式发布新一代大模型GLM-5",
+          "candidate_quotes": [
+            "智谱正式发布新一代大模型GLM-5"
+          ],
+          "method": "rendered source page"
+        },
+        {
+          "edge_id": "rel:glm5-release-concerns-zhipu",
+          "located": true,
+          "evidence": "智谱正式发布新一代大模型GLM-5",
+          "candidate_quotes": [
+            "智谱正式发布新一代大模型GLM-5"
+          ],
+          "method": "rendered source page"
+        }
+      ],
+      "http_status": 200,
+      "sha256": "5ad6089c0b28247f3786dd6d37dfbd63d6e6170dc4f870f45b1f11366ac97320",
+      "status": "fetched",
+      "rendered_text_sha256": "79c9167294da42ffd7602b963744aac9828cf90da2367ceab1fba784293af468",
+      "rendered_chars": 3543
+    },
+    {
+      "source_id": "src:mthreads-minimax",
+      "url": "https://www.mthreads.com/news/281",
+      "facts": [
+        {
+          "edge_id": "rel:mtt-s5000-supports-minimax-m25",
+          "located": true,
+          "evidence": "成功实现了对MiniMax新一代大模型MiniMax M2.5的Day-0极速适配",
+          "candidate_quotes": [
+            "成功实现了对MiniMax新一代大模型MiniMax M2.5的Day-0极速适配"
+          ],
+          "method": "rendered source page"
+        },
+        {
+          "edge_id": "rel:mtt-minimax-adapt-concerns-model",
+          "located": true,
+          "evidence": "成功实现了对MiniMax新一代大模型MiniMax M2.5的Day-0极速适配",
+          "candidate_quotes": [
+            "成功实现了对MiniMax新一代大模型MiniMax M2.5的Day-0极速适配"
+          ],
+          "method": "rendered source page"
+        },
+        {
+          "edge_id": "rel:mtt-minimax-adapt-concerns-product",
+          "located": true,
+          "evidence": "旗舰级AI训推一体全功能GPU MTT S5000",
+          "candidate_quotes": [
+            "旗舰级AI训推一体全功能GPU MTT S5000"
+          ],
+          "method": "rendered source page"
+        },
+        {
+          "edge_id": "rel:mtt-minimax-adapt-concerns-company",
+          "located": true,
+          "evidence": "摩尔线程在其旗舰级AI训推一体全功能GPU MTT S5000上",
+          "candidate_quotes": [
+            "摩尔线程在其旗舰级AI训推一体全功能GPU MTT S5000上"
+          ],
+          "method": "rendered source page"
+        }
+      ],
+      "http_status": 200,
+      "sha256": "2ffbb5ebbb7d0668a43592da8805e4ebf3cce6f05fd3bf696cf2b78f9ae1aa99",
+      "status": "fetched",
+      "rendered_text_sha256": "551155a7aab5e1e38dd1aa430aedf308273069c6100102a065ede7d9e08e377b",
+      "rendered_chars": 1908
+    },
+    {
+      "source_id": "src:minimax-m25",
+      "url": "https://www.minimax.io/news/minimax-m25",
+      "facts": [
+        {
+          "edge_id": "rel:minimax-m25-developed-by-minimax",
+          "located": true,
+          "evidence": "Today we're introducing our latest model, MiniMax-M2.5.",
+          "candidate_quotes": [
+            "Today we're introducing our latest model, MiniMax-M2.5."
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "5c81fa2c6105a5cf5a3a93a39892ce82684c8d7449e25e3ac924f09f683edd31",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:minimax-m25-cn",
+      "url": "https://www.minimax.cn/news/minimax-m25",
+      "facts": [
+        {
+          "edge_id": "rel:minimax-produces-agent",
+          "located": true,
+          "evidence": "M2.5 已经在 MiniMax Agent 中全面上线",
+          "candidate_quotes": [
+            "M2.5 已经在 MiniMax Agent 中全面上线"
+          ]
+        },
+        {
+          "edge_id": "rel:minimax-release-released-model",
+          "located": true,
+          "evidence": "今天我们来介绍 MiniMax-M2.5",
+          "candidate_quotes": [
+            "今天我们来介绍 MiniMax-M2.5"
+          ]
+        },
+        {
+          "edge_id": "rel:minimax-release-concerns-minimax",
+          "located": true,
+          "evidence": "M2.5 已经在 MiniMax Agent 中全面上线",
+          "candidate_quotes": [
+            "M2.5 已经在 MiniMax Agent 中全面上线"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "050eb06de7db1c665b3da4524282a8badf542a3288d9b6ad7fb8c34bb9da4c6a",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:chinadaily-zhipu-ipo",
+      "url": "https://cn.chinadaily.com.cn/a/202601/08/WS695f5b9da310942cc499a93e.html",
+      "facts": [
+        {
+          "edge_id": "rel:glm47-developed-by-zhipu",
+          "located": true,
+          "evidence": "2025年12月，智谱新一代基座模型GLM-4.7",
+          "candidate_quotes": [
+            "2025年12月，智谱新一代基座模型GLM-4.7"
+          ]
+        },
+        {
+          "edge_id": "rel:zhipu-listed-as-02513",
+          "located": true,
+          "evidence": "2026年1月8日，北京智谱华章科技股份有限公司（02513.HK）正式在香港联合交易所挂牌上市",
+          "candidate_quotes": [
+            "2026年1月8日，北京智谱华章科技股份有限公司（02513.HK）正式在香港联合交易所挂牌上市"
+          ]
+        },
+        {
+          "edge_id": "rel:zhipu-produces-coding-plan",
+          "located": true,
+          "evidence": "编程订阅产品表现尤为突出，上线短时间内即实现过亿的年度经常性收入",
+          "candidate_quotes": [
+            "编程订阅产品表现尤为突出，上线短时间内即实现过亿的年度经常性收入"
+          ]
+        },
+        {
+          "edge_id": "rel:zhipu-belongs-to-foundation-model",
+          "located": true,
+          "evidence": "专注通用人工智能（AGI）的研发",
+          "candidate_quotes": [
+            "专注通用人工智能（AGI）的研发"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "63599c77476225f47472b1ebce821228676194889b52ce5c8e0cdebf220ea823",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:hkex-zhipu-prospectus",
+      "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/1230/2025123000018_c.pdf",
+      "facts": [],
+      "status": "bibliography_only"
+    },
+    {
+      "source_id": "src:sse-mthreads-ipo",
+      "url": "https://www.sse.com.cn/disclosure/announcement/listing/ipo/c/c_20251204_10800678.shtml",
+      "facts": [
+        {
+          "edge_id": "rel:mthreads-listed-as-688795",
+          "located": true,
+          "evidence": "证券简称为“摩尔线程”，证券代码为“688795”",
+          "candidate_quotes": [
+            "证券简称为“摩尔线程”，证券代码为“688795”"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "a8fca4bbbb884580a9d2f2e9aa99d47afa3ce1e885d5e4e1d5221c430e763a3d",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:mthreads-ipo-news",
+      "url": "https://www.mthreads.com/news/266",
+      "facts": [],
+      "status": "bibliography_only"
+    },
+    {
+      "source_id": "src:alibaba-hkex-listing",
+      "url": "https://www.alibabagroup.com/en-US/document-1491198532105797632",
+      "facts": [
+        {
+          "edge_id": "rel:alibaba-listed-as-09988",
+          "located": true,
+          "evidence": "NYSE: BABA and HKEX: 9988",
+          "candidate_quotes": [
+            "NYSE: BABA and HKEX: 9988"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "a959ea54b82c45a4df6900adb0fbc2b5b16e75106be2aba45f9583b0f7b17caa",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:acn-minimax-ipo",
+      "url": "https://www.acnnewswire.com/press-release/traditionalchinese/104546/",
+      "facts": [
+        {
+          "edge_id": "rel:minimax-listed-as-00100",
+          "located": true,
+          "evidence": "MiniMax（0100.HK）正式登陸港交所",
+          "candidate_quotes": [
+            "MiniMax（0100.HK）正式登陸港交所"
+          ]
+        },
+        {
+          "edge_id": "rel:minimax-belongs-to-foundation-model",
+          "located": true,
+          "evidence": "全球領先的通用人工智能科技公司",
+          "candidate_quotes": [
+            "全球領先的通用人工智能科技公司"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "ff4949046b9a134caeb4770d7a6e87034203773ab073732cb1307f4c5f4e42c6",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:aliyun-glm5",
+      "url": "https://www.alibabacloud.com/help/zh/model-studio/glm-9",
+      "facts": [
+        {
+          "edge_id": "rel:bailian-hosts-glm5",
+          "located": true,
+          "evidence": "glm-5模型的推理服务供应商为阿里云百炼",
+          "candidate_quotes": [
+            "glm-5模型的推理服务供应商为阿里云百炼"
+          ]
+        },
+        {
+          "edge_id": "rel:alibaba-belongs-to-cloud-maas",
+          "located": true,
+          "evidence": "glm-5模型的推理服务供应商为阿里云百炼",
+          "candidate_quotes": [
+            "glm-5模型的推理服务供应商为阿里云百炼"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "0b961bf46b9ad8b59e1efa30a147cd1e49285ab8e8911eb8224ff704f29c4291",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:aliyun-minimax",
+      "url": "https://www.alibabacloud.com/help/zh/model-studio/minimax-m2-5",
+      "facts": [
+        {
+          "edge_id": "rel:bailian-hosts-minimax-m25",
+          "located": true,
+          "evidence": "MiniMax-M2.5模型的推理服务供应商为阿里云百炼",
+          "candidate_quotes": [
+            "MiniMax-M2.5模型的推理服务供应商为阿里云百炼"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "6fd3d7568813c7c2ff2f8c32dd0bc956dd00d03d1f9bb55719875f01486e1ef9",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:mthreads-s5000",
+      "url": "https://www.mthreads.com/product/S5000",
+      "facts": [],
+      "status": "bibliography_only"
+    },
+    {
+      "source_id": "src:deepseek-r1-api",
+      "url": "https://api-docs.deepseek.com/news/news250120/",
+      "facts": [
+        {
+          "edge_id": "rel:deepseek-produces-chat",
+          "located": true,
+          "evidence": "chat.deepseek.com",
+          "candidate_quotes": [
+            "chat.deepseek.com"
+          ]
+        },
+        {
+          "edge_id": "rel:deepseek-produces-api",
+          "located": true,
+          "evidence": "Website & API are live now",
+          "candidate_quotes": [
+            "Website & API are live now"
+          ]
+        },
+        {
+          "edge_id": "rel:deepseek-belongs-to-open-source",
+          "located": true,
+          "evidence": "6 small models fully open-sourced",
+          "candidate_quotes": [
+            "6 small models fully open-sourced"
+          ]
+        },
+        {
+          "edge_id": "rel:r1-belongs-to-open-source",
+          "located": true,
+          "evidence": "MIT License",
+          "candidate_quotes": [
+            "MIT License"
+          ]
+        },
+        {
+          "edge_id": "rel:deepseek-belongs-to-ai-infrastructure",
+          "located": true,
+          "evidence": "Website & API are live now",
+          "candidate_quotes": [
+            "Website & API are live now"
+          ]
+        },
+        {
+          "edge_id": "rel:r1-release-released-model",
+          "located": true,
+          "evidence": "DeepSeek-R1 Release",
+          "candidate_quotes": [
+            "DeepSeek-R1 Release"
+          ]
+        },
+        {
+          "edge_id": "rel:r1-release-concerns-deepseek",
+          "located": true,
+          "evidence": "DeepSeek-R1 Release",
+          "candidate_quotes": [
+            "DeepSeek-R1 Release"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "248999b3e59717996c98d74c83f294649b7a11b8607fb72f2e7abbdbb05361ff",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:qwen3-blog",
+      "url": "https://qwenlm.github.io/blog/qwen3/",
+      "facts": [
+        {
+          "edge_id": "rel:alibaba-produces-qwen-chat",
+          "located": true,
+          "evidence": "Qwen Chat Web (chat.qwen.ai)",
+          "candidate_quotes": [
+            "Qwen Chat Web (chat.qwen.ai)"
+          ]
+        },
+        {
+          "edge_id": "rel:qwen3-belongs-to-foundation-model",
+          "located": true,
+          "evidence": "Qwen family of large language models",
+          "candidate_quotes": [
+            "Qwen family of large language models"
+          ]
+        },
+        {
+          "edge_id": "rel:qwen3-belongs-to-open-source",
+          "located": true,
+          "evidence": "Apache 2.0 license",
+          "candidate_quotes": [
+            "Apache 2.0 license"
+          ]
+        },
+        {
+          "edge_id": "rel:alibaba-belongs-to-open-source",
+          "located": true,
+          "evidence": "open-weighting",
+          "candidate_quotes": [
+            "open-weighting"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "e94e989ce505fe3f83bf891f70a7e00d1ae3e7b560dd99fdd0d6249d933d6ace",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:qwen3-github",
+      "url": "https://github.com/QwenLM/Qwen3",
+      "facts": [
+        {
+          "edge_id": "rel:alibaba-produces-modelscope",
+          "located": true,
+          "evidence": "ModelScope",
+          "candidate_quotes": [
+            "ModelScope"
+          ]
+        },
+        {
+          "edge_id": "rel:alibaba-belongs-to-foundation-model",
+          "located": true,
+          "evidence": "Qwen team, Alibaba Cloud",
+          "candidate_quotes": [
+            "Qwen team, Alibaba Cloud"
+          ]
+        },
+        {
+          "edge_id": "rel:qwen3-release-released-model",
+          "located": true,
+          "evidence": "We released the Qwen3 series",
+          "candidate_quotes": [
+            "We released the Qwen3 series"
+          ]
+        },
+        {
+          "edge_id": "rel:qwen3-release-concerns-alibaba",
+          "located": true,
+          "evidence": "Qwen team, Alibaba Cloud",
+          "candidate_quotes": [
+            "Qwen team, Alibaba Cloud"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "e9783ada8f28f587bfd60ba6249a9989bbfd2501ee70deca8b2f92d804272a15",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:mthreads-qwen3",
+      "url": "https://www.mthreads.com/news/241",
+      "facts": [
+        {
+          "edge_id": "rel:mthreads-produces-gpu",
+          "located": true,
+          "evidence": "摩尔线程团队",
+          "candidate_quotes": [
+            "摩尔线程团队"
+          ],
+          "method": "rendered source page"
+        },
+        {
+          "edge_id": "rel:mthreads-gpu-supports-qwen3",
+          "located": true,
+          "evidence": "率先完成了Qwen3全系列模型在全功能GPU上的高效支持",
+          "candidate_quotes": [
+            "率先完成了Qwen3全系列模型在全功能GPU上的高效支持"
+          ],
+          "method": "rendered source page"
+        },
+        {
+          "edge_id": "rel:mthreads-gpu-belongs-to-gpu",
+          "located": true,
+          "evidence": "全功能GPU",
+          "candidate_quotes": [
+            "全功能GPU"
+          ]
+        },
+        {
+          "edge_id": "rel:qwen3-mtt-concerns-model",
+          "located": true,
+          "evidence": "Qwen3全系列模型",
+          "candidate_quotes": [
+            "Qwen3全系列模型"
+          ]
+        },
+        {
+          "edge_id": "rel:qwen3-mtt-concerns-product",
+          "located": true,
+          "evidence": "全功能GPU",
+          "candidate_quotes": [
+            "全功能GPU"
+          ]
+        },
+        {
+          "edge_id": "rel:qwen3-mtt-concerns-company",
+          "located": true,
+          "evidence": "摩尔线程团队",
+          "candidate_quotes": [
+            "摩尔线程团队"
+          ],
+          "method": "rendered source page"
+        }
+      ],
+      "http_status": 200,
+      "sha256": "72e4fb4e087edd5b872b1c7cfe8522f7ae4f671591b99d41c2070f51fd2e9d4a",
+      "status": "fetched",
+      "rendered_text_sha256": "d728a177a9ecae72e0463525acf30fc9455e9d00b44554e86a7596fbf946f9c8",
+      "rendered_chars": 2769
+    },
+    {
+      "source_id": "src:hygon-adapt",
+      "url": "https://www.ithome.com/0/828/487.htm",
+      "facts": [
+        {
+          "edge_id": "rel:hygon-produces-dcu",
+          "located": true,
+          "evidence": "DCU 是海光信息推出的高性能 GPGPU 架构 AI 加速卡",
+          "candidate_quotes": [
+            "DCU 是海光信息推出的高性能 GPGPU 架构 AI 加速卡"
+          ]
+        },
+        {
+          "edge_id": "rel:hygon-belongs-to-ai-chip",
+          "located": true,
+          "evidence": "AI 加速卡",
+          "candidate_quotes": [
+            "AI 加速卡"
+          ]
+        },
+        {
+          "edge_id": "rel:hygon-dcu-supports-r1",
+          "located": true,
+          "evidence": "国产化适配，并正式上线",
+          "candidate_quotes": [
+            "国产化适配，并正式上线"
+          ]
+        },
+        {
+          "edge_id": "rel:hygon-adapt-concerns-r1",
+          "located": true,
+          "evidence": "DeepSeek V3 和 R1 模型",
+          "candidate_quotes": [
+            "DeepSeek V3 和 R1 模型"
+          ]
+        },
+        {
+          "edge_id": "rel:hygon-adapt-concerns-dcu",
+          "located": true,
+          "evidence": "海光 DCU",
+          "candidate_quotes": [
+            "海光 DCU"
+          ]
+        },
+        {
+          "edge_id": "rel:hygon-adapt-concerns-hygon",
+          "located": true,
+          "evidence": "海光信息技术团队",
+          "candidate_quotes": [
+            "海光信息技术团队"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "db0eb79aa253da47011f5cb847c032b9ab6de096fa53af435d6d34fb24e484be",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:baidu-qianfan",
+      "url": "https://cloud.baidu.com/news/news_214c01fe-69f4-4e2e-8ca2-170aa44ad853",
+      "facts": [
+        {
+          "edge_id": "rel:baidu-belongs-to-cloud-maas",
+          "located": true,
+          "evidence": "模型推理托管能力",
+          "candidate_quotes": [
+            "模型推理托管能力"
+          ]
+        },
+        {
+          "edge_id": "rel:baidu-qianfan-concerns-r1",
+          "located": true,
+          "evidence": "DeepSeek-R1和 DeepSeek-V3模型",
+          "candidate_quotes": [
+            "DeepSeek-R1和 DeepSeek-V3模型"
+          ]
+        },
+        {
+          "edge_id": "rel:baidu-qianfan-concerns-product",
+          "located": true,
+          "evidence": "百度智能云千帆平台",
+          "candidate_quotes": [
+            "百度智能云千帆平台"
+          ]
+        },
+        {
+          "edge_id": "rel:baidu-qianfan-concerns-company",
+          "located": true,
+          "evidence": "百度智能云",
+          "candidate_quotes": [
+            "百度智能云"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "2c059c1ba328fd45fd3d25d789afa47493b8a9b58712497d85ab56cf2654bd16",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:baidu-date",
+      "url": "https://www.bjnews.com.cn/detail/1738587281168005.html",
+      "facts": [
+        {
+          "edge_id": "rel:baidu-produces-qianfan",
+          "located": true,
+          "evidence": "百度智能云千帆平台",
+          "candidate_quotes": [
+            "百度智能云千帆平台"
+          ]
+        },
+        {
+          "edge_id": "rel:baidu-qianfan-hosts-r1",
+          "located": true,
+          "evidence": "DeepSeek-R1和DeepSeek-V3模型已在百度智能云千帆平台上架",
+          "candidate_quotes": [
+            "DeepSeek-R1和DeepSeek-V3模型已在百度智能云千帆平台上架"
+          ]
+        },
+        {
+          "edge_id": "rel:baidu-qianfan-concerns-r1",
+          "located": true,
+          "evidence": "DeepSeek-R1和 DeepSeek-V3模型",
+          "candidate_quotes": [
+            "DeepSeek-R1和 DeepSeek-V3模型"
+          ]
+        },
+        {
+          "edge_id": "rel:baidu-qianfan-concerns-product",
+          "located": true,
+          "evidence": "百度智能云千帆平台",
+          "candidate_quotes": [
+            "百度智能云千帆平台"
+          ]
+        },
+        {
+          "edge_id": "rel:baidu-qianfan-concerns-company",
+          "located": true,
+          "evidence": "百度智能云",
+          "candidate_quotes": [
+            "百度智能云"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "77b638f4b35efa926eaf009004a8db4b48e521c129b8ea8f2a6c35b65dcf6c39",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:tencent-hai",
+      "url": "https://cloud.tencent.com/document/product/1721/115966",
+      "facts": [],
+      "status": "bibliography_only"
+    },
+    {
+      "source_id": "src:tencent-date",
+      "url": "https://www.ithome.com/0/828/255.htm",
+      "facts": [
+        {
+          "edge_id": "rel:tencent-produces-hai",
+          "located": true,
+          "evidence": "腾讯云「HAI」上",
+          "candidate_quotes": [
+            "腾讯云「HAI」上"
+          ]
+        },
+        {
+          "edge_id": "rel:tencent-belongs-to-cloud-maas",
+          "located": true,
+          "evidence": "腾讯云「HAI」",
+          "candidate_quotes": [
+            "腾讯云「HAI」"
+          ]
+        },
+        {
+          "edge_id": "rel:tencent-hai-hosts-r1",
+          "located": true,
+          "evidence": "DeepSeek-R1 大模型支持一键部署至腾讯云「HAI」上",
+          "candidate_quotes": [
+            "DeepSeek-R1 大模型支持一键部署至腾讯云「HAI」上"
+          ]
+        },
+        {
+          "edge_id": "rel:tencent-belongs-to-ai-infrastructure",
+          "located": true,
+          "evidence": "腾讯云「HAI」",
+          "candidate_quotes": [
+            "腾讯云「HAI」"
+          ]
+        },
+        {
+          "edge_id": "rel:tencent-hai-concerns-r1",
+          "located": true,
+          "evidence": "DeepSeek-R1 大模型",
+          "candidate_quotes": [
+            "DeepSeek-R1 大模型"
+          ]
+        },
+        {
+          "edge_id": "rel:tencent-hai-concerns-product",
+          "located": true,
+          "evidence": "腾讯云「HAI」",
+          "candidate_quotes": [
+            "腾讯云「HAI」"
+          ]
+        },
+        {
+          "edge_id": "rel:tencent-hai-concerns-company",
+          "located": true,
+          "evidence": "深圳市腾讯计算机系统有限公司",
+          "candidate_quotes": [
+            "深圳市腾讯计算机系统有限公司"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "62904caa4c5267574b341c4314bb02ea7db2bc3b7ac4327e536bf870d1642f84",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:ctyun-r1",
+      "url": "https://www.ithome.com/0/828/695.htm",
+      "facts": [
+        {
+          "edge_id": "rel:chinatelecom-produces-ctyun",
+          "located": true,
+          "evidence": "天翼云",
+          "candidate_quotes": [
+            "天翼云"
+          ]
+        },
+        {
+          "edge_id": "rel:chinatelecom-belongs-to-cloud-maas",
+          "located": true,
+          "evidence": "天翼云",
+          "candidate_quotes": [
+            "天翼云"
+          ]
+        },
+        {
+          "edge_id": "rel:ctyun-hosts-r1",
+          "located": true,
+          "evidence": "天翼云成为国内最早支持 DeepSeek-R1 模型的云服务商之一",
+          "candidate_quotes": [
+            "天翼云成为国内最早支持 DeepSeek-R1 模型的云服务商之一"
+          ]
+        },
+        {
+          "edge_id": "rel:ctyun-concerns-r1",
+          "located": true,
+          "evidence": "DeepSeek-R1 模型",
+          "candidate_quotes": [
+            "DeepSeek-R1 模型"
+          ]
+        },
+        {
+          "edge_id": "rel:ctyun-concerns-product",
+          "located": true,
+          "evidence": "天翼云",
+          "candidate_quotes": [
+            "天翼云"
+          ]
+        },
+        {
+          "edge_id": "rel:ctyun-concerns-company",
+          "located": true,
+          "evidence": "中国电信今日宣布",
+          "candidate_quotes": [
+            "中国电信今日宣布"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "d3d25e506e40473cd8264f4ba230fa2ac94737973058cfbc1c2a7d42f7c9a706",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:hkex-tencent",
+      "url": "https://static.www.tencent.com/storage/uploads/2019/11/09/a0179a64c10468ed04568e6c4d2ecad6.pdf",
+      "facts": [],
+      "status": "bibliography_only"
+    },
+    {
+      "source_id": "src:hkex-tencent-quote",
+      "url": "https://www.hkex.com.hk/Market-Data/Securities-Prices/Equities/Equities-Quote?sym=700&sc_lang=en",
+      "facts": [],
+      "status": "bibliography_only"
+    },
+    {
+      "source_id": "src:hkex-baidu-quote",
+      "url": "https://www.hkex.com.hk/Market-Data/Securities-Prices/Equities/Equities-Quote?sym=9888&sc_lang=en",
+      "facts": [],
+      "status": "bibliography_only"
+    },
+    {
+      "source_id": "src:hkex-baidu-prospectus",
+      "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2021/0312/2021031200022_c.pdf",
+      "facts": [
+        {
+          "edge_id": "rel:baidu-listed-as-09888",
+          "located": true,
+          "evidence": "股份代號：9888",
+          "candidate_quotes": [
+            "股份代號：9888"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "9026fb912ee1765d3903a18c69d16fdc90c2ea84025f8bbc89321b322dbc4127",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:cnbc-baidu",
+      "url": "https://www.cnbc.com/2021/03/23/baidu-shares-debut-in-hong-kong-secondary-listing.html",
+      "facts": [],
+      "status": "bibliography_only"
+    },
+    {
+      "source_id": "src:hkex-chinatelecom-quote",
+      "url": "https://www.hkex.com.hk/Market-Data/Securities-Prices/Equities/Equities-Quote?sym=728&sc_lang=en",
+      "facts": [],
+      "status": "bibliography_only"
+    },
+    {
+      "source_id": "src:hkex-chinatelecom",
+      "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2003/0428/728/ewp104.pdf",
+      "facts": [
+        {
+          "edge_id": "rel:chinatelecom-listed-as-00728",
+          "located": true,
+          "evidence": "stock code: 728",
+          "candidate_quotes": [
+            "stock code: 728"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "7931d61574bd17ad652fc00084ce4b59ca94f5135205bc1b9b2dbe8883d439ef",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:sse-hygon",
+      "url": "https://www.sse.com.cn/disclosure/announcement/listing/ipo/c/c_20220811_86447590.shtml",
+      "facts": [
+        {
+          "edge_id": "rel:hygon-listed-as-688041",
+          "located": true,
+          "evidence": "证券简称为“海光信息”，证券代码为“688041”",
+          "candidate_quotes": [
+            "证券简称为“海光信息”，证券代码为“688041”"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "fa73bae204f650f34dae96cf4ab48b19b229d659e1c6289a961b9c703eeb479c",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:hygon-qwen3",
+      "url": "https://www.21ic.com/a/986112.html",
+      "facts": [
+        {
+          "edge_id": "rel:hygon-dcu-supports-qwen3",
+          "located": true,
+          "evidence": "已完成对Qwen3全部8款模型",
+          "candidate_quotes": [
+            "已完成对Qwen3全部8款模型"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "ef7d3c75e458ce5fd09b84c23a47902a2def2ff5fe8a10ba71927e19959002fd",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:deepseek-r1-github",
+      "url": "https://github.com/deepseek-ai/DeepSeek-R1",
+      "facts": [
+        {
+          "edge_id": "rel:r1-developed-by-deepseek",
+          "located": true,
+          "evidence": "We introduce our first-generation reasoning models, DeepSeek-R1-Zero and DeepSeek-R1.",
+          "candidate_quotes": [
+            "We introduce our first-generation reasoning models, DeepSeek-R1-Zero and DeepSeek-R1."
+          ]
+        },
+        {
+          "edge_id": "rel:r1-distill-developed-by-deepseek",
+          "located": true,
+          "evidence": "we have open-sourced DeepSeek-R1-Zero, DeepSeek-R1, and six dense models distilled from DeepSeek-R1 based on Llama and Qwen",
+          "candidate_quotes": [
+            "we have open-sourced DeepSeek-R1-Zero, DeepSeek-R1, and six dense models distilled from DeepSeek-R1 based on Llama and Qwen"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "d3ea35ea649452864a2c7740308864931c5e63a18bed2446257ae1e3e2df35df",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:minimax-m21-github",
+      "url": "https://github.com/MiniMax-AI/MiniMax-M2.1",
+      "facts": [
+        {
+          "edge_id": "rel:minimax-m21-developed-by-minimax",
+          "located": true,
+          "evidence": "Your name is MiniMax-M2.1 and is built by MiniMax.",
+          "candidate_quotes": [
+            "Your name is MiniMax-M2.1 and is built by MiniMax."
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "89b4b10ce73033aa7c0ea6b1b37b545276399c960472ec2d5982b0865476fe98",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:qwen3-alibaba-press",
+      "url": "https://www.alibabagroup.com/zh-HK/document-1853940226976645120",
+      "facts": [],
+      "status": "bibliography_only"
+    },
+    {
+      "source_id": "src:qwen3-alibaba-cloud",
+      "url": "https://www.alibabacloud.com/en/press-room/alibaba-introduces-qwen3-setting-new-benchmark",
+      "facts": [
+        {
+          "edge_id": "rel:qwen3-developed-by-alibaba",
+          "located": true,
+          "evidence": "Alibaba has launched Qwen3, the latest generation of its open-sourced large language model (LLM) family",
+          "candidate_quotes": [
+            "Alibaba has launched Qwen3, the latest generation of its open-sourced large language model (LLM) family"
+          ]
+        },
+        {
+          "edge_id": "rel:qwen3-235b-developed-by-alibaba",
+          "located": true,
+          "evidence": "MoE models (30B with 3B active, and 235B with 22B active)",
+          "candidate_quotes": [
+            "MoE models (30B with 3B active, and 235B with 22B active)"
+          ]
+        },
+        {
+          "edge_id": "rel:qwen3-30b-developed-by-alibaba",
+          "located": true,
+          "evidence": "MoE models (30B with 3B active, and 235B with 22B active)",
+          "candidate_quotes": [
+            "MoE models (30B with 3B active, and 235B with 22B active)"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "c1b7d623b05f15b785b817d381da4ee9b296457f3348e55ce8a1374109cff5ae",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:aliyun-bailian-product",
+      "url": "https://www.aliyun.com/product/bailian",
+      "facts": [
+        {
+          "edge_id": "rel:alibaba-produces-bailian",
+          "located": true,
+          "evidence": "大模型服务平台百炼 - 大模型应用构建 - 阿里云",
+          "candidate_quotes": [
+            "大模型服务平台百炼 - 大模型应用构建 - 阿里云"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "6ef112cd4ae98814ac6536ed5d46e83a846f78394180f0773ca3cb98f7cc8030",
+      "status": "fetched"
+    },
+    {
+      "source_id": "src:hkex-tencent-archive",
+      "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2005/0330/ltn20050330112.htm",
+      "facts": [
+        {
+          "edge_id": "rel:tencent-listed-as-00700",
+          "located": true,
+          "evidence": "Tencent Holdings Limited (00700)",
+          "candidate_quotes": [
+            "Tencent Holdings Limited (00700)"
+          ]
+        }
+      ],
+      "http_status": 200,
+      "sha256": "6dc3be7a7ed8e8f0b899ce701c05ea3de8141e02dda4b7810f10e53845182968",
+      "status": "fetched"
+    }
+  ],
+  "located": 89,
+  "checked": 89,
+  "verified_facts": 85,
+  "total_facts": 85,
+  "all_facts_located": true,
+  "review_flags": [],
+  "network_errors": []
+}

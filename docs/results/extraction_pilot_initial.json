@@ -1,0 +1,293 @@
+{
+  "created_at": "2026-11-06T16:49:00.262166+00:00",
+  "live_model_called": true,
+  "task": "指定模型与关系类型的定向关系抽取预实验",
+  "case_count": 6,
+  "model": "DeepSeek V4.1 Flash",
+  "valid_outputs": 6,
+  "counts": {
+    "tp": 4,
+    "fp": 0,
+    "fn": 1
+  },
+  "micro_precision": 1.0,
+  "micro_recall": 0.8,
+  "micro_f1": 0.888888888888889,
+  "negative_cases": 1,
+  "negative_false_positive_cases": 0,
+  "limitations": [
+    "规模小，仅用于期中预实验，不代表总体抽取性能。",
+    "抽取器已获得实体目录；未评估开放域实体发现。",
+    "按逐例记录的目标模型和关系类型核对，不将范围外的正确关系计为误报。",
+    "参考三元组由项目构建者依据来源核对，尚未进行独立多人标注一致性研究。"
+  ],
+  "results": [
+    {
+      "id": "eval:qwen3-developer",
+      "title": "Qwen3 发布与研发主体",
+      "document_id": "src:hygon-qwen3",
+      "url": "https://www.21ic.com/a/986112.html",
+      "mode": "live",
+      "model": "DeepSeek V4.1 Flash",
+      "negative": false,
+      "scope": {
+        "focus_entity_id": "model:qwen3",
+        "relation_types": [
+          "DEVELOPED_BY"
+        ]
+      },
+      "expected": [
+        [
+          "model:qwen3",
+          "DEVELOPED_BY",
+          "company:alibaba"
+        ]
+      ],
+      "predicted": [],
+      "all_predicted": [
+        [
+          "event:qwen3-release",
+          "CONCERNS",
+          "company:alibaba"
+        ],
+        [
+          "event:qwen3-release",
+          "RELEASED_MODEL",
+          "model:qwen3"
+        ]
+      ],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1,
+      "error": null,
+      "elapsed_ms": 38271,
+      "raw_output": "{\"entities\":[{\"id\":\"company:alibaba\",\"label\":\"阿里巴巴\",\"type\":\"Company\",\"aliases\":[\"Alibaba\",\"Alibaba Group\",\"阿里巴巴集团\"],\"description\":\"阿里巴巴云旗下Qwen团队所属公司\",\"source_ids\":[\"src:hygon-qwen3\"],\"properties\":{}},{\"id\":\"model:qwen3\",\"label\":\"Qwen3\",\"type\":\"Model\",\"aliases\":[\"Qwen3\"],\"description\":\"Qwen系列最新一代大型语言模型，2025年4月29日发布并开源\",\"source_ids\":[\"src:hygon-qwen3\"],\"properties\":{}},{\"id\":\"event:qwen3-release\",\"label\":\"Qwen3 发布\",\"type\":\"Event\",\"aliases\":[],\"description\":\"2025年4月29日Qwen3正式发布并开源\",\"source_ids\":[\"src:hygon-qwen3\"],\"properties\":{}}],\"relations\":[{\"source\":\"event:qwen3-release\",\"target\":\"model:qwen3\",\"type\":\"RELEASED_MODEL\",\"label\":\"发布模型\",\"evidence\":\"正式发布并开源Qwen3\",\"source_ids\":[\"src:hygon-qwen3\"],\"disclosed_at\":\"2025-04-29\",\"relation_group\":\"release\"},{\"source\":\"event:qwen3-release\",\"target\":\"company:alibaba\",\"type\":\"CONCERNS\",\"label\":\"涉及\",\"evidence\":\"阿里巴巴云旗下的Qwen团队正式发布并开源Qwen3\",\"source_ids\":[\"src:hygon-qwen3\"],\"disclosed_at\":\"2025-04-29\",\"relation_group\":\"involvement\"}],\"events\":[]}",
+      "validation": {
+        "valid": true,
+        "warnings": []
+      }
+    },
+    {
+      "id": "eval:mthreads-qwen3-adapt",
+      "title": "摩尔线程全功能 GPU 支持 Qwen3",
+      "document_id": "src:mthreads-qwen3",
+      "url": "https://www.mthreads.com/news/241",
+      "mode": "live",
+      "model": "DeepSeek V4.1 Flash",
+      "negative": false,
+      "scope": {
+        "focus_entity_id": "model:qwen3",
+        "relation_types": [
+          "SUPPORTS_MODEL"
+        ]
+      },
+      "expected": [
+        [
+          "product:mthreads-gpu",
+          "SUPPORTS_MODEL",
+          "model:qwen3"
+        ]
+      ],
+      "predicted": [
+        [
+          "product:mthreads-gpu",
+          "SUPPORTS_MODEL",
+          "model:qwen3"
+        ]
+      ],
+      "all_predicted": [
+        [
+          "product:mthreads-gpu",
+          "SUPPORTS_MODEL",
+          "model:qwen3"
+        ]
+      ],
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "error": null,
+      "elapsed_ms": 31055,
+      "raw_output": "{\"entities\":[{\"id\":\"product:mthreads-gpu\",\"label\":\"摩尔线程全功能 GPU\",\"type\":\"Product\",\"aliases\":[\"摩尔线程 GPU\",\"MUSA GPU\"],\"description\":\"摩尔线程全功能 GPU；来源称其完成 Qwen3 全系列模型高效支持。\",\"source_ids\":[\"src:mthreads-qwen3\"],\"properties\":{}},{\"id\":\"model:qwen3\",\"label\":\"Qwen3\",\"type\":\"Model\",\"aliases\":[\"Qwen3-2504\",\"通义千问3\"],\"description\":\"阿里云发布的 Qwen3 系列开源混合推理模型。\",\"source_ids\":[\"src:mthreads-qwen3\"],\"properties\":{}}],\"relations\":[{\"source\":\"product:mthreads-gpu\",\"target\":\"model:qwen3\",\"type\":\"SUPPORTS_MODEL\",\"label\":\"技术适配\",\"evidence\":\"摩尔线程团队在模型发布当天，率先完成了Qwen3全系列模型在全功能GPU上的高效支持\",\"source_ids\":[\"src:mthreads-qwen3\"],\"disclosed_at\":\"2025-04-29\",\"relation_group\":\"adaptation\"}],\"events\":[]}",
+      "validation": {
+        "valid": true,
+        "warnings": []
+      }
+    },
+    {
+      "id": "eval:baidu-qianfan-host",
+      "title": "百度智能云千帆上架 DeepSeek-R1",
+      "document_id": "src:baidu-qianfan",
+      "url": "https://cloud.baidu.com/news/news_214c01fe-69f4-4e2e-8ca2-170aa44ad853",
+      "mode": "live",
+      "model": "DeepSeek V4.1 Flash",
+      "negative": false,
+      "scope": {
+        "focus_entity_id": "model:deepseek-r1",
+        "relation_types": [
+          "HOSTS_MODEL"
+        ]
+      },
+      "expected": [
+        [
+          "product:baidu-qianfan",
+          "HOSTS_MODEL",
+          "model:deepseek-r1"
+        ]
+      ],
+      "predicted": [
+        [
+          "product:baidu-qianfan",
+          "HOSTS_MODEL",
+          "model:deepseek-r1"
+        ]
+      ],
+      "all_predicted": [
+        [
+          "product:baidu-qianfan",
+          "HOSTS_MODEL",
+          "model:deepseek-r1"
+        ]
+      ],
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "error": null,
+      "elapsed_ms": 22414,
+      "raw_output": "{\"entities\":[{\"id\":\"product:baidu-qianfan\",\"label\":\"百度智能云千帆\",\"type\":\"Product\",\"aliases\":[\"千帆\",\"千帆平台\"],\"description\":\"百度智能云千帆平台\",\"source_ids\":[\"src:baidu-qianfan\"],\"properties\":{}},{\"id\":\"model:deepseek-r1\",\"label\":\"DeepSeek-R1\",\"type\":\"Model\",\"aliases\":[\"DeepSeek-R1\"],\"description\":\"DeepSeek-R1 模型\",\"source_ids\":[\"src:baidu-qianfan\"],\"properties\":{}}],\"relations\":[{\"source\":\"product:baidu-qianfan\",\"target\":\"model:deepseek-r1\",\"type\":\"HOSTS_MODEL\",\"label\":\"上架模型\",\"evidence\":\"百度智能云千帆平台已正式上架 DeepSeek-R1和 DeepSeek-V3模型\",\"source_ids\":[\"src:baidu-qianfan\"],\"disclosed_at\":\"2025-02-05\",\"relation_group\":\"hosting\"}],\"events\":[]}",
+      "validation": {
+        "valid": true,
+        "warnings": []
+      }
+    },
+    {
+      "id": "eval:hygon-dcu-adapt",
+      "title": "海光 DCU 完成 DeepSeek-R1 适配",
+      "document_id": "src:hygon-adapt",
+      "url": "https://www.ithome.com/0/828/487.htm",
+      "mode": "live",
+      "model": "DeepSeek V4.1 Flash",
+      "negative": false,
+      "scope": {
+        "focus_entity_id": "model:deepseek-r1",
+        "relation_types": [
+          "SUPPORTS_MODEL"
+        ]
+      },
+      "expected": [
+        [
+          "product:hygon-dcu",
+          "SUPPORTS_MODEL",
+          "model:deepseek-r1"
+        ]
+      ],
+      "predicted": [
+        [
+          "product:hygon-dcu",
+          "SUPPORTS_MODEL",
+          "model:deepseek-r1"
+        ]
+      ],
+      "all_predicted": [
+        [
+          "product:hygon-dcu",
+          "SUPPORTS_MODEL",
+          "model:deepseek-r1"
+        ]
+      ],
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "error": null,
+      "elapsed_ms": 33492,
+      "raw_output": "{\"entities\":[{\"id\":\"product:hygon-dcu\",\"label\":\"海光 DCU\",\"type\":\"Product\",\"aliases\":[\"DCU\",\"深度计算单元\"],\"description\":\"海光 DCU（深度计算单元），完成 DeepSeek-R1 国产化适配\",\"source_ids\":[\"src:hygon-adapt\"],\"properties\":{}},{\"id\":\"model:deepseek-r1\",\"label\":\"DeepSeek-R1\",\"type\":\"Model\",\"aliases\":[\"DeepSeek R1\",\"R1\",\"deepseek-reasoner\"],\"description\":\"DeepSeek-R1 模型，与海光 DCU 完成国产化适配\",\"source_ids\":[\"src:hygon-adapt\"],\"properties\":{}}],\"relations\":[{\"source\":\"product:hygon-dcu\",\"target\":\"model:deepseek-r1\",\"type\":\"SUPPORTS_MODEL\",\"label\":\"技术适配\",\"evidence\":\"DeepSeek V3 和 R1 模型与海光 DCU（深度计算单元）国产化适配\",\"source_ids\":[\"src:hygon-adapt\"],\"disclosed_at\":\"2025-02-04\",\"relation_group\":\"adaptation\"}],\"events\":[]}",
+      "validation": {
+        "valid": true,
+        "warnings": []
+      }
+    },
+    {
+      "id": "eval:negative-comparison",
+      "title": "Qwen3 与 DeepSeek-R1 的基准对比",
+      "document_id": "src:qwen3-blog",
+      "url": "https://qwenlm.github.io/blog/qwen3/",
+      "mode": "live",
+      "model": "DeepSeek V4.1 Flash",
+      "negative": true,
+      "scope": {
+        "focus_entity_id": "",
+        "relation_types": "all_schema_relations"
+      },
+      "expected": [],
+      "predicted": [],
+      "all_predicted": [],
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "error": null,
+      "elapsed_ms": 11579,
+      "raw_output": "{\"entities\":[{\"id\":\"model:qwen3-235b-a22b\",\"label\":\"Qwen3-235B-A22B\",\"type\":\"Model\",\"aliases\":[\"Qwen3-235B\",\"235B-A22B\"],\"description\":\"来源称为旗舰模型，在编码、数学、通用能力等基准评测中取得有竞争力结果。\",\"source_ids\":[\"src:qwen3-blog\"],\"properties\":{}},{\"id\":\"model:deepseek-r1\",\"label\":\"DeepSeek-R1\",\"type\":\"Model\",\"aliases\":[\"DeepSeek R1\",\"R1\",\"deepseek-reasoner\"],\"description\":\"来源中作为与 Qwen3-235B-A22B 对比的顶级模型之一。\",\"source_ids\":[\"src:qwen3-blog\"],\"properties\":{}}],\"relations\":[],\"events\":[]}",
+      "validation": {
+        "valid": false,
+        "warnings": [
+          "本次没有抽取出可验证关系；可以修改文本后重试。"
+        ]
+      }
+    },
+    {
+      "id": "eval:glm5-mtt-heldout",
+      "title": "MTT S5000 完成 GLM-5 适配",
+      "document_id": "src:mthreads-glm5",
+      "url": "https://www.mthreads.com/news/280",
+      "mode": "live",
+      "model": "DeepSeek V4.1 Flash",
+      "negative": false,
+      "scope": {
+        "focus_entity_id": "model:glm5",
+        "relation_types": [
+          "SUPPORTS_MODEL"
+        ]
+      },
+      "expected": [
+        [
+          "product:mtt-s5000",
+          "SUPPORTS_MODEL",
+          "model:glm5"
+        ]
+      ],
+      "predicted": [
+        [
+          "product:mtt-s5000",
+          "SUPPORTS_MODEL",
+          "model:glm5"
+        ]
+      ],
+      "all_predicted": [
+        [
+          "event:glm5-release",
+          "CONCERNS",
+          "company:zhipu"
+        ],
+        [
+          "event:glm5-release",
+          "RELEASED_MODEL",
+          "model:glm5"
+        ],
+        [
+          "product:mtt-s5000",
+          "SUPPORTS_MODEL",
+          "model:glm5"
+        ]
+      ],
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "error": null,
+      "elapsed_ms": 27142,
+      "raw_output": "{\"entities\":[{\"id\":\"company:zhipu\",\"label\":\"智谱\",\"type\":\"Company\",\"aliases\":[\"Zhipu\",\"Z.ai\",\"北京智谱华章科技股份有限公司\"],\"description\":\"发布 GLM-5 的公司\",\"source_ids\":[\"src:mthreads-glm5\"],\"properties\":{}},{\"id\":\"model:glm5\",\"label\":\"GLM-5\",\"type\":\"Model\",\"aliases\":[\"GLM5\",\"GLM-5\"],\"description\":\"智谱发布的新一代大模型\",\"source_ids\":[\"src:mthreads-glm5\"],\"properties\":{}},{\"id\":\"company:mthreads\",\"label\":\"摩尔线程\",\"type\":\"Company\",\"aliases\":[\"Moore Threads\",\"摩尔线程智能科技（北京）股份有限公司\"],\"description\":\"在 MTT S5000 上完成 GLM-5 适配验证的公司\",\"source_ids\":[\"src:mthreads-glm5\"],\"properties\":{}},{\"id\":\"product:mtt-s5000\",\"label\":\"MTT S5000\",\"type\":\"Product\",\"aliases\":[\"MTT S5000\",\"S5000\"],\"description\":\"旗舰级AI训推一体全功能GPU\",\"source_ids\":[\"src:mthreads-glm5\"],\"properties\":{}},{\"id\":\"event:glm5-release\",\"label\":\"GLM-5 发布\",\"type\":\"Event\",\"aliases\":[],\"description\":\"2月12日智谱正式发布 GLM-5\",\"source_ids\":[\"src:mthreads-glm5\"],\"properties\":{}}],\"relations\":[{\"source\":\"event:glm5-release\",\"target\":\"model:glm5\",\"type\":\"RELEASED_MODEL\",\"label\":\"发布模型\",\"evidence\":\"智谱正式发布新一代大模型GLM-5\",\"source_ids\":[\"src:mthreads-glm5\"],\"disclosed_at\":\"2026-02-12\",\"relation_group\":\"release\"},{\"source\":\"event:glm5-release\",\"target\":\"company:zhipu\",\"type\":\"CONCERNS\",\"label\":\"事件涉及公司\",\"evidence\":\"2月12日，智谱正式发布新一代大模型GLM-5\",\"source_ids\":[\"src:mthreads-glm5\"],\"disclosed_at\":\"2026-02-12\",\"relation_group\":\"event\"},{\"source\":\"product:mtt-s5000\",\"target\":\"model:glm5\",\"type\":\"SUPPORTS_MODEL\",\"label\":\"技术适配\",\"evidence\":\"在旗舰级AI训推一体全功能GPU MTT S5000上，Day-0完成了全流程适配与验证\",\"source_ids\":[\"src:mthreads-glm5\"],\"disclosed_at\":\"2026-02-12\",\"relation_group\":\"adaptation\"}],\"events\":[]}",
+      "validation": {
+        "valid": true,
+        "warnings": []
+      }
+    }
+  ]
+}

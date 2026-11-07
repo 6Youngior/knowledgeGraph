@@ -1,0 +1,18 @@
+\begin{frame}[t]{选题与研究问题}\relax
+\Intro{本项目选择“股票量化情报”，聚焦 AI 产业事件与上市公司的关联。}
+\Head{为什么需要整合多种资料？}
+模型适配公告往往没有证券代码。关联研究需要将公告与产品资料、公司信息和上市文件连接起来。
+\Gap
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \node[entity,fill=PaleBlue] (a) at (1.4,0) {产业消息};
+  \node[entity,fill=PaleTeal] (b) at (5.1,0) {产品与公司};
+  \node[entity,fill=PaleGold] (c) at (8.8,0) {上市证券};
+  \node[entity] (d) at (12.5,0) {原文与行情};
+  \draw[rel] (a)--(b);\draw[rel] (b)--(c);\draw[rel] (c)--(d);
+\end{tikzpicture}
+\end{center}
+\Gap
+\Head{研究任务}
+找出关联证券，说明研发、硬件适配或云服务等产业角色，并展示来源、公开日期及事件后的行情。
+\end{frame}

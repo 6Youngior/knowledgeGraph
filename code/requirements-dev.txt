@@ -1,0 +1,5 @@
+-r requirements-lock.txt
+playwright==1.64.1
+PyMuPDF==1.27.2.3
+pillow==11.1.0
+matplotlib==3.10.9

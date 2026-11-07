@@ -1,0 +1,26 @@
+\begin{frame}[t]{知识抽取示例}\relax
+\Intro{从 GLM-5 适配公告中抽取产品、模型及二者的适配关系。}
+\begin{beamercolorbox}[sep=2.5mm,wd=\textwidth]{normal text}
+{\fontsize{11.4}{15}\selectfont
+“2月12日，智谱正式发布新一代大模型GLM-5。摩尔线程基于SGLang推理框架，在旗舰级AI训推一体全功能GPU MTT S5000上，Day-0完成了全流程适配与验证。”}
+\end{beamercolorbox}
+\Caption{摩尔线程官方公告，2026-02-12；原文：\href{https://www.mthreads.com/news/280}{mthreads.com/news/280}}
+\Gap
+\begin{columns}[T,onlytextwidth]
+\column{.49\textwidth}
+\Head{候选关系}
+\begin{center}
+\begin{tikzpicture}
+  \node[entity,fill=PaleTeal,text width=2.4cm] (a) at (0,0) {MTT S5000\\{\fontsize{10}{12}\selectfont 产品}};
+  \node[entity,fill=PaleBlue,text width=2.4cm] (b) at (4.1,0) {GLM-5\\{\fontsize{10}{12}\selectfont 模型}};
+  \draw[rel] (a)--node[edge label,above]{技术适配}(b);
+\end{tikzpicture}
+\end{center}
+\column{.47\textwidth}
+\Head{入图前核对}
+{\fontsize{11.5}{15}\selectfont
+1. 对齐已有产品和模型 ID。\par
+2. 检查关系类型与原文片段。\par
+3. 保留来源和日期，预览后确认。}
+\end{columns}
+\end{frame}

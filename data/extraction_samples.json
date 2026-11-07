@@ -1,0 +1,547 @@
+[
+  {
+    "id": "sample:mtt-glm5-adapt",
+    "title": "Day-0 支持｜摩尔线程 MTT S5000 率先完成对 GLM-5 的适配",
+    "document_id": "src:mthreads-glm5",
+    "text": "2月12日，智谱正式发布新一代大模型GLM-5。摩尔线程基于SGLang推理框架，在旗舰级AI训推一体全功能GPU MTT S5000上，Day-0完成了全流程适配与验证。凭借MUSA架构广泛的算子覆盖与强大的生态兼容能力，摩尔线程成功打通了模型推理全链路，并深度释放MTT S5000的原生FP8加速能力，在确保模型精度的同时显著降低了显存占用，实现了GLM-5的高性能推理。",
+    "url": "https://www.mthreads.com/news/280",
+    "model": "DeepSeek V4.1 Flash",
+    "notes": "离线回放：由 DeepSeek V4.1 Flash 辅助整理，内容可对照所附官方原文逐字复核；不是人工标注，也不是本次实时 API 调用。 初始图谱刻意未包含 MTT S5000 → GLM-5 的 SUPPORTS_MODEL 边；导入后新增摩尔线程（688795.SH）的适配型解释路径。",
+    "extraction": {
+      "entities": [
+        {
+          "id": "product:mtt-s5000",
+          "label": "MTT S5000",
+          "type": "Product",
+          "aliases": [
+            "MTT S5000",
+            "S5000"
+          ],
+          "description": "",
+          "source_ids": [
+            "src:mthreads-glm5"
+          ],
+          "properties": {}
+        },
+        {
+          "id": "model:glm5",
+          "label": "GLM-5",
+          "type": "Model",
+          "aliases": [
+            "GLM5",
+            "GLM-5"
+          ],
+          "description": "",
+          "source_ids": [
+            "src:mthreads-glm5"
+          ],
+          "properties": {}
+        },
+        {
+          "id": "company:mthreads",
+          "label": "摩尔线程",
+          "type": "Company",
+          "aliases": [
+            "Moore Threads"
+          ],
+          "description": "",
+          "source_ids": [
+            "src:mthreads-glm5"
+          ],
+          "properties": {}
+        },
+        {
+          "id": "company:zhipu",
+          "label": "智谱",
+          "type": "Company",
+          "aliases": [
+            "Zhipu",
+            "Z.ai"
+          ],
+          "description": "",
+          "source_ids": [
+            "src:mthreads-glm5"
+          ],
+          "properties": {}
+        },
+        {
+          "id": "event:mtt-glm5-adapt",
+          "label": "MTT S5000 完成 GLM-5 Day-0 适配",
+          "type": "Event",
+          "aliases": [],
+          "description": "",
+          "source_ids": [
+            "src:mthreads-glm5"
+          ],
+          "properties": {}
+        }
+      ],
+      "relations": [
+        {
+          "id": "rel:mtt-s5000-supports-glm5",
+          "source": "product:mtt-s5000",
+          "target": "model:glm5",
+          "type": "SUPPORTS_MODEL",
+          "label": "技术适配",
+          "source_ids": [
+            "src:mthreads-glm5"
+          ],
+          "evidence": "Day-0完成了全流程适配与验证",
+          "disclosed_at": "2026-02-12",
+          "relation_group": "adaptation"
+        },
+        {
+          "id": "rel:mtt-glm5-adapt-concerns-product",
+          "source": "event:mtt-glm5-adapt",
+          "target": "product:mtt-s5000",
+          "type": "CONCERNS",
+          "label": "事件涉及",
+          "source_ids": [
+            "src:mthreads-glm5"
+          ],
+          "evidence": "在旗舰级AI训推一体全功能GPU MTT S5000上",
+          "disclosed_at": "2026-02-12",
+          "relation_group": "direct"
+        },
+        {
+          "id": "rel:mtt-glm5-adapt-concerns-model",
+          "source": "event:mtt-glm5-adapt",
+          "target": "model:glm5",
+          "type": "CONCERNS",
+          "label": "事件涉及",
+          "source_ids": [
+            "src:mthreads-glm5"
+          ],
+          "evidence": "智谱正式发布新一代大模型GLM-5",
+          "disclosed_at": "2026-02-12",
+          "relation_group": "direct"
+        }
+      ],
+      "events": [
+        {
+          "id": "event:mtt-glm5-adapt",
+          "title": "MTT S5000 完成 GLM-5 Day-0 适配",
+          "date": "2026-02-12",
+          "event_at": "2026-02-12",
+          "disclosed_at": "2026-02-12",
+          "type": "PRODUCT_ADAPTATION",
+          "summary": "摩尔线程在 MTT S5000 上完成 GLM-5 的 Day-0 适配，并释放原生 FP8 推理能力。",
+          "entity_id": "model:glm5",
+          "source_ids": [
+            "src:mthreads-glm5"
+          ],
+          "properties": {
+            "timezone": "Asia/Shanghai"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "sample:mtt-minimax-adapt",
+    "title": "Day-0 支持｜摩尔线程完成 MiniMax M2.5 模型极速适配",
+    "document_id": "src:mthreads-minimax",
+    "text": "2月14日，摩尔线程在其旗舰级AI训推一体全功能GPU MTT S5000上，成功实现了对MiniMax新一代大模型MiniMax M2.5的Day-0极速适配。",
+    "url": "https://www.mthreads.com/news/281",
+    "model": "DeepSeek V4.1 Flash",
+    "notes": "离线回放：由 DeepSeek V4.1 Flash 辅助整理，内容可对照所附官方原文逐字复核；不是人工标注，也不是本次实时 API 调用。 该样例对应的关系已在初始图谱中，重复抽取应显示 matched / 无新增事实。",
+    "extraction": {
+      "entities": [
+        {
+          "id": "product:mtt-s5000",
+          "label": "MTT S5000",
+          "type": "Product",
+          "aliases": [
+            "MTT S5000",
+            "S5000"
+          ],
+          "description": "",
+          "source_ids": [
+            "src:mthreads-minimax"
+          ],
+          "properties": {}
+        },
+        {
+          "id": "model:minimax-m25",
+          "label": "MiniMax-M2.5",
+          "type": "Model",
+          "aliases": [
+            "M2.5",
+            "MiniMax M2.5"
+          ],
+          "description": "",
+          "source_ids": [
+            "src:mthreads-minimax"
+          ],
+          "properties": {}
+        },
+        {
+          "id": "company:mthreads",
+          "label": "摩尔线程",
+          "type": "Company",
+          "aliases": [
+            "Moore Threads"
+          ],
+          "description": "",
+          "source_ids": [
+            "src:mthreads-minimax"
+          ],
+          "properties": {}
+        },
+        {
+          "id": "company:minimax",
+          "label": "MiniMax",
+          "type": "Company",
+          "aliases": [
+            "MiniMax Group Inc."
+          ],
+          "description": "",
+          "source_ids": [
+            "src:mthreads-minimax"
+          ],
+          "properties": {}
+        },
+        {
+          "id": "event:mtt-minimax-adapt",
+          "label": "MTT S5000 完成 MiniMax-M2.5 Day-0 适配",
+          "type": "Event",
+          "aliases": [],
+          "description": "",
+          "source_ids": [
+            "src:mthreads-minimax"
+          ],
+          "properties": {}
+        }
+      ],
+      "relations": [
+        {
+          "id": "rel:mtt-s5000-supports-minimax-m25",
+          "source": "product:mtt-s5000",
+          "target": "model:minimax-m25",
+          "type": "SUPPORTS_MODEL",
+          "label": "技术适配",
+          "source_ids": [
+            "src:mthreads-minimax"
+          ],
+          "evidence": "成功实现了对MiniMax新一代大模型MiniMax M2.5的Day-0极速适配",
+          "disclosed_at": "2026-02-14",
+          "relation_group": "adaptation"
+        },
+        {
+          "id": "rel:mtt-minimax-adapt-concerns-product",
+          "source": "event:mtt-minimax-adapt",
+          "target": "product:mtt-s5000",
+          "type": "CONCERNS",
+          "label": "事件涉及",
+          "source_ids": [
+            "src:mthreads-minimax"
+          ],
+          "evidence": "旗舰级AI训推一体全功能GPU MTT S5000",
+          "disclosed_at": "2026-02-14",
+          "relation_group": "direct"
+        },
+        {
+          "id": "rel:mtt-minimax-adapt-concerns-model",
+          "source": "event:mtt-minimax-adapt",
+          "target": "model:minimax-m25",
+          "type": "CONCERNS",
+          "label": "事件涉及",
+          "source_ids": [
+            "src:mthreads-minimax"
+          ],
+          "evidence": "MiniMax新一代大模型MiniMax M2.5",
+          "disclosed_at": "2026-02-14",
+          "relation_group": "direct"
+        },
+        {
+          "id": "rel:mthreads-produces-s5000",
+          "source": "company:mthreads",
+          "target": "product:mtt-s5000",
+          "type": "PRODUCES",
+          "label": "提供产品",
+          "source_ids": [
+            "src:mthreads-minimax"
+          ],
+          "evidence": "摩尔线程在其旗舰级AI训推一体全功能GPU MTT S5000上",
+          "disclosed_at": "2026-02-14",
+          "relation_group": "direct"
+        },
+        {
+          "id": "rel:minimax-m25-developed-by-minimax",
+          "source": "model:minimax-m25",
+          "target": "company:minimax",
+          "type": "DEVELOPED_BY",
+          "label": "研发主体",
+          "source_ids": [
+            "src:mthreads-minimax"
+          ],
+          "evidence": "MiniMax新一代大模型MiniMax M2.5",
+          "disclosed_at": "2026-02-14",
+          "relation_group": "direct"
+        }
+      ],
+      "events": [
+        {
+          "id": "event:mtt-minimax-adapt",
+          "title": "MTT S5000 完成 MiniMax-M2.5 Day-0 适配",
+          "date": "2026-02-14",
+          "event_at": "2026-02-14",
+          "disclosed_at": "2026-02-14",
+          "type": "PRODUCT_ADAPTATION",
+          "summary": "摩尔线程在 MTT S5000 上完成 MiniMax-M2.5 的 Day-0 极速适配。",
+          "entity_id": "model:minimax-m25",
+          "source_ids": [
+            "src:mthreads-minimax"
+          ],
+          "properties": {
+            "timezone": "Asia/Shanghai"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "sample:hygon-r1-adapt",
+    "title": "海光 DCU 完成 DeepSeek-R1 适配",
+    "document_id": "src:hygon-adapt",
+    "text": "IT之家 2 月 4 日消息，中科曙光国家先进计算产业创新中心有限公司昨日发文宣布，海光信息技术团队成功完成 DeepSeek V3 和 R1 模型与海光 DCU（深度计算单元）国产化适配，并正式上线。",
+    "url": "https://www.ithome.com/0/828/487.htm",
+    "model": "DeepSeek V4.1 Flash",
+    "notes": "离线回放：由 DeepSeek V4.1 Flash 辅助整理，内容可对照所附官方原文逐字复核；不是人工标注，也不是本次实时 API 调用。 硬件适配类型；关系已在初始图谱中，回放用于角色核对与幂等演示。",
+    "extraction": {
+      "entities": [
+        {
+          "id": "product:hygon-dcu",
+          "label": "海光 DCU",
+          "type": "Product",
+          "aliases": [
+            "DCU"
+          ],
+          "description": "",
+          "source_ids": [
+            "src:hygon-adapt"
+          ],
+          "properties": {}
+        },
+        {
+          "id": "model:deepseek-r1",
+          "label": "DeepSeek-R1",
+          "type": "Model",
+          "aliases": [
+            "R1"
+          ],
+          "description": "",
+          "source_ids": [
+            "src:hygon-adapt"
+          ],
+          "properties": {}
+        },
+        {
+          "id": "company:hygon",
+          "label": "海光信息",
+          "type": "Company",
+          "aliases": [
+            "Hygon"
+          ],
+          "description": "",
+          "source_ids": [
+            "src:hygon-adapt"
+          ],
+          "properties": {}
+        },
+        {
+          "id": "event:hygon-r1-adapt",
+          "label": "海光 DCU 完成 DeepSeek-R1 适配",
+          "type": "Event",
+          "aliases": [],
+          "description": "",
+          "source_ids": [
+            "src:hygon-adapt"
+          ],
+          "properties": {}
+        }
+      ],
+      "relations": [
+        {
+          "id": "rel:hygon-dcu-supports-r1",
+          "source": "product:hygon-dcu",
+          "target": "model:deepseek-r1",
+          "type": "SUPPORTS_MODEL",
+          "label": "技术适配",
+          "source_ids": [
+            "src:hygon-adapt"
+          ],
+          "evidence": "国产化适配，并正式上线",
+          "disclosed_at": "2025-02-04",
+          "relation_group": "adaptation"
+        },
+        {
+          "id": "rel:hygon-adapt-concerns-r1",
+          "source": "event:hygon-r1-adapt",
+          "target": "model:deepseek-r1",
+          "type": "CONCERNS",
+          "label": "事件涉及",
+          "source_ids": [
+            "src:hygon-adapt"
+          ],
+          "evidence": "DeepSeek V3 和 R1 模型",
+          "disclosed_at": "2025-02-04",
+          "relation_group": "direct"
+        },
+        {
+          "id": "rel:hygon-adapt-concerns-dcu",
+          "source": "event:hygon-r1-adapt",
+          "target": "product:hygon-dcu",
+          "type": "CONCERNS",
+          "label": "事件涉及",
+          "source_ids": [
+            "src:hygon-adapt"
+          ],
+          "evidence": "海光 DCU",
+          "disclosed_at": "2025-02-04",
+          "relation_group": "direct"
+        }
+      ],
+      "events": [
+        {
+          "id": "event:hygon-r1-adapt",
+          "title": "海光 DCU 完成 DeepSeek-R1 适配",
+          "date": "2025-02-04",
+          "event_at": "2025-02-04",
+          "disclosed_at": "2025-02-04",
+          "type": "PRODUCT_ADAPTATION",
+          "summary": "海光 DCU 完成 DeepSeek V3/R1 国产化适配。",
+          "entity_id": "model:deepseek-r1",
+          "source_ids": [
+            "src:hygon-adapt"
+          ],
+          "properties": {
+            "timezone": "Asia/Shanghai"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "sample:baidu-r1-qianfan",
+    "title": "百度智能云千帆上架 DeepSeek-R1",
+    "document_id": "src:baidu-qianfan",
+    "text": "百度智能云千帆平台已正式上架 DeepSeek-R1和 DeepSeek-V3模型，推出了超低价格方案，还可享受限时免费服务，登录百度智能云千帆ModelBuilder即可快速体验。",
+    "url": "https://cloud.baidu.com/news/news_214c01fe-69f4-4e2e-8ca2-170aa44ad853",
+    "model": "DeepSeek V4.1 Flash",
+    "notes": "离线回放：由 DeepSeek V4.1 Flash 辅助整理，内容可对照所附官方原文逐字复核；不是人工标注，也不是本次实时 API 调用。 云服务接入类型；关系已在初始图谱中，回放用于区分 HOSTS_MODEL 与 SUPPORTS_MODEL。",
+    "extraction": {
+      "entities": [
+        {
+          "id": "product:baidu-qianfan",
+          "label": "百度智能云千帆",
+          "type": "Product",
+          "aliases": [
+            "千帆"
+          ],
+          "description": "",
+          "source_ids": [
+            "src:baidu-qianfan"
+          ],
+          "properties": {}
+        },
+        {
+          "id": "model:deepseek-r1",
+          "label": "DeepSeek-R1",
+          "type": "Model",
+          "aliases": [
+            "R1"
+          ],
+          "description": "",
+          "source_ids": [
+            "src:baidu-qianfan"
+          ],
+          "properties": {}
+        },
+        {
+          "id": "company:baidu",
+          "label": "百度集团",
+          "type": "Company",
+          "aliases": [
+            "Baidu"
+          ],
+          "description": "",
+          "source_ids": [
+            "src:baidu-qianfan"
+          ],
+          "properties": {}
+        },
+        {
+          "id": "event:baidu-r1-qianfan",
+          "label": "百度智能云千帆上架 DeepSeek-R1",
+          "type": "Event",
+          "aliases": [],
+          "description": "",
+          "source_ids": [
+            "src:baidu-qianfan"
+          ],
+          "properties": {}
+        }
+      ],
+      "relations": [
+        {
+          "id": "rel:baidu-qianfan-hosts-r1",
+          "source": "product:baidu-qianfan",
+          "target": "model:deepseek-r1",
+          "type": "HOSTS_MODEL",
+          "label": "推理服务接入",
+          "source_ids": [
+            "src:baidu-qianfan"
+          ],
+          "evidence": "已正式上架 DeepSeek-R1和 DeepSeek-V3模型",
+          "disclosed_at": "2025-02-03",
+          "relation_group": "distribution"
+        },
+        {
+          "id": "rel:baidu-qianfan-concerns-r1",
+          "source": "event:baidu-r1-qianfan",
+          "target": "model:deepseek-r1",
+          "type": "CONCERNS",
+          "label": "事件涉及",
+          "source_ids": [
+            "src:baidu-qianfan"
+          ],
+          "evidence": "DeepSeek-R1和 DeepSeek-V3模型",
+          "disclosed_at": "2025-02-03",
+          "relation_group": "direct"
+        },
+        {
+          "id": "rel:baidu-qianfan-concerns-product",
+          "source": "event:baidu-r1-qianfan",
+          "target": "product:baidu-qianfan",
+          "type": "CONCERNS",
+          "label": "事件涉及",
+          "source_ids": [
+            "src:baidu-qianfan"
+          ],
+          "evidence": "百度智能云千帆平台",
+          "disclosed_at": "2025-02-03",
+          "relation_group": "direct"
+        }
+      ],
+      "events": [
+        {
+          "id": "event:baidu-r1-qianfan",
+          "title": "百度智能云千帆上架 DeepSeek-R1",
+          "date": "2025-02-03",
+          "event_at": "2025-02-03",
+          "disclosed_at": "2025-02-03",
+          "type": "CLOUD_ACCESS",
+          "summary": "千帆平台上架 DeepSeek-R1 与 DeepSeek-V3。",
+          "entity_id": "model:deepseek-r1",
+          "source_ids": [
+            "src:baidu-qianfan"
+          ],
+          "properties": {
+            "timezone": "Asia/Shanghai"
+          }
+        }
+      ]
+    }
+  }
+]

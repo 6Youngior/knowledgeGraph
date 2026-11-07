@@ -1,0 +1,108 @@
+{
+  "version": "1.0",
+  "created_at": "2026-11-07",
+  "description": "小规模真实抽取核对集：参考三元组均由官方/媒体原文核对；focus_entity_id 限定本案例只评目标模型相关关系，负例检验共同提及不产生关系。",
+  "cases": [
+    {
+      "id": "eval:qwen3-developer",
+      "title": "Qwen3 发布与研发主体",
+      "document_id": "src:qwen3-github",
+      "url": "https://github.com/QwenLM/Qwen3",
+      "text": "Qwen3 is the large language model series developed by Qwen team, Alibaba Cloud.",
+      "focus_entity_id": "model:qwen3",
+      "reference": [
+        {
+          "source": "model:qwen3",
+          "type": "DEVELOPED_BY",
+          "target": "company:alibaba",
+          "evidence": "Qwen3 is the large language model series developed by Qwen team, Alibaba Cloud."
+        }
+      ],
+      "negative": false,
+      "notes": "官方 GitHub About 原句，明确 Qwen team / Alibaba Cloud 为研发主体；不把发布事件自动等同研发。"
+    },
+    {
+      "id": "eval:mthreads-qwen3-adapt",
+      "title": "摩尔线程全功能 GPU 支持 Qwen3",
+      "document_id": "src:mthreads-qwen3",
+      "url": "https://www.mthreads.com/news/241",
+      "text": "4月29日，阿里云正式发布Qwen3系列的8款开源混合推理模型。摩尔线程团队在模型发布当天，率先完成了Qwen3全系列模型在全功能GPU上的高效支持。",
+      "focus_entity_id": "model:qwen3",
+      "reference": [
+        {
+          "source": "product:mthreads-gpu",
+          "type": "SUPPORTS_MODEL",
+          "target": "model:qwen3",
+          "evidence": "率先完成了Qwen3全系列模型在全功能GPU上的高效支持"
+        }
+      ],
+      "negative": false,
+      "notes": "原文只写“全功能GPU”，未指名 MTT S5000；gold 使用泛型产品节点，禁止倒灌较晚 SKU。"
+    },
+    {
+      "id": "eval:baidu-qianfan-host",
+      "title": "百度智能云千帆上架 DeepSeek-R1",
+      "document_id": "src:baidu-qianfan",
+      "url": "https://cloud.baidu.com/news/news_214c01fe-69f4-4e2e-8ca2-170aa44ad853",
+      "text": "百度智能云千帆平台已正式上架 DeepSeek-R1和 DeepSeek-V3模型，推出了超低价格方案。",
+      "focus_entity_id": "model:deepseek-r1",
+      "reference": [
+        {
+          "source": "product:baidu-qianfan",
+          "type": "HOSTS_MODEL",
+          "target": "model:deepseek-r1",
+          "evidence": "已正式上架 DeepSeek-R1和 DeepSeek-V3模型"
+        }
+      ],
+      "negative": false,
+      "notes": "文本同时提 V3；本案例 focus 只评 R1 入/出关系，抽到 V3 不作为本案例 FP。"
+    },
+    {
+      "id": "eval:hygon-dcu-adapt",
+      "title": "海光 DCU 完成 DeepSeek-R1 适配",
+      "document_id": "src:hygon-adapt",
+      "url": "https://www.ithome.com/0/828/487.htm",
+      "text": "海光信息技术团队成功完成 DeepSeek V3 和 R1 模型与海光 DCU（深度计算单元）国产化适配，并正式上线。",
+      "focus_entity_id": "model:deepseek-r1",
+      "reference": [
+        {
+          "source": "product:hygon-dcu",
+          "type": "SUPPORTS_MODEL",
+          "target": "model:deepseek-r1",
+          "evidence": "国产化适配，并正式上线"
+        }
+      ],
+      "negative": false,
+      "notes": "文本同时提 V3；focus 只评 R1 相关关系；来源为 IT之家转述官方团队公告。"
+    },
+    {
+      "id": "eval:negative-comparison",
+      "title": "Qwen3 与 DeepSeek-R1 的基准对比",
+      "document_id": "src:qwen3-blog",
+      "url": "https://qwenlm.github.io/blog/qwen3/",
+      "text": "Our flagship model, Qwen3-235B-A22B, achieves competitive results in benchmark evaluations of coding, math, general capabilities, etc., when compared to other top-tier models such as DeepSeek-R1, o1, o3-mini, Grok-3, and Gemini-2.5-Pro.",
+      "focus_entity_id": "",
+      "reference": [],
+      "negative": true,
+      "notes": "负例：共同出现在 benchmark 对比中，不能推出阿里巴巴与 DeepSeek 的合作、投资或适配关系。"
+    },
+    {
+      "id": "eval:glm5-mtt-heldout",
+      "title": "MTT S5000 完成 GLM-5 适配",
+      "document_id": "src:mthreads-glm5",
+      "url": "https://www.mthreads.com/news/280",
+      "text": "2月12日，智谱正式发布新一代大模型GLM-5。摩尔线程基于SGLang推理框架，在旗舰级AI训推一体全功能GPU MTT S5000上，Day-0完成了全流程适配与验证。",
+      "focus_entity_id": "model:glm5",
+      "reference": [
+        {
+          "source": "product:mtt-s5000",
+          "type": "SUPPORTS_MODEL",
+          "target": "model:glm5",
+          "evidence": "Day-0完成了全流程适配与验证"
+        }
+      ],
+      "negative": false,
+      "notes": "留出边；初始图谱不含该事实，用于增量实验。"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+\begin{frame}[t]{知识图谱构建流程}\relax
+\Intro{先统一实体与关系的表示，再从新资料中抽取候选事实，核对后加入图谱。}
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,
+  flowbox/.style={draw=Line,fill=Pale,rounded corners=1mm,text width=2.55cm,
+    minimum height=1.2cm,align=center,font=\fontsize{12}{15}\selectfont}]
+  \node[flowbox] (a) at (1.7,2.3) {资料整理\\{\fontsize{10.2}{13}\selectfont\textcolor{Muted}{原文与日期}}};
+  \node[flowbox] (b) at (5.3,2.3) {LLM 抽取\\{\fontsize{10.2}{13}\selectfont\textcolor{Muted}{实体与关系}}};
+  \node[flowbox] (c) at (8.9,2.3) {实体对齐\\{\fontsize{10.2}{13}\selectfont\textcolor{Muted}{名称与类型}}};
+  \node[flowbox,fill=PaleTeal] (d) at (12.5,2.3) {事实入图\\{\fontsize{10.2}{13}\selectfont\textcolor{Muted}{保留来源}}};
+  \draw[rel] (a)--(b);\draw[rel] (b)--(c);\draw[rel] (c)--(d);
+  \node[flowbox,fill=PaleBlue,text width=5.3cm] (e) at (9,.25) {路径查询与日期筛选};
+  \node[flowbox,text width=5.3cm] (f) at (2.7,.25) {证券、原文与行情};
+  \draw[rel] (d.south)--++(0,-.4)-|(e.north);
+  \draw[rel] (e)--(f);
+\end{tikzpicture}
+\end{center}
+\Gap
+初始图谱由人工核对；新增文本使用 \LiveModelName{} 在 Schema 约束下抽取。图存储与查询使用 NetworkX。
+\end{frame}

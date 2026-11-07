@@ -1,0 +1,544 @@
+{
+  "passed": true,
+  "created_at": "2026-11-06T20:16:53.824415+00:00",
+  "issues": [],
+  "checks": [
+    "stable unique IDs and fact deduplication",
+    "typed schema and valid endpoints",
+    "source IDs and verbatim evidence location",
+    "publication/disclosure consistency",
+    "event focus and provenance",
+    "real cached series, trading dates and OHLC",
+    "event-to-stock window coverage",
+    "held-out update, new stock discovery and idempotence"
+  ],
+  "stats": {
+    "entities": 59,
+    "relations": 85,
+    "documents": 41,
+    "events": 10,
+    "stocks": 8
+  },
+  "market": [
+    {
+      "symbol": "02513.HK",
+      "rows": 56,
+      "first": "2026-01-08",
+      "last": "2026-03-31",
+      "provider": "Tencent Finance · ifzq.gtimg.cn qfq daily",
+      "adjusted": "qfq"
+    },
+    {
+      "symbol": "688795.SH",
+      "rows": 75,
+      "first": "2025-12-05",
+      "last": "2026-03-31",
+      "provider": "Tencent Finance · ifzq.gtimg.cn qfq daily",
+      "adjusted": "qfq"
+    },
+    {
+      "symbol": "00100.HK",
+      "rows": 55,
+      "first": "2026-01-09",
+      "last": "2026-03-31",
+      "provider": "Tencent Finance · ifzq.gtimg.cn qfq daily",
+      "adjusted": "qfq"
+    },
+    {
+      "symbol": "09988.HK",
+      "rows": 326,
+      "first": "2024-12-02",
+      "last": "2026-03-31",
+      "provider": "Tencent Finance · ifzq.gtimg.cn qfq daily",
+      "adjusted": "qfq"
+    },
+    {
+      "symbol": "688041.SH",
+      "rows": 311,
+      "first": "2024-12-02",
+      "last": "2026-03-31",
+      "provider": "Tencent Finance · ifzq.gtimg.cn qfq daily",
+      "adjusted": "qfq"
+    },
+    {
+      "symbol": "00700.HK",
+      "rows": 326,
+      "first": "2024-12-02",
+      "last": "2026-03-31",
+      "provider": "Tencent Finance · ifzq.gtimg.cn qfq daily",
+      "adjusted": "qfq"
+    },
+    {
+      "symbol": "09888.HK",
+      "rows": 326,
+      "first": "2024-12-02",
+      "last": "2026-03-31",
+      "provider": "Tencent Finance · ifzq.gtimg.cn qfq daily",
+      "adjusted": "qfq"
+    },
+    {
+      "symbol": "00728.HK",
+      "rows": 326,
+      "first": "2024-12-02",
+      "last": "2026-03-31",
+      "provider": "Tencent Finance · ifzq.gtimg.cn qfq daily",
+      "adjusted": "qfq"
+    },
+    {
+      "symbol": "HSI",
+      "rows": 326,
+      "first": "2024-12-02",
+      "last": "2026-03-31",
+      "provider": "Tencent Finance · ifzq.gtimg.cn index daily",
+      "adjusted": "index"
+    },
+    {
+      "symbol": "000688.SH",
+      "rows": 321,
+      "first": "2024-12-02",
+      "last": "2026-03-31",
+      "provider": "Tencent Finance · ifzq.gtimg.cn index daily",
+      "adjusted": "index"
+    }
+  ],
+  "windows": [
+    {
+      "event_id": "event:glm5-release",
+      "symbol": "02513.HK",
+      "anchor_date": "2026-02-13",
+      "returns": {
+        "1": 0.20646766169154218,
+        "3": 0.8034825870646767,
+        "5": 0.5621890547263682
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:glm5-release",
+      "symbol": "09988.HK",
+      "anchor_date": "2026-02-13",
+      "returns": {
+        "1": -0.020176544766708604,
+        "3": -0.07250945775535944,
+        "5": -0.06683480453972257
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:minimax-m25-release",
+      "symbol": "00100.HK",
+      "anchor_date": "2026-02-13",
+      "returns": {
+        "1": 0.15646258503401356,
+        "3": 0.6496598639455782,
+        "5": 0.4965986394557824
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:minimax-m25-release",
+      "symbol": "09988.HK",
+      "anchor_date": "2026-02-13",
+      "returns": {
+        "1": -0.020176544766708604,
+        "3": -0.07250945775535944,
+        "5": -0.06683480453972257
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:minimax-m25-release",
+      "symbol": "688795.SH",
+      "anchor_date": "2026-02-13",
+      "returns": {
+        "1": -0.010828463389480847,
+        "3": 0.010312822275696076,
+        "5": 0.045548298384324504
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:mtt-minimax-adapt",
+      "symbol": "00100.HK",
+      "anchor_date": "2026-02-16",
+      "returns": {
+        "1": 0.24558823529411766,
+        "3": 0.23602941176470593,
+        "5": 0.10808823529411771
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:mtt-minimax-adapt",
+      "symbol": "09988.HK",
+      "anchor_date": "2026-02-16",
+      "returns": {
+        "1": -0.0045045045045045695,
+        "3": -0.0205920205920207,
+        "5": -0.045688545688545634
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:mtt-minimax-adapt",
+      "symbol": "688795.SH",
+      "anchor_date": "2026-02-24",
+      "returns": {
+        "1": 0.027593397046046908,
+        "3": 0.05655951346655064,
+        "5": 0.016733275412684545
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:deepseek-r1-release",
+      "symbol": "00700.HK",
+      "anchor_date": "2025-01-21",
+      "returns": {
+        "1": -0.0061570035915855525,
+        "3": -0.022062596203181184,
+        "5": 0.014879425346331576
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:deepseek-r1-release",
+      "symbol": "00728.HK",
+      "anchor_date": "2025-01-21",
+      "returns": {
+        "1": -0.002105263157894721,
+        "3": 0.006315789473684275,
+        "5": 0.03578947368421059
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:deepseek-r1-release",
+      "symbol": "09888.HK",
+      "anchor_date": "2025-01-21",
+      "returns": {
+        "1": 0.011757425742574323,
+        "3": -0.012376237623762387,
+        "5": 0.048886138613861485
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:deepseek-r1-release",
+      "symbol": "688041.SH",
+      "anchor_date": "2025-01-21",
+      "returns": {
+        "1": -0.006517293300671967,
+        "3": -0.025170236195698692,
+        "5": -0.04419773617697087
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:hygon-r1-adapt",
+      "symbol": "00700.HK",
+      "anchor_date": "2025-02-05",
+      "returns": {
+        "1": -0.0071292775665399155,
+        "3": 0.017585551330798532,
+        "5": 0.015684410646387814
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:hygon-r1-adapt",
+      "symbol": "00728.HK",
+      "anchor_date": "2025-02-05",
+      "returns": {
+        "1": -0.012195121951219412,
+        "3": 0.04674796747967491,
+        "5": 0.11991869918699183
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:hygon-r1-adapt",
+      "symbol": "09888.HK",
+      "anchor_date": "2025-02-05",
+      "returns": {
+        "1": 0.005151688609044136,
+        "3": -0.012593016599885432,
+        "5": 0.01602747567258156
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:hygon-r1-adapt",
+      "symbol": "688041.SH",
+      "anchor_date": "2025-02-05",
+      "returns": {
+        "1": 0.08770211065043787,
+        "3": 0.09169925778464005,
+        "5": 0.09405052080475906
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:tencent-r1-hai",
+      "symbol": "00700.HK",
+      "anchor_date": "2025-02-03",
+      "returns": {
+        "1": 0.007477567298105781,
+        "3": 0.04137587238285145,
+        "5": 0.06729810568295114
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:tencent-r1-hai",
+      "symbol": "00728.HK",
+      "anchor_date": "2025-02-03",
+      "returns": {
+        "1": -0.008213552361396315,
+        "3": -0.002053388090349051,
+        "5": 0.05749486652977409
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:tencent-r1-hai",
+      "symbol": "09888.HK",
+      "anchor_date": "2025-02-03",
+      "returns": {
+        "1": -0.03815489749430523,
+        "3": 0.0,
+        "5": -0.01765375854214124
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:tencent-r1-hai",
+      "symbol": "688041.SH",
+      "anchor_date": "2025-02-05",
+      "returns": {
+        "1": 0.08770211065043787,
+        "3": 0.09169925778464005,
+        "5": 0.09405052080475906
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:baidu-r1-qianfan",
+      "symbol": "00700.HK",
+      "anchor_date": "2025-02-04",
+      "returns": {
+        "1": 0.04106877783275609,
+        "3": 0.04007916872835238,
+        "5": 0.08114794656110846
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:baidu-r1-qianfan",
+      "symbol": "00728.HK",
+      "anchor_date": "2025-02-04",
+      "returns": {
+        "1": 0.01863354037267073,
+        "3": 0.035196687370600444,
+        "5": 0.11180124223602483
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:baidu-r1-qianfan",
+      "symbol": "09888.HK",
+      "anchor_date": "2025-02-04",
+      "returns": {
+        "1": 0.03433984606275886,
+        "3": 0.026050917702782783,
+        "5": 0.05920663114268798
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:baidu-r1-qianfan",
+      "symbol": "688041.SH",
+      "anchor_date": "2025-02-05",
+      "returns": {
+        "1": 0.08770211065043787,
+        "3": 0.09169925778464005,
+        "5": 0.09405052080475906
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:ctyun-r1",
+      "symbol": "00700.HK",
+      "anchor_date": "2025-02-06",
+      "returns": {
+        "1": 0.006223073240785082,
+        "3": 0.0459550023934896,
+        "5": 0.06318812829104825
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:ctyun-r1",
+      "symbol": "00728.HK",
+      "anchor_date": "2025-02-06",
+      "returns": {
+        "1": 0.028806584362139898,
+        "3": 0.1049382716049383,
+        "5": 0.16049382716049365
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:ctyun-r1",
+      "symbol": "09888.HK",
+      "anchor_date": "2025-02-06",
+      "returns": {
+        "1": -0.013097949886104687,
+        "3": 0.018792710706150517,
+        "5": 0.01252847380410027
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:ctyun-r1",
+      "symbol": "688041.SH",
+      "anchor_date": "2025-02-06",
+      "returns": {
+        "1": 0.011673067638942047,
+        "3": 0.022409407627845157,
+        "5": 0.013618578912098833
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:qwen3-release",
+      "symbol": "09988.HK",
+      "anchor_date": "2025-04-30",
+      "returns": {
+        "1": 0.021739130434782705,
+        "3": 0.0765217391304347,
+        "5": 0.05652173913043468
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:qwen3-release",
+      "symbol": "688041.SH",
+      "anchor_date": "2025-04-30",
+      "returns": {
+        "1": -0.010020642523598577,
+        "3": 0.004676299844345921,
+        "5": -0.04155226433118886
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:qwen3-release",
+      "symbol": "688795.SH",
+      "available": false,
+      "reason": "not_listed_at_event",
+      "listing_date": "2025-12-05"
+    },
+    {
+      "event_id": "event:qwen3-mtt-adapt",
+      "symbol": "09988.HK",
+      "anchor_date": "2025-04-30",
+      "returns": {
+        "1": 0.021739130434782705,
+        "3": 0.0765217391304347,
+        "5": 0.05652173913043468
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:qwen3-mtt-adapt",
+      "symbol": "688041.SH",
+      "anchor_date": "2025-04-30",
+      "returns": {
+        "1": -0.010020642523598577,
+        "3": 0.004676299844345921,
+        "5": -0.04155226433118886
+      },
+      "points": 11
+    },
+    {
+      "event_id": "event:qwen3-mtt-adapt",
+      "symbol": "688795.SH",
+      "available": false,
+      "reason": "not_listed_at_event",
+      "listing_date": "2025-12-05"
+    }
+  ],
+  "updates": [
+    {
+      "sample_id": "sample:mtt-glm5-adapt",
+      "added_nodes": 1,
+      "added_edges": 3,
+      "new_stocks": {
+        "event:glm5-release": [
+          "688795.SH"
+        ],
+        "event:minimax-m25-release": [],
+        "event:mtt-minimax-adapt": [],
+        "event:deepseek-r1-release": [],
+        "event:hygon-r1-adapt": [],
+        "event:tencent-r1-hai": [],
+        "event:baidu-r1-qianfan": [],
+        "event:ctyun-r1": [],
+        "event:qwen3-release": [],
+        "event:qwen3-mtt-adapt": []
+      }
+    },
+    {
+      "sample_id": "sample:mtt-minimax-adapt",
+      "added_nodes": 0,
+      "added_edges": 0,
+      "new_stocks": {
+        "event:glm5-release": [],
+        "event:minimax-m25-release": [],
+        "event:mtt-minimax-adapt": [],
+        "event:deepseek-r1-release": [],
+        "event:hygon-r1-adapt": [],
+        "event:tencent-r1-hai": [],
+        "event:baidu-r1-qianfan": [],
+        "event:ctyun-r1": [],
+        "event:qwen3-release": [],
+        "event:qwen3-mtt-adapt": []
+      }
+    },
+    {
+      "sample_id": "sample:hygon-r1-adapt",
+      "added_nodes": 0,
+      "added_edges": 0,
+      "new_stocks": {
+        "event:glm5-release": [],
+        "event:minimax-m25-release": [],
+        "event:mtt-minimax-adapt": [],
+        "event:deepseek-r1-release": [],
+        "event:hygon-r1-adapt": [],
+        "event:tencent-r1-hai": [],
+        "event:baidu-r1-qianfan": [],
+        "event:ctyun-r1": [],
+        "event:qwen3-release": [],
+        "event:qwen3-mtt-adapt": []
+      }
+    },
+    {
+      "sample_id": "sample:baidu-r1-qianfan",
+      "added_nodes": 0,
+      "added_edges": 0,
+      "new_stocks": {
+        "event:glm5-release": [],
+        "event:minimax-m25-release": [],
+        "event:mtt-minimax-adapt": [],
+        "event:deepseek-r1-release": [],
+        "event:hygon-r1-adapt": [],
+        "event:tencent-r1-hai": [],
+        "event:baidu-r1-qianfan": [],
+        "event:ctyun-r1": [],
+        "event:qwen3-release": [],
+        "event:qwen3-mtt-adapt": []
+      }
+    }
+  ]
+}

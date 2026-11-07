@@ -1,0 +1,815 @@
+{
+  "overview": {
+    "events": [
+      {
+        "id": "event:glm5-release",
+        "title": "GLM-5 发布",
+        "date": "2026-02-12",
+        "model": "GLM-5",
+        "stock_count": 2,
+        "role_counts": {
+          "direct": 1,
+          "adaptation": 0,
+          "distribution": 1
+        },
+        "source_count": 7,
+        "max_hops": 4,
+        "summary": "直接研发：智谱；云服务接入：阿里巴巴。",
+        "historical_stock_count": 1,
+        "temporal_summary": "事件日：1 只；全部已收集资料：2 只。"
+      },
+      {
+        "id": "event:minimax-m25-release",
+        "title": "MiniMax-M2.5 发布",
+        "date": "2026-02-12",
+        "model": "MiniMax-M2.5",
+        "stock_count": 3,
+        "role_counts": {
+          "direct": 1,
+          "adaptation": 1,
+          "distribution": 1
+        },
+        "source_count": 9,
+        "max_hops": 4,
+        "summary": "直接研发：MiniMax；硬件适配：摩尔线程；云服务接入：阿里巴巴。",
+        "historical_stock_count": 1,
+        "temporal_summary": "事件日：1 只；全部已收集资料：3 只。"
+      },
+      {
+        "id": "event:mtt-minimax-adapt",
+        "title": "MTT S5000 完成 MiniMax-M2.5 Day-0 适配",
+        "date": "2026-02-14",
+        "model": "MiniMax-M2.5",
+        "stock_count": 3,
+        "role_counts": {
+          "direct": 1,
+          "adaptation": 1,
+          "distribution": 1
+        },
+        "source_count": 8,
+        "max_hops": 4,
+        "summary": "直接研发：MiniMax；硬件适配：摩尔线程；云服务接入：阿里巴巴。",
+        "historical_stock_count": 2,
+        "temporal_summary": "事件日：2 只；全部已收集资料：3 只。"
+      },
+      {
+        "id": "event:deepseek-r1-release",
+        "title": "DeepSeek-R1 发布",
+        "date": "2025-01-20",
+        "model": "DeepSeek-R1",
+        "stock_count": 4,
+        "role_counts": {
+          "direct": 0,
+          "adaptation": 1,
+          "distribution": 3
+        },
+        "source_count": 9,
+        "max_hops": 4,
+        "summary": "硬件适配：海光信息；云服务接入：腾讯控股、中国电信、百度集团。",
+        "historical_stock_count": 0,
+        "temporal_summary": "事件日：0 只；全部已收集资料：4 只。"
+      },
+      {
+        "id": "event:hygon-r1-adapt",
+        "title": "海光 DCU 完成 DeepSeek-R1 适配",
+        "date": "2025-02-04",
+        "model": "DeepSeek-R1",
+        "stock_count": 4,
+        "role_counts": {
+          "direct": 0,
+          "adaptation": 1,
+          "distribution": 3
+        },
+        "source_count": 8,
+        "max_hops": 4,
+        "summary": "硬件适配：海光信息；云服务接入：腾讯控股、中国电信、百度集团。",
+        "historical_stock_count": 3,
+        "temporal_summary": "事件日：3 只；全部已收集资料：4 只。"
+      },
+      {
+        "id": "event:tencent-r1-hai",
+        "title": "腾讯云 HAI 支持 DeepSeek-R1 一键部署",
+        "date": "2025-02-02",
+        "model": "DeepSeek-R1",
+        "stock_count": 4,
+        "role_counts": {
+          "direct": 0,
+          "adaptation": 1,
+          "distribution": 3
+        },
+        "source_count": 8,
+        "max_hops": 4,
+        "summary": "硬件适配：海光信息；云服务接入：腾讯控股、中国电信、百度集团。",
+        "historical_stock_count": 1,
+        "temporal_summary": "事件日：1 只；全部已收集资料：4 只。"
+      },
+      {
+        "id": "event:baidu-r1-qianfan",
+        "title": "百度智能云千帆上架 DeepSeek-R1",
+        "date": "2025-02-03",
+        "model": "DeepSeek-R1",
+        "stock_count": 4,
+        "role_counts": {
+          "direct": 0,
+          "adaptation": 1,
+          "distribution": 3
+        },
+        "source_count": 9,
+        "max_hops": 4,
+        "summary": "硬件适配：海光信息；云服务接入：腾讯控股、中国电信、百度集团。",
+        "historical_stock_count": 2,
+        "temporal_summary": "事件日：2 只；全部已收集资料：4 只。"
+      },
+      {
+        "id": "event:ctyun-r1",
+        "title": "天翼云上架 DeepSeek-R1",
+        "date": "2025-02-05",
+        "model": "DeepSeek-R1",
+        "stock_count": 4,
+        "role_counts": {
+          "direct": 0,
+          "adaptation": 1,
+          "distribution": 3
+        },
+        "source_count": 8,
+        "max_hops": 4,
+        "summary": "硬件适配：海光信息；云服务接入：腾讯控股、中国电信、百度集团。",
+        "historical_stock_count": 4,
+        "temporal_summary": "事件日：4 只；全部已收集资料：4 只。"
+      },
+      {
+        "id": "event:qwen3-release",
+        "title": "Qwen3 发布",
+        "date": "2025-04-29",
+        "model": "Qwen3",
+        "stock_count": 3,
+        "role_counts": {
+          "direct": 1,
+          "adaptation": 2,
+          "distribution": 0
+        },
+        "source_count": 8,
+        "max_hops": 4,
+        "summary": "直接研发：阿里巴巴；硬件适配：海光信息、摩尔线程。",
+        "historical_stock_count": 2,
+        "temporal_summary": "事件日：2 只；全部已收集资料：3 只。"
+      },
+      {
+        "id": "event:qwen3-mtt-adapt",
+        "title": "摩尔线程全功能 GPU 率先支持 Qwen3 全系列",
+        "date": "2025-04-29",
+        "model": "Qwen3",
+        "stock_count": 3,
+        "role_counts": {
+          "direct": 1,
+          "adaptation": 2,
+          "distribution": 0
+        },
+        "source_count": 7,
+        "max_hops": 4,
+        "summary": "直接研发：阿里巴巴；硬件适配：海光信息、摩尔线程。",
+        "historical_stock_count": 2,
+        "temporal_summary": "事件日：2 只；全部已收集资料：3 只。"
+      }
+    ],
+    "stats": {
+      "entities": 59,
+      "relations": 85,
+      "documents": 41,
+      "events": 10,
+      "stocks": 8
+    },
+    "coverage": {
+      "start": "2025-01-20",
+      "end": "2026-02-14",
+      "source_types": [
+        {
+          "type": "official_blog",
+          "label": "官方发布",
+          "count": 2
+        },
+        {
+          "type": "official_docs",
+          "label": "产品文档",
+          "count": 4
+        },
+        {
+          "type": "code_repository",
+          "label": "官方代码仓库",
+          "count": 4
+        },
+        {
+          "type": "official_news",
+          "label": "官方公告",
+          "count": 8
+        },
+        {
+          "type": "news",
+          "label": "媒体报道",
+          "count": 7
+        },
+        {
+          "type": "prospectus",
+          "label": "prospectus",
+          "count": 2
+        },
+        {
+          "type": "exchange_announcement",
+          "label": "exchange_announcement",
+          "count": 3
+        },
+        {
+          "type": "company_press_release",
+          "label": "company_press_release",
+          "count": 1
+        },
+        {
+          "type": "press_release",
+          "label": "press_release",
+          "count": 3
+        },
+        {
+          "type": "product_page",
+          "label": "product_page",
+          "count": 2
+        },
+        {
+          "type": "company_report",
+          "label": "company_report",
+          "count": 2
+        },
+        {
+          "type": "exchange_quote",
+          "label": "exchange_quote",
+          "count": 3
+        }
+      ],
+      "models": 4,
+      "markets": [
+        "HK",
+        "SH"
+      ]
+    }
+  },
+  "glm_current": {
+    "question": "涉及哪些上市公司，依据是什么，相关资料在当时是否已公开？",
+    "event_id": "event:glm5-release",
+    "as_of": null,
+    "headline": "GLM-5 · 2 只关联证券 · 2 类产业角色",
+    "findings": [
+      {
+        "id": "roles",
+        "kind": "derived",
+        "title": "2 只关联证券",
+        "text": "直接研发：智谱；云服务接入：阿里巴巴。",
+        "source_ids": [
+          "src:alibaba-hkex-listing",
+          "src:aliyun-bailian-product",
+          "src:aliyun-glm5",
+          "src:bigmodel-glm5",
+          "src:chinadaily-zhipu-ipo",
+          "src:mthreads-glm5",
+          "src:zai-glm5"
+        ]
+      },
+      {
+        "id": "fusion",
+        "kind": "derived",
+        "title": "引用来源",
+        "text": "7 条来源支持当前 2 条路径；点击关系可查看原句和出处。",
+        "source_ids": [
+          "src:alibaba-hkex-listing",
+          "src:aliyun-bailian-product",
+          "src:aliyun-glm5",
+          "src:bigmodel-glm5",
+          "src:chinadaily-zhipu-ipo",
+          "src:mthreads-glm5",
+          "src:zai-glm5"
+        ]
+      },
+      {
+        "id": "industry",
+        "kind": "boundary",
+        "title": "只有行业分类的候选",
+        "text": "这些公司与研究对象同属一个行业，当前尚无具体研发、适配或云接入资料。",
+        "source_ids": [
+          "src:acn-minimax-ipo"
+        ]
+      }
+    ],
+    "roles": [
+      {
+        "group": "direct",
+        "label": "直接研发",
+        "count": 1,
+        "symbols": [
+          "02513.HK"
+        ]
+      },
+      {
+        "group": "adaptation",
+        "label": "硬件适配",
+        "count": 0,
+        "symbols": []
+      },
+      {
+        "group": "distribution",
+        "label": "云服务接入",
+        "count": 1,
+        "symbols": [
+          "09988.HK"
+        ]
+      }
+    ],
+    "excluded": [
+      {
+        "id": "stock:00100.HK",
+        "label": "MiniMax",
+        "symbol": "00100.HK",
+        "reason_code": "industry_only",
+        "source_ids": [
+          "src:acn-minimax-ipo"
+        ],
+        "reason": "同属一个行业，当前未收集到具体的研发、适配或云接入关系。"
+      }
+    ],
+    "temporal": {
+      "cutoff": null,
+      "current_count": 2,
+      "visible_count": 2,
+      "excluded_count": 0,
+      "milestones": [
+        {
+          "date": "2026-02-12",
+          "title": "新增 1 只证券的资料记录",
+          "symbols": [
+            "02513.HK"
+          ]
+        },
+        {
+          "date": "2026-11-07",
+          "title": "新增 1 只证券的资料记录",
+          "symbols": [
+            "09988.HK"
+          ]
+        }
+      ]
+    },
+    "coverage": {
+      "path_count": 2,
+      "source_count": 7,
+      "max_hops": 4,
+      "source_types": [
+        "company_press_release",
+        "news",
+        "official_blog",
+        "official_docs",
+        "official_news",
+        "product_page"
+      ]
+    },
+    "updates": [
+      {
+        "id": "sample:mtt-glm5-adapt",
+        "title": "Day-0 支持｜摩尔线程 MTT S5000 率先完成对 GLM-5 的适配",
+        "document_id": "src:mthreads-glm5"
+      }
+    ]
+  },
+  "glm_historical": {
+    "question": "涉及哪些上市公司，依据是什么，相关资料在当时是否已公开？",
+    "event_id": "event:glm5-release",
+    "as_of": "2026-02-12",
+    "headline": "GLM-5 · 1 只关联证券 · 1 类产业角色",
+    "findings": [
+      {
+        "id": "roles",
+        "kind": "derived",
+        "title": "1 只关联证券",
+        "text": "直接研发：智谱。",
+        "source_ids": [
+          "src:chinadaily-zhipu-ipo",
+          "src:mthreads-glm5",
+          "src:zai-glm5"
+        ]
+      },
+      {
+        "id": "fusion",
+        "kind": "derived",
+        "title": "引用来源",
+        "text": "3 条来源支持当前 1 条路径；点击关系可查看原句和出处。",
+        "source_ids": [
+          "src:chinadaily-zhipu-ipo",
+          "src:mthreads-glm5",
+          "src:zai-glm5"
+        ]
+      },
+      {
+        "id": "industry",
+        "kind": "boundary",
+        "title": "只有行业分类的候选",
+        "text": "这些公司与研究对象同属一个行业，当前尚无具体研发、适配或云接入资料。",
+        "source_ids": [
+          "src:acn-minimax-ipo"
+        ]
+      },
+      {
+        "id": "time",
+        "kind": "boundary",
+        "title": "截至 2026-02-12：1 只关联证券",
+        "text": "另有 1 只证券的关联资料在该日期之后公开，或尚未核实发布日期。",
+        "source_ids": []
+      }
+    ],
+    "roles": [
+      {
+        "group": "direct",
+        "label": "直接研发",
+        "count": 1,
+        "symbols": [
+          "02513.HK"
+        ]
+      },
+      {
+        "group": "adaptation",
+        "label": "硬件适配",
+        "count": 0,
+        "symbols": []
+      },
+      {
+        "group": "distribution",
+        "label": "云服务接入",
+        "count": 0,
+        "symbols": []
+      }
+    ],
+    "excluded": [
+      {
+        "id": "stock:09988.HK",
+        "label": "阿里巴巴",
+        "symbol": "09988.HK",
+        "reason_code": "not_yet_disclosed",
+        "time_basis": "unverified_publication",
+        "available_from": "2026-11-07",
+        "reason": "关联路径的部分来源未核实发布日期。"
+      },
+      {
+        "id": "stock:00100.HK",
+        "label": "MiniMax",
+        "symbol": "00100.HK",
+        "reason_code": "industry_only",
+        "source_ids": [
+          "src:acn-minimax-ipo"
+        ],
+        "reason": "同属一个行业，当前未收集到具体的研发、适配或云接入关系。"
+      }
+    ],
+    "temporal": {
+      "cutoff": "2026-02-12",
+      "current_count": 2,
+      "visible_count": 1,
+      "excluded_count": 1,
+      "milestones": [
+        {
+          "date": "2026-02-12",
+          "title": "新增 1 只证券的资料记录",
+          "symbols": [
+            "02513.HK"
+          ]
+        },
+        {
+          "date": "2026-11-07",
+          "title": "新增 1 只证券的资料记录",
+          "symbols": [
+            "09988.HK"
+          ]
+        }
+      ]
+    },
+    "coverage": {
+      "path_count": 1,
+      "source_count": 3,
+      "max_hops": 3,
+      "source_types": [
+        "news",
+        "official_blog",
+        "official_news"
+      ]
+    },
+    "updates": [
+      {
+        "id": "sample:mtt-glm5-adapt",
+        "title": "Day-0 支持｜摩尔线程 MTT S5000 率先完成对 GLM-5 的适配",
+        "document_id": "src:mthreads-glm5"
+      }
+    ]
+  },
+  "glm_after_update": {
+    "question": "涉及哪些上市公司，依据是什么，相关资料在当时是否已公开？",
+    "event_id": "event:glm5-release",
+    "as_of": null,
+    "headline": "GLM-5 · 3 只关联证券 · 3 类产业角色",
+    "findings": [
+      {
+        "id": "roles",
+        "kind": "derived",
+        "title": "3 只关联证券",
+        "text": "直接研发：智谱；硬件适配：摩尔线程；云服务接入：阿里巴巴。",
+        "source_ids": [
+          "src:alibaba-hkex-listing",
+          "src:aliyun-bailian-product",
+          "src:aliyun-glm5",
+          "src:bigmodel-glm5",
+          "src:chinadaily-zhipu-ipo",
+          "src:mthreads-glm5",
+          "src:sse-mthreads-ipo",
+          "src:zai-glm5"
+        ]
+      },
+      {
+        "id": "fusion",
+        "kind": "derived",
+        "title": "引用来源",
+        "text": "8 条来源支持当前 3 条路径；点击关系可查看原句和出处。",
+        "source_ids": [
+          "src:alibaba-hkex-listing",
+          "src:aliyun-bailian-product",
+          "src:aliyun-glm5",
+          "src:bigmodel-glm5",
+          "src:chinadaily-zhipu-ipo",
+          "src:mthreads-glm5",
+          "src:sse-mthreads-ipo",
+          "src:zai-glm5"
+        ]
+      },
+      {
+        "id": "industry",
+        "kind": "boundary",
+        "title": "只有行业分类的候选",
+        "text": "这些公司与研究对象同属一个行业，当前尚无具体研发、适配或云接入资料。",
+        "source_ids": [
+          "src:acn-minimax-ipo"
+        ]
+      }
+    ],
+    "roles": [
+      {
+        "group": "direct",
+        "label": "直接研发",
+        "count": 1,
+        "symbols": [
+          "02513.HK"
+        ]
+      },
+      {
+        "group": "adaptation",
+        "label": "硬件适配",
+        "count": 1,
+        "symbols": [
+          "688795.SH"
+        ]
+      },
+      {
+        "group": "distribution",
+        "label": "云服务接入",
+        "count": 1,
+        "symbols": [
+          "09988.HK"
+        ]
+      }
+    ],
+    "excluded": [
+      {
+        "id": "stock:00100.HK",
+        "label": "MiniMax",
+        "symbol": "00100.HK",
+        "reason_code": "industry_only",
+        "source_ids": [
+          "src:acn-minimax-ipo"
+        ],
+        "reason": "同属一个行业，当前未收集到具体的研发、适配或云接入关系。"
+      }
+    ],
+    "temporal": {
+      "cutoff": null,
+      "current_count": 3,
+      "visible_count": 3,
+      "excluded_count": 0,
+      "milestones": [
+        {
+          "date": "2026-02-12",
+          "title": "新增 2 只证券的资料记录",
+          "symbols": [
+            "02513.HK",
+            "688795.SH"
+          ]
+        },
+        {
+          "date": "2026-11-07",
+          "title": "新增 1 只证券的资料记录",
+          "symbols": [
+            "09988.HK"
+          ]
+        }
+      ]
+    },
+    "coverage": {
+      "path_count": 3,
+      "source_count": 8,
+      "max_hops": 4,
+      "source_types": [
+        "company_press_release",
+        "exchange_announcement",
+        "news",
+        "official_blog",
+        "official_docs",
+        "official_news",
+        "product_page"
+      ]
+    },
+    "updates": [
+      {
+        "id": "sample:mtt-glm5-adapt",
+        "title": "Day-0 支持｜摩尔线程 MTT S5000 率先完成对 GLM-5 的适配",
+        "document_id": "src:mthreads-glm5"
+      }
+    ]
+  },
+  "market": {
+    "symbol": "02513.HK",
+    "name": "智谱",
+    "currency": "HKD",
+    "event_date": "2026-02-12",
+    "anchor_date": "2026-02-13",
+    "anchor_policy": "披露时间仅精确到日，保守采用披露日之后首个交易日为 T0",
+    "prices": [
+      {
+        "date": "2026-02-06",
+        "close": 203.2,
+        "volume": 1177111.0,
+        "open": 207.0,
+        "high": 208.6,
+        "low": 198.0,
+        "relative_day": -5,
+        "normalized": 50.547264,
+        "benchmark_normalized": 98.251774
+      },
+      {
+        "date": "2026-02-09",
+        "close": 276.8,
+        "volume": 4530724.0,
+        "open": 214.0,
+        "high": 287.8,
+        "low": 214.0,
+        "relative_day": -4,
+        "normalized": 68.855721,
+        "benchmark_normalized": 99.980098
+      },
+      {
+        "date": "2026-02-10",
+        "close": 317.8,
+        "volume": 3427046.0,
+        "open": 278.0,
+        "high": 344.0,
+        "low": 277.4,
+        "relative_day": -3,
+        "normalized": 79.054726,
+        "benchmark_normalized": 100.557143
+      },
+      {
+        "date": "2026-02-11",
+        "close": 312.4,
+        "volume": 3120272.0,
+        "open": 333.0,
+        "high": 354.0,
+        "low": 306.8,
+        "relative_day": -2,
+        "normalized": 77.711443,
+        "benchmark_normalized": 100.865032
+      },
+      {
+        "date": "2026-02-12",
+        "close": 402.0,
+        "volume": 6813071.0,
+        "open": 339.8,
+        "high": 443.0,
+        "low": 318.8,
+        "relative_day": -1,
+        "normalized": 100.0,
+        "benchmark_normalized": 100.0
+      },
+      {
+        "date": "2026-02-13",
+        "close": 485.0,
+        "volume": 5238296.0,
+        "open": 422.0,
+        "high": 496.0,
+        "low": 408.0,
+        "relative_day": 0,
+        "normalized": 120.646766,
+        "benchmark_normalized": 98.278297
+      },
+      {
+        "date": "2026-02-16",
+        "close": 508.0,
+        "volume": 3656614.0,
+        "open": 522.0,
+        "high": 540.0,
+        "low": 460.0,
+        "relative_day": 1,
+        "normalized": 126.368159,
+        "benchmark_normalized": 98.791826
+      },
+      {
+        "date": "2026-02-20",
+        "close": 725.0,
+        "volume": 5266887.0,
+        "open": 534.0,
+        "high": 725.0,
+        "low": 532.5,
+        "relative_day": 2,
+        "normalized": 180.348259,
+        "benchmark_normalized": 97.709464
+      },
+      {
+        "date": "2026-02-23",
+        "close": 560.0,
+        "volume": 5397566.0,
+        "open": 625.0,
+        "high": 672.5,
+        "low": 540.0,
+        "relative_day": 3,
+        "normalized": 139.303483,
+        "benchmark_normalized": 100.182632
+      },
+      {
+        "date": "2026-02-24",
+        "close": 628.0,
+        "volume": 5089620.0,
+        "open": 575.5,
+        "high": 698.0,
+        "low": 525.0,
+        "relative_day": 4,
+        "normalized": 156.218905,
+        "benchmark_normalized": 98.36412
+      },
+      {
+        "date": "2026-02-25",
+        "close": 560.5,
+        "volume": 2819983.0,
+        "open": 591.0,
+        "high": 666.0,
+        "low": 555.5,
+        "relative_day": 5,
+        "normalized": 139.427861,
+        "benchmark_normalized": 99.012967
+      }
+    ],
+    "returns": {
+      "1": 0.20646766169154218,
+      "3": 0.8034825870646767,
+      "5": 0.5621890547263682
+    },
+    "benchmark": {
+      "symbol": "HSI",
+      "name": "恒生指数"
+    },
+    "benchmark_returns": {
+      "1": -0.017217028070614204,
+      "3": -0.022905357765123147,
+      "5": -0.016358803131337307
+    },
+    "excess_returns": {
+      "1": 0.22368468976215639,
+      "3": 0.8263879448297998,
+      "5": 0.5785478578577055
+    },
+    "window_dates": {
+      "1": "2026-02-13",
+      "3": "2026-02-20",
+      "5": "2026-02-24"
+    },
+    "excess_method": "股票累计收益减同一窗口基准累计收益（简单百分点差，非因果估计）",
+    "as_of": null,
+    "provider": "Tencent Finance · ifzq.gtimg.cn qfq daily",
+    "source_url": "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=hk02513,day,2024-12-01,2026-03-31,500,qfq",
+    "adjusted": "qfq",
+    "notes": [
+      "累计收益的基期为 T−1 收盘价；1/3/5 日分别覆盖 T0、T0 至 T+2、T0 至 T+4。",
+      "这是描述性事件窗口；多事件干扰和事后关联不能作为因果或可交易收益证明。"
+    ]
+  },
+  "update": {
+    "added_nodes": 1,
+    "added_edges": 3,
+    "updated_nodes": 3,
+    "updated_edges": 0,
+    "stats": {
+      "entities": 60,
+      "relations": 88,
+      "documents": 41,
+      "events": 11,
+      "stocks": 8
+    }
+  }
+}

@@ -1,0 +1,18 @@
+\begin{frame}[t]{历史时点查询}\relax
+\Intro{按公开日期筛选关系，以 DeepSeek-R1 的资料积累为例。}
+{\fontsize{11.7}{15}\selectfont
+\begin{tabularx}{\linewidth}{@{}l X c@{}}
+\toprule
+查询截止日 & 截至该日新增的关联 & 累计证券数\\
+\midrule
+2025-01-20 & R1 发布；DeepSeek 本身未上市 & 0\\
+2025-02-03 & 腾讯云、百度千帆接入模型 & 2\\
+2025-02-05 & 再加入海光 DCU 适配、中国电信云接入 & 4\\
+\bottomrule
+\end{tabularx}}
+\Gap
+\Head{处理规则}
+仅当路径中的所有关系在截止日期前已公开，才保留该证券。未知发布日期的文档只记采集时间。
+\vfill
+\Caption{统计仅限已收集资料；尚未保存网页的完整历史版本。}
+\end{frame}

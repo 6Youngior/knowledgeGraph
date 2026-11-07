@@ -1,0 +1,82 @@
+{
+  "passed": true,
+  "created_at": "2026-11-07T02:12:43.034879+00:00",
+  "checks": [
+    {
+      "name": "initial research shows real roles and correct factual direction",
+      "passed": true,
+      "detail": "GLM-5 发布 涉及 GLM-5；GLM-5 由 智谱 研发；智谱 对应上市证券 智谱 (02513.HK)。"
+    },
+    {
+      "name": "a path opens original quote, publisher and a real source link",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "research brief download includes actual securities and citations",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "historical view explains unverified publication dates without backdating",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "DeepSeek evidence accumulates across real dates: zero, two, four securities",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Qwen preserves technical facts while distinguishing a later stock listing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "five guided steps retain the selected event through the update journey",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "validated replay is visibly labelled and previews its real graph delta",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "repeat ingestion does not duplicate nodes or relations",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "returning from update highlights the newly explained security in the same event",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "role filtering preserves a complete product-company-security evidence path",
+      "passed": true,
+      "detail": "5 实体 · 4 关系"
+    },
+    {
+      "name": "case library opens from the live research workspace",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source and method view remains available",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no uncaught browser errors during the complete journey",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "check_count": 14,
+  "page_errors": [],
+  "viewport": {
+    "width": 1600,
+    "height": 1000
+  }
+}

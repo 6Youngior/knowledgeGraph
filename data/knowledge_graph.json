@@ -1,0 +1,2328 @@
+{
+  "meta": {
+    "title": "FinGraph",
+    "as_of": "2026-11-07",
+    "description": "以 DeepSeek-R1、Qwen3、GLM-5 与 MiniMax-M2.5 等真实事件为线索，区分模型研发、硬件适配与云服务接入，连接上市公司、证券与证据路径。行情为 2024-12 至 2026-03 的真实日线缓存。"
+  },
+  "nodes": [
+    {
+      "id": "company:zhipu",
+      "label": "智谱",
+      "type": "Company",
+      "aliases": [
+        "Zhipu",
+        "Z.ai",
+        "北京智谱华章科技股份有限公司"
+      ],
+      "description": "中国通用大模型公司，GLM 系列研发方；2026-01-08 于港交所主板上市（02513.HK）。",
+      "source_ids": [
+        "src:chinadaily-zhipu-ipo",
+        "src:zai-glm5"
+      ],
+      "properties": {
+        "ticker": "02513.HK",
+        "market": "HK",
+        "hq": "北京",
+        "founded": "2019"
+      }
+    },
+    {
+      "id": "company:mthreads",
+      "label": "摩尔线程",
+      "type": "Company",
+      "aliases": [
+        "Moore Threads",
+        "摩尔线程智能科技（北京）股份有限公司"
+      ],
+      "description": "中国全功能 GPU 企业，MTT S5000 与 MUSA 软件栈研发方；2025-12-05 于上交所科创板上市（688795.SH）。",
+      "source_ids": [
+        "src:sse-mthreads-ipo",
+        "src:mthreads-glm5"
+      ],
+      "properties": {
+        "ticker": "688795.SH",
+        "market": "SH",
+        "hq": "北京",
+        "founded": "2020"
+      }
+    },
+    {
+      "id": "company:minimax",
+      "label": "MiniMax",
+      "type": "Company",
+      "aliases": [
+        "MiniMax Group Inc.",
+        "稀宇科技"
+      ],
+      "description": "中国全模态大模型公司，MiniMax-M2.5 研发方；2026-01-09 于港交所主板上市（00100.HK）。",
+      "source_ids": [
+        "src:acn-minimax-ipo",
+        "src:minimax-m25-cn"
+      ],
+      "properties": {
+        "ticker": "00100.HK",
+        "market": "HK",
+        "hq": "上海"
+      }
+    },
+    {
+      "id": "company:alibaba",
+      "label": "阿里巴巴",
+      "type": "Company",
+      "aliases": [
+        "Alibaba",
+        "Alibaba Group",
+        "阿里巴巴集团"
+      ],
+      "description": "中国云计算与互联网公司，阿里云百炼平台运营方；港交所 09988.HK。",
+      "source_ids": [
+        "src:alibaba-hkex-listing",
+        "src:aliyun-glm5"
+      ],
+      "properties": {
+        "ticker": "09988.HK",
+        "market": "HK",
+        "hq": "杭州"
+      }
+    },
+    {
+      "id": "stock:02513.HK",
+      "label": "智谱 (02513.HK)",
+      "type": "Stock",
+      "aliases": [
+        "02513.HK",
+        "2513.HK",
+        "智谱"
+      ],
+      "description": "智谱在港交所主板的上市证券，2026-01-08 开始交易。",
+      "source_ids": [
+        "src:chinadaily-zhipu-ipo",
+        "src:hkex-zhipu-prospectus"
+      ],
+      "properties": {
+        "symbol": "02513.HK",
+        "market": "HK",
+        "currency": "HKD",
+        "company_id": "company:zhipu",
+        "company_name": "智谱",
+        "listing_date": "2026-01-08",
+        "ipo_price_hkd": 116.2
+      }
+    },
+    {
+      "id": "stock:688795.SH",
+      "label": "摩尔线程-U (688795.SH)",
+      "type": "Stock",
+      "aliases": [
+        "688795.SH",
+        "688795",
+        "摩尔线程"
+      ],
+      "description": "摩尔线程在上交所科创板的上市证券，2025-12-05 开始交易。",
+      "source_ids": [
+        "src:sse-mthreads-ipo",
+        "src:mthreads-ipo-news"
+      ],
+      "properties": {
+        "symbol": "688795.SH",
+        "market": "SH",
+        "currency": "CNY",
+        "company_id": "company:mthreads",
+        "company_name": "摩尔线程",
+        "listing_date": "2025-12-05"
+      }
+    },
+    {
+      "id": "stock:00100.HK",
+      "label": "MINIMAX-W (00100.HK)",
+      "type": "Stock",
+      "aliases": [
+        "00100.HK",
+        "0100.HK",
+        "MINIMAX-W"
+      ],
+      "description": "MiniMax 在港交所主板的上市证券，2026-01-09 开始交易。",
+      "source_ids": [
+        "src:acn-minimax-ipo"
+      ],
+      "properties": {
+        "symbol": "00100.HK",
+        "market": "HK",
+        "currency": "HKD",
+        "company_id": "company:minimax",
+        "company_name": "MiniMax",
+        "listing_date": "2026-01-09"
+      }
+    },
+    {
+      "id": "stock:09988.HK",
+      "label": "阿里巴巴-W (09988.HK)",
+      "type": "Stock",
+      "aliases": [
+        "09988.HK",
+        "9988.HK",
+        "阿里巴巴-W"
+      ],
+      "description": "阿里巴巴在港交所主板的上市证券，2019-11-26 开始交易。",
+      "source_ids": [
+        "src:alibaba-hkex-listing"
+      ],
+      "properties": {
+        "symbol": "09988.HK",
+        "market": "HK",
+        "currency": "HKD",
+        "company_id": "company:alibaba",
+        "company_name": "阿里巴巴",
+        "listing_date": "2019-11-26"
+      }
+    },
+    {
+      "id": "model:glm5",
+      "label": "GLM-5",
+      "type": "Model",
+      "aliases": [
+        "GLM5",
+        "GLM-5"
+      ],
+      "description": "智谱 744B 总参数 / 40B 激活的开源基座模型，200K 上下文，面向 Agentic Engineering，MIT License。",
+      "source_ids": [
+        "src:zai-glm5",
+        "src:bigmodel-glm5",
+        "src:github-glm5"
+      ],
+      "properties": {
+        "parameters_total": "744B",
+        "parameters_active": "40B",
+        "context_window": 200000,
+        "license": "MIT",
+        "released_at": "2026-02-12",
+        "hf_repo_created_at": "2026-02-11T04:55:46Z",
+        "hf_repo_created_at_note": "仅仓库元数据，不是正式发布时间"
+      }
+    },
+    {
+      "id": "model:glm47",
+      "label": "GLM-4.7",
+      "type": "Model",
+      "aliases": [
+        "GLM4.7",
+        "GLM-4.7"
+      ],
+      "description": "GLM-5 的前代基座模型，2025 年 12 月发布；官方以它作为 GLM-5 的主要对照基线。",
+      "source_ids": [
+        "src:chinadaily-zhipu-ipo",
+        "src:zai-glm5"
+      ],
+      "properties": {
+        "released": "2025-12"
+      }
+    },
+    {
+      "id": "model:minimax-m25",
+      "label": "MiniMax-M2.5",
+      "type": "Model",
+      "aliases": [
+        "M2.5",
+        "MiniMax M2.5",
+        "MiniMax-M2.5"
+      ],
+      "description": "MiniMax 旗舰开源文本模型，主打编程、工具调用与 Agent 任务；SWE-Bench Verified 80.2%。",
+      "source_ids": [
+        "src:minimax-m25",
+        "src:minimax-m25-cn"
+      ],
+      "properties": {
+        "swe_bench_verified": 0.802,
+        "multi_swe_bench": 0.513,
+        "browsecomp": 0.763,
+        "released_at": "2026-02-12"
+      }
+    },
+    {
+      "id": "model:minimax-m21",
+      "label": "MiniMax-M2.1",
+      "type": "Model",
+      "aliases": [
+        "M2.1",
+        "MiniMax M2.1"
+      ],
+      "description": "MiniMax-M2.5 的前代模型，官方发布文以 M2.1 作为速度与 token 效率对照。",
+      "source_ids": [
+        "src:minimax-m25-cn"
+      ],
+      "properties": {
+        "released": "2025"
+      }
+    },
+    {
+      "id": "product:mtt-s5000",
+      "label": "MTT S5000",
+      "type": "Product",
+      "aliases": [
+        "MTT S5000",
+        "S5000"
+      ],
+      "description": "摩尔线程旗舰级 AI 训推一体全功能 GPU，基于第四代 MUSA 架构“平湖”，支持 FP8 到 FP64。",
+      "source_ids": [
+        "src:mthreads-glm5",
+        "src:mthreads-s5000"
+      ],
+      "properties": {
+        "vendor": "摩尔线程",
+        "architecture": "MUSA 平湖",
+        "precision": "FP8-FP64"
+      }
+    },
+    {
+      "id": "product:musa",
+      "label": "MUSA 软件栈",
+      "type": "Product",
+      "aliases": [
+        "MUSA",
+        "SGLang-MUSA"
+      ],
+      "description": "摩尔线程全栈软件平台，含驱动、算子库与 SGLang-MUSA 推理引擎。",
+      "source_ids": [
+        "src:mthreads-glm5"
+      ],
+      "properties": {
+        "vendor": "摩尔线程"
+      }
+    },
+    {
+      "id": "product:zai",
+      "label": "Z.ai",
+      "type": "Product",
+      "aliases": [
+        "Z.ai",
+        "api.z.ai"
+      ],
+      "description": "智谱面向消费者与开发者的 AI 应用及 API 平台，GLM-5 上线渠道之一。",
+      "source_ids": [
+        "src:zai-glm5"
+      ],
+      "properties": {
+        "operator": "智谱"
+      }
+    },
+    {
+      "id": "product:bigmodel",
+      "label": "BigModel.cn",
+      "type": "Product",
+      "aliases": [
+        "BigModel",
+        "bigmodel.cn",
+        "智谱开放平台"
+      ],
+      "description": "智谱大模型开放平台，提供 GLM-5 API 与模型文档。",
+      "source_ids": [
+        "src:zai-glm5",
+        "src:bigmodel-glm5"
+      ],
+      "properties": {
+        "operator": "智谱"
+      }
+    },
+    {
+      "id": "product:glm-coding-plan",
+      "label": "GLM 编程订阅",
+      "type": "Product",
+      "aliases": [
+        "GLM Coding Plan",
+        "编程订阅"
+      ],
+      "description": "智谱编程订阅产品；据中国日报报道，上线短时间内实现过亿年度经常性收入。",
+      "source_ids": [
+        "src:chinadaily-zhipu-ipo"
+      ],
+      "properties": {
+        "operator": "智谱",
+        "arr": "超过 1 亿元人民币（报道口径）"
+      }
+    },
+    {
+      "id": "product:minimax-agent",
+      "label": "MiniMax Agent",
+      "type": "Product",
+      "aliases": [
+        "MiniMax Agent"
+      ],
+      "description": "MiniMax 的 Agent 产品，M2.5 上线后集成 Office Skills 与专家套组。",
+      "source_ids": [
+        "src:minimax-m25-cn"
+      ],
+      "properties": {
+        "operator": "MiniMax"
+      }
+    },
+    {
+      "id": "product:bailian",
+      "label": "阿里云百炼",
+      "type": "Product",
+      "aliases": [
+        "百炼",
+        "Model Studio",
+        "阿里云百炼"
+      ],
+      "description": "阿里云一站式大模型服务平台；文档标注 GLM-5 与 MiniMax-M2.5 的推理服务供应商为阿里云百炼。",
+      "source_ids": [
+        "src:aliyun-glm5",
+        "src:aliyun-minimax"
+      ],
+      "properties": {
+        "operator": "阿里云",
+        "doc_retrieved_at": "2026-11-06"
+      }
+    },
+    {
+      "id": "industry:foundation-model",
+      "label": "基础大模型",
+      "type": "Industry",
+      "aliases": [],
+      "description": "通用基座大模型的研发与开源供给。",
+      "source_ids": [
+        "src:zai-glm5",
+        "src:minimax-m25"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "industry:gpu",
+      "label": "全功能 GPU",
+      "type": "Industry",
+      "aliases": [],
+      "description": "面向 AI 训练与推理的通用 GPU 算力硬件。",
+      "source_ids": [
+        "src:mthreads-glm5"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "industry:cloud-maas",
+      "label": "云 MaaS 平台",
+      "type": "Industry",
+      "aliases": [],
+      "description": "将第三方模型以 API 形式托管的云模型服务。",
+      "source_ids": [
+        "src:aliyun-glm5"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "industry:ai-agent",
+      "label": "AI Agent 应用",
+      "type": "Industry",
+      "aliases": [],
+      "description": "面向长程任务与工具调用的智能体应用层。",
+      "source_ids": [
+        "src:minimax-m25-cn",
+        "src:zai-glm5"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "event:glm5-release",
+      "label": "GLM-5 发布",
+      "type": "Event",
+      "aliases": [],
+      "description": "智谱发布 744B 总参数的开源基座模型 GLM-5；中文资料记为 2026-02-12，Hugging Face 仓库创建于 2026-02-11T04:55:46Z。",
+      "source_ids": [
+        "src:zai-glm5",
+        "src:bigmodel-glm5",
+        "src:mthreads-glm5",
+        "src:github-glm5"
+      ],
+      "properties": {
+        "timezone": "Asia/Shanghai",
+        "utc_date": "2026-02-11",
+        "local_date": "2026-02-12"
+      }
+    },
+    {
+      "id": "event:minimax-m25-release",
+      "label": "MiniMax-M2.5 发布",
+      "type": "Event",
+      "aliases": [],
+      "description": "MiniMax 发布 M2.5，官方页面标注 2026.2.12；SWE-Bench Verified 80.2%，并强调低成本 Agent 推理。",
+      "source_ids": [
+        "src:minimax-m25",
+        "src:minimax-m25-cn"
+      ],
+      "properties": {
+        "timezone": "Asia/Shanghai"
+      }
+    },
+    {
+      "id": "event:mtt-minimax-adapt",
+      "label": "MTT S5000 完成 MiniMax-M2.5 Day-0 适配",
+      "type": "Event",
+      "aliases": [],
+      "description": "摩尔线程在 MTT S5000 上完成 MiniMax-M2.5 的 Day-0 极速适配，基于 SGLang-MUSA 与原生 FP8。",
+      "source_ids": [
+        "src:mthreads-minimax"
+      ],
+      "properties": {
+        "timezone": "Asia/Shanghai"
+      }
+    },
+    {
+      "id": "company:deepseek",
+      "label": "DeepSeek",
+      "type": "Company",
+      "aliases": [
+        "深度求索",
+        "杭州深度求索人工智能基础技术研究有限公司"
+      ],
+      "description": "中国大模型研发公司，DeepSeek-R1 的研发方；公司未上市。",
+      "source_ids": [
+        "src:deepseek-r1-api"
+      ],
+      "properties": {
+        "hq": "杭州",
+        "listed": false
+      }
+    },
+    {
+      "id": "company:hygon",
+      "label": "海光信息",
+      "type": "Company",
+      "aliases": [
+        "Hygon",
+        "海光信息技术股份有限公司"
+      ],
+      "description": "国产 DCU 与 CPU 厂商；2022-08-12 于上交所科创板上市（688041.SH）。",
+      "source_ids": [
+        "src:sse-hygon",
+        "src:hygon-adapt"
+      ],
+      "properties": {
+        "ticker": "688041.SH",
+        "market": "SH",
+        "hq": "天津"
+      }
+    },
+    {
+      "id": "company:tencent",
+      "label": "腾讯控股",
+      "type": "Company",
+      "aliases": [
+        "Tencent",
+        "腾讯"
+      ],
+      "description": "中国互联网与云服务公司，腾讯云 HAI 平台运营方；2004-06-16 于港交所上市（00700.HK）。",
+      "source_ids": [
+        "src:hkex-tencent",
+        "src:tencent-hai"
+      ],
+      "properties": {
+        "ticker": "00700.HK",
+        "market": "HK",
+        "hq": "深圳"
+      }
+    },
+    {
+      "id": "company:baidu",
+      "label": "百度集团",
+      "type": "Company",
+      "aliases": [
+        "Baidu",
+        "百度"
+      ],
+      "description": "中国 AI 与云服务公司，百度智能云千帆平台运营方；2021-03-23 于港交所二次上市（09888.HK）。",
+      "source_ids": [
+        "src:hkex-baidu-quote",
+        "src:cnbc-baidu"
+      ],
+      "properties": {
+        "ticker": "09888.HK",
+        "market": "HK",
+        "hq": "北京"
+      }
+    },
+    {
+      "id": "company:chinatelecom",
+      "label": "中国电信",
+      "type": "Company",
+      "aliases": [
+        "China Telecom",
+        "中国电信股份有限公司"
+      ],
+      "description": "中国基础电信运营商，天翼云运营方；H 股 2002-11-15 于港交所上市（00728.HK）。",
+      "source_ids": [
+        "src:hkex-chinatelecom",
+        "src:ctyun-r1"
+      ],
+      "properties": {
+        "ticker": "00728.HK",
+        "market": "HK",
+        "hq": "北京"
+      }
+    },
+    {
+      "id": "stock:688041.SH",
+      "label": "海光信息 (688041.SH)",
+      "type": "Stock",
+      "aliases": [
+        "688041.SH",
+        "688041",
+        "海光信息"
+      ],
+      "description": "海光信息在上交所科创板的上市证券，2022-08-12 开始交易。",
+      "source_ids": [
+        "src:sse-hygon"
+      ],
+      "properties": {
+        "symbol": "688041.SH",
+        "market": "SH",
+        "currency": "CNY",
+        "company_id": "company:hygon",
+        "company_name": "海光信息",
+        "listing_date": "2022-08-12"
+      }
+    },
+    {
+      "id": "stock:00700.HK",
+      "label": "腾讯控股 (00700.HK)",
+      "type": "Stock",
+      "aliases": [
+        "00700.HK",
+        "700.HK",
+        "腾讯控股"
+      ],
+      "description": "腾讯控股在港交所主板的上市证券，2004-06-16 开始交易。",
+      "source_ids": [
+        "src:hkex-tencent",
+        "src:hkex-tencent-quote"
+      ],
+      "properties": {
+        "symbol": "00700.HK",
+        "market": "HK",
+        "currency": "HKD",
+        "company_id": "company:tencent",
+        "company_name": "腾讯控股",
+        "listing_date": "2004-06-16"
+      }
+    },
+    {
+      "id": "stock:09888.HK",
+      "label": "百度集团-SW (09888.HK)",
+      "type": "Stock",
+      "aliases": [
+        "09888.HK",
+        "9888.HK",
+        "百度集团-SW"
+      ],
+      "description": "百度集团在港交所主板的上市证券，2021-03-23 开始交易。",
+      "source_ids": [
+        "src:hkex-baidu-quote",
+        "src:cnbc-baidu",
+        "src:hkex-baidu-prospectus"
+      ],
+      "properties": {
+        "symbol": "09888.HK",
+        "market": "HK",
+        "currency": "HKD",
+        "company_id": "company:baidu",
+        "company_name": "百度集团",
+        "listing_date": "2021-03-23"
+      }
+    },
+    {
+      "id": "stock:00728.HK",
+      "label": "中国电信 (00728.HK)",
+      "type": "Stock",
+      "aliases": [
+        "00728.HK",
+        "728.HK",
+        "中国电信"
+      ],
+      "description": "中国电信在港交所主板的上市证券，H 股 2002-11-15 开始交易。",
+      "source_ids": [
+        "src:hkex-chinatelecom",
+        "src:hkex-chinatelecom-quote"
+      ],
+      "properties": {
+        "symbol": "00728.HK",
+        "market": "HK",
+        "currency": "HKD",
+        "company_id": "company:chinatelecom",
+        "company_name": "中国电信",
+        "listing_date": "2002-11-15"
+      }
+    },
+    {
+      "id": "model:deepseek-r1",
+      "label": "DeepSeek-R1",
+      "type": "Model",
+      "aliases": [
+        "DeepSeek R1",
+        "R1",
+        "deepseek-reasoner"
+      ],
+      "description": "DeepSeek 开源的推理模型，MIT License，API 以 deepseek-reasoner 提供；性能对标 OpenAI o1。",
+      "source_ids": [
+        "src:deepseek-r1-api"
+      ],
+      "properties": {
+        "license": "MIT",
+        "released_at": "2025-01-20",
+        "api_model": "deepseek-reasoner"
+      }
+    },
+    {
+      "id": "model:qwen3",
+      "label": "Qwen3",
+      "type": "Model",
+      "aliases": [
+        "Qwen3-2504",
+        "通义千问3"
+      ],
+      "description": "阿里巴巴通义千问团队开源的混合推理模型系列，含 235B-A22B、30B-A3B 等 8 款模型，Apache 2.0。",
+      "source_ids": [
+        "src:qwen3-blog",
+        "src:qwen3-github",
+        "src:qwen3-alibaba-press"
+      ],
+      "properties": {
+        "license": "Apache 2.0",
+        "released_at": "2025-04-29",
+        "modes": "thinking / non-thinking",
+        "attribution_scope": "Qwen3 系列；Alibaba Group 2025-04-29 官方新闻 + Qwen GitHub About（当前文本）"
+      }
+    },
+    {
+      "id": "model:qwen3-235b-a22b",
+      "label": "Qwen3-235B-A22B",
+      "type": "Model",
+      "aliases": [
+        "Qwen3-235B",
+        "235B-A22B"
+      ],
+      "description": "Qwen3 旗舰 MoE 模型，2350 亿总参数、220 亿激活参数。",
+      "source_ids": [
+        "src:qwen3-blog",
+        "src:qwen3-alibaba-cloud"
+      ],
+      "properties": {
+        "parameters_total": "235B",
+        "parameters_active": "22B",
+        "attribution_scope": "Qwen3 系列级归因；Alibaba Cloud 2025-04-29 新闻列出 235B/22B 变体"
+      }
+    },
+    {
+      "id": "model:qwen3-30b-a3b",
+      "label": "Qwen3-30B-A3B",
+      "type": "Model",
+      "aliases": [
+        "Qwen3-30B",
+        "30B-A3B"
+      ],
+      "description": "Qwen3 小型 MoE 模型，300 亿总参数、30 亿激活参数。",
+      "source_ids": [
+        "src:qwen3-blog",
+        "src:qwen3-alibaba-cloud"
+      ],
+      "properties": {
+        "parameters_total": "30B",
+        "parameters_active": "3B",
+        "attribution_scope": "Qwen3 系列级归因；Alibaba Cloud 2025-04-29 新闻列出 30B/3B 变体"
+      }
+    },
+    {
+      "id": "model:deepseek-r1-distill",
+      "label": "DeepSeek-R1 蒸馏模型",
+      "type": "Model",
+      "aliases": [
+        "R1-Distill",
+        "DeepSeek-R1-Distill"
+      ],
+      "description": "由 DeepSeek-R1 蒸馏得到的 6 个开源小模型，官方称 32B/70B 版本对标 OpenAI-o1-mini。",
+      "source_ids": [
+        "src:deepseek-r1-api"
+      ],
+      "properties": {
+        "count": 6
+      }
+    },
+    {
+      "id": "product:mthreads-gpu",
+      "label": "摩尔线程全功能 GPU",
+      "type": "Product",
+      "aliases": [
+        "摩尔线程 GPU",
+        "MUSA GPU"
+      ],
+      "description": "摩尔线程全功能 GPU 产品线；2025-04-29 官方新闻称其在 Qwen3 发布当天率先完成全系列支持，原文未指名具体 SKU。",
+      "source_ids": [
+        "src:mthreads-qwen3"
+      ],
+      "properties": {
+        "vendor": "摩尔线程",
+        "sku": "未指名"
+      }
+    },
+    {
+      "id": "product:deepseek-chat",
+      "label": "DeepSeek Chat",
+      "type": "Product",
+      "aliases": [
+        "chat.deepseek.com",
+        "DeepSeek 网页版"
+      ],
+      "description": "DeepSeek 官方对话产品，支持 DeepThink 推理模式。",
+      "source_ids": [
+        "src:deepseek-r1-api"
+      ],
+      "properties": {
+        "operator": "DeepSeek"
+      }
+    },
+    {
+      "id": "product:deepseek-api",
+      "label": "DeepSeek API",
+      "type": "Product",
+      "aliases": [
+        "DeepSeek API",
+        "api.deepseek.com"
+      ],
+      "description": "DeepSeek 官方模型 API，DeepSeek-R1 以 deepseek-reasoner 模型名提供。",
+      "source_ids": [
+        "src:deepseek-r1-api"
+      ],
+      "properties": {
+        "operator": "DeepSeek"
+      }
+    },
+    {
+      "id": "product:hygon-dcu",
+      "label": "海光 DCU",
+      "type": "Product",
+      "aliases": [
+        "DCU",
+        "深度计算单元"
+      ],
+      "description": "海光信息推出的高性能 GPGPU 架构 AI 加速卡，支持 DeepSeek V3/R1 国产化适配。",
+      "source_ids": [
+        "src:hygon-adapt"
+      ],
+      "properties": {
+        "vendor": "海光信息"
+      }
+    },
+    {
+      "id": "product:baidu-qianfan",
+      "label": "百度智能云千帆",
+      "type": "Product",
+      "aliases": [
+        "千帆",
+        "千帆 ModelBuilder"
+      ],
+      "description": "百度智能云的一站式大模型平台，已上架 DeepSeek-R1/V3 并提供推理托管。",
+      "source_ids": [
+        "src:baidu-qianfan",
+        "src:baidu-date"
+      ],
+      "properties": {
+        "operator": "百度智能云"
+      }
+    },
+    {
+      "id": "product:tencent-hai",
+      "label": "腾讯云 HAI",
+      "type": "Product",
+      "aliases": [
+        "HAI",
+        "高性能应用服务 HAI"
+      ],
+      "description": "腾讯云高性能应用服务，支持 DeepSeek-R1 一键部署与调用。",
+      "source_ids": [
+        "src:tencent-hai",
+        "src:tencent-date"
+      ],
+      "properties": {
+        "operator": "腾讯云"
+      }
+    },
+    {
+      "id": "product:ctyun",
+      "label": "天翼云",
+      "type": "Product",
+      "aliases": [
+        "天翼云",
+        "息壤"
+      ],
+      "description": "中国电信天翼云智算产品体系，2025-02-05 起支持 DeepSeek-R1。",
+      "source_ids": [
+        "src:ctyun-r1"
+      ],
+      "properties": {
+        "operator": "中国电信"
+      }
+    },
+    {
+      "id": "product:qwen-chat",
+      "label": "Qwen Chat",
+      "type": "Product",
+      "aliases": [
+        "通义千问",
+        "chat.qwen.ai"
+      ],
+      "description": "Qwen 官方对话产品，提供 Qwen3 的 Web 与移动端体验。",
+      "source_ids": [
+        "src:qwen3-blog"
+      ],
+      "properties": {
+        "operator": "阿里巴巴"
+      }
+    },
+    {
+      "id": "product:modelscope",
+      "label": "ModelScope 魔搭",
+      "type": "Product",
+      "aliases": [
+        "ModelScope",
+        "魔搭社区"
+      ],
+      "description": "阿里巴巴开源模型社区，Qwen3 权重发布渠道之一。",
+      "source_ids": [
+        "src:qwen3-blog",
+        "src:qwen3-github"
+      ],
+      "properties": {
+        "operator": "阿里巴巴"
+      }
+    },
+    {
+      "id": "industry:ai-chip",
+      "label": "AI 芯片",
+      "type": "Industry",
+      "aliases": [],
+      "description": "面向 AI 训练与推理的加速芯片与计算卡。",
+      "source_ids": [
+        "src:hygon-adapt"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "industry:open-source",
+      "label": "开源模型生态",
+      "type": "Industry",
+      "aliases": [],
+      "description": "以开放权重、宽松许可证和社区分发为核心的模型生态。",
+      "source_ids": [
+        "src:deepseek-r1-api",
+        "src:qwen3-blog"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "industry:ai-infrastructure",
+      "label": "AI 基础设施",
+      "type": "Industry",
+      "aliases": [],
+      "description": "覆盖算力、云平台、模型 API 与部署工具的 AI 基础设施层。",
+      "source_ids": [
+        "src:tencent-hai",
+        "src:baidu-qianfan",
+        "src:ctyun-r1"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "event:deepseek-r1-release",
+      "label": "DeepSeek-R1 发布",
+      "type": "Event",
+      "aliases": [],
+      "description": "DeepSeek 发布开源推理模型 DeepSeek-R1，MIT License，API 以 deepseek-reasoner 上线。",
+      "source_ids": [
+        "src:deepseek-r1-api"
+      ],
+      "properties": {
+        "timezone": "Asia/Shanghai"
+      }
+    },
+    {
+      "id": "event:hygon-r1-adapt",
+      "label": "海光 DCU 完成 DeepSeek-R1 适配",
+      "type": "Event",
+      "aliases": [],
+      "description": "海光信息团队完成 DeepSeek V3/R1 与海光 DCU 的国产化适配并正式上线。",
+      "source_ids": [
+        "src:hygon-adapt"
+      ],
+      "properties": {
+        "timezone": "Asia/Shanghai",
+        "date_note": "官方团队前一日发文，IT之家 2025-02-04 报道；披露日采用 2025-02-04"
+      }
+    },
+    {
+      "id": "event:tencent-r1-hai",
+      "label": "腾讯云 HAI 支持 DeepSeek-R1 一键部署",
+      "type": "Event",
+      "aliases": [],
+      "description": "腾讯云宣布 DeepSeek-R1 支持一键部署至 HAI，开发者可在 3 分钟内接入调用。",
+      "source_ids": [
+        "src:tencent-hai",
+        "src:tencent-date"
+      ],
+      "properties": {
+        "timezone": "Asia/Shanghai"
+      }
+    },
+    {
+      "id": "event:baidu-r1-qianfan",
+      "label": "百度智能云千帆上架 DeepSeek-R1",
+      "type": "Event",
+      "aliases": [],
+      "description": "百度智能云千帆平台上架 DeepSeek-R1 与 DeepSeek-V3，并提供限时免费服务。",
+      "source_ids": [
+        "src:baidu-qianfan",
+        "src:baidu-date"
+      ],
+      "properties": {
+        "timezone": "Asia/Shanghai"
+      }
+    },
+    {
+      "id": "event:ctyun-r1",
+      "label": "天翼云上架 DeepSeek-R1",
+      "type": "Event",
+      "aliases": [],
+      "description": "中国电信宣布天翼云成为国内最早支持 DeepSeek-R1 的云服务商之一。",
+      "source_ids": [
+        "src:ctyun-r1"
+      ],
+      "properties": {
+        "timezone": "Asia/Shanghai"
+      }
+    },
+    {
+      "id": "event:qwen3-release",
+      "label": "Qwen3 发布",
+      "type": "Event",
+      "aliases": [],
+      "description": "阿里巴巴通义千问团队发布并开源 Qwen3 系列，含 8 款混合推理模型。",
+      "source_ids": [
+        "src:qwen3-blog",
+        "src:qwen3-github"
+      ],
+      "properties": {
+        "timezone": "Asia/Shanghai"
+      }
+    },
+    {
+      "id": "event:qwen3-mtt-adapt",
+      "label": "摩尔线程全功能 GPU 率先支持 Qwen3 全系列",
+      "type": "Event",
+      "aliases": [],
+      "description": "摩尔线程在 Qwen3 发布当天完成全系列模型在全功能 GPU 上的高效支持；官方原文未指名具体 GPU SKU。",
+      "source_ids": [
+        "src:mthreads-qwen3"
+      ],
+      "properties": {
+        "timezone": "Asia/Shanghai"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "rel:glm5-developed-by-zhipu",
+      "source": "model:glm5",
+      "target": "company:zhipu",
+      "type": "DEVELOPED_BY",
+      "label": "研发主体",
+      "source_ids": [
+        "src:bigmodel-glm5",
+        "src:zai-glm5"
+      ],
+      "evidence": "GLM-5 是智谱的基座模型",
+      "disclosed_at": "2026-02-12",
+      "relation_group": "direct",
+      "evidence_records": [
+        {
+          "source_ids": [
+            "src:bigmodel-glm5"
+          ],
+          "evidence": "GLM-5 是智谱的基座模型",
+          "disclosed_at": "2026-11-06"
+        },
+        {
+          "source_ids": [
+            "src:zai-glm5"
+          ],
+          "evidence": "GLM-4.5 is our first step for reasoning, coding, and agent, enabling the model to complete complex tasks. With GLM-5, we further enhance complex systems engineering and long-horizon agent capabilities.",
+          "disclosed_at": "2026-02-12"
+        }
+      ]
+    },
+    {
+      "id": "rel:glm47-developed-by-zhipu",
+      "source": "model:glm47",
+      "target": "company:zhipu",
+      "type": "DEVELOPED_BY",
+      "label": "研发主体",
+      "source_ids": [
+        "src:chinadaily-zhipu-ipo"
+      ],
+      "evidence": "2025年12月，智谱新一代基座模型GLM-4.7",
+      "disclosed_at": "2026-01-08",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:minimax-m25-developed-by-minimax",
+      "source": "model:minimax-m25",
+      "target": "company:minimax",
+      "type": "DEVELOPED_BY",
+      "label": "研发主体",
+      "source_ids": [
+        "src:minimax-m25"
+      ],
+      "evidence": "Today we're introducing our latest model, MiniMax-M2.5.",
+      "disclosed_at": "2026-02-12",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:minimax-m21-developed-by-minimax",
+      "source": "model:minimax-m21",
+      "target": "company:minimax",
+      "type": "DEVELOPED_BY",
+      "label": "研发主体",
+      "source_ids": [
+        "src:minimax-m21-github"
+      ],
+      "evidence": "Your name is MiniMax-M2.1 and is built by MiniMax.",
+      "disclosed_at": "2026-11-07",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:zhipu-listed-as-02513",
+      "source": "company:zhipu",
+      "target": "stock:02513.HK",
+      "type": "LISTED_AS",
+      "label": "上市证券",
+      "source_ids": [
+        "src:chinadaily-zhipu-ipo"
+      ],
+      "evidence": "2026年1月8日，北京智谱华章科技股份有限公司（02513.HK）正式在香港联合交易所挂牌上市",
+      "disclosed_at": "2026-01-08",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:mthreads-listed-as-688795",
+      "source": "company:mthreads",
+      "target": "stock:688795.SH",
+      "type": "LISTED_AS",
+      "label": "上市证券",
+      "source_ids": [
+        "src:sse-mthreads-ipo"
+      ],
+      "evidence": "证券简称为“摩尔线程”，证券代码为“688795”",
+      "disclosed_at": "2025-12-04",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:minimax-listed-as-00100",
+      "source": "company:minimax",
+      "target": "stock:00100.HK",
+      "type": "LISTED_AS",
+      "label": "上市证券",
+      "source_ids": [
+        "src:acn-minimax-ipo"
+      ],
+      "evidence": "MiniMax（0100.HK）正式登陸港交所",
+      "disclosed_at": "2026-01-09",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:alibaba-listed-as-09988",
+      "source": "company:alibaba",
+      "target": "stock:09988.HK",
+      "type": "LISTED_AS",
+      "label": "上市证券",
+      "source_ids": [
+        "src:alibaba-hkex-listing"
+      ],
+      "evidence": "NYSE: BABA and HKEX: 9988",
+      "disclosed_at": "2019-11-26",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:mthreads-produces-s5000",
+      "source": "company:mthreads",
+      "target": "product:mtt-s5000",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "source_ids": [
+        "src:mthreads-glm5"
+      ],
+      "evidence": "MTT S5000是专为大模型训练、推理及高性能计算而设计的全功能GPU智算卡",
+      "disclosed_at": "2026-02-12",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:mthreads-produces-musa",
+      "source": "company:mthreads",
+      "target": "product:musa",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "source_ids": [
+        "src:mthreads-glm5"
+      ],
+      "evidence": "MUSA软件栈的敏捷性是实现Day-0适配的关键",
+      "disclosed_at": "2026-02-12",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:zhipu-produces-zai",
+      "source": "company:zhipu",
+      "target": "product:zai",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "source_ids": [
+        "src:zai-glm5"
+      ],
+      "evidence": "GLM-5 is also available on developer platform api.z.ai and BigModel.cn",
+      "disclosed_at": "2026-11-06",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:zhipu-produces-bigmodel",
+      "source": "company:zhipu",
+      "target": "product:bigmodel",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "source_ids": [
+        "src:zai-glm5"
+      ],
+      "evidence": "GLM-5 is also available on developer platform api.z.ai and BigModel.cn",
+      "disclosed_at": "2026-11-06",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:zhipu-produces-coding-plan",
+      "source": "company:zhipu",
+      "target": "product:glm-coding-plan",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "source_ids": [
+        "src:chinadaily-zhipu-ipo"
+      ],
+      "evidence": "编程订阅产品表现尤为突出，上线短时间内即实现过亿的年度经常性收入",
+      "disclosed_at": "2026-01-08",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:minimax-produces-agent",
+      "source": "company:minimax",
+      "target": "product:minimax-agent",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "source_ids": [
+        "src:minimax-m25-cn"
+      ],
+      "evidence": "M2.5 已经在 MiniMax Agent 中全面上线",
+      "disclosed_at": "2026-02-12",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:alibaba-produces-bailian",
+      "source": "company:alibaba",
+      "target": "product:bailian",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "source_ids": [
+        "src:aliyun-bailian-product"
+      ],
+      "evidence": "大模型服务平台百炼 - 大模型应用构建 - 阿里云",
+      "disclosed_at": "2026-11-07",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:mtt-s5000-supports-minimax-m25",
+      "source": "product:mtt-s5000",
+      "target": "model:minimax-m25",
+      "type": "SUPPORTS_MODEL",
+      "label": "技术适配",
+      "source_ids": [
+        "src:mthreads-minimax"
+      ],
+      "evidence": "成功实现了对MiniMax新一代大模型MiniMax M2.5的Day-0极速适配",
+      "disclosed_at": "2026-02-14",
+      "relation_group": "adaptation"
+    },
+    {
+      "id": "rel:bailian-hosts-glm5",
+      "source": "product:bailian",
+      "target": "model:glm5",
+      "type": "HOSTS_MODEL",
+      "label": "推理服务接入",
+      "source_ids": [
+        "src:aliyun-glm5"
+      ],
+      "evidence": "glm-5模型的推理服务供应商为阿里云百炼",
+      "disclosed_at": "2026-11-06",
+      "relation_group": "distribution"
+    },
+    {
+      "id": "rel:bailian-hosts-minimax-m25",
+      "source": "product:bailian",
+      "target": "model:minimax-m25",
+      "type": "HOSTS_MODEL",
+      "label": "推理服务接入",
+      "source_ids": [
+        "src:aliyun-minimax"
+      ],
+      "evidence": "MiniMax-M2.5模型的推理服务供应商为阿里云百炼",
+      "disclosed_at": "2026-11-06",
+      "relation_group": "distribution"
+    },
+    {
+      "id": "rel:zhipu-belongs-to-foundation-model",
+      "source": "company:zhipu",
+      "target": "industry:foundation-model",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "source_ids": [
+        "src:chinadaily-zhipu-ipo"
+      ],
+      "evidence": "专注通用人工智能（AGI）的研发",
+      "disclosed_at": "2026-01-08",
+      "relation_group": "industry"
+    },
+    {
+      "id": "rel:minimax-belongs-to-foundation-model",
+      "source": "company:minimax",
+      "target": "industry:foundation-model",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "source_ids": [
+        "src:acn-minimax-ipo"
+      ],
+      "evidence": "全球領先的通用人工智能科技公司",
+      "disclosed_at": "2026-01-09",
+      "relation_group": "industry"
+    },
+    {
+      "id": "rel:mthreads-belongs-to-gpu",
+      "source": "company:mthreads",
+      "target": "industry:gpu",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "source_ids": [
+        "src:mthreads-glm5"
+      ],
+      "evidence": "全功能GPU",
+      "disclosed_at": "2026-02-12",
+      "relation_group": "industry"
+    },
+    {
+      "id": "rel:alibaba-belongs-to-cloud-maas",
+      "source": "company:alibaba",
+      "target": "industry:cloud-maas",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "source_ids": [
+        "src:aliyun-glm5"
+      ],
+      "evidence": "glm-5模型的推理服务供应商为阿里云百炼",
+      "disclosed_at": "2026-11-06",
+      "relation_group": "industry"
+    },
+    {
+      "id": "rel:glm5-release-released-model",
+      "source": "event:glm5-release",
+      "target": "model:glm5",
+      "type": "RELEASED_MODEL",
+      "label": "发布模型",
+      "source_ids": [
+        "src:mthreads-glm5"
+      ],
+      "evidence": "智谱正式发布新一代大模型GLM-5",
+      "disclosed_at": "2026-02-12",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:glm5-release-concerns-zhipu",
+      "source": "event:glm5-release",
+      "target": "company:zhipu",
+      "type": "CONCERNS",
+      "label": "事件涉及",
+      "source_ids": [
+        "src:mthreads-glm5"
+      ],
+      "evidence": "智谱正式发布新一代大模型GLM-5",
+      "disclosed_at": "2026-02-12",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:minimax-release-released-model",
+      "source": "event:minimax-m25-release",
+      "target": "model:minimax-m25",
+      "type": "RELEASED_MODEL",
+      "label": "发布模型",
+      "source_ids": [
+        "src:minimax-m25-cn"
+      ],
+      "evidence": "今天我们来介绍 MiniMax-M2.5",
+      "disclosed_at": "2026-02-12",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:minimax-release-concerns-minimax",
+      "source": "event:minimax-m25-release",
+      "target": "company:minimax",
+      "type": "CONCERNS",
+      "label": "事件涉及",
+      "source_ids": [
+        "src:minimax-m25-cn"
+      ],
+      "evidence": "M2.5 已经在 MiniMax Agent 中全面上线",
+      "disclosed_at": "2026-02-12",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:mtt-minimax-adapt-concerns-model",
+      "source": "event:mtt-minimax-adapt",
+      "target": "model:minimax-m25",
+      "type": "CONCERNS",
+      "label": "事件涉及",
+      "source_ids": [
+        "src:mthreads-minimax"
+      ],
+      "evidence": "成功实现了对MiniMax新一代大模型MiniMax M2.5的Day-0极速适配",
+      "disclosed_at": "2026-02-14",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:mtt-minimax-adapt-concerns-product",
+      "source": "event:mtt-minimax-adapt",
+      "target": "product:mtt-s5000",
+      "type": "CONCERNS",
+      "label": "事件涉及",
+      "source_ids": [
+        "src:mthreads-minimax"
+      ],
+      "evidence": "旗舰级AI训推一体全功能GPU MTT S5000",
+      "disclosed_at": "2026-02-14",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:mtt-minimax-adapt-concerns-company",
+      "source": "event:mtt-minimax-adapt",
+      "target": "company:mthreads",
+      "type": "CONCERNS",
+      "label": "事件涉及",
+      "source_ids": [
+        "src:mthreads-minimax"
+      ],
+      "evidence": "摩尔线程在其旗舰级AI训推一体全功能GPU MTT S5000上",
+      "disclosed_at": "2026-02-14",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:r1-developed-by-deepseek",
+      "source": "model:deepseek-r1",
+      "target": "company:deepseek",
+      "type": "DEVELOPED_BY",
+      "label": "研发主体",
+      "source_ids": [
+        "src:deepseek-r1-github"
+      ],
+      "evidence": "We introduce our first-generation reasoning models, DeepSeek-R1-Zero and DeepSeek-R1.",
+      "disclosed_at": "2026-11-07",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:deepseek-produces-chat",
+      "source": "company:deepseek",
+      "target": "product:deepseek-chat",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "source_ids": [
+        "src:deepseek-r1-api"
+      ],
+      "evidence": "chat.deepseek.com",
+      "disclosed_at": "2025-01-20",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:deepseek-produces-api",
+      "source": "company:deepseek",
+      "target": "product:deepseek-api",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "source_ids": [
+        "src:deepseek-r1-api"
+      ],
+      "evidence": "Website & API are live now",
+      "disclosed_at": "2025-01-20",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:r1-distill-developed-by-deepseek",
+      "source": "model:deepseek-r1-distill",
+      "target": "company:deepseek",
+      "type": "DEVELOPED_BY",
+      "label": "研发主体",
+      "source_ids": [
+        "src:deepseek-r1-github"
+      ],
+      "evidence": "we have open-sourced DeepSeek-R1-Zero, DeepSeek-R1, and six dense models distilled from DeepSeek-R1 based on Llama and Qwen",
+      "disclosed_at": "2026-11-07",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:qwen3-developed-by-alibaba",
+      "source": "model:qwen3",
+      "target": "company:alibaba",
+      "type": "DEVELOPED_BY",
+      "label": "研发主体",
+      "source_ids": [
+        "src:qwen3-alibaba-cloud"
+      ],
+      "evidence": "Alibaba has launched Qwen3, the latest generation of its open-sourced large language model (LLM) family",
+      "disclosed_at": "2025-04-29",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:qwen3-235b-developed-by-alibaba",
+      "source": "model:qwen3-235b-a22b",
+      "target": "company:alibaba",
+      "type": "DEVELOPED_BY",
+      "label": "研发主体",
+      "source_ids": [
+        "src:qwen3-alibaba-cloud"
+      ],
+      "evidence": "MoE models (30B with 3B active, and 235B with 22B active)",
+      "disclosed_at": "2025-04-29",
+      "relation_group": "direct",
+      "attribution_scope": "Qwen3 series-level; official Alibaba Cloud press release 2025-04-29 lists the 30B/235B MoE variants"
+    },
+    {
+      "id": "rel:qwen3-30b-developed-by-alibaba",
+      "source": "model:qwen3-30b-a3b",
+      "target": "company:alibaba",
+      "type": "DEVELOPED_BY",
+      "label": "研发主体",
+      "source_ids": [
+        "src:qwen3-alibaba-cloud"
+      ],
+      "evidence": "MoE models (30B with 3B active, and 235B with 22B active)",
+      "disclosed_at": "2025-04-29",
+      "relation_group": "direct",
+      "attribution_scope": "Qwen3 series-level; official Alibaba Cloud press release 2025-04-29 lists the 30B/235B MoE variants"
+    },
+    {
+      "id": "rel:alibaba-produces-qwen-chat",
+      "source": "company:alibaba",
+      "target": "product:qwen-chat",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "source_ids": [
+        "src:qwen3-blog"
+      ],
+      "evidence": "Qwen Chat Web (chat.qwen.ai)",
+      "disclosed_at": "2025-04-29",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:alibaba-produces-modelscope",
+      "source": "company:alibaba",
+      "target": "product:modelscope",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "source_ids": [
+        "src:qwen3-github"
+      ],
+      "evidence": "ModelScope",
+      "disclosed_at": "2025-04-29",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:mthreads-produces-gpu",
+      "source": "company:mthreads",
+      "target": "product:mthreads-gpu",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "source_ids": [
+        "src:mthreads-qwen3"
+      ],
+      "evidence": "摩尔线程团队",
+      "disclosed_at": "2025-04-29",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:mthreads-gpu-supports-qwen3",
+      "source": "product:mthreads-gpu",
+      "target": "model:qwen3",
+      "type": "SUPPORTS_MODEL",
+      "label": "技术适配",
+      "source_ids": [
+        "src:mthreads-qwen3"
+      ],
+      "evidence": "率先完成了Qwen3全系列模型在全功能GPU上的高效支持",
+      "disclosed_at": "2025-04-29",
+      "relation_group": "adaptation"
+    },
+    {
+      "id": "rel:mthreads-gpu-belongs-to-gpu",
+      "source": "product:mthreads-gpu",
+      "target": "industry:gpu",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "source_ids": [
+        "src:mthreads-qwen3"
+      ],
+      "evidence": "全功能GPU",
+      "disclosed_at": "2025-04-29",
+      "relation_group": "industry"
+    },
+    {
+      "id": "rel:hygon-produces-dcu",
+      "source": "company:hygon",
+      "target": "product:hygon-dcu",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "source_ids": [
+        "src:hygon-adapt"
+      ],
+      "evidence": "DCU 是海光信息推出的高性能 GPGPU 架构 AI 加速卡",
+      "disclosed_at": "2025-02-04",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:hygon-listed-as-688041",
+      "source": "company:hygon",
+      "target": "stock:688041.SH",
+      "type": "LISTED_AS",
+      "label": "上市证券",
+      "source_ids": [
+        "src:sse-hygon"
+      ],
+      "evidence": "证券简称为“海光信息”，证券代码为“688041”",
+      "disclosed_at": "2022-08-12",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:hygon-belongs-to-ai-chip",
+      "source": "company:hygon",
+      "target": "industry:ai-chip",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "source_ids": [
+        "src:hygon-adapt"
+      ],
+      "evidence": "AI 加速卡",
+      "disclosed_at": "2025-02-04",
+      "relation_group": "industry"
+    },
+    {
+      "id": "rel:baidu-produces-qianfan",
+      "source": "company:baidu",
+      "target": "product:baidu-qianfan",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "source_ids": [
+        "src:baidu-date"
+      ],
+      "evidence": "百度智能云千帆平台",
+      "disclosed_at": "2025-02-03",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:baidu-listed-as-09888",
+      "source": "company:baidu",
+      "target": "stock:09888.HK",
+      "type": "LISTED_AS",
+      "label": "上市证券",
+      "source_ids": [
+        "src:hkex-baidu-prospectus"
+      ],
+      "evidence": "股份代號：9888",
+      "disclosed_at": "2021-03-23",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:baidu-belongs-to-cloud-maas",
+      "source": "company:baidu",
+      "target": "industry:cloud-maas",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "source_ids": [
+        "src:baidu-qianfan"
+      ],
+      "evidence": "模型推理托管能力",
+      "disclosed_at": "2025-02-05",
+      "relation_group": "industry"
+    },
+    {
+      "id": "rel:tencent-produces-hai",
+      "source": "company:tencent",
+      "target": "product:tencent-hai",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "source_ids": [
+        "src:tencent-date"
+      ],
+      "evidence": "腾讯云「HAI」上",
+      "disclosed_at": "2025-02-02",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:tencent-listed-as-00700",
+      "source": "company:tencent",
+      "target": "stock:00700.HK",
+      "type": "LISTED_AS",
+      "label": "上市证券",
+      "source_ids": [
+        "src:hkex-tencent-archive"
+      ],
+      "evidence": "Tencent Holdings Limited (00700)",
+      "disclosed_at": "2005-03-30",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:tencent-belongs-to-cloud-maas",
+      "source": "company:tencent",
+      "target": "industry:cloud-maas",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "source_ids": [
+        "src:tencent-date"
+      ],
+      "evidence": "腾讯云「HAI」",
+      "disclosed_at": "2025-02-02",
+      "relation_group": "industry"
+    },
+    {
+      "id": "rel:chinatelecom-produces-ctyun",
+      "source": "company:chinatelecom",
+      "target": "product:ctyun",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "source_ids": [
+        "src:ctyun-r1"
+      ],
+      "evidence": "天翼云",
+      "disclosed_at": "2025-02-05",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:chinatelecom-listed-as-00728",
+      "source": "company:chinatelecom",
+      "target": "stock:00728.HK",
+      "type": "LISTED_AS",
+      "label": "上市证券",
+      "source_ids": [
+        "src:hkex-chinatelecom"
+      ],
+      "evidence": "stock code: 728",
+      "disclosed_at": "2003-04-28",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:chinatelecom-belongs-to-cloud-maas",
+      "source": "company:chinatelecom",
+      "target": "industry:cloud-maas",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "source_ids": [
+        "src:ctyun-r1"
+      ],
+      "evidence": "天翼云",
+      "disclosed_at": "2025-02-05",
+      "relation_group": "industry"
+    },
+    {
+      "id": "rel:hygon-dcu-supports-r1",
+      "source": "product:hygon-dcu",
+      "target": "model:deepseek-r1",
+      "type": "SUPPORTS_MODEL",
+      "label": "技术适配",
+      "source_ids": [
+        "src:hygon-adapt"
+      ],
+      "evidence": "国产化适配，并正式上线",
+      "disclosed_at": "2025-02-04",
+      "relation_group": "adaptation"
+    },
+    {
+      "id": "rel:hygon-dcu-supports-qwen3",
+      "source": "product:hygon-dcu",
+      "target": "model:qwen3",
+      "type": "SUPPORTS_MODEL",
+      "label": "技术适配",
+      "source_ids": [
+        "src:hygon-qwen3"
+      ],
+      "evidence": "已完成对Qwen3全部8款模型",
+      "disclosed_at": "2025-04-29",
+      "relation_group": "adaptation"
+    },
+    {
+      "id": "rel:tencent-hai-hosts-r1",
+      "source": "product:tencent-hai",
+      "target": "model:deepseek-r1",
+      "type": "HOSTS_MODEL",
+      "label": "推理服务接入",
+      "source_ids": [
+        "src:tencent-date"
+      ],
+      "evidence": "DeepSeek-R1 大模型支持一键部署至腾讯云「HAI」上",
+      "disclosed_at": "2025-02-02",
+      "relation_group": "distribution"
+    },
+    {
+      "id": "rel:baidu-qianfan-hosts-r1",
+      "source": "product:baidu-qianfan",
+      "target": "model:deepseek-r1",
+      "type": "HOSTS_MODEL",
+      "label": "推理服务接入",
+      "source_ids": [
+        "src:baidu-date"
+      ],
+      "evidence": "DeepSeek-R1和DeepSeek-V3模型已在百度智能云千帆平台上架",
+      "disclosed_at": "2025-02-03",
+      "relation_group": "distribution"
+    },
+    {
+      "id": "rel:ctyun-hosts-r1",
+      "source": "product:ctyun",
+      "target": "model:deepseek-r1",
+      "type": "HOSTS_MODEL",
+      "label": "推理服务接入",
+      "source_ids": [
+        "src:ctyun-r1"
+      ],
+      "evidence": "天翼云成为国内最早支持 DeepSeek-R1 模型的云服务商之一",
+      "disclosed_at": "2025-02-05",
+      "relation_group": "distribution"
+    },
+    {
+      "id": "rel:qwen3-belongs-to-foundation-model",
+      "source": "model:qwen3",
+      "target": "industry:foundation-model",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "source_ids": [
+        "src:qwen3-blog"
+      ],
+      "evidence": "Qwen family of large language models",
+      "disclosed_at": "2025-04-29",
+      "relation_group": "industry"
+    },
+    {
+      "id": "rel:alibaba-belongs-to-foundation-model",
+      "source": "company:alibaba",
+      "target": "industry:foundation-model",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "source_ids": [
+        "src:qwen3-github"
+      ],
+      "evidence": "Qwen team, Alibaba Cloud",
+      "disclosed_at": "2025-04-29",
+      "relation_group": "industry"
+    },
+    {
+      "id": "rel:deepseek-belongs-to-open-source",
+      "source": "company:deepseek",
+      "target": "industry:open-source",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "source_ids": [
+        "src:deepseek-r1-api"
+      ],
+      "evidence": "6 small models fully open-sourced",
+      "disclosed_at": "2025-01-20",
+      "relation_group": "industry"
+    },
+    {
+      "id": "rel:r1-belongs-to-open-source",
+      "source": "model:deepseek-r1",
+      "target": "industry:open-source",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "source_ids": [
+        "src:deepseek-r1-api"
+      ],
+      "evidence": "MIT License",
+      "disclosed_at": "2025-01-20",
+      "relation_group": "industry"
+    },
+    {
+      "id": "rel:qwen3-belongs-to-open-source",
+      "source": "model:qwen3",
+      "target": "industry:open-source",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "source_ids": [
+        "src:qwen3-blog"
+      ],
+      "evidence": "Apache 2.0 license",
+      "disclosed_at": "2025-04-29",
+      "relation_group": "industry"
+    },
+    {
+      "id": "rel:alibaba-belongs-to-open-source",
+      "source": "company:alibaba",
+      "target": "industry:open-source",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "source_ids": [
+        "src:qwen3-blog"
+      ],
+      "evidence": "open-weighting",
+      "disclosed_at": "2025-04-29",
+      "relation_group": "industry"
+    },
+    {
+      "id": "rel:deepseek-belongs-to-ai-infrastructure",
+      "source": "company:deepseek",
+      "target": "industry:ai-infrastructure",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "source_ids": [
+        "src:deepseek-r1-api"
+      ],
+      "evidence": "Website & API are live now",
+      "disclosed_at": "2025-01-20",
+      "relation_group": "industry"
+    },
+    {
+      "id": "rel:tencent-belongs-to-ai-infrastructure",
+      "source": "company:tencent",
+      "target": "industry:ai-infrastructure",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "source_ids": [
+        "src:tencent-date"
+      ],
+      "evidence": "腾讯云「HAI」",
+      "disclosed_at": "2025-02-02",
+      "relation_group": "industry"
+    },
+    {
+      "id": "rel:r1-release-released-model",
+      "source": "event:deepseek-r1-release",
+      "target": "model:deepseek-r1",
+      "type": "RELEASED_MODEL",
+      "label": "发布模型",
+      "source_ids": [
+        "src:deepseek-r1-api"
+      ],
+      "evidence": "DeepSeek-R1 Release",
+      "disclosed_at": "2025-01-20",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:r1-release-concerns-deepseek",
+      "source": "event:deepseek-r1-release",
+      "target": "company:deepseek",
+      "type": "CONCERNS",
+      "label": "事件涉及",
+      "source_ids": [
+        "src:deepseek-r1-api"
+      ],
+      "evidence": "DeepSeek-R1 Release",
+      "disclosed_at": "2025-01-20",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:hygon-adapt-concerns-r1",
+      "source": "event:hygon-r1-adapt",
+      "target": "model:deepseek-r1",
+      "type": "CONCERNS",
+      "label": "事件涉及",
+      "source_ids": [
+        "src:hygon-adapt"
+      ],
+      "evidence": "DeepSeek V3 和 R1 模型",
+      "disclosed_at": "2025-02-04",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:hygon-adapt-concerns-dcu",
+      "source": "event:hygon-r1-adapt",
+      "target": "product:hygon-dcu",
+      "type": "CONCERNS",
+      "label": "事件涉及",
+      "source_ids": [
+        "src:hygon-adapt"
+      ],
+      "evidence": "海光 DCU",
+      "disclosed_at": "2025-02-04",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:hygon-adapt-concerns-hygon",
+      "source": "event:hygon-r1-adapt",
+      "target": "company:hygon",
+      "type": "CONCERNS",
+      "label": "事件涉及",
+      "source_ids": [
+        "src:hygon-adapt"
+      ],
+      "evidence": "海光信息技术团队",
+      "disclosed_at": "2025-02-04",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:tencent-hai-concerns-r1",
+      "source": "event:tencent-r1-hai",
+      "target": "model:deepseek-r1",
+      "type": "CONCERNS",
+      "label": "事件涉及",
+      "source_ids": [
+        "src:tencent-date"
+      ],
+      "evidence": "DeepSeek-R1 大模型",
+      "disclosed_at": "2025-02-02",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:tencent-hai-concerns-product",
+      "source": "event:tencent-r1-hai",
+      "target": "product:tencent-hai",
+      "type": "CONCERNS",
+      "label": "事件涉及",
+      "source_ids": [
+        "src:tencent-date"
+      ],
+      "evidence": "腾讯云「HAI」",
+      "disclosed_at": "2025-02-02",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:tencent-hai-concerns-company",
+      "source": "event:tencent-r1-hai",
+      "target": "company:tencent",
+      "type": "CONCERNS",
+      "label": "事件涉及",
+      "source_ids": [
+        "src:tencent-date"
+      ],
+      "evidence": "深圳市腾讯计算机系统有限公司",
+      "disclosed_at": "2025-02-02",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:baidu-qianfan-concerns-r1",
+      "source": "event:baidu-r1-qianfan",
+      "target": "model:deepseek-r1",
+      "type": "CONCERNS",
+      "label": "事件涉及",
+      "source_ids": [
+        "src:baidu-qianfan",
+        "src:baidu-date"
+      ],
+      "evidence": "DeepSeek-R1和 DeepSeek-V3模型",
+      "disclosed_at": "2025-02-03",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:baidu-qianfan-concerns-product",
+      "source": "event:baidu-r1-qianfan",
+      "target": "product:baidu-qianfan",
+      "type": "CONCERNS",
+      "label": "事件涉及",
+      "source_ids": [
+        "src:baidu-qianfan",
+        "src:baidu-date"
+      ],
+      "evidence": "百度智能云千帆平台",
+      "disclosed_at": "2025-02-03",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:baidu-qianfan-concerns-company",
+      "source": "event:baidu-r1-qianfan",
+      "target": "company:baidu",
+      "type": "CONCERNS",
+      "label": "事件涉及",
+      "source_ids": [
+        "src:baidu-qianfan",
+        "src:baidu-date"
+      ],
+      "evidence": "百度智能云",
+      "disclosed_at": "2025-02-03",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:ctyun-concerns-r1",
+      "source": "event:ctyun-r1",
+      "target": "model:deepseek-r1",
+      "type": "CONCERNS",
+      "label": "事件涉及",
+      "source_ids": [
+        "src:ctyun-r1"
+      ],
+      "evidence": "DeepSeek-R1 模型",
+      "disclosed_at": "2025-02-05",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:ctyun-concerns-product",
+      "source": "event:ctyun-r1",
+      "target": "product:ctyun",
+      "type": "CONCERNS",
+      "label": "事件涉及",
+      "source_ids": [
+        "src:ctyun-r1"
+      ],
+      "evidence": "天翼云",
+      "disclosed_at": "2025-02-05",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:ctyun-concerns-company",
+      "source": "event:ctyun-r1",
+      "target": "company:chinatelecom",
+      "type": "CONCERNS",
+      "label": "事件涉及",
+      "source_ids": [
+        "src:ctyun-r1"
+      ],
+      "evidence": "中国电信今日宣布",
+      "disclosed_at": "2025-02-05",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:qwen3-release-released-model",
+      "source": "event:qwen3-release",
+      "target": "model:qwen3",
+      "type": "RELEASED_MODEL",
+      "label": "发布模型",
+      "source_ids": [
+        "src:qwen3-github"
+      ],
+      "evidence": "We released the Qwen3 series",
+      "disclosed_at": "2025-04-29",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:qwen3-release-concerns-alibaba",
+      "source": "event:qwen3-release",
+      "target": "company:alibaba",
+      "type": "CONCERNS",
+      "label": "事件涉及",
+      "source_ids": [
+        "src:qwen3-github"
+      ],
+      "evidence": "Qwen team, Alibaba Cloud",
+      "disclosed_at": "2025-04-29",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:qwen3-mtt-concerns-model",
+      "source": "event:qwen3-mtt-adapt",
+      "target": "model:qwen3",
+      "type": "CONCERNS",
+      "label": "事件涉及",
+      "source_ids": [
+        "src:mthreads-qwen3"
+      ],
+      "evidence": "Qwen3全系列模型",
+      "disclosed_at": "2025-04-29",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:qwen3-mtt-concerns-product",
+      "source": "event:qwen3-mtt-adapt",
+      "target": "product:mthreads-gpu",
+      "type": "CONCERNS",
+      "label": "事件涉及",
+      "source_ids": [
+        "src:mthreads-qwen3"
+      ],
+      "evidence": "全功能GPU",
+      "disclosed_at": "2025-04-29",
+      "relation_group": "direct"
+    },
+    {
+      "id": "rel:qwen3-mtt-concerns-company",
+      "source": "event:qwen3-mtt-adapt",
+      "target": "company:mthreads",
+      "type": "CONCERNS",
+      "label": "事件涉及",
+      "source_ids": [
+        "src:mthreads-qwen3"
+      ],
+      "evidence": "摩尔线程团队",
+      "disclosed_at": "2025-04-29",
+      "relation_group": "direct"
+    }
+  ],
+  "events": [
+    {
+      "id": "event:glm5-release",
+      "title": "GLM-5 发布",
+      "date": "2026-02-12",
+      "event_at": "2026-02-12",
+      "disclosed_at": "2026-02-12",
+      "type": "MODEL_RELEASE",
+      "summary": "智谱发布 744B 总参数的开源基座模型 GLM-5，面向复杂系统工程与长程 Agent 任务，重点提升编程、工具调用与端到端交付能力。",
+      "entity_id": "model:glm5",
+      "source_ids": [
+        "src:zai-glm5",
+        "src:bigmodel-glm5",
+        "src:mthreads-glm5",
+        "src:github-glm5"
+      ],
+      "properties": {
+        "timezone": "Asia/Shanghai",
+        "date_note": "事件日期采用已公开官方新闻的 2026-02-12 口径；具体披露时刻未核验。"
+      }
+    },
+    {
+      "id": "event:minimax-m25-release",
+      "title": "MiniMax-M2.5 发布",
+      "date": "2026-02-12",
+      "event_at": "2026-02-12",
+      "disclosed_at": "2026-02-12",
+      "type": "MODEL_RELEASE",
+      "summary": "MiniMax 发布 M2.5，官方页面标注 2026.2.12；SWE-Bench Verified 80.2%，并强调低成本 Agent 推理。",
+      "entity_id": "model:minimax-m25",
+      "source_ids": [
+        "src:minimax-m25",
+        "src:minimax-m25-cn"
+      ],
+      "properties": {
+        "timezone": "Asia/Shanghai"
+      }
+    },
+    {
+      "id": "event:mtt-minimax-adapt",
+      "title": "MTT S5000 完成 MiniMax-M2.5 Day-0 适配",
+      "date": "2026-02-14",
+      "event_at": "2026-02-14",
+      "disclosed_at": "2026-02-14",
+      "type": "PRODUCT_ADAPTATION",
+      "summary": "摩尔线程在 MTT S5000 上完成 MiniMax-M2.5 的 Day-0 极速适配，基于 SGLang-MUSA 与原生 FP8。",
+      "entity_id": "model:minimax-m25",
+      "source_ids": [
+        "src:mthreads-minimax"
+      ],
+      "properties": {
+        "timezone": "Asia/Shanghai"
+      }
+    },
+    {
+      "id": "event:deepseek-r1-release",
+      "title": "DeepSeek-R1 发布",
+      "date": "2025-01-20",
+      "event_at": "2025-01-20",
+      "disclosed_at": "2025-01-20",
+      "type": "MODEL_RELEASE",
+      "summary": "DeepSeek 发布开源推理模型 DeepSeek-R1，MIT License，API 以 deepseek-reasoner 上线，并开源 6 个蒸馏模型。",
+      "entity_id": "model:deepseek-r1",
+      "source_ids": [
+        "src:deepseek-r1-api"
+      ],
+      "properties": {
+        "timezone": "Asia/Shanghai"
+      }
+    },
+    {
+      "id": "event:hygon-r1-adapt",
+      "title": "海光 DCU 完成 DeepSeek-R1 适配",
+      "date": "2025-02-04",
+      "event_at": "2025-02-04",
+      "disclosed_at": "2025-02-04",
+      "type": "PRODUCT_ADAPTATION",
+      "summary": "海光信息团队完成 DeepSeek V3/R1 与海光 DCU 的国产化适配并正式上线。",
+      "entity_id": "model:deepseek-r1",
+      "source_ids": [
+        "src:hygon-adapt"
+      ],
+      "properties": {
+        "timezone": "Asia/Shanghai",
+        "date_note": "官方团队前一日发文，IT之家 2025-02-04 报道；保守采用 2025-02-04"
+      }
+    },
+    {
+      "id": "event:tencent-r1-hai",
+      "title": "腾讯云 HAI 支持 DeepSeek-R1 一键部署",
+      "date": "2025-02-02",
+      "event_at": "2025-02-02",
+      "disclosed_at": "2025-02-02",
+      "type": "CLOUD_ACCESS",
+      "summary": "腾讯云宣布 DeepSeek-R1 支持一键部署至 HAI，开发者可在 3 分钟内接入调用。",
+      "entity_id": "model:deepseek-r1",
+      "source_ids": [
+        "src:tencent-hai",
+        "src:tencent-date"
+      ],
+      "properties": {
+        "timezone": "Asia/Shanghai"
+      }
+    },
+    {
+      "id": "event:baidu-r1-qianfan",
+      "title": "百度智能云千帆上架 DeepSeek-R1",
+      "date": "2025-02-03",
+      "event_at": "2025-02-03",
+      "disclosed_at": "2025-02-03",
+      "type": "CLOUD_ACCESS",
+      "summary": "百度智能云千帆平台上架 DeepSeek-R1 与 DeepSeek-V3，并提供限时免费服务。",
+      "entity_id": "model:deepseek-r1",
+      "source_ids": [
+        "src:baidu-qianfan",
+        "src:baidu-date"
+      ],
+      "properties": {
+        "timezone": "Asia/Shanghai"
+      }
+    },
+    {
+      "id": "event:ctyun-r1",
+      "title": "天翼云上架 DeepSeek-R1",
+      "date": "2025-02-05",
+      "event_at": "2025-02-05",
+      "disclosed_at": "2025-02-05",
+      "type": "CLOUD_ACCESS",
+      "summary": "中国电信宣布天翼云成为国内最早支持 DeepSeek-R1 的云服务商之一。",
+      "entity_id": "model:deepseek-r1",
+      "source_ids": [
+        "src:ctyun-r1"
+      ],
+      "properties": {
+        "timezone": "Asia/Shanghai"
+      }
+    },
+    {
+      "id": "event:qwen3-release",
+      "title": "Qwen3 发布",
+      "date": "2025-04-29",
+      "event_at": "2025-04-29",
+      "disclosed_at": "2025-04-29",
+      "type": "MODEL_RELEASE",
+      "summary": "阿里巴巴通义千问团队发布并开源 Qwen3 系列，含 235B-A22B、30B-A3B 等 8 款混合推理模型。",
+      "entity_id": "model:qwen3",
+      "source_ids": [
+        "src:qwen3-blog",
+        "src:qwen3-github"
+      ],
+      "properties": {
+        "timezone": "Asia/Shanghai",
+        "date_note": "GitHub 发布记录为 2025.04.29；博客页面未固定日期"
+      }
+    },
+    {
+      "id": "event:qwen3-mtt-adapt",
+      "title": "摩尔线程全功能 GPU 率先支持 Qwen3 全系列",
+      "date": "2025-04-29",
+      "event_at": "2025-04-29",
+      "disclosed_at": "2025-04-29",
+      "type": "PRODUCT_ADAPTATION",
+      "summary": "摩尔线程在 Qwen3 发布当天完成全系列模型在全功能 GPU 上的高效支持；原文未指名具体 SKU。",
+      "entity_id": "product:mthreads-gpu",
+      "source_ids": [
+        "src:mthreads-qwen3"
+      ],
+      "properties": {
+        "timezone": "Asia/Shanghai"
+      }
+    }
+  ]
+}

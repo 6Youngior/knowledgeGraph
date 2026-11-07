@@ -1,0 +1,48 @@
+{
+  "created_at": "2026-11-07T02:16:52.551041+00:00",
+  "file": "visualization/FinGraph-demo.mp4",
+  "sha256": "83e5f10ee642b2e7eb2384333f5900083c04e9343c310c280d4cdee53c69821c",
+  "duration_seconds": 148.28,
+  "width": 1920,
+  "height": 1080,
+  "fps": "25/1",
+  "codec": "h264",
+  "pixel_format": "yuv420p",
+  "audio_tracks": 0,
+  "checks": {
+    "duration_between_2_and_3_minutes": true,
+    "full_hd_16_9": true,
+    "portable_h264": true,
+    "webm_also_present": true
+  },
+  "mechanical_passed": true,
+  "reviewed_frame_times": [
+    5,
+    20,
+    32,
+    45,
+    49,
+    56,
+    68,
+    80,
+    92,
+    103,
+    109,
+    115,
+    120,
+    126,
+    138,
+    146
+  ],
+  "visual_review": "completed",
+  "passed": true,
+  "full_decode_passed": true,
+  "faststart_verified": true,
+  "reviewed_at": "2026-11-07T02:19:00.663161+00:00",
+  "webm_sha256": "9c85e08b371f6796255d2dc1ed813af77cb7d3dc200189f5faf4f042d6a66ae5",
+  "notes": [
+    "Reviewed actual UI chapters, original quotes, explicit replay and incremental update.",
+    "Checked newly linked 688795 path, market panel, brief download and historical dates.",
+    "Plain captions describe operations; no synthesized product screens."
+  ]
+}

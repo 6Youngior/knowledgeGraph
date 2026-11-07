@@ -1,0 +1,21 @@
+\begin{frame}[t]{本体与关系设计}\relax
+\Intro{公司与证券分开表示；模型通过研发、产品适配或云服务关系连接到公司。}
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \node[entity,fill=PaleBlue] (e) at (1.4,2.3) {事件\\{\fontsize{9.5}{11}\selectfont Event}};
+  \node[entity,fill=PaleBlue] (m) at (5.3,2.3) {模型\\{\fontsize{9.5}{11}\selectfont Model}};
+  \node[entity,fill=PaleTeal] (c) at (9.2,2.3) {公司\\{\fontsize{9.5}{11}\selectfont Company}};
+  \node[entity,fill=PaleGold] (s) at (13.1,2.3) {证券\\{\fontsize{9.5}{11}\selectfont Stock}};
+  \node[entity,fill=PaleTeal] (p) at (6.7,.25) {产品\\{\fontsize{9.5}{11}\selectfont Product}};
+  \node[entity] (i) at (11.7,.25) {行业\\{\fontsize{9.5}{11}\selectfont Industry}};
+  \draw[rel] (e)--node[edge label,above=7mm]{发布／涉及}(m);
+  \draw[rel] (m)--node[edge label,above=7mm]{研发主体}(c);
+  \draw[rel] (c)--node[edge label,above=7mm]{上市证券}(s);
+  \draw[rel] (c.south west)--node[edge label,right,pos=.5]{提供产品}(p.north east);
+  \draw[rel] (p.north west)--node[edge label,left,pos=.5]{适配／云接入}(m.south);
+  \draw[rel,draw=Muted] (c.south east)--node[edge label,right]{所属行业}(i.north west);
+\end{tikzpicture}
+\end{center}
+\Gap
+每条关系记录原文片段、来源链接与公开日期；名称和别名统一到实体 ID。
+\end{frame}

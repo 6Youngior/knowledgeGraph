@@ -4,6 +4,12 @@
 
 当前研究 AI 产业事件与上市公司的关联。系统把模型发布、硬件适配、云服务接入、公司及上市资料组织为知识图谱，用于查询关联证券、查看原文、按公开日期回看关系，并比较事件后的行情。
 
+## 演示
+
+关系查询、适配公告入图、历史日期筛选及研究简报导出，时长 2 分 28 秒。
+
+https://github.com/user-attachments/assets/5c69311d-610b-43f3-9f69-233c86efd28e
+
 ## 数据范围
 
 | 内容 | 当前范围 |
@@ -51,7 +57,7 @@ npm run build
 - [汇报 PDF](docs/presentation/FinGraph-期中汇报.pdf)
 - [Beamer 源码与编译说明](docs/presentation/README.md)
 - [讲稿与现场操作顺序](docs/presentation/TALK.md)
-- [演示录像](visualization/FinGraph-demo.mp4)（约 2 分 29 秒）
+- [下载演示录像](visualization/FinGraph-demo.mp4)
 
 汇报依次介绍选题、数据范围、图谱构建、阶段结果与后续计划。使用复旦大学开源 Beamer 主题，主题及依赖来源见 [ATTRIBUTIONS.md](ATTRIBUTIONS.md)。
 

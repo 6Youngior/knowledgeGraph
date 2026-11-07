@@ -1,19 +1,20 @@
-\begin{frame}{实体对齐与多源融合}\relax
-适配公告没有证券代码。将适配关系连接到已有的产品归属和上市资料，得到摩尔线程的证券路径。
-\par\vspace{2mm}
+\begin{frame}{多源融合实例：从适配公告到证券}\relax
+{\fontsize{11.3}{14.5}\selectfont
+摩尔线程公告指出，MTT S5000 完成了对 GLM-5 的适配\Cite{mthreads}。公告中的技术关系需与上市资料连接，才能得到对应证券。}
+\Gap
 {\fontsize{11}{14}\selectfont
-\begin{tabularx}{\linewidth}{@{}p{2.6cm} X p{2.2cm}@{}}
+\begin{tabularx}{\linewidth}{@{}p{4.2cm} X@{}}
 \toprule
-资料 & 记录的关系 & 处理方式\\
+资料 & 支持的关系\\
 \midrule
-适配公告 & MTT S5000 $\xrightarrow{\text{适配}}$ GLM-5 & 新增关系\\
-同一公告 & 摩尔线程 $\xrightarrow{\text{提供}}$ MTT S5000 & 已有关系\\
-上交所公告 & 摩尔线程 $\xrightarrow{\text{上市}}$ 688795.SH & 已有关系\\
+摩尔线程适配公告\Cite{mthreads} & MTT S5000 $\xrightarrow{\text{适配}}$ GLM-5\\
+同一公告的产品介绍 & 摩尔线程 $\xrightarrow{\text{提供}}$ MTT S5000\\
+上交所上市公告\Cite{sse-mthreads} & 摩尔线程 $\xrightarrow{\text{上市}}$ 688795.SH\\
 \bottomrule
 \end{tabularx}}
 \par\vspace{2mm}
-\begin{block}{实体匹配与关系去重}
-在同类实体中，按名称、别名或代码匹配已有记录。\par
-相同的起点、关系类型和终点只记录一次；各来源的原句和日期分别保存。
+\begin{block}{融合后的查询路径}
+GLM-5 $\leftarrow$ MTT S5000 $\leftarrow$ 摩尔线程 $\rightarrow$ 688795.SH\par
+以统一实体连接不同来源，保留每条关系的原文与公开日期。
 \end{block}
 \end{frame}

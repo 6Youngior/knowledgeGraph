@@ -1,27 +1,22 @@
-\begin{frame}{选题与研究任务}\relax
-本项目选题为“股票量化情报”，当前覆盖大模型行业相关股票。
-\par\vspace{2mm}
-\begin{columns}[c,onlytextwidth]
-\column{.46\textwidth}
-\begin{block}{研究任务}
-从产业事件出发，按研究日期查询：
+\begin{frame}{选题与研究目标}\relax
+\Intro{选题为“股票量化情报”，当前数据覆盖大模型行业相关股票。}
+\begin{columns}[T,onlytextwidth]
+\column{.48\textwidth}
+\Head{知识组织中的问题}
 \begin{itemize}
-\item 公司及其产业角色；
-\item 事件到证券的关系路径；
-\item 每条关系的原文、来源和日期。
+\item 技术公告中的模型、产品与证券代码分散在不同资料中。
+\item 业务单位与上市集团名称不同，直接匹配容易混淆主体。
+\item 适配与接入资料持续增加，当前关系不代表历史时点已知关系。
 \end{itemize}
-\end{block}
-\column{.50\textwidth}
-\centering
-\begin{tikzpicture}[x=1cm,y=1cm,
-  b/.style={entity,text width=2.5cm,minimum height=.7cm,font=\fontsize{11}{13}\selectfont}]
-  \node[b,fill=PaleBlue] (m) at (1.1,2) {GLM-5};
-  \node[b,fill=PaleTeal] (p) at (4.9,2) {MTT S5000};
-  \node[b,fill=PaleTeal] (c) at (4.9,.25) {摩尔线程};
-  \node[b,fill=PaleGold] (s) at (1.1,.25) {688795.SH};
-  \draw[rel,draw=Teal] (p)--node[edge label,above=4mm]{技术适配}(m);
-  \draw[rel] (c)--node[edge label,right]{提供产品}(p);
-  \draw[rel] (c)--node[edge label,above=4mm]{上市证券}(s);
-\end{tikzpicture}
+\column{.48\textwidth}
+\Head{本项目的目标}
+用知识图谱统一表示实体、关系及其依据\Cite{hogan2021}。
+\Gap
+给定产业事件与研究日期，查询：
+\begin{itemize}
+\item 关联证券及产业角色；
+\item 事件到证券的关系路径；
+\item 支持路径的原文与公开日期。
+\end{itemize}
 \end{columns}
 \end{frame}

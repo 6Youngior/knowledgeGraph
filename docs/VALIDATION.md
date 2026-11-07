@@ -11,7 +11,7 @@
 | 实时抽取 | 实际模型调用的原始输出和耗时 | `results/live_extraction.json` |
 | 抽取预实验 | 6 段文本；5 条目标关系精确匹配 4 条，1 段共同提及负例未生成关系 | `results/extraction_pilot.json` |
 | 浏览器操作 | 24 项：事件、日期、下载、入图与重复导入；窗口适配、连线与慢响应下的画面保持 | `results/browser_validation.json` |
-| 汇报 PDF | 18 页，16:9；检查文字位置、字体、图表及逐页内容 | `results/pdf_validation.json` |
+| 汇报 PDF | 18 页，16:9；正文 13 页介绍选题、当前进展和后续计划，另 5 页为参考资料 | `results/pdf_validation.json` |
 | 演示录像 | 1920×1080，H.264；元数据、解码与画面检查 | `results/video_validation.json` |
 
 ## 复查

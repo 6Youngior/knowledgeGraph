@@ -1,22 +1,22 @@
-\begin{frame}{资料来源与数据整理}\relax
-文本资料用于构建公司、模型与产品关系；行情按证券代码和日期关联。
+\begin{frame}{数据整理进展}\relax
+技术资料与上市文件通过产品、公司和证券连接，行情按证券代码和日期关联。
 \par\vspace{2mm}
 \begin{columns}[T,onlytextwidth]
 \column{.48\textwidth}
-\begin{block}{41 项来源记录}
+\begin{block}{产业与公司资料：41 项}
 官方、公司与交易所资料 33 项。\par
 媒体报道 8 项。\par\vspace{1mm}
-记录原文摘录、链接、发布方与日期。
+包括模型发布、产品文档、适配公告与上市文件\Cite{deepseek-r1,qwen3,glm5}。
 \end{block}
 \par\vspace{1mm}
-人工核对后，初始图谱包含：\par
+经人工整理与核对，初始图谱包含：\par
 \textbf{\GraphNodeCount{} 个实体、\GraphEdgeCount{} 条关系}。
 \column{.48\textwidth}
-\begin{block}{10 条日线序列}
+\begin{block}{市场数据：10 条序列}
 8 只股票及恒生指数、科创50，共 2448 行。\par\vspace{1mm}
 覆盖 2024-12-02 至 2026-03-31；新上市股票从上市后开始。
 \end{block}
 \par\vspace{1mm}
-保存腾讯财经原始响应与 CSV，支持离线重建行情和事件窗口。
+日线来自腾讯财经，用于关联证券的同期行情对照。
 \end{columns}
 \end{frame}

@@ -1,23 +1,34 @@
-\begin{frame}{资料导入前后的查询结果}\relax
-\Intro{初始图谱暂不包含 GLM-5 的适配事实，本页比较补入该事实前后的结果。}
+\begin{frame}{案例观察：资料更新与历史查询}\relax
+\Intro{补充资料与改变查询日期，都会改变图谱能够支持的证券关联。}
 \begin{columns}[T,onlytextwidth]
-\column{.47\textwidth}
-\Head{导入前：2 只证券}
-智谱、阿里巴巴。
-\Gap
-\Head{导入后：3 只证券}
-增加摩尔线程，路径经由 MTT S5000 的适配关系。
 \column{.48\textwidth}
-{\fontsize{11.7}{15}\selectfont
-\begin{tabularx}{\linewidth}{@{}X r@{}}
+\Head{GLM-5：补入适配事实}
+从初始图谱留出 MTT S5000 的适配事实，用于检查更新结果。
+\Gap
+{\fontsize{11.4}{14.5}\selectfont
+\begin{tabularx}{\linewidth}{@{}l X@{}}
 \toprule
-图谱记录 & 变化\\
+状态 & 关联证券\\
 \midrule
-关联证券数 & 2 $\rightarrow$ 3\\
-新增节点 & 1 个适配事件\\
-新增关系 & 3 条\\
-重复导入 & 0 个新增事实\\
+补入前：2 只 & 智谱、阿里巴巴\\
+补入后：3 只 & 新增摩尔线程\\
 \bottomrule
 \end{tabularx}}
+\Gap
+增加 1 个事件、3 条关系；重复输入不增加实体和关系。
+\column{.48\textwidth}
+\Head{DeepSeek-R1：按公开日期查询}
+{\fontsize{11.4}{14.5}\selectfont
+\begin{tabularx}{\linewidth}{@{}X r@{}}
+\toprule
+查询截止日 & 证券数\\
+\midrule
+2025-01-20 & 0\\
+2025-02-03 & 2\\
+2025-02-05 & 4\\
+\bottomrule
+\end{tabularx}}
+\Gap
+后续接入与适配资料逐步形成完整路径；每条路径均按来源公开日期筛选。
 \end{columns}
 \end{frame}

@@ -1,9 +1,9 @@
 {
   "passed": true,
-  "created_at": "2026-11-07T07:37:07.445105+00:00",
+  "created_at": "2026-11-07T08:12:05.167955+00:00",
   "issues": [],
   "pdf": "docs\\presentation\\FinGraph-期中汇报.pdf",
-  "pdf_sha256": "10e0f20dc2718fc961829846e647e885501054994853480cc7abe0534774a501",
+  "pdf_sha256": "6110be787743fd3226f39f0eb6fe6dc0869e7722a94069de37a8749664391c90",
   "theme_sha256": "493e458ec6cd955da6567c613374d2cc1faf25c51e7e21a1e5a959ddeabfa3d3",
   "theme_license": "Apache-2.0",
   "page_count": 18,
@@ -12,7 +12,7 @@
       "page": 1,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 98,
+      "text_chars": 95,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
@@ -22,7 +22,7 @@
       "page": 2,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 187,
+      "text_chars": 255,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
@@ -32,7 +32,7 @@
       "page": 3,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 275,
+      "text_chars": 272,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
@@ -42,7 +42,7 @@
       "page": 4,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 274,
+      "text_chars": 290,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
@@ -52,38 +52,38 @@
       "page": 5,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 254,
-      "images": 0,
-      "outside_text": [],
-      "footer_collisions": [],
-      "median_content_font_pt": 11.96
-    },
-    {
-      "page": 6,
-      "width_pt": 453.5400085449219,
-      "height_pt": 255.1199951171875,
-      "text_chars": 181,
+      "text_chars": 180,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
       "median_content_font_pt": 9.96
     },
     {
-      "page": 7,
+      "page": 6,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 279,
+      "text_chars": 277,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
-      "median_content_font_pt": 11.46
+      "median_content_font_pt": 11.96
+    },
+    {
+      "page": 7,
+      "width_pt": 453.5400085449219,
+      "height_pt": 255.1199951171875,
+      "text_chars": 296,
+      "images": 0,
+      "outside_text": [],
+      "footer_collisions": [],
+      "median_content_font_pt": 11.26
     },
     {
       "page": 8,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 276,
-      "images": 0,
+      "text_chars": 86,
+      "images": 1,
       "outside_text": [],
       "footer_collisions": [],
       "median_content_font_pt": 11.96
@@ -92,18 +92,18 @@
       "page": 9,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 191,
+      "text_chars": 304,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
-      "median_content_font_pt": 11.46
+      "median_content_font_pt": 11.96
     },
     {
       "page": 10,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 73,
-      "images": 1,
+      "text_chars": 262,
+      "images": 0,
       "outside_text": [],
       "footer_collisions": [],
       "median_content_font_pt": 11.96
@@ -112,64 +112,54 @@
       "page": 11,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 204,
+      "text_chars": 265,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
-      "median_content_font_pt": 11.96
+      "median_content_font_pt": 11.16
     },
     {
       "page": 12,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 274,
+      "text_chars": 276,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
-      "median_content_font_pt": 11.96
+      "median_content_font_pt": 11.36
     },
     {
       "page": 13,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 263,
+      "text_chars": 226,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
-      "median_content_font_pt": 11.96
+      "median_content_font_pt": 11.16
     },
     {
       "page": 14,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 238,
-      "images": 0,
-      "outside_text": [],
-      "footer_collisions": [],
-      "median_content_font_pt": 9.96
-    },
-    {
-      "page": 15,
-      "width_pt": 453.5400085449219,
-      "height_pt": 255.1199951171875,
-      "text_chars": 229,
-      "images": 0,
-      "outside_text": [],
-      "footer_collisions": [],
-      "median_content_font_pt": 11.26
-    },
-    {
-      "page": 16,
-      "width_pt": 453.5400085449219,
-      "height_pt": 255.1199951171875,
-      "text_chars": 362,
+      "text_chars": 359,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
       "median_content_font_pt": 10.36
     },
     {
-      "page": 17,
+      "page": 15,
+      "width_pt": 453.5400085449219,
+      "height_pt": 255.1199951171875,
+      "text_chars": 222,
+      "images": 0,
+      "outside_text": [],
+      "footer_collisions": [],
+      "median_content_font_pt": 9.96
+    },
+    {
+      "page": 16,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
       "text_chars": 278,
@@ -179,21 +169,31 @@
       "median_content_font_pt": 11.96
     },
     {
-      "page": 18,
+      "page": 17,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 280,
+      "text_chars": 357,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
-      "median_content_font_pt": 11.26
+      "median_content_font_pt": 11.16
+    },
+    {
+      "page": 18,
+      "width_pt": 453.5400085449219,
+      "height_pt": 255.1199951171875,
+      "text_chars": 223,
+      "images": 0,
+      "outside_text": [],
+      "footer_collisions": [],
+      "median_content_font_pt": 11.16
     }
   ],
   "latex_errors_or_overflows": [],
   "scope": "Mechanical PDF checks only. Content depth and visual quality require a separate rendered-page review.",
   "visual_review": {
     "status": "completed",
-    "reviewed_at": "2026-11-07T07:37:34.550231+00:00",
+    "reviewed_at": "2026-11-07T08:14:12.883314+00:00",
     "rendered_pages": [
       1,
       2,
@@ -217,43 +217,55 @@
     "notes": [
       "Checked the native FDU cover, title bars, section navigation, footer and watermark.",
       "Uses original FDU templates and standard Beamer blocks; vendored theme file remains unchanged.",
-      "Reviewed all 18 rendered pages, enlarged task/extraction/fusion diagrams and source tables.",
-      "Checked actual source roles, four themes and eight securities; distinction between new and existing facts.",
-      "Checked table wraps, arrow direction, source attribution and body/footer spacing.",
-      "Removed repeated bottom captions; citations sit beside quotations and limitations remain in the relevant prose or speaker notes.",
-      "Reviewed wording and current data coverage; calculation methods and dates use direct descriptions."
+      "Reviewed the 13 main pages as a midterm progress report: topic and scope, work completed, problems and next steps.",
+      "Checked that the six-text trial and functional case observations are distinct from the planned independent evaluation.",
+      "Checked that the proposed 60-text dataset and approximately 20 event-date questions are presented as future work.",
+      "Reviewed the five supplementary pages: relation definitions, market illustration, calculation methods and bibliographic references.",
+      "Checked visible citation numbers, primary-source titles, diagram direction, table wraps and spacing.",
+      "Slides contain no repository file instructions or repeated bottom annotations."
     ],
     "gray_body_note_spans": 0
   },
   "content_sections": {
-    "topic": [
-      2
+    "topic_and_scope": [
+      2,
+      3
     ],
-    "data_scope_and_sources": [
-      3,
-      4
-    ],
-    "construction": [
+    "current_progress": [
+      4,
       5,
       6,
       7,
       8,
-      9
-    ],
-    "prototype_and_results": [
-      10,
-      11,
-      12,
-      13,
-      14
+      9,
+      10
     ],
     "future_work": [
-      15
+      11,
+      12,
+      13
     ],
-    "definitions_and_sources": [
+    "supplementary_material": [
+      14,
+      15,
       16,
       17,
       18
     ]
-  }
+  },
+  "main_presentation_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ]
 }

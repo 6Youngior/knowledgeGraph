@@ -1,47 +1,12 @@
-\begin{frame}{当前问题与下一步工作}\relax
-{\fontsize{11.2}{14.5}\selectfont
-\begin{tabularx}{\linewidth}{@{}p{4.5cm} X@{}}
+\begin{frame}{后续工作}\relax
+{\fontsize{11.8}{15.5}\selectfont
+\begin{tabularx}{\linewidth}{@{}p{2.7cm} X p{4.4cm}@{}}
 \toprule
-当前观察到的问题 & 下一步工作\\
+方向 & 主要工作 & 验证方式\\
 \midrule
-企业主体：业务单位与上市集团混用 & 分别表示业务单位、子公司与上市集团，增加组织关系，保留原始名称。\\
-抽取质量：只有 6 段定向试验 & 建立独立标注集，分关系类型统计误抽与漏抽，保留共同提及负例。\\
-资料时间：部分文档缺少发布日期 & 补查原始公告；无法核实的日期单列，检查后续资料是否被误用。\\
-连续更新：仅完成固定补入案例 & 按公开日期分批导入，与一次性构建对照，检查事实合并与重复输入。\\
-\bottomrule
-\end{tabularx}}
-\end{frame}
-
-\begin{frame}{下一阶段的评估设计}\relax
-\begin{columns}[T,onlytextwidth]
-\column{.48\textwidth}
-\Head{标注数据与划分}
-{\fontsize{11.4}{14.8}\selectfont
-计划整理约 60 段文本，覆盖研发、产品归属、硬件适配、云接入四类关系，以及仅共同提及的负例。
-\Gap
-按来源文档划分 20 段调试与 40 段测试，同一来源不跨集合。
-\Gap
-标注实体、关系与原句，交叉复核公开日期和组织主体。}
-\column{.48\textwidth}
-\Head{评价方法}
-{\fontsize{11.4}{14.8}\selectfont
-\textbf{关系抽取：}按精确三元组计算 P/R/F1，分类型报告误抽和漏抽。
-\Gap
-\textbf{实体归一：}比较名称／别名规则与加入组织关系后的映射正确率。
-\Gap
-\textbf{关联查询：}约 20 组事件--日期问题，核对证券集合、路径依据及后续资料误用。}
-\end{columns}
-\end{frame}
-
-\begin{frame}{后续工作安排}\relax
-{\fontsize{11.2}{14.5}\selectfont
-\begin{tabularx}{\linewidth}{@{}p{2.2cm} X p{4cm}@{}}
-\toprule
-阶段 & 主要工作 & 形成的结果\\
-\midrule
-下一阶段 & 补充文本与组织关系，交叉复核标注；按来源固定调试集与测试集。 & 约 60 段标注语料、组织与证券关系表\\
-随后 & 评估关系抽取与实体归一，记录分类型错误，并检查时间筛选。 & 分类型指标、映射误差与时间筛选结果\\
-期末前 & 按公开日期分三批导入，与一次性构建对照；重复输入同批材料。 & 更新一致性与重复事实检查、研究案例\\
+组织与时间 & 补充集团关系，核实公告日期 & 复核公司与证券映射\\[2mm]
+抽取评估 & 标注约 60 段文本，含共同提及负例 & 分类型统计 P/R/F1\\[2mm]
+连续更新 & 按日期分三批导入，并重复输入 & 对照全量构建，检查重复事实\\
 \bottomrule
 \end{tabularx}}
 \end{frame}

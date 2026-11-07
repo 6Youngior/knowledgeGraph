@@ -1,12 +1,12 @@
 {
   "passed": true,
-  "created_at": "2026-11-07T08:12:05.167955+00:00",
+  "created_at": "2026-11-07T08:37:32.437209+00:00",
   "issues": [],
   "pdf": "docs\\presentation\\FinGraph-期中汇报.pdf",
-  "pdf_sha256": "6110be787743fd3226f39f0eb6fe6dc0869e7722a94069de37a8749664391c90",
+  "pdf_sha256": "8e7d66d5b323b2e323af4fe7e0344e77e450b0a02d5ead2111b665b73a645541",
   "theme_sha256": "493e458ec6cd955da6567c613374d2cc1faf25c51e7e21a1e5a959ddeabfa3d3",
   "theme_license": "Apache-2.0",
-  "page_count": 18,
+  "page_count": 16,
   "pages": [
     {
       "page": 1,
@@ -22,7 +22,7 @@
       "page": 2,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 255,
+      "text_chars": 233,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
@@ -32,7 +32,7 @@
       "page": 3,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 272,
+      "text_chars": 269,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
@@ -42,7 +42,7 @@
       "page": 4,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 290,
+      "text_chars": 293,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
@@ -52,7 +52,7 @@
       "page": 5,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 180,
+      "text_chars": 176,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
@@ -62,7 +62,7 @@
       "page": 6,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 277,
+      "text_chars": 246,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
@@ -72,28 +72,28 @@
       "page": 7,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 296,
+      "text_chars": 255,
+      "images": 0,
+      "outside_text": [],
+      "footer_collisions": [],
+      "median_content_font_pt": 11.96
+    },
+    {
+      "page": 8,
+      "width_pt": 453.5400085449219,
+      "height_pt": 255.1199951171875,
+      "text_chars": 298,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
       "median_content_font_pt": 11.26
     },
     {
-      "page": 8,
-      "width_pt": 453.5400085449219,
-      "height_pt": 255.1199951171875,
-      "text_chars": 86,
-      "images": 1,
-      "outside_text": [],
-      "footer_collisions": [],
-      "median_content_font_pt": 11.96
-    },
-    {
       "page": 9,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 304,
-      "images": 0,
+      "text_chars": 85,
+      "images": 1,
       "outside_text": [],
       "footer_collisions": [],
       "median_content_font_pt": 11.96
@@ -102,7 +102,7 @@
       "page": 10,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 262,
+      "text_chars": 315,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
@@ -112,34 +112,14 @@
       "page": 11,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 265,
+      "text_chars": 160,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
-      "median_content_font_pt": 11.16
+      "median_content_font_pt": 11.76
     },
     {
       "page": 12,
-      "width_pt": 453.5400085449219,
-      "height_pt": 255.1199951171875,
-      "text_chars": 276,
-      "images": 0,
-      "outside_text": [],
-      "footer_collisions": [],
-      "median_content_font_pt": 11.36
-    },
-    {
-      "page": 13,
-      "width_pt": 453.5400085449219,
-      "height_pt": 255.1199951171875,
-      "text_chars": 226,
-      "images": 0,
-      "outside_text": [],
-      "footer_collisions": [],
-      "median_content_font_pt": 11.16
-    },
-    {
-      "page": 14,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
       "text_chars": 359,
@@ -149,7 +129,7 @@
       "median_content_font_pt": 10.36
     },
     {
-      "page": 15,
+      "page": 13,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
       "text_chars": 222,
@@ -159,7 +139,7 @@
       "median_content_font_pt": 9.96
     },
     {
-      "page": 16,
+      "page": 14,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
       "text_chars": 278,
@@ -169,7 +149,7 @@
       "median_content_font_pt": 11.96
     },
     {
-      "page": 17,
+      "page": 15,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
       "text_chars": 357,
@@ -179,7 +159,7 @@
       "median_content_font_pt": 11.16
     },
     {
-      "page": 18,
+      "page": 16,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
       "text_chars": 223,
@@ -193,7 +173,7 @@
   "scope": "Mechanical PDF checks only. Content depth and visual quality require a separate rendered-page review.",
   "visual_review": {
     "status": "completed",
-    "reviewed_at": "2026-11-07T08:14:12.883314+00:00",
+    "reviewed_at": "2026-11-07T08:39:32.362585+00:00",
     "rendered_pages": [
       1,
       2,
@@ -210,16 +190,14 @@
       13,
       14,
       15,
-      16,
-      17,
-      18
+      16
     ],
     "notes": [
       "Checked the native FDU cover, title bars, section navigation, footer and watermark.",
       "Uses original FDU templates and standard Beamer blocks; vendored theme file remains unchanged.",
-      "Reviewed the 13 main pages as a midterm progress report: topic and scope, work completed, problems and next steps.",
+      "Reviewed the 11 main pages in order: topic and scope, data and construction, extraction trial, application case, next steps.",
       "Checked that the six-text trial and functional case observations are distinct from the planned independent evaluation.",
-      "Checked that the proposed 60-text dataset and approximately 20 event-date questions are presented as future work.",
+      "Checked that the proposed 60-text dataset is future work; detailed data splits and query evaluation remain in the speaker notes.",
       "Reviewed the five supplementary pages: relation definitions, market illustration, calculation methods and bibliographic references.",
       "Checked visible citation numbers, primary-source titles, diagram direction, table wraps and spacing.",
       "Slides contain no repository file instructions or repeated bottom annotations."
@@ -231,26 +209,28 @@
       2,
       3
     ],
-    "current_progress": [
+    "data_and_construction": [
       4,
       5,
-      6,
-      7,
+      6
+    ],
+    "preliminary_extraction_trial": [
+      7
+    ],
+    "application_case": [
       8,
       9,
       10
     ],
     "future_work": [
-      11,
-      12,
-      13
+      11
     ],
     "supplementary_material": [
+      12,
+      13,
       14,
       15,
-      16,
-      17,
-      18
+      16
     ]
   },
   "main_presentation_pages": [
@@ -264,8 +244,6 @@
     8,
     9,
     10,
-    11,
-    12,
-    13
+    11
   ]
 }

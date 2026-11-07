@@ -100,7 +100,7 @@ export function SourcesMethodsView({
         <div>
           <span className="section-kicker">资料与方法</span>
           <h1>资料与方法</h1>
-          <p>当前数据范围、关系规则、日期口径与行情计算方式。</p>
+          <p>当前数据范围、关系规则、日期处理与行情计算方法。</p>
         </div>
         <div className="page-tabs">
           <button type="button" className={tab === 'sources' ? 'active' : ''} onClick={() => setTab('sources')}>

@@ -28,4 +28,4 @@ python code/check_pdf.py
 
 ## 适用范围
 
-原文定位不代替关系语义核查。抽取预实验提供了实体目录，样例较少，详见 [EXTRACTION_PILOT.md](EXTRACTION_PILOT.md)。历史查询按已收集资料的日期重建，尚不是完整的历史网页版本库。行情计算口径见 [METHOD.md](METHOD.md)。
+原文定位不代替关系语义核查。抽取预实验提供了实体目录，样例较少，详见 [EXTRACTION_PILOT.md](EXTRACTION_PILOT.md)。历史查询按已收集资料的日期重建，尚不是完整的历史网页版本库。行情计算方法见 [METHOD.md](METHOD.md)。

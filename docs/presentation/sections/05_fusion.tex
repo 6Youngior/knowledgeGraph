@@ -1,5 +1,5 @@
-\begin{frame}{跨来源实体对齐与事实合并}\relax
-公告里没有证券代码。将新适配关系与已有的产品、上市关系连接，才能得到摩尔线程的证券路径。
+\begin{frame}{实体对齐与多源融合}\relax
+适配公告没有证券代码。将适配关系连接到已有的产品归属和上市资料，得到摩尔线程的证券路径。
 \par\vspace{2mm}
 {\fontsize{11}{14}\selectfont
 \begin{tabularx}{\linewidth}{@{}p{2.6cm} X p{2.2cm}@{}}
@@ -7,13 +7,13 @@
 资料 & 记录的关系 & 处理方式\\
 \midrule
 适配公告 & MTT S5000 $\xrightarrow{\text{适配}}$ GLM-5 & 新增关系\\
-同文产品介绍 & 摩尔线程 $\xrightarrow{\text{提供}}$ MTT S5000 & 已有关系\\
+同一公告 & 摩尔线程 $\xrightarrow{\text{提供}}$ MTT S5000 & 已有关系\\
 上交所公告 & 摩尔线程 $\xrightarrow{\text{上市}}$ 688795.SH & 已有关系\\
 \bottomrule
 \end{tabularx}}
 \par\vspace{2mm}
-\begin{block}{对齐与合并规则}
-同类实体按名称、别名或代码对齐 ID。\par
-事实按“起点 ID、关系类型、终点 ID”去重；来源的原句与日期分别保留。
+\begin{block}{实体匹配与关系去重}
+在同类实体中，按名称、别名或代码匹配已有记录。\par
+相同的起点、关系类型和终点只记录一次；各来源的原句和日期分别保存。
 \end{block}
 \end{frame}

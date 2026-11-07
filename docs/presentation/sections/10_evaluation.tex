@@ -1,5 +1,5 @@
-\begin{frame}{抽取预实验}\relax
-\Intro{对 6 段真实文本实际调用模型，提供已有实体目录，核对指定模型的目标关系。}
+\begin{frame}{关系抽取的初步评估}\relax
+\Intro{在提供实体目录的条件下，对 6 段真实文本进行关系抽取，并逐条核对结果。}
 \begin{columns}[T,onlytextwidth]
 \column{.43\textwidth}
 {\fontsize{11.6}{15}\selectfont
@@ -7,20 +7,18 @@
 \toprule
 核对项 & 结果\\
 \midrule
-目标参考关系 & 5 条\\
+正例目标关系 & 5 条\\
 精确三元组匹配 & 4 条\\
 共同提及负例 & 1 段\\
-负例中的关系输出 & 0 条\\
+负例中生成的关系 & 0 条\\
 \bottomrule
 \end{tabularx}}
 \Gap
 {\fontsize{11}{14}\selectfont P/R/F1：0.80（精确匹配）}
 \column{.52\textwidth}
-\Head{主要误差：组织层级未对齐}
-Qwen3 的研发关系抽取正确，但模型输出的主体是 \textbf{Alibaba Cloud}，参考采用\textbf{阿里巴巴集团}的实体 ID。
+\Head{主要差异：研发主体的组织层级}
+Qwen3 一例中，关系类型识别正确；研发主体输出为 \textbf{Alibaba Cloud}，参考实体为\textbf{阿里巴巴集团}。
 \Gap
-需要单独表示业务单位与上市集团的关系，避免仅按名称把二者合并。
+后续将分别表示业务单位与上市集团，再补充二者之间的关系。
 \end{columns}
-\vfill
-\Caption{6 段文本用于初步核对，尚无独立标注测试集。}
 \end{frame}

@@ -1,4 +1,5 @@
 \begin{frame}{关系定义与数据字段}\relax
+\Intro{关系保存 ID、起终点、类型、来源、原句和日期；多份来源分别记录。}
 {\fontsize{10.4}{13.2}\selectfont
 \begin{tabularx}{\linewidth}{@{}p{4.5cm} p{4.1cm} X@{}}
 \toprule
@@ -11,9 +12,7 @@
 \texttt{HOSTS\_MODEL} & Product $\rightarrow$ Model & 云推理服务接入\\
 \texttt{RELEASED\_MODEL} & Event $\rightarrow$ Model & 模型发布事件\\
 \texttt{CONCERNS} & Event $\rightarrow$ 相关实体 & 事件涉及的对象\\
-\texttt{BELONGS\_TO} & 实体 $\rightarrow$ Industry & 所属行业\\
+\texttt{BELONGS\_TO} & 实体 $\rightarrow$ Industry & 仅作行业分类\\
 \bottomrule
 \end{tabularx}}
-\vfill
-\Caption{关系记录包含：稳定 ID、起终点 ID、关系类型、来源 ID、原文片段与公开日期；多来源引用分别保留证据记录。行业关系不参与证券路径查询。}
 \end{frame}

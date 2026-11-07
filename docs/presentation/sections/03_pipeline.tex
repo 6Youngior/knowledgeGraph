@@ -1,22 +1,22 @@
 \begin{frame}{知识图谱构建流程}\relax
-新增资料的输入包括原文、允许的实体与关系类型，以及已有实体目录。
+从新增文本中抽取关系，匹配已有实体，确认后加入图谱。
 \par\vspace{2mm}
 \begin{columns}[T,onlytextwidth]
 \column{.30\textwidth}
 \begin{block}{LLM 抽取}
-在 Schema 约束下识别实体、关系和对应原句，生成候选结果。
+限定可用的实体和关系类型，提取候选关系及对应原句。
 \end{block}
 \column{.035\textwidth}\centering\vspace{16mm}$\rightarrow$
 \column{.30\textwidth}
-\begin{block}{对齐与校验}
-匹配已有实体；检查关系端点、来源片段和日期，形成入图预览。
+\begin{block}{实体对齐与检查}
+按名称、别名或代码匹配已有实体，核对关系类型、原句与日期。
 \end{block}
 \column{.035\textwidth}\centering\vspace{16mm}$\rightarrow$
 \column{.30\textwidth}
-\begin{block}{合并与查询}
-按实体 ID 和事实键合并，确认后写入图谱，再查询证券路径。
+\begin{block}{合并与更新}
+确认后写入图谱；重复关系合并来源，并更新关联证券查询。
 \end{block}
 \end{columns}
 \par\vspace{3mm}
-初始资料由人工整理；新增文本使用 \LiveModelName{} 抽取。当前采用 NetworkX 属性图实现存储和路径查询。
+初始图谱由人工整理；新增文本使用 \LiveModelName{} 抽取，NetworkX 负责图谱存储与查询。
 \end{frame}

@@ -1,5 +1,5 @@
-\begin{frame}{实体类型与关系 Schema}\relax
-\Intro{公司与证券分开表示；模型通过研发、产品适配或云服务关系连接到公司。}
+\begin{frame}{图谱中的实体与关系}\relax
+\Intro{公司与证券分开表示；模型通过研发、硬件适配和云服务接入连接公司。}
 \begin{center}
 \begin{tikzpicture}[x=1cm,y=1cm]
   \node[entity,fill=PaleBlue] (e) at (1.4,2.3) {事件\\{\fontsize{9.5}{11}\selectfont Event}};
@@ -16,6 +16,4 @@
   \draw[rel,draw=Muted] (c.south east)--node[edge label,right]{所属行业}(i.north west);
 \end{tikzpicture}
 \end{center}
-\Gap
-每条关系记录原文片段、来源链接与公开日期；名称和别名统一到实体 ID。
 \end{frame}

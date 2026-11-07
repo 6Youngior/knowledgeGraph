@@ -1,0 +1,20 @@
+\begin{frame}{资料来源与数据整理}\relax
+文本资料用于构建公司、模型与产品关系；行情按证券代码和日期关联。
+\par\vspace{2mm}
+\begin{columns}[T,onlytextwidth]
+\column{.48\textwidth}
+\begin{block}{41 项来源记录}
+官方、公司及交易所资料 33 项，媒体报道 8 项。\par\vspace{1mm}
+每项保留原文短摘录、链接、发布方，以及发布日期或采集时间。
+\end{block}
+\par\vspace{1mm}
+经人工整理与来源核对，形成初始图谱：\textbf{\GraphNodeCount{} 个实体、\GraphEdgeCount{} 条关系}。
+\column{.48\textwidth}
+\begin{block}{10 条真实日线序列}
+8 只股票及恒生指数、科创50，共 2448 行。\par\vspace{1mm}
+覆盖 2024-12-02 至 2026-03-31；新上市股票从上市后开始。
+\end{block}
+\par\vspace{1mm}
+保存腾讯财经原始响应与 CSV，支持离线重建行情和事件窗口。
+\end{columns}
+\end{frame}

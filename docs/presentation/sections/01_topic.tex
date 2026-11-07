@@ -1,18 +1,29 @@
-\begin{frame}[t]{选题与研究问题}\relax
-\Intro{本项目选择“股票量化情报”，聚焦 AI 产业事件与上市公司的关联。}
-\Head{为什么需要整合多种资料？}
-模型适配公告往往没有证券代码。关联研究需要将公告与产品资料、公司信息和上市文件连接起来。
-\Gap
-\begin{center}
-\begin{tikzpicture}[x=1cm,y=1cm]
-  \node[entity,fill=PaleBlue] (a) at (1.4,0) {产业消息};
-  \node[entity,fill=PaleTeal] (b) at (5.1,0) {产品与公司};
-  \node[entity,fill=PaleGold] (c) at (8.8,0) {上市证券};
-  \node[entity] (d) at (12.5,0) {原文与行情};
-  \draw[rel] (a)--(b);\draw[rel] (b)--(c);\draw[rel] (c)--(d);
+\begin{frame}{研究背景与任务定义}\relax
+本项目选择选题 5“股票量化情报”，先研究 AI 模型产业事件与 A 股、港股上市公司的关联。
+\par\vspace{2mm}
+\begin{columns}[c,onlytextwidth]
+\column{.46\textwidth}
+\begin{block}{研究任务}
+给定一条产业事件和研究日期，查询相关证券，并返回：
+\begin{itemize}
+\item 公司及其产业角色；
+\item 事件到证券的关系路径；
+\item 每条关系的原文、来源和日期。
+\end{itemize}
+\end{block}
+\column{.50\textwidth}
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm,
+  b/.style={entity,text width=2.5cm,minimum height=.7cm,font=\fontsize{11}{13}\selectfont}]
+  \node[b,fill=PaleBlue] (m) at (1.1,2) {GLM-5};
+  \node[b,fill=PaleTeal] (p) at (4.9,2) {MTT S5000};
+  \node[b,fill=PaleTeal] (c) at (4.9,.25) {摩尔线程};
+  \node[b,fill=PaleGold] (s) at (1.1,.25) {688795.SH};
+  \draw[rel,draw=Teal] (p)--node[edge label,above=4mm]{技术适配}(m);
+  \draw[rel] (c)--node[edge label,right]{提供产品}(p);
+  \draw[rel] (c)--node[edge label,above=4mm]{上市证券}(s);
 \end{tikzpicture}
-\end{center}
-\Gap
-\Head{研究任务}
-找出关联证券，说明研发、硬件适配或云服务等产业角色，并展示来源、公开日期及事件后的行情。
+\par\vspace{2mm}
+\Caption{适配公告提到 GPU 型号；产品归属和证券代码需要由其他资料补充。}
+\end{columns}
 \end{frame}

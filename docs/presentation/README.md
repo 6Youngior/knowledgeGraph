@@ -1,39 +1,34 @@
 # 期中汇报
 
-[FinGraph-期中汇报.pdf](FinGraph-期中汇报.pdf) 共 16 页：第 1—13 页为汇报内容，第 14—16 页列出关系定义、行情口径与主要来源。
+[FinGraph-期中汇报.pdf](FinGraph-期中汇报.pdf) 共 18 页。第 1—15 页介绍选题、数据、构建方法、阶段结果和后续计划；第 16—18 页列出关系定义、行情计算及主要来源。讲稿见 [TALK.md](TALK.md)。
 
 ## 内容
 
-1. 选题与研究问题
-2. 初步数据范围
-3. 知识图谱构建流程
-4. 本体与关系设计
-5. 知识抽取示例
-6. 关联证券查询
-7. 原型系统
-8. 增量更新结果
-9. 历史时点查询
-10. 抽取预实验
-11. 事件后的行情观察
-12. 当前问题与后续计划
+| 页码 | 内容 |
+|---|---|
+| 1—4 | 选题与任务、四个模型主题、八只证券、来源与行情范围 |
+| 5—9 | 构建流程、实体与关系 Schema、抽取示例、跨来源融合、证券路径查询 |
+| 10—14 | 原型操作、增量更新、历史查询、抽取预实验、行情观察 |
+| 15 | 当前问题、下一步工作与预期产出 |
+| 16—18 | 关系定义、行情口径和主要来源 |
 
-构建过程以 GLM-5 适配公告为主要例子；DeepSeek-R1 用于说明按公开日期查询的区别。现场讲解与操作顺序见 [TALK.md](TALK.md)。
+方法以 GLM-5 适配公告为主要例子，分别说明新抽取事实、已有产品归属和证券映射。DeepSeek-R1 用于说明日期筛选的结果。
 
 ## 编译
 
-需要 XeLaTeX、latexmk、微软雅黑和 Arial。Windows 下在项目根目录运行：
+需要 XeLaTeX、latexmk、微软雅黑和 Arial。在项目根目录运行：
 
-```powershell
-powershell -ExecutionPolicy Bypass -File docs/presentation/build.ps1
-```
+    powershell -ExecutionPolicy Bypass -File docs/presentation/build.ps1
 
-脚本更新 `derived/research.tex` 并编译 `main.tex`，输出正式 PDF。更换图谱或行情后，先运行：
+脚本更新查询结果并编译 main.tex，输出正式 PDF。更换图谱或行情后，先运行：
 
-```powershell
-python code/build_presentation_inputs.py
-python code/build_research_figures.py
-```
+    python code/build_presentation_inputs.py
+    python code/build_research_figures.py
 
-源码按页面放在 `sections/`；`generated/` 保存实际界面截图、行情图和指标，`derived/` 保存从数据生成的查询结果。临时编译文件位于 `build/`，不提交到仓库。
+页面源码在 sections/，实际截图和行情图在 generated/，由数据生成的查询结果在 derived/。编译临时文件在 build/，不提交到仓库。
 
-主题为 [sonnyhcl/beamerthemefdu](https://github.com/sonnyhcl/beamerthemefdu)，Apache-2.0。原始文件与许可位于 `vendor-fdu/`，本地样式调整见 [THEME_NOTICE.md](THEME_NOTICE.md)。封面不显示小组或成员姓名。
+## 主题
+
+使用 [sonnyhcl/beamerthemefdu](https://github.com/sonnyhcl/beamerthemefdu) 的原生封面、蓝色标题栏、章节导航和三段页脚，保留淡校徽水印。主题原文件和 Apache-2.0 许可证位于 vendor-fdu/，配置说明见 [THEME_NOTICE.md](THEME_NOTICE.md)。
+
+封面和 PDF 元数据不显示小组或成员姓名，页脚显示项目名称。

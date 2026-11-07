@@ -1,28 +1,28 @@
 {
   "passed": true,
-  "created_at": "2026-11-07T02:16:27.828615+00:00",
+  "created_at": "2026-11-07T02:55:25.023021+00:00",
   "issues": [],
   "pdf": "docs\\presentation\\FinGraph-期中汇报.pdf",
-  "pdf_sha256": "c709688d3ef728b85f30901a628ce9ea7c762674507ae174c60991400a3e52e1",
+  "pdf_sha256": "a43a1da73ac94dedc6d2567c573a09b1ded010a84cadc117ec43ea95bbc240aa",
   "theme_sha256": "493e458ec6cd955da6567c613374d2cc1faf25c51e7e21a1e5a959ddeabfa3d3",
   "theme_license": "Apache-2.0",
-  "page_count": 16,
+  "page_count": 18,
   "pages": [
     {
       "page": 1,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 80,
+      "text_chars": 104,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
-      "median_content_font_pt": 10.96
+      "median_content_font_pt": 11.96
     },
     {
       "page": 2,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 217,
+      "text_chars": 249,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
@@ -32,7 +32,7 @@
       "page": 3,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 332,
+      "text_chars": 292,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
@@ -42,7 +42,7 @@
       "page": 4,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 220,
+      "text_chars": 294,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
@@ -52,24 +52,14 @@
       "page": 5,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 215,
+      "text_chars": 274,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
-      "median_content_font_pt": 11.46
+      "median_content_font_pt": 11.96
     },
     {
       "page": 6,
-      "width_pt": 453.5400085449219,
-      "height_pt": 255.1199951171875,
-      "text_chars": 310,
-      "images": 0,
-      "outside_text": [],
-      "footer_collisions": [],
-      "median_content_font_pt": 11.36
-    },
-    {
-      "page": 7,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
       "text_chars": 221,
@@ -79,40 +69,50 @@
       "median_content_font_pt": 11.46
     },
     {
-      "page": 8,
+      "page": 7,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 110,
-      "images": 1,
-      "outside_text": [],
-      "footer_collisions": [],
-      "median_content_font_pt": 9.46
-    },
-    {
-      "page": 9,
-      "width_pt": 453.5400085449219,
-      "height_pt": 255.1199951171875,
-      "text_chars": 230,
+      "text_chars": 330,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
-      "median_content_font_pt": 11.96
+      "median_content_font_pt": 11.36
     },
     {
-      "page": 10,
+      "page": 8,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
       "text_chars": 274,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
-      "median_content_font_pt": 11.66
+      "median_content_font_pt": 11.96
+    },
+    {
+      "page": 9,
+      "width_pt": 453.5400085449219,
+      "height_pt": 255.1199951171875,
+      "text_chars": 221,
+      "images": 0,
+      "outside_text": [],
+      "footer_collisions": [],
+      "median_content_font_pt": 11.46
+    },
+    {
+      "page": 10,
+      "width_pt": 453.5400085449219,
+      "height_pt": 255.1199951171875,
+      "text_chars": 116,
+      "images": 1,
+      "outside_text": [],
+      "footer_collisions": [],
+      "median_content_font_pt": 11.96
     },
     {
       "page": 11,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 288,
+      "text_chars": 231,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
@@ -122,11 +122,11 @@
       "page": 12,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 257,
+      "text_chars": 274,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
-      "median_content_font_pt": 9.46
+      "median_content_font_pt": 11.66
     },
     {
       "page": 13,
@@ -136,33 +136,53 @@
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
-      "median_content_font_pt": 11.26
+      "median_content_font_pt": 11.96
     },
     {
       "page": 14,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 411,
+      "text_chars": 257,
+      "images": 0,
+      "outside_text": [],
+      "footer_collisions": [],
+      "median_content_font_pt": 9.96
+    },
+    {
+      "page": 15,
+      "width_pt": 453.5400085449219,
+      "height_pt": 255.1199951171875,
+      "text_chars": 287,
+      "images": 0,
+      "outside_text": [],
+      "footer_collisions": [],
+      "median_content_font_pt": 11.26
+    },
+    {
+      "page": 16,
+      "width_pt": 453.5400085449219,
+      "height_pt": 255.1199951171875,
+      "text_chars": 395,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
       "median_content_font_pt": 10.36
     },
     {
-      "page": 15,
+      "page": 17,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 318,
+      "text_chars": 302,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
       "median_content_font_pt": 11.96
     },
     {
-      "page": 16,
+      "page": 18,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 333,
+      "text_chars": 317,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
@@ -173,7 +193,7 @@
   "scope": "Mechanical PDF checks only. Content depth and visual quality require a separate rendered-page review.",
   "visual_review": {
     "status": "completed",
-    "reviewed_at": "2026-11-07T02:19:00.663161+00:00",
+    "reviewed_at": "2026-11-07T02:59:35.081479+00:00",
     "rendered_pages": [
       1,
       2,
@@ -190,42 +210,47 @@
       13,
       14,
       15,
-      16
+      16,
+      17,
+      18
     ],
     "notes": [
-      "Reviewed rendered pages for reading order, labels, table wraps and footer spacing.",
-      "Main narrative follows topic, scope, construction, stage results and future work.",
-      "GLM-5 is the construction example; DeepSeek-R1 illustrates date filtering.",
-      "No production labels or repeated slogan bars; cover author remains blank."
+      "Compared cover, title bars, navigation, footer and watermark with the supplied local graphData presentation.",
+      "Uses original FDU templates and standard Beamer blocks; vendored theme file remains unchanged.",
+      "Reviewed all 18 rendered pages, enlarged task/extraction/fusion diagrams and source tables.",
+      "Checked actual source roles, four themes and eight securities; distinction between new and existing facts.",
+      "Checked table wraps, arrow direction, readable captions and body/footer spacing."
     ]
   },
   "content_sections": {
     "topic": [
       2
     ],
-    "data_scope": [
-      3
+    "data_scope_and_sources": [
+      3,
+      4
     ],
     "construction": [
-      4,
       5,
       6,
-      7
+      7,
+      8,
+      9
     ],
     "prototype_and_results": [
-      8,
-      9,
       10,
       11,
-      12
+      12,
+      13,
+      14
     ],
     "future_work": [
-      13
+      15
     ],
     "definitions_and_sources": [
-      14,
-      15,
-      16
+      16,
+      17,
+      18
     ]
   }
 }

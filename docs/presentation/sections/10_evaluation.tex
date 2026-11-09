@@ -1,11 +1,8 @@
-\begin{frame}[t]{抽取初试：结果与问题分析}\relax
-\setlength{\parskip}{0pt}
-{\fontsize{11}{14.5}\selectfont
-\Intro{在提供实体目录的条件下，对 6 段文本进行定向关系抽取。}}
+\begin{frame}{抽取初试：结果与主要问题}\relax
+\Intro{在提供实体目录的条件下，对 6 段文本进行定向抽取，检查流程并定位问题。}
 \begin{columns}[T,onlytextwidth]
-\column{.33\textwidth}
-\Head{期中初试（6 段）}
-{\fontsize{10.6}{13}\selectfont\renewcommand{\arraystretch}{1.1}
+\column{.43\textwidth}
+{\fontsize{11.6}{15}\selectfont
 \begin{tabularx}{\linewidth}{@{}X r@{}}
 \toprule
 核对项 & 结果\\
@@ -13,25 +10,13 @@
 正例目标关系 & 5 条\\
 精确三元组匹配 & 4 条\\
 共同提及负例 & 1 段\\
-负例生成的关系 & 0 条\\
+负例中生成的关系 & 0 条\\
 \bottomrule
 \end{tabularx}}
-\column{.62\textwidth}
-\Head{Qwen3：研发主体的层级差异}
-{\fontsize{10.8}{14}\selectfont
-抽取主体：Alibaba Cloud\Cite{qwen3-repo}\\
-参考标注：阿里巴巴集团。}
+\column{.52\textwidth}
+\Head{主要差异：研发主体的组织层级}
+Qwen3 一例中，关系类型识别正确；研发主体输出为 \textbf{Alibaba Cloud}，参考实体为\textbf{阿里巴巴集团}。
 \Gap
-\Head{问题分析}
-\begin{beamercolorbox}[sep=2mm,wd=\linewidth]{block body}
-{\fontsize{10.8}{14}\selectfont
-关系类型一致，差异出在主体层级；参考标注与实体映射均需复核。}
-\end{beamercolorbox}
+主要问题是业务单位与上市集团的映射。后续需补充组织关系，并用独立标注集评估。
 \end{columns}
-\par\vspace{2mm}
-{\color{Line}\rule{\linewidth}{.4pt}}
-\par\vspace{1mm}
-\Head{初试范围与局限}
-{\fontsize{10.8}{14}\selectfont
-本次仅用于检查流程和发现问题，尚未开展独立标注集评估。}
 \end{frame}

@@ -1,18 +1,67 @@
 \begin{frame}{关系类型与语义定义}\relax
-\Intro{关系通过原文、来源与公开日期说明依据；行业关系仅用于分类。}
-{\fontsize{10.4}{13.2}\selectfont
-\begin{tabularx}{\linewidth}{@{}p{4.5cm} p{4.1cm} X@{}}
-\toprule
-关系类型 & 起点 $\rightarrow$ 终点 & 含义\\
-\midrule
-\texttt{DEVELOPED\_BY} & Model $\rightarrow$ Company & 模型的研发主体\\
-\texttt{LISTED\_AS} & Company $\rightarrow$ Stock & 公司对应的上市证券\\
-\texttt{PRODUCES} & Company $\rightarrow$ Product & 公司提供的硬件或平台产品\\
-\texttt{SUPPORTS\_MODEL} & Product $\rightarrow$ Model & 硬件技术适配\\
-\texttt{HOSTS\_MODEL} & Product $\rightarrow$ Model & 云推理服务接入\\
-\texttt{RELEASED\_MODEL} & Event $\rightarrow$ Model & 模型发布事件\\
-\texttt{CONCERNS} & Event $\rightarrow$ 相关实体 & 事件涉及的对象\\
-\texttt{BELONGS\_TO} & 实体 $\rightarrow$ Industry & 仅作行业分类\\
-\bottomrule
-\end{tabularx}}
+\begin{tikzpicture}[remember picture,overlay]
+\begin{scope}[shift={(current page.north west)},x=.23621875pt,y=-.236222222pt]
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=410.07575pt,font={\fontsize{10.3}{13.081}\selectfont }] at (92,220) {拟新增组织归属关系，研发主体保留原文对应层级。};
+\path[fill=FBlue!9,draw=Line,line width=.25pt] (92,285) rectangle (572,355);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=106.77088pt,font={\fontsize{10}{12.700}\selectfont\bfseries }] at (106,297) {关系类型};
+\path[fill=FBlue!9,draw=Line,line width=.25pt] (572,285) rectangle (1272,355);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=158.73900pt,font={\fontsize{10}{12.700}\selectfont\bfseries }] at (586,297) {起点 $\rightarrow$ 终点};
+\path[fill=FBlue!9,draw=Line,line width=.25pt] (1272,285) rectangle (1828,355);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=124.72350pt,font={\fontsize{10}{12.700}\selectfont\bfseries }] at (1286,297) {含义};
+\path[fill=white,draw=Line,line width=.25pt] (92,355) rectangle (572,418);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=106.77088pt,font={\fontsize{9.5}{12.065}\selectfont }] at (106,367) {\texttt{DEVELOPED\_BY}};
+\path[fill=white,draw=Line,line width=.25pt] (572,355) rectangle (1272,418);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=158.73900pt,font={\fontsize{9.5}{12.065}\selectfont }] at (586,367) {Model $\rightarrow$ Company / OrgUnit};
+\path[fill=white,draw=Line,line width=.25pt] (1272,355) rectangle (1828,418);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=124.72350pt,font={\fontsize{9.5}{12.065}\selectfont }] at (1286,367) {模型的研发主体};
+\path[fill=white,draw=Line,line width=.25pt] (92,418) rectangle (572,481);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=106.77088pt,font={\fontsize{9.5}{12.065}\selectfont }] at (106,430) {\texttt{PART\_OF}（拟新增）};
+\path[fill=white,draw=Line,line width=.25pt] (572,418) rectangle (1272,481);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=158.73900pt,font={\fontsize{9.5}{12.065}\selectfont }] at (586,430) {OrgUnit $\rightarrow$ Company};
+\path[fill=white,draw=Line,line width=.25pt] (1272,418) rectangle (1828,481);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=124.72350pt,font={\fontsize{9.5}{12.065}\selectfont }] at (1286,430) {经证据核验的组织归属};
+\path[fill=white,draw=Line,line width=.25pt] (92,481) rectangle (572,544);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=106.77088pt,font={\fontsize{9.5}{12.065}\selectfont }] at (106,493) {\texttt{LISTED\_AS}};
+\path[fill=white,draw=Line,line width=.25pt] (572,481) rectangle (1272,544);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=158.73900pt,font={\fontsize{9.5}{12.065}\selectfont }] at (586,493) {Company $\rightarrow$ Stock};
+\path[fill=white,draw=Line,line width=.25pt] (1272,481) rectangle (1828,544);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=124.72350pt,font={\fontsize{9.5}{12.065}\selectfont }] at (1286,493) {公司对应的上市证券};
+\path[fill=white,draw=Line,line width=.25pt] (92,544) rectangle (572,607);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=106.77088pt,font={\fontsize{9.5}{12.065}\selectfont }] at (106,556) {\texttt{PRODUCES}};
+\path[fill=white,draw=Line,line width=.25pt] (572,544) rectangle (1272,607);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=158.73900pt,font={\fontsize{9.5}{12.065}\selectfont }] at (586,556) {Company $\rightarrow$ Product};
+\path[fill=white,draw=Line,line width=.25pt] (1272,544) rectangle (1828,607);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=124.72350pt,font={\fontsize{9.5}{12.065}\selectfont }] at (1286,556) {公司提供的硬件或平台产品};
+\path[fill=white,draw=Line,line width=.25pt] (92,607) rectangle (572,670);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=106.77088pt,font={\fontsize{9.5}{12.065}\selectfont }] at (106,619) {\texttt{SUPPORTS\_MODEL}};
+\path[fill=white,draw=Line,line width=.25pt] (572,607) rectangle (1272,670);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=158.73900pt,font={\fontsize{9.5}{12.065}\selectfont }] at (586,619) {Product $\rightarrow$ Model};
+\path[fill=white,draw=Line,line width=.25pt] (1272,607) rectangle (1828,670);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=124.72350pt,font={\fontsize{9.5}{12.065}\selectfont }] at (1286,619) {硬件技术适配};
+\path[fill=white,draw=Line,line width=.25pt] (92,670) rectangle (572,733);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=106.77088pt,font={\fontsize{9.5}{12.065}\selectfont }] at (106,682) {\texttt{HOSTS\_MODEL}};
+\path[fill=white,draw=Line,line width=.25pt] (572,670) rectangle (1272,733);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=158.73900pt,font={\fontsize{9.5}{12.065}\selectfont }] at (586,682) {Product $\rightarrow$ Model};
+\path[fill=white,draw=Line,line width=.25pt] (1272,670) rectangle (1828,733);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=124.72350pt,font={\fontsize{9.5}{12.065}\selectfont }] at (1286,682) {云推理服务接入};
+\path[fill=white,draw=Line,line width=.25pt] (92,733) rectangle (572,796);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=106.77088pt,font={\fontsize{9.5}{12.065}\selectfont }] at (106,745) {\texttt{RELEASED\_MODEL}};
+\path[fill=white,draw=Line,line width=.25pt] (572,733) rectangle (1272,796);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=158.73900pt,font={\fontsize{9.5}{12.065}\selectfont }] at (586,745) {Event $\rightarrow$ Model};
+\path[fill=white,draw=Line,line width=.25pt] (1272,733) rectangle (1828,796);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=124.72350pt,font={\fontsize{9.5}{12.065}\selectfont }] at (1286,745) {模型发布事件};
+\path[fill=white,draw=Line,line width=.25pt] (92,796) rectangle (572,859);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=106.77088pt,font={\fontsize{9.5}{12.065}\selectfont }] at (106,808) {\texttt{CONCERNS}};
+\path[fill=white,draw=Line,line width=.25pt] (572,796) rectangle (1272,859);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=158.73900pt,font={\fontsize{9.5}{12.065}\selectfont }] at (586,808) {Event $\rightarrow$ 相关实体};
+\path[fill=white,draw=Line,line width=.25pt] (1272,796) rectangle (1828,859);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=124.72350pt,font={\fontsize{9.5}{12.065}\selectfont }] at (1286,808) {事件涉及的对象};
+\path[fill=white,draw=Line,line width=.25pt] (92,859) rectangle (572,922);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=106.77088pt,font={\fontsize{9.5}{12.065}\selectfont }] at (106,871) {\texttt{BELONGS\_TO}};
+\path[fill=white,draw=Line,line width=.25pt] (572,859) rectangle (1272,922);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=158.73900pt,font={\fontsize{9.5}{12.065}\selectfont }] at (586,871) {实体 $\rightarrow$ Industry};
+\path[fill=white,draw=Line,line width=.25pt] (1272,859) rectangle (1828,922);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=124.72350pt,font={\fontsize{9.5}{12.065}\selectfont }] at (1286,871) {仅作行业分类，不推导证券};
+\end{scope}
+\end{tikzpicture}
 \end{frame}

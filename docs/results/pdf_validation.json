@@ -1,12 +1,12 @@
 {
   "passed": true,
-  "created_at": "2026-11-09T06:24:07.097791+00:00",
+  "created_at": "2026-11-09T15:13:07.064537+00:00",
   "issues": [],
   "pdf": "docs\\presentation\\FinGraph-期中汇报.pdf",
-  "pdf_sha256": "fc9fb9a6ac11c2905fb9ea41ea8be98eeba9ea061ed6c271dbf24be5548be0d4",
+  "pdf_sha256": "7026400ed4b8d874354f82bcccc43ecf0087d3bade0ab7b9de179936e8c7d6e6",
   "theme_sha256": "493e458ec6cd955da6567c613374d2cc1faf25c51e7e21a1e5a959ddeabfa3d3",
   "theme_license": "Apache-2.0",
-  "page_count": 17,
+  "page_count": 19,
   "pages": [
     {
       "page": 1,
@@ -72,11 +72,11 @@
       "page": 7,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 269,
+      "text_chars": 255,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
-      "median_content_font_pt": 10.76
+      "median_content_font_pt": 11.96
     },
     {
       "page": 8,
@@ -112,34 +112,54 @@
       "page": 11,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 218,
+      "text_chars": 257,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
-      "median_content_font_pt": 11.36
+      "median_content_font_pt": 9.96
     },
     {
       "page": 12,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 253,
+      "text_chars": 328,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
-      "median_content_font_pt": 11.16
+      "median_content_font_pt": 9.96
     },
     {
       "page": 13,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 359,
+      "text_chars": 296,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
-      "median_content_font_pt": 10.36
+      "median_content_font_pt": 9.46
     },
     {
       "page": 14,
+      "width_pt": 453.5400085449219,
+      "height_pt": 255.1199951171875,
+      "text_chars": 287,
+      "images": 0,
+      "outside_text": [],
+      "footer_collisions": [],
+      "median_content_font_pt": 9.46
+    },
+    {
+      "page": 15,
+      "width_pt": 453.5400085449219,
+      "height_pt": 255.1199951171875,
+      "text_chars": 423,
+      "images": 0,
+      "outside_text": [],
+      "footer_collisions": [],
+      "median_content_font_pt": 9.46
+    },
+    {
+      "page": 16,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
       "text_chars": 222,
@@ -149,7 +169,7 @@
       "median_content_font_pt": 9.96
     },
     {
-      "page": 15,
+      "page": 17,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
       "text_chars": 278,
@@ -159,7 +179,7 @@
       "median_content_font_pt": 11.96
     },
     {
-      "page": 16,
+      "page": 18,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
       "text_chars": 357,
@@ -169,10 +189,10 @@
       "median_content_font_pt": 11.16
     },
     {
-      "page": 17,
+      "page": 19,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 336,
+      "text_chars": 223,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
@@ -183,7 +203,7 @@
   "scope": "Mechanical PDF checks only. Content depth and visual quality require a separate rendered-page review.",
   "visual_review": {
     "status": "completed",
-    "reviewed_at": "2026-11-09T06:25:21.853434+00:00",
+    "reviewed_at": "2026-11-09T15:15:06.172142+00:00",
     "rendered_pages": [
       1,
       2,
@@ -201,22 +221,20 @@
       14,
       15,
       16,
-      17
+      17,
+      18,
+      19
     ],
+    "gray_body_note_spans": 0,
     "notes": [
-      "Checked the native FDU cover, title bars, section navigation, footer and watermark.",
-      "Uses original FDU templates and standard Beamer blocks; vendored theme file remains unchanged.",
-      "Reviewed the 12 main pages; the current implementation is introduced before the preliminary trial, application cases and future work.",
-      "Checked that the six-text trial and functional case observations are distinct from the planned independent evaluation.",
-      "Restored pages 5 and 13 to the implemented six entity classes and eight relation types used in the current dataset. Organizational extension is reserved for future work.",
-      "Checked the prioritized implementation plan and subsequent optimization directions; detailed evaluation remains in speaker notes.",
-      "Reviewed the five supplementary pages: relation definitions, market illustration, calculation methods and bibliographic references.",
-      "Checked visible citation numbers, primary-source titles, diagram direction, table wraps and spacing.",
-      "Reviewed page 7 with its existing column layout: original trial counts, organization-level mismatch, reference and mapping review, and small-sample limitations; the proposed security path is removed.",
-      "Raster comparison confirms that only pages 5, 7 and 13 changed in this revision; the root README and future-work slides are unchanged.",
-      "Slides contain no repository file instructions or repeated bottom annotations."
-    ],
-    "gray_body_note_spans": 0
+      "Reviewed all 19 pages at presentation scale, with full-page inspection of pages 9 and 11 through 15.",
+      "The FDU cover, title bars, navigation, footer, watermark and original theme are retained.",
+      "Page 11 preserves the five-node organization path with equal boxes, separated arrow labels and sufficient spacing.",
+      "Future-work tables use consistent cell alignment and readable body text; bottom annotations are removed.",
+      "Text, tables, paths and market figures are native vector objects. Only the original demonstration screenshot is raster content.",
+      "Page 9 uses the unchanged original 1668 by 731 screenshot.",
+      "The order remains topic, current progress, future work, then reference material."
+    ]
   },
   "content_sections": {
     "topic_and_scope": [
@@ -238,14 +256,16 @@
     ],
     "future_work": [
       11,
-      12
-    ],
-    "supplementary_material": [
+      12,
       13,
       14,
-      15,
+      15
+    ],
+    "supplementary_material": [
       16,
-      17
+      17,
+      18,
+      19
     ]
   },
   "main_presentation_pages": [
@@ -260,6 +280,9 @@
     9,
     10,
     11,
-    12
+    12,
+    13,
+    14,
+    15
   ]
 }

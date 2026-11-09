@@ -1,28 +1,139 @@
-\begin{frame}{后续计划：按优先级推进}\relax
-{\fontsize{11.4}{14.8}\selectfont
-\begin{tabularx}{\linewidth}{@{}p{3cm} X p{4.5cm}@{}}
-\toprule
-优先级与方向 & 主要工作 & 验证方式\\
-\midrule
-P1 组织与时间 & 保留原文主体，补充集团归属及证据日期 & 复跑 Qwen3 案例，逐跳核对原文\\[2mm]
-P2 独立评估 & 人工标注约 60 段文本，加入共同提及反例 & 对照人工标注，分类型统计 P/R/F1\\[2mm]
-P3 连续更新 & 分批与重复导入，区分公开日与关系有效期 & 同一截止日对照全量构建，检查重复事实\\
-\bottomrule
-\end{tabularx}}
+\begin{frame}{后续计划：实体与关系模型}\relax
+\begin{tikzpicture}[remember picture,overlay]
+\begin{scope}[shift={(current page.north west)},x=.23621875pt,y=-.236222222pt]
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=410.07575pt,font={\fontsize{10.3}{13.081}\selectfont }] at (92,220) {研发主体可以是业务单位。拟增加组织归属关系，将其连接到上市公司。};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=FBlue,text width=410.07575pt,font={\fontsize{10.8}{13.716}\selectfont\bfseries }] at (92,330) {拟议路径 / 研发主体为业务单位时};
+\path[fill=PaleBlue,draw=Line,line width=.4pt] (92,455) rectangle (323,596);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,text=Navy,font={\fontsize{10.5}{13.335}\selectfont },align=center] at (207.5,525) {\textbf{事件}\\[4pt]{\fontsize{9}{11.430}\selectfont Event}};
+\path[fill=PaleTeal,draw=Line,line width=.4pt] (468,455) rectangle (699,596);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,text=Navy,font={\fontsize{10.5}{13.335}\selectfont },align=center] at (583.5,525) {\textbf{模型}\\[4pt]{\fontsize{9}{11.430}\selectfont Model}};
+\path[fill=PaleBlue,draw=Line,line width=.4pt] (843,455) rectangle (1074,596);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,text=Navy,font={\fontsize{10.5}{13.335}\selectfont },align=center] at (958.5,525) {\textbf{业务单位}\\[4pt]{\fontsize{9}{11.430}\selectfont OrgUnit}};
+\path[fill=PaleBlue,draw=Line,line width=.4pt] (1218,455) rectangle (1449,596);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,text=Navy,font={\fontsize{10.5}{13.335}\selectfont },align=center] at (1333.5,525) {\textbf{公司}\\[4pt]{\fontsize{9}{11.430}\selectfont Company}};
+\path[fill=PaleGold,draw=Line,line width=.4pt] (1593,455) rectangle (1824,596);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,text=Navy,font={\fontsize{10.5}{13.335}\selectfont },align=center] at (1708.5,525) {\textbf{证券}\\[4pt]{\fontsize{9}{11.430}\selectfont Stock}};
+\draw[-{Stealth[length=2.4pt]},draw=FBlue,line width=1.3pt] (331,526)--(458,526);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,text=FBlue,font={\fontsize{8.8}{11.176}\selectfont },align=center] at (394.5,425) {发布 / 涉及};
+\draw[-{Stealth[length=2.4pt]},draw=FBlue,line width=1.3pt] (707,526)--(833,526);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,text=FBlue,font={\fontsize{8.8}{11.176}\selectfont },align=center] at (770.0,425) {研发主体};
+\draw[-{Stealth[length=2.4pt]},draw=FBlue,line width=1.3pt] (1082,526)--(1208,526);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,text=FBlue,font={\fontsize{8.8}{11.176}\selectfont },align=center] at (1145.0,425) {组织归属};
+\draw[-{Stealth[length=2.4pt]},draw=FBlue,line width=1.3pt] (1457,526)--(1583,526);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,text=FBlue,font={\fontsize{8.8}{11.176}\selectfont },align=center] at (1520.0,425) {上市证券};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=FBlue,text width=75.59000pt,font={\fontsize{10.3}{13.081}\selectfont\bfseries }] at (92,650) {新增 PART\_OF};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=328.58028pt,font={\fontsize{10}{12.700}\selectfont }] at (437,650) {业务单位 $\rightarrow$ 公司。记录归属依据及公开日期，供历史查询筛选。};
+\draw[draw=Line,line width=.35pt] (92,780)--(1828,780);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=FBlue,text width=75.59000pt,font={\fontsize{10.3}{13.081}\selectfont\bfseries }] at (92,825) {现有路径};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=328.58028pt,font={\fontsize{10}{12.700}\selectfont }] at (437,825) {模型仍可直接关联公司。\\产品继续表示硬件适配与云接入，行业用于分类。};
+\end{scope}
+\end{tikzpicture}
 \end{frame}
 
-\begin{frame}{后续计划：进一步优化方向}\relax
-\Intro{完成基础验证后，逐步完善证据展示与图谱查询。}
-{\fontsize{11.2}{14.5}\selectfont
-\begin{tabularx}{\linewidth}{@{}p{2.7cm} X p{4.1cm}@{}}
-\toprule
-优化方向 & 具体做法 & 预期作用\\
-\midrule
-证据展示 & 集中展示各步原文、来源和日期 & 便于核查股票关联\\
-实体名称统一 & 整理同一主体的简称、英文名与证券代码 & 减少重复实体\\
-冲突信息处理 & 保留不同来源，标记矛盾供人工复核 & 避免直接覆盖旧事实\\
-多层关系查询 & 补充有证据的子公司或供应商路径 & 分析间接关联\\
-扩大数据覆盖 & 逐步增加模型、公司与行业资料 & 检验不同场景的适用性\\
-\bottomrule
-\end{tabularx}}
+\begin{frame}{后续计划：Qwen3 抽取错例与修复方案}\relax
+\begin{tikzpicture}[remember picture,overlay]
+\begin{scope}[shift={(current page.north west)},x=.23621875pt,y=-.236222222pt]
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=410.07575pt,font={\fontsize{10.1}{12.827}\selectfont }] at (92,220) {期中初试覆盖 6 段文本。Qwen3 的关系类型正确，研发主体与参考标注处于不同层级。};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=FBlue,text width=130.39275pt,font={\fontsize{10.8}{13.716}\selectfont\bfseries }] at (92,325) {期中初试};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=FBlue,text width=258.18709pt,font={\fontsize{10.8}{13.716}\selectfont\bfseries }] at (735,325) {观察到的差异};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=258.18709pt,font={\fontsize{10.1}{12.827}\selectfont }] at (735,395) {抽取主体：Alibaba Cloud\\参考标注：阿里巴巴集团。};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=FBlue,text width=258.18709pt,font={\fontsize{10.8}{13.716}\selectfont\bfseries }] at (735,515) {补充组织关系后的预期路径};
+\path[fill=FBlue!7] (735,575) rectangle (1828,671);
+\node[anchor=center,inner sep=0pt,outer sep=0pt,text=Navy,font={\fontsize{9.5}{12.065}\selectfont\bfseries },align=center] at (1281.5,623) {Qwen3 $\rightarrow$ Alibaba Cloud $\rightarrow$ 阿里巴巴集团 $\rightarrow$ 港股 9988};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=258.18709pt,font={\fontsize{9.5}{12.065}\selectfont }] at (735,705) {保留抽取出的研发主体，经组织归属边关联上市证券。};
+\draw[draw=Line,line width=.35pt] (92,795)--(1828,795);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=FBlue,text width=410.07575pt,font={\fontsize{10.8}{13.716}\selectfont\bfseries }] at (92,830) {验证计划};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=410.07575pt,font={\fontsize{10}{12.700}\selectfont }] at (92,900) {用同一文本复跑，分别核对研发主体和证券路径。\\隐藏归属证据后，应无法沿该路径返回 9988。};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=99.21188pt,font={\fontsize{10}{12.700}\selectfont\bfseries }] at (96,405) {核对项};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=right,text=Navy,text width=20.78725pt,font={\fontsize{10}{12.700}\selectfont\bfseries }] at (552,405) {结果};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=99.21188pt,font={\fontsize{10}{12.700}\selectfont }] at (96,470) {正例目标关系};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=right,text=Navy,text width=20.78725pt,font={\fontsize{10}{12.700}\selectfont }] at (552,470) {5 条};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=99.21188pt,font={\fontsize{10}{12.700}\selectfont }] at (96,535) {精确三元组匹配};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=right,text=Navy,text width=20.78725pt,font={\fontsize{10}{12.700}\selectfont }] at (552,535) {4 条};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=99.21188pt,font={\fontsize{10}{12.700}\selectfont }] at (96,600) {共同提及负例};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=right,text=Navy,text width=20.78725pt,font={\fontsize{10}{12.700}\selectfont }] at (552,600) {1 段};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=99.21188pt,font={\fontsize{10}{12.700}\selectfont }] at (96,665) {负例生成的关系};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=right,text=Navy,text width=20.78725pt,font={\fontsize{10}{12.700}\selectfont }] at (552,665) {0 条};
+\draw[draw=FBlue!50,line width=.35pt] (92,384)--(644,384);
+\draw[draw=FBlue!50,line width=.35pt] (92,461)--(644,461);
+\draw[draw=FBlue!50,line width=.35pt] (92,725)--(644,725);
+\end{scope}
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{后续计划：按优先级推进}\relax
+\begin{tikzpicture}[remember picture,overlay]
+\begin{scope}[shift={(current page.north west)},x=.23621875pt,y=-.236222222pt]
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=410.07575pt,font={\fontsize{10.3}{13.081}\selectfont }] at (92,220) {目标：让图谱找对关联股票，并能说明依据。};
+\path[fill=FBlue!9,draw=Line,line width=.25pt] (92,321) rectangle (592,399);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=111.49525pt,font={\fontsize{10}{12.700}\selectfont\bfseries }] at (106,333) {优先级与方向};
+\path[fill=FBlue!9,draw=Line,line width=.25pt] (592,321) rectangle (1192,399);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=135.11713pt,font={\fontsize{10}{12.700}\selectfont\bfseries }] at (606,333) {主要工作};
+\path[fill=FBlue!9,draw=Line,line width=.25pt] (1192,321) rectangle (1828,399);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=143.62100pt,font={\fontsize{10}{12.700}\selectfont\bfseries }] at (1206,333) {验证方式};
+\path[fill=white,draw=Line,line width=.25pt] (92,399) rectangle (592,527);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=111.49525pt,font={\fontsize{9.5}{12.065}\selectfont }] at (106,411) {P1 组织与时间};
+\path[fill=white,draw=Line,line width=.25pt] (592,399) rectangle (1192,527);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=135.11713pt,font={\fontsize{9.5}{12.065}\selectfont }] at (606,411) {保留阿里云等原文主体\\补充它与上市集团的归属关系};
+\path[fill=white,draw=Line,line width=.25pt] (1192,399) rectangle (1828,527);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=143.62100pt,font={\fontsize{9.5}{12.065}\selectfont }] at (1206,411) {复查 Qwen3 案例\\每一步关联都能找到原文依据};
+\path[fill=white,draw=Line,line width=.25pt] (92,527) rectangle (592,655);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=111.49525pt,font={\fontsize{9.5}{12.065}\selectfont }] at (106,539) {P2 独立评估};
+\path[fill=white,draw=Line,line width=.25pt] (592,527) rectangle (1192,655);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=135.11713pt,font={\fontsize{9.5}{12.065}\selectfont }] at (606,539) {人工标注约 60 段文本\\加入“只提名字”的无关系反例};
+\path[fill=white,draw=Line,line width=.25pt] (1192,527) rectangle (1828,655);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=143.62100pt,font={\fontsize{9.5}{12.065}\selectfont }] at (1206,539) {对照人工答案\\统计抽对、漏抽和多抽的关系};
+\path[fill=white,draw=Line,line width=.25pt] (92,655) rectangle (592,783);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=111.49525pt,font={\fontsize{9.5}{12.065}\selectfont }] at (106,667) {P3 连续更新};
+\path[fill=white,draw=Line,line width=.25pt] (592,655) rectangle (1192,783);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=135.11713pt,font={\fontsize{9.5}{12.065}\selectfont }] at (606,667) {分三批导入资料并重复导入\\记录公开日期与关系有效期};
+\path[fill=white,draw=Line,line width=.25pt] (1192,655) rectangle (1828,783);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=143.62100pt,font={\fontsize{9.5}{12.065}\selectfont }] at (1206,667) {重复导入不增加重复事实\\历史查询不使用当时未知的信息};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=410.07575pt,font={\fontsize{10}{12.700}\selectfont }] at (92,884) {实施顺序：先补归属证据，再评估抽取，最后检查更新结果。};
+\end{scope}
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{后续计划：进一步优化的方向}\relax
+\begin{tikzpicture}[remember picture,overlay]
+\begin{scope}[shift={(current page.north west)},x=.23621875pt,y=-.236222222pt]
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=410.07575pt,font={\fontsize{10.3}{13.081}\selectfont }] at (92,220) {完成基础验证后，优先改善证据展示，再逐步扩展图谱能力。};
+\path[fill=FBlue!9,draw=Line,line width=.25pt] (92,306) rectangle (432,386);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=73.70025pt,font={\fontsize{10}{12.700}\selectfont\bfseries }] at (106,318) {优化方向};
+\path[fill=FBlue!9,draw=Line,line width=.25pt] (432,306) rectangle (1192,386);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=172.91213pt,font={\fontsize{10}{12.700}\selectfont\bfseries }] at (446,318) {具体做法};
+\path[fill=FBlue!9,draw=Line,line width=.25pt] (1192,306) rectangle (1828,386);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=143.62100pt,font={\fontsize{10}{12.700}\selectfont\bfseries }] at (1206,318) {预期作用};
+\path[fill=white,draw=Line,line width=.25pt] (92,386) rectangle (432,496);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=73.70025pt,font={\fontsize{9.5}{12.065}\selectfont }] at (106,398) {证据展示};
+\path[fill=white,draw=Line,line width=.25pt] (432,386) rectangle (1192,496);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=172.91213pt,font={\fontsize{9.5}{12.065}\selectfont }] at (446,398) {集中展示路径各步的原文、\\来源和日期};
+\path[fill=white,draw=Line,line width=.25pt] (1192,386) rectangle (1828,496);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=143.62100pt,font={\fontsize{9.5}{12.065}\selectfont }] at (1206,398) {更容易核查股票为什么入选};
+\path[fill=white,draw=Line,line width=.25pt] (92,496) rectangle (432,606);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=73.70025pt,font={\fontsize{9.5}{12.065}\selectfont }] at (106,508) {实体名称统一};
+\path[fill=white,draw=Line,line width=.25pt] (432,496) rectangle (1192,606);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=172.91213pt,font={\fontsize{9.5}{12.065}\selectfont }] at (446,508) {整理公司简称、英文名和证券代码};
+\path[fill=white,draw=Line,line width=.25pt] (1192,496) rectangle (1828,606);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=143.62100pt,font={\fontsize{9.5}{12.065}\selectfont }] at (1206,508) {减少同一主体被重复建成节点};
+\path[fill=white,draw=Line,line width=.25pt] (92,606) rectangle (432,716);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=73.70025pt,font={\fontsize{9.5}{12.065}\selectfont }] at (106,618) {冲突信息处理};
+\path[fill=white,draw=Line,line width=.25pt] (432,606) rectangle (1192,716);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=172.91213pt,font={\fontsize{9.5}{12.065}\selectfont }] at (446,618) {保留不同来源，标记矛盾并人工复核};
+\path[fill=white,draw=Line,line width=.25pt] (1192,606) rectangle (1828,716);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=143.62100pt,font={\fontsize{9.5}{12.065}\selectfont }] at (1206,618) {避免新资料直接覆盖旧事实};
+\path[fill=white,draw=Line,line width=.25pt] (92,716) rectangle (432,826);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=73.70025pt,font={\fontsize{9.5}{12.065}\selectfont }] at (106,728) {多层关系查询};
+\path[fill=white,draw=Line,line width=.25pt] (432,716) rectangle (1192,826);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=172.91213pt,font={\fontsize{9.5}{12.065}\selectfont }] at (446,728) {在证据充分时增加\\子公司、供应商路径};
+\path[fill=white,draw=Line,line width=.25pt] (1192,716) rectangle (1828,826);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=143.62100pt,font={\fontsize{9.5}{12.065}\selectfont }] at (1206,728) {发现间接关联，并展示完整依据};
+\path[fill=white,draw=Line,line width=.25pt] (92,826) rectangle (432,936);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=73.70025pt,font={\fontsize{9.5}{12.065}\selectfont }] at (106,838) {扩大数据覆盖};
+\path[fill=white,draw=Line,line width=.25pt] (432,826) rectangle (1192,936);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=172.91213pt,font={\fontsize{9.5}{12.065}\selectfont }] at (446,838) {逐步增加模型、公司及行业资料};
+\path[fill=white,draw=Line,line width=.25pt] (1192,826) rectangle (1828,936);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,align=left,text=Navy,text width=143.62100pt,font={\fontsize{9.5}{12.065}\selectfont }] at (1206,838) {检查方法能否适用于更多案例};
+\end{scope}
+\end{tikzpicture}
 \end{frame}

@@ -494,9 +494,12 @@ EXTRA_BENCHMARKS = {}
 EXTRACTION_EVAL = {
     "version": "1.0",
     "created_at": "2026-11-07",
-    "description": "小规模真实抽取核对集：参考三元组均由官方/媒体原文核对；focus_entity_id 限定本案例只评目标模型相关关系，负例检验共同提及不产生关系。",
+    "description": "小规模真实抽取核对集：按原文复核指定模型与关系，Qwen3 研发主体参考待修订；focus_entity_id 限定本案例只评目标模型相关关系，负例检验共同提及不产生关系。",
+    "reference_review_status": "Qwen3 研发参考待复核；原始调用与输出保留，旧汇总评分撤回。",
     "cases": [
         {"id": "eval:qwen3-developer", "title": "Qwen3 发布与研发主体",
+         "reference_status": "needs_review",
+         "reference_review": "原文支持 Alibaba Cloud；旧参考采用阿里巴巴集团，混合事实抽取与集团映射。该参考暂不用于性能评价，先复核主体定义与组织归属。",
          "document_id": "src:qwen3-github", "url": "https://github.com/QwenLM/Qwen3",
          "text": "Qwen3 is the large language model series developed by Qwen team, Alibaba Cloud.",
          "focus_entity_id": "model:qwen3",

@@ -60,6 +60,9 @@ def run_case(case):
 def evaluate(limit=6, workers=2):
     fixture = read_json(ROOT / "data" / "extraction_eval.json")
     cases = fixture["cases"][:limit]
+    pending = [case["id"] for case in cases if case.get("reference_status") == "needs_review"]
+    if pending:
+        raise ValueError("参考关系尚未完成复核，未发起模型调用：" + ", ".join(pending))
     # Fail before calling the model if a source-checked reference is malformed.
     with ThreadPoolExecutor(max_workers=workers) as pool:
         results = list(pool.map(run_case, cases))

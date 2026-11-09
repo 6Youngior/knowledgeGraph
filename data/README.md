@@ -9,7 +9,7 @@
 | `knowledge_graph.json` | 59 个实体、85 条关系的初始图谱 |
 | `sources.json` | 41 条来源的链接、发布方、日期与原文短摘录 |
 | `extraction_samples.json` | 4 篇可重复导入的抽取回放样例 |
-| `extraction_eval.json` | 6 段真实文本及指定目标关系的参考 |
+| `extraction_eval.json` | 6 段真实文本及指定目标关系；Qwen3 研发主体参考待复核 |
 | `market/*.csv` | 8 只股票与 2 条基准的真实日线，共 2448 行 |
 | `raw/` | 腾讯财经原始响应，用于离线重建行情 |
 | `neo4j/import.cypher` | 图谱的 Cypher 导出；原型实际使用 NetworkX |

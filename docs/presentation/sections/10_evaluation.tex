@@ -1,22 +1,23 @@
-\begin{frame}{抽取初试：结果与主要问题}\relax
-\Intro{在提供实体目录的条件下，对 6 段文本进行定向抽取，检查流程并定位问题。}
+\begin{frame}{抽取初试：从原文到关系}\relax
+\Intro{提供实体目录，对 6 段真实文本调用模型，下面展示其中两例。}
 \begin{columns}[T,onlytextwidth]
-\column{.43\textwidth}
-{\fontsize{11.6}{15}\selectfont
-\begin{tabularx}{\linewidth}{@{}X r@{}}
-\toprule
-核对项 & 结果\\
-\midrule
-正例目标关系 & 5 条\\
-精确三元组匹配 & 4 条\\
-共同提及负例 & 1 段\\
-负例中生成的关系 & 0 条\\
-\bottomrule
-\end{tabularx}}
-\column{.52\textwidth}
-\Head{主要差异：研发主体的组织层级}
-Qwen3 抽取主体为 \textbf{Alibaba Cloud}，与原文一致；参考标注采用\textbf{阿里巴巴集团}。
+\column{.48\textwidth}
+\Head{接入公告}
+“千帆平台已正式上架\\DeepSeek-R1……”\Cite{baidu-qianfan}
 \Gap
-研发关系类型一致，差异涉及主体层级。需复核参考标注与实体映射，并用独立标注集评估。
+\Head{抽取结果}
+千帆平台 $\xrightarrow{\text{云接入}}$ DeepSeek-R1
+\Gap
+本例核对 DeepSeek-R1 的接入关系。
+\column{.48\textwidth}
+\Head{性能对比}
+文本比较 Qwen3 与 DeepSeek-R1 的基准表现。\Cite{qwen3-blog}
+\Gap
+\Head{抽取结果}
+未生成合作、适配或接入关系。
+\Gap
+两个模型一起出现，未据此补出关系。
 \end{columns}
+\Gap
+接入事实支持证券关联查询；性能对比不用于推导公司关系。
 \end{frame}

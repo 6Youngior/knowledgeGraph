@@ -1,7 +1,7 @@
-\begin{frame}[t]{Qwen3 抽取错例与改进方案}\relax
+\begin{frame}[t]{抽取初试：结果与问题分析}\relax
 \setlength{\parskip}{0pt}
 {\fontsize{11}{14.5}\selectfont
-\Intro{Qwen3 的关系类型正确，但研发主体与参考标注处于不同组织层级。}}
+\Intro{在提供实体目录的条件下，对 6 段文本进行定向关系抽取。}}
 \begin{columns}[T,onlytextwidth]
 \column{.33\textwidth}
 \Head{期中初试（6 段）}
@@ -17,25 +17,21 @@
 \bottomrule
 \end{tabularx}}
 \column{.62\textwidth}
-\Head{观察到的差异}
+\Head{Qwen3：研发主体的层级差异}
 {\fontsize{10.8}{14}\selectfont
 抽取主体：Alibaba Cloud\Cite{qwen3-repo}\\
 参考标注：阿里巴巴集团。}
 \Gap
-\Head{补充组织关系后的预期路径}
-\begin{beamercolorbox}[sep=2mm,wd=\linewidth,center]{block body}
-{\fontsize{9.6}{13}\selectfont\bfseries
-\mbox{Qwen3 $\rightarrow$ Alibaba Cloud $\rightarrow$ 阿里巴巴集团 $\rightarrow$ 09988.HK}}
+\Head{问题分析}
+\begin{beamercolorbox}[sep=2mm,wd=\linewidth]{block body}
+{\fontsize{10.8}{14}\selectfont
+关系类型一致，差异出在主体层级；参考标注与实体映射均需复核。}
 \end{beamercolorbox}
-\par\vspace{2mm}
-{\fontsize{10.8}{14.5}\selectfont
-保留研发主体，依据集团年报补充组织归属\Cite{alibaba-2024}。}
 \end{columns}
 \par\vspace{2mm}
 {\color{Line}\rule{\linewidth}{.4pt}}
 \par\vspace{1mm}
-\Head{验证计划}
+\Head{初试范围与局限}
 {\fontsize{10.8}{14}\selectfont
-复跑同一文本，分别核对研发主体和证券路径。\\
-移除归属证据后，检查该条路径是否中断。}
+本次仅用于检查流程和发现问题，尚未开展独立标注集评估。}
 \end{frame}

@@ -1,12 +1,11 @@
 \begin{frame}{关系类型与语义定义}\relax
-\Intro{拟新增 OrgUnit 与 PART\_OF，研发主体保留原文对应层级。}
-{\fontsize{10.4}{13.2}\selectfont\renewcommand{\arraystretch}{1.18}
-\begin{tabularx}{\linewidth}{@{}p{4.2cm} p{4.7cm} X@{}}
+\Intro{关系通过原文、来源与公开日期说明依据；行业关系仅用于分类。}
+{\fontsize{10.4}{13.2}\selectfont
+\begin{tabularx}{\linewidth}{@{}p{4.5cm} p{4.1cm} X@{}}
 \toprule
 关系类型 & 起点 $\rightarrow$ 终点 & 含义\\
 \midrule
-\texttt{DEVELOPED\_BY} & Model $\rightarrow$ Company / \textcolor{FBlue}{OrgUnit} & 模型的研发主体\\
-\textcolor{FBlue}{\texttt{PART\_OF}（拟增）} & \textcolor{FBlue}{OrgUnit $\rightarrow$ Company} & 经证据核验的组织归属\\
+\texttt{DEVELOPED\_BY} & Model $\rightarrow$ Company & 模型的研发主体\\
 \texttt{LISTED\_AS} & Company $\rightarrow$ Stock & 公司对应的上市证券\\
 \texttt{PRODUCES} & Company $\rightarrow$ Product & 公司提供的硬件或平台产品\\
 \texttt{SUPPORTS\_MODEL} & Product $\rightarrow$ Model & 硬件技术适配\\

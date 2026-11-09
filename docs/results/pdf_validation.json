@@ -1,9 +1,9 @@
 {
   "passed": true,
-  "created_at": "2026-11-09T06:01:08.148092+00:00",
+  "created_at": "2026-11-09T06:24:07.097791+00:00",
   "issues": [],
   "pdf": "docs\\presentation\\FinGraph-期中汇报.pdf",
-  "pdf_sha256": "23df1f66525f85ff9900d959796d0d48b66e5f848019661442700cb356348856",
+  "pdf_sha256": "fc9fb9a6ac11c2905fb9ea41ea8be98eeba9ea061ed6c271dbf24be5548be0d4",
   "theme_sha256": "493e458ec6cd955da6567c613374d2cc1faf25c51e7e21a1e5a959ddeabfa3d3",
   "theme_license": "Apache-2.0",
   "page_count": 17,
@@ -52,11 +52,11 @@
       "page": 5,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 243,
+      "text_chars": 176,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
-      "median_content_font_pt": 11.96
+      "median_content_font_pt": 9.96
     },
     {
       "page": 6,
@@ -72,7 +72,7 @@
       "page": 7,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 318,
+      "text_chars": 269,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
@@ -132,7 +132,7 @@
       "page": 13,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 413,
+      "text_chars": 359,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
@@ -183,7 +183,7 @@
   "scope": "Mechanical PDF checks only. Content depth and visual quality require a separate rendered-page review.",
   "visual_review": {
     "status": "completed",
-    "reviewed_at": "2026-11-09T06:02:07.559335+00:00",
+    "reviewed_at": "2026-11-09T06:25:21.853434+00:00",
     "rendered_pages": [
       1,
       2,
@@ -206,13 +206,14 @@
     "notes": [
       "Checked the native FDU cover, title bars, section navigation, footer and watermark.",
       "Uses original FDU templates and standard Beamer blocks; vendored theme file remains unchanged.",
-      "Reviewed the 12 main pages, retaining their sequence while adapting the supplied group replacement slides.",
+      "Reviewed the 12 main pages; the current implementation is introduced before the preliminary trial, application cases and future work.",
       "Checked that the six-text trial and functional case observations are distinct from the planned independent evaluation.",
-      "Checked that OrgUnit, PART_OF and the Qwen3 organization path are marked as proposals; the original trial counts remain unchanged.",
+      "Restored pages 5 and 13 to the implemented six entity classes and eight relation types used in the current dataset. Organizational extension is reserved for future work.",
       "Checked the prioritized implementation plan and subsequent optimization directions; detailed evaluation remains in speaker notes.",
       "Reviewed the five supplementary pages: relation definitions, market illustration, calculation methods and bibliographic references.",
       "Checked visible citation numbers, primary-source titles, diagram direction, table wraps and spacing.",
-      "Compared page 7 with the supplied PowerPoint; restored its summary, column proportions, single-line path and separate validation area. Raster comparison confirms the other 16 pages are unchanged.",
+      "Reviewed page 7 with its existing column layout: original trial counts, organization-level mismatch, reference and mapping review, and small-sample limitations; the proposed security path is removed.",
+      "Raster comparison confirms that only pages 5, 7 and 13 changed in this revision; the root README and future-work slides are unchanged.",
       "Slides contain no repository file instructions or repeated bottom annotations."
     ],
     "gray_body_note_spans": 0

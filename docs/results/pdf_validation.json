@@ -1,12 +1,12 @@
 {
   "passed": true,
-  "created_at": "2026-11-09T15:13:07.064537+00:00",
+  "created_at": "2026-11-09T15:29:25.281475+00:00",
   "issues": [],
   "pdf": "docs\\presentation\\FinGraph-期中汇报.pdf",
-  "pdf_sha256": "7026400ed4b8d874354f82bcccc43ecf0087d3bade0ab7b9de179936e8c7d6e6",
+  "pdf_sha256": "caebd07f2730d5eda746594178d015ae03622fc2c2e5c8a82256000fb848ea7c",
   "theme_sha256": "493e458ec6cd955da6567c613374d2cc1faf25c51e7e21a1e5a959ddeabfa3d3",
   "theme_license": "Apache-2.0",
-  "page_count": 19,
+  "page_count": 18,
   "pages": [
     {
       "page": 1,
@@ -72,7 +72,7 @@
       "page": 7,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 255,
+      "text_chars": 249,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
@@ -122,17 +122,17 @@
       "page": 12,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 328,
+      "text_chars": 290,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
-      "median_content_font_pt": 9.96
+      "median_content_font_pt": 9.46
     },
     {
       "page": 13,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 296,
+      "text_chars": 311,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
@@ -142,7 +142,7 @@
       "page": 14,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 287,
+      "text_chars": 416,
       "images": 0,
       "outside_text": [],
       "footer_collisions": [],
@@ -152,16 +152,6 @@
       "page": 15,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
-      "text_chars": 423,
-      "images": 0,
-      "outside_text": [],
-      "footer_collisions": [],
-      "median_content_font_pt": 9.46
-    },
-    {
-      "page": 16,
-      "width_pt": 453.5400085449219,
-      "height_pt": 255.1199951171875,
       "text_chars": 222,
       "images": 0,
       "outside_text": [],
@@ -169,7 +159,7 @@
       "median_content_font_pt": 9.96
     },
     {
-      "page": 17,
+      "page": 16,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
       "text_chars": 278,
@@ -179,7 +169,7 @@
       "median_content_font_pt": 11.96
     },
     {
-      "page": 18,
+      "page": 17,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
       "text_chars": 357,
@@ -189,7 +179,7 @@
       "median_content_font_pt": 11.16
     },
     {
-      "page": 19,
+      "page": 18,
       "width_pt": 453.5400085449219,
       "height_pt": 255.1199951171875,
       "text_chars": 223,
@@ -203,7 +193,7 @@
   "scope": "Mechanical PDF checks only. Content depth and visual quality require a separate rendered-page review.",
   "visual_review": {
     "status": "completed",
-    "reviewed_at": "2026-11-09T15:15:06.172142+00:00",
+    "reviewed_at": "2026-11-09T15:32:32.765059+00:00",
     "rendered_pages": [
       1,
       2,
@@ -222,18 +212,18 @@
       15,
       16,
       17,
-      18,
-      19
+      18
     ],
     "gray_body_note_spans": 0,
     "notes": [
-      "Reviewed all 19 pages at presentation scale, with full-page inspection of pages 9 and 11 through 15.",
-      "The FDU cover, title bars, navigation, footer, watermark and original theme are retained.",
-      "Page 11 preserves the five-node organization path with equal boxes, separated arrow labels and sufficient spacing.",
-      "Future-work tables use consistent cell alignment and readable body text; bottom annotations are removed.",
-      "Text, tables, paths and market figures are native vector objects. Only the original demonstration screenshot is raster content.",
-      "Page 9 uses the unchanged original 1668 by 731 screenshot.",
-      "The order remains topic, current progress, future work, then reference material."
+      "Reviewed all 18 final pages; the four changed pages were inspected at full presentation scale.",
+      "Raster comparison confirms unchanged body regions on pages 1 through 6, 8 through 11, and 15 through 18 against their preceding equivalents.",
+      "The GLM case remains on pages 8 through 10. Its original demonstration screenshot and the page 11 diagram are unchanged.",
+      "Qwen3 is described as a subject-level mismatch requiring reference and entity-mapping review; the original trial counts are unchanged.",
+      "Removed the repeated Qwen3 future-work slide and placed the detailed organization-relation extension in reference material.",
+      "Future-work wording distinguishes existing evidence display and alias matching from their proposed refinements and further batch-update validation.",
+      "The original FDU theme, layout coordinates, font sizes, native vector text and diagrams are retained, with no bottom annotations.",
+      "Checked that all footer page numbers use the final total of 18."
     ]
   },
   "content_sections": {
@@ -257,15 +247,14 @@
     "future_work": [
       11,
       12,
-      13,
-      14,
-      15
+      13
     ],
     "supplementary_material": [
+      14,
+      15,
       16,
       17,
-      18,
-      19
+      18
     ]
   },
   "main_presentation_pages": [
@@ -281,8 +270,6 @@
     10,
     11,
     12,
-    13,
-    14,
-    15
+    13
   ]
 }

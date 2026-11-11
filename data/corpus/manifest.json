@@ -1,0 +1,16 @@
+{
+  "schema_version": "document-catalog-v1",
+  "documents": 34,
+  "input_prepared_records": 37,
+  "duplicates": 3,
+  "companies": 10,
+  "pages": 7244,
+  "chunks": 12393,
+  "text_characters": 13096379,
+  "version_counts": {
+    "observed_version": 2,
+    "original_filing": 32
+  },
+  "catalog_sha256": "5b455a7beed39084e459275d7a211b609f35a491773ed15de1824a950c07fc94",
+  "text_included": false
+}

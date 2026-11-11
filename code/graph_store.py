@@ -10,6 +10,7 @@ import hashlib
 import json
 import re
 import threading
+import unicodedata
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
@@ -56,15 +57,29 @@ def normalized(value: str) -> str:
     return re.sub(r"[\W_]+", "", str(value).casefold())
 
 
+def evidence_key(value: str) -> str:
+    """Ignore layout whitespace while preserving signs and decimal points."""
+    return re.sub(r"\s+", "", unicodedata.normalize("NFKC", str(value)))
+
+
 def fact_id(source, predicate, target):
     digest = hashlib.sha256(f"{source}|{predicate}|{target}".encode()).hexdigest()[:16]
     return f"rel:{digest}"
 
 
 class GraphStore:
-    def __init__(self, data_dir: Path, persist: bool = True):
+    def __init__(self, data_dir: Path, persist: bool = True, read_runtime: bool | None = None):
+        """Open a graph.
+
+        ``persist`` controls writes, as before. ``read_runtime`` controls
+        whether a matching runtime snapshot may be read; ``None`` preserves
+        the historical default (read iff ``persist`` is true). A read-only
+        research session can therefore use ``read_runtime=True`` without
+        gaining permission to write an overlay.
+        """
         self.data_dir = Path(data_dir)
         self.persist = persist
+        self.read_runtime = read_runtime
         self.lock = threading.RLock()
         self.runtime_path = self.data_dir / "runtime" / "graph_state.json"
         self.meta = {}
@@ -84,7 +99,8 @@ class GraphStore:
                 sources = sources.get("sources", [])
             self.meta = base.get("meta", {})
             self.sources = {s["id"]: s for s in sources}
-            if use_runtime and self.persist and self.runtime_path.exists():
+            allow_runtime = self.persist if self.read_runtime is None else self.read_runtime
+            if use_runtime and allow_runtime and self.runtime_path.exists():
                 saved = read_json(self.runtime_path, {})
                 if saved.get("base_digest") == self.base_digest():
                     base = saved["graph"]
@@ -185,8 +201,8 @@ class GraphStore:
                     if not available or available > as_of[:10]:
                         continue
                     quote = record.get("evidence", "")
-                    if normalized(quote) not in normalized(doc.get("text", "")):
-                        quote = doc.get("text", quote)
+                    if not evidence_key(quote) or evidence_key(quote) not in evidence_key(doc.get("text", "")):
+                        continue
                     visible_records.append({"source_ids": [sid], "evidence": quote,
                                             "disclosed_at": record["disclosed_at"]})
             records = visible_records
@@ -394,7 +410,7 @@ class GraphStore:
             evidence = edge.get("evidence", "").strip()
             if not evidence:
                 raise ValueError("关系缺少原文证据片段")
-            supported = any(normalized(evidence) in normalized(available_sources[s].get("text", ""))
+            supported = any(evidence_key(evidence) in evidence_key(available_sources[s].get("text", ""))
                             for s in edge["source_ids"])
             if not supported:
                 raise ValueError(f"证据片段无法在来源中定位：{evidence[:60]}")

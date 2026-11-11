@@ -20,7 +20,7 @@ import copy
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
-from graph_store import GraphStore, normalized
+from graph_store import GraphStore, normalized, evidence_key
 from market import MarketData
 
 CHINA = timezone(timedelta(hours=8))
@@ -158,12 +158,11 @@ class ResearchTools:
 
         self.data_dir = Path(data_dir)
         self.market = MarketData(self.data_dir)
-        # persist=False is essential: graph_store.py:87 only reads the runtime
-        # overlay when `use_runtime and self.persist` are both true, so this
-        # session uses the approved base graph and never reads/writes the
-        # mutable runtime file.  Using a reviewed overlay is a separate,
-        # explicit data-governance decision, not an automatic side effect.
-        store = GraphStore(self.data_dir, persist=False)
+        # persist=False means this service never writes.  read_runtime=True is
+        # a separate, explicit permission to read a base_digest-matching Web
+        # update; graph_store.py only applies it when the digest matches.
+        # The old GraphStore(persist=False) default still ignores runtime.
+        store = GraphStore(self.data_dir, persist=False, read_runtime=True)
 
         self.sources = {}
         self.hidden_sources = {}
@@ -191,10 +190,11 @@ class ResearchTools:
                 "body_status": info["body_status"],
             }
 
+        source_text = {sid: evidence_key(source.get("text", "")) for sid, source in self.sources.items()}
         edges = {}
         for eid, original in store.edges.items():
             edge_day = day(original.get("disclosed_at"))
-            if not edge_day or edge_day > self.as_of:
+            if edge_day and edge_day > self.as_of:
                 continue
             raw_records = original.get("evidence_records")
             if not raw_records:
@@ -206,18 +206,34 @@ class ResearchTools:
             records = []
             for record in raw_records:
                 record_day = day(record.get("disclosed_at"))
-                if not record_day or record_day > self.as_of:
+                if record_day and record_day > self.as_of:
                     continue
                 evidence = str(record.get("evidence") or "").strip()
                 if not evidence:
                     continue
-                source_ids = [sid for sid in (record.get("source_ids") or []) if sid in self.sources]
+                # A mixed old/new citation cannot keep a future-only quote
+                # after the unavailable source ID has been removed.
+                quote = evidence_key(evidence)
+                source_ids = [sid for sid in (record.get("source_ids") or [])
+                              if sid in self.sources and quote and quote in source_text[sid]]
                 if not source_ids:
+                    continue
+                source_days = [day(self.sources[sid].get("available_at")) for sid in source_ids]
+                source_days = [d for d in source_days if d]
+                if not source_days:
+                    continue
+                source_day = max(source_days)
+                # An undated edge/record may be used only from the date its
+                # supporting body is actually available.  This applies the
+                # lower bound required by the review and never backdates the
+                # evidence to an earlier URL.
+                effective_day = max(x for x in (record_day, source_day) if x)
+                if effective_day > self.as_of:
                     continue
                 records.append({
                     "source_ids": source_ids,
                     "evidence": evidence,
-                    "disclosed_at": record_day,
+                    "disclosed_at": effective_day,
                 })
             if not records:
                 continue
@@ -225,6 +241,9 @@ class ResearchTools:
             edge["evidence_records"] = records
             edge["source_ids"] = sorted({sid for record in records for sid in record["source_ids"]})
             edge["evidence"] = records[0]["evidence"]
+            # If the top-level edge had no date, use the earliest visible
+            # evidence availability.  It can still be filtered per record.
+            edge["disclosed_at"] = edge_day or min(record["disclosed_at"] for record in records)
             edges[eid] = edge
 
         endpoints = {n for edge in edges.values() for n in (edge["source"], edge["target"])}

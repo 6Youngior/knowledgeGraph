@@ -141,6 +141,7 @@ class ResearchToolsTests(unittest.TestCase):
         raw_edge = tools.store.edges["edge:develop"]
         self.assertEqual(len(raw_edge["evidence_records"]), 1)
         self.assertEqual(raw_edge["evidence_records"][0]["evidence"], "old evidence")
+        # The other quote does not occur in its claimed old source.
 
     def test_archive_cannot_precede_its_known_publication(self):
         path = self.data / "sources.json"
@@ -151,6 +152,16 @@ class ResearchToolsTests(unittest.TestCase):
         write_json(path, sources)
         tools = ResearchTools(self.data, "2024-06-01")
         self.assertEqual(tools.read_source("src:invalid-archive"), tools.read_source("src:unknown"))
+
+    def test_future_only_quote_cannot_hide_behind_an_old_source_id(self):
+        path = self.data / "knowledge_graph.json"
+        graph = json.loads(path.read_text(encoding="utf-8"))
+        graph["edges"].append({"id": "edge:unsafe-quote", "source": "product:old", "target": "model:old",
+                               "type": "SUPPORTS_MODEL", "source_ids": ["src:old", "src:future"],
+                               "evidence": "future evidence", "disclosed_at": "2024-01-10"})
+        write_json(path, graph)
+        tools = ResearchTools(self.data, "2024-06-01")
+        self.assertNotIn("edge:unsafe-quote", tools.store.edges)
 
     def test_modified_date_without_capture_does_not_prove_an_old_body(self):
         source = {"published_at": "2024-01-01", "modified_at": "2024-02-01", "text": "Current body"}
@@ -173,7 +184,8 @@ class ResearchToolsTests(unittest.TestCase):
         self.assertIn("src:undated", current.sources)
         self.assertTrue(current.read_source("src:undated")["found"])
         self.assertEqual(current.read_source("src:undated")["date_status"], "captured_only")
-        self.assertNotIn("edge:undated", current.store.edges)
+        self.assertIn("edge:undated", current.store.edges)
+        self.assertEqual(current.store.edges["edge:undated"]["disclosed_at"], "2024-01-02")
 
     def test_missing_capture_date_uses_observation_not_publication(self):
         past = ResearchTools(self.data, "2024-06-01")
@@ -223,7 +235,33 @@ class ResearchToolsTests(unittest.TestCase):
         after = digest_tree()
         self.assertEqual(before, after)
 
-    def test_runtime_overlay_is_not_read_for_a_research_session(self):
+    def test_runtime_overlay_read_is_explicit_and_read_only(self):
+        base = self.data / "knowledge_graph.json"
+        base_digest = hashlib.sha256(base.read_bytes()).hexdigest()
+        write_json(self.data / "runtime" / "graph_state.json", {
+            "base_digest": base_digest,
+            "graph": {
+                "nodes": [{"id": "company:runtime", "label": "Runtime", "type": "Company",
+                           "source_ids": ["src:runtime"]}],
+                "edges": [], "events": [],
+            },
+            "sources": [{"id": "src:runtime", "title": "runtime", "text": "runtime",
+                         "published_at": "2024-01-01", "retrieved_at": "2024-01-02T00:00:00+08:00"}],
+        })
+        # Old default: persist=False still means "do not read runtime".
+        base_only = GraphStore(self.data, persist=False)
+        self.assertNotIn("company:runtime", base_only.nodes)
+        # Default persist=True keeps the old read behavior.
+        default_store = GraphStore(self.data)
+        self.assertIn("company:runtime", default_store.nodes)
+        # Explicit read is independent of write permission.
+        read_only_overlay = GraphStore(self.data, persist=False, read_runtime=True)
+        self.assertIn("company:runtime", read_only_overlay.nodes)
+        tools = ResearchTools(self.data, "2024-06-01")
+        self.assertIn("company:runtime", tools.store.nodes)
+        self.assertTrue(tools.read_source("src:runtime")["found"])
+
+    def test_runtime_overlay_with_stale_digest_is_ignored(self):
         write_json(self.data / "runtime" / "graph_state.json", {
             "base_digest": "bogus",
             "graph": {"nodes": [{"id": "node:runtime", "label": "Runtime", "type": "Company"}],

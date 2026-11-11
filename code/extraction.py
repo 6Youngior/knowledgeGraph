@@ -12,6 +12,7 @@ import time
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urlparse
 
 import httpx
 
@@ -29,6 +30,7 @@ class ExtractionService:
         self.base_url = os.getenv("LLM_BASE_URL", "").rstrip("/")
         self.api_key = os.getenv("LLM_API_KEY", "")
         self.model = os.getenv("LLM_MODEL", "deepseek-v4.1-flash")
+        self.provider_session_id = f"fingraph-{uuid.uuid4().hex}"
 
     def capability(self):
         opencode = bool(shutil.which("opencode") or shutil.which("opencode.cmd") or shutil.which("opencode.ps1"))
@@ -72,12 +74,16 @@ text:
     def _generate(self, prompt):
         if self.base_url and self.api_key:
             budget = TokenBudget(self.root / ".fingraph" / "usage.sqlite")
-            max_tokens = max(128, min(int(os.getenv("LLM_MAX_OUTPUT_TOKENS", "1024")), 4096))
-            request_id = budget.reserve(self.model, "knowledge_extraction", len(prompt.encode("utf-8")), max_tokens)
+            max_tokens = max(128, min(int(os.getenv("FINGRAPH_EXTRACTION_MAX_TOKENS", "2048")), 4096))
+            request_id = budget.reserve(self.model, "knowledge_extraction", len(prompt.encode("utf-8")), max_tokens,
+                                        run_id=self.provider_session_id)
+            headers = {"Authorization": f"Bearer {self.api_key}", "User-Agent": "FinGraphAgent/0.2.0"}
+            if urlparse(self.base_url).hostname == "opencode.ai":
+                headers["x-opencode-session"] = self.provider_session_id
             try:
                 with httpx.Client(timeout=90) as client:
                     response = client.post(f"{self.base_url}/chat/completions",
-                        headers={"Authorization": f"Bearer {self.api_key}"},
+                        headers=headers,
                         json={"model": self.model, "messages": [{"role": "user", "content": prompt}],
                               "temperature": 0, "max_tokens": max_tokens,
                               "thinking": {"type": "disabled"}, "response_format": {"type": "json_object"}})
@@ -153,7 +159,8 @@ text:
                 raise ValueError("请粘贴来源文本或选择样例")
             digest = hashlib.sha256(text.encode()).hexdigest()[:16]
             document = {"id": f"src:import-{digest}", "title": title or "新增研究资料", "text": text.strip(),
-                        "url": url or "", "published_at": "", "publisher": "用户导入", "source_type": "user"}
+                        "url": url or "", "published_at": "", "publisher": "用户导入", "source_type": "user",
+                        "retrieved_at": datetime.now(timezone.utc).isoformat(), "version_status": "observed_version"}
         warning = None
         if mode == "replay":
             actual_mode, model = "replay", sample.get("model", MODEL_NAME)

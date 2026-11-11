@@ -39,7 +39,7 @@ if (!apiKey) {
 mkdirSync(profile, { recursive: true });
 writeFileSync(join(profile, 'settings.json'), JSON.stringify({
   defaultProvider: 'opencode-go', defaultModel: model, defaultThinkingLevel: 'off',
-  retry: { enabled: false }, defaultTools: [],
+  retry: { enabled: false }, defaultTools: [], quietStartup: 'header',
 }, null, 2));
 writeFileSync(join(profile, 'models.json'), JSON.stringify({ providers: {
   'opencode-go': { modelOverrides: { [model]: {

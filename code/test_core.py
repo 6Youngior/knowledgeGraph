@@ -9,12 +9,15 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from datetime import datetime, timedelta, timezone
 
 from fastapi.testclient import TestClient
 
 from app import create_app
 from graph_store import GraphStore, write_json
 from market import MarketData
+from extraction import ExtractionService
+from research_tools import ResearchTools, CHINA
 
 
 class CoreTests(unittest.TestCase):
@@ -127,6 +130,32 @@ class CoreTests(unittest.TestCase):
         invalid["relations"][0]["source"] = "company:b"
         with self.assertRaisesRegex(ValueError, "端点类型"):
             self.store.align_extraction(invalid, self.document)
+
+    def test_evidence_does_not_erase_decimal_points(self):
+        document = {**self.document, "text": "MTT S5000 完成 GLM-5 的适配，性能提升 1.5 倍。"}
+        extraction = copy.deepcopy(self.extracted)
+        extraction["relations"][0]["evidence"] = "MTT S5000 完成 GLM-5 的适配，性能提升 15 倍。"
+        with self.assertRaisesRegex(ValueError, "无法在来源中定位"):
+            self.store.align_extraction(extraction, document)
+
+    def test_uploaded_text_is_observed_now_without_inventing_publication(self):
+        self.store.persist = True
+        service = ExtractionService(self.store, self.data)
+        extraction = copy.deepcopy(self.extracted)
+        for edge in extraction["relations"]:
+            edge.pop("source_ids", None)
+        service._generate = lambda _prompt: (json.dumps(extraction), "synthetic-test")
+        before = datetime.now(timezone.utc)
+        result = service.extract(text=self.document["text"], title="Uploaded evidence", mode="live")
+        document = result["document"]
+        captured = datetime.fromisoformat(document["retrieved_at"])
+        self.assertLessEqual(before, captured)
+        self.assertLessEqual(captured, datetime.now(timezone.utc))
+        self.assertEqual(document["published_at"], "")
+        service.ingest(result["extraction_id"])
+        self.assertTrue(ResearchTools(self.data).read_source(document["id"])["found"])
+        prior_day = (captured.astimezone(CHINA).date() - timedelta(days=1)).isoformat()
+        self.assertFalse(ResearchTools(self.data, prior_day).read_source(document["id"])["found"])
 
     def test_date_only_anchor_skips_weekend_and_uses_prior_close(self):
         window = MarketData(self.data).event_window("a.SH", self.event)

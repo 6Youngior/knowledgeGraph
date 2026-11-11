@@ -1,0 +1,62 @@
+[
+  {
+    "exchange": "SZSE",
+    "financial_source_id": "eastmoney_akshare_financial_a",
+    "fiscal_year_end_md": "12-31",
+    "market": "A",
+    "name": "浪潮信息",
+    "quote_currency": "CNY",
+    "reporting_currency": "CNY",
+    "role": "AI 服务器",
+    "security_type": "equity",
+    "symbol": "000977.SZ"
+  },
+  {
+    "exchange": "HKEX",
+    "financial_source_id": "eastmoney_akshare_financial_hk",
+    "fiscal_year_end_md": "12-31",
+    "market": "HK",
+    "name": "腾讯控股",
+    "quote_currency": "HKD",
+    "reporting_currency": "CNY",
+    "role": "云、模型与互联网",
+    "security_type": "equity",
+    "symbol": "00700.HK"
+  },
+  {
+    "exchange": "HKEX",
+    "financial_source_id": "eastmoney_akshare_financial_hk",
+    "fiscal_year_end_md": "03-31",
+    "market": "HK",
+    "name": "阿里巴巴-W",
+    "quote_currency": "HKD",
+    "reporting_currency": "CNY",
+    "role": "云与模型",
+    "security_type": "equity",
+    "symbol": "09988.HK"
+  },
+  {
+    "exchange": "SSE",
+    "financial_source_id": "eastmoney_akshare_financial_a",
+    "fiscal_year_end_md": "12-31",
+    "market": "A",
+    "name": "中科曙光",
+    "quote_currency": "CNY",
+    "reporting_currency": "CNY",
+    "role": "高性能计算/服务器",
+    "security_type": "equity",
+    "symbol": "603019.SH"
+  },
+  {
+    "exchange": "SSE",
+    "financial_source_id": "eastmoney_akshare_financial_a",
+    "fiscal_year_end_md": "12-31",
+    "market": "A",
+    "name": "海光信息",
+    "quote_currency": "CNY",
+    "reporting_currency": "CNY",
+    "role": "国产 CPU/DCU",
+    "security_type": "equity",
+    "symbol": "688041.SH"
+  }
+]

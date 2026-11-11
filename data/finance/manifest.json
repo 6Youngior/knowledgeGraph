@@ -1,0 +1,111 @@
+{
+  "counts": {
+    "business_mix_records": 483,
+    "companies": 5,
+    "disclosure_pages": 1196,
+    "disclosures": 5,
+    "financial_records": 206,
+    "index_rows": 449,
+    "price_rows": 2243
+  },
+  "data_units": {
+    "business_mix_records": "security/report-period/segment rows",
+    "chunks": 0,
+    "disclosures": "annual-report PDFs",
+    "financial_records": "security/report-period rows, not filings",
+    "index_prices": "index/date rows",
+    "prices": "security/date rows",
+    "triples": 0
+  },
+  "date_ranges": {
+    "financial_report_periods": {
+      "max": "2026-09-30",
+      "min": "1997-12-31"
+    },
+    "index": {
+      "max": "2026-11-11",
+      "min": "2025-01-02"
+    },
+    "prices": {
+      "max": "2026-11-11",
+      "min": "2025-01-02"
+    }
+  },
+  "files": {
+    "business_mix.jsonl": {
+      "bytes": 277877,
+      "sha256": "b1841fb9183f44535d8b64efd49a7d129539c123c3fdef1c7a95e5075a2b7093"
+    },
+    "companies.json": {
+      "bytes": 1642,
+      "sha256": "9d97c9e345e7c3d22f545dacba468f9e76afdcab3c38c9c65684da6e17d27e31"
+    },
+    "disclosures.json": {
+      "bytes": 3891,
+      "sha256": "d0053f54769863d86b5a35e030e774958b1da4ea4d6a437dc50272bea127713a"
+    },
+    "financials.jsonl": {
+      "bytes": 257250,
+      "sha256": "4fbab869849ed261d7b0bef679d4bd6974bcff90249316b57e182706237f242e"
+    },
+    "index_prices.jsonl": {
+      "bytes": 168637,
+      "sha256": "28e26a59621ac12472ee437ec14a12b7f626b7e3316a392a36b644e06ee7a60b"
+    },
+    "metric_definitions.json": {
+      "bytes": 2432,
+      "sha256": "19196ebbd9114e53627e22def6785a10fe1b895be555ce58dab7b2c4ada70ee5"
+    },
+    "prices.jsonl": {
+      "bytes": 839512,
+      "sha256": "c9dd03b9107d3d0afd40a652367ac58eb8ca338bd12c257c582dbeee8ae3d932"
+    },
+    "sources.json": {
+      "bytes": 3341,
+      "sha256": "16dc9cd791615e7fdb4a2d848f4dcbc465de9f9f2fc1f3f01822bf01219ab47b"
+    }
+  },
+  "generated_from": "explicit standardized capture; original PDFs validated but not copied",
+  "not_included": [
+    "PDF binaries (metadata, SHA-256, byte count and page count only)",
+    "financial revision history / as-of versions",
+    "HK notice dates (not supplied by aggregate interface)",
+    "HK business-mix table",
+    "news-event table",
+    "graph entities, relationships and LLM extraction"
+  ],
+  "period_basis_counts": {
+    "annual": 70,
+    "cumulative_ytd_9m": 45,
+    "cumulative_ytd_h1": 47,
+    "cumulative_ytd_q1": 44
+  },
+  "schema_version": "finance-package-v1",
+  "snapshot": {
+    "available_at": "2026-11-11",
+    "collected_at": "2026-11-11T08:39:59+00:00"
+  },
+  "source_ids": [
+    "alibaba_ir_annual_reports",
+    "cninfo_annual_reports",
+    "eastmoney_akshare_business_mix",
+    "eastmoney_akshare_financial_a",
+    "eastmoney_akshare_financial_hk",
+    "eastmoney_akshare_index",
+    "eastmoney_akshare_prices_a",
+    "eastmoney_akshare_prices_hk",
+    "tencent_ir_annual_reports"
+  ],
+  "units": {
+    "A_volume": "lot_100_shares",
+    "HK_volume": "shares",
+    "business_mix_gross_margin": "fraction 0-1",
+    "business_mix_ratios": "fraction 0-1",
+    "eps": "CNY/share",
+    "financial_amount": "whole CNY",
+    "financial_gross_margin": "percent",
+    "financial_ratios": "percent",
+    "index": "index points",
+    "quote_price": "quote currency per share"
+  }
+}

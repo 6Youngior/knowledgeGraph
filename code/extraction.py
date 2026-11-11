@@ -16,6 +16,7 @@ from pathlib import Path
 import httpx
 
 from graph_store import RELATION_SCHEMA, read_json, write_json
+from llm_budget import TokenBudget
 
 MODEL_NAME = "DeepSeek V4.1 Flash"
 
@@ -70,13 +71,23 @@ text:
 
     def _generate(self, prompt):
         if self.base_url and self.api_key:
-            with httpx.Client(timeout=90) as client:
-                response = client.post(f"{self.base_url}/chat/completions",
-                    headers={"Authorization": f"Bearer {self.api_key}"},
-                    json={"model": self.model, "messages": [{"role": "user", "content": prompt}],
-                          "temperature": 0, "response_format": {"type": "json_object"}})
-                response.raise_for_status()
-                return response.json()["choices"][0]["message"]["content"], self.model
+            budget = TokenBudget(self.root / ".fingraph" / "usage.sqlite")
+            max_tokens = max(128, min(int(os.getenv("LLM_MAX_OUTPUT_TOKENS", "1024")), 4096))
+            request_id = budget.reserve(self.model, "knowledge_extraction", len(prompt.encode("utf-8")), max_tokens)
+            try:
+                with httpx.Client(timeout=90) as client:
+                    response = client.post(f"{self.base_url}/chat/completions",
+                        headers={"Authorization": f"Bearer {self.api_key}"},
+                        json={"model": self.model, "messages": [{"role": "user", "content": prompt}],
+                              "temperature": 0, "max_tokens": max_tokens,
+                              "thinking": {"type": "disabled"}, "response_format": {"type": "json_object"}})
+                    response.raise_for_status()
+                    result = response.json()
+                    budget.complete(request_id, result.get("usage", {}))
+                    return result["choices"][0]["message"]["content"], self.model
+            except Exception:
+                budget.uncertain(request_id)
+                raise
         if not self.capability()["available"]:
             raise RuntimeError("没有可用的实时模型；请使用已验证回放或配置兼容 API")
         body = {"prompt": prompt, "model": {"id": "deepseek-v4.1-flash", "providerID": "opencode-go", "variant": "high"}}

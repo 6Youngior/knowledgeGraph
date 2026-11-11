@@ -1,0 +1,70 @@
+{
+  "as_of_semantics": "财务记录只有在 available_at <= as_of 时才可见；available_at 是本次聚合快照采集日，不是报告期结束日或披露日。",
+  "gross_margin_units": {
+    "business_mix": "fraction_0_1",
+    "financial_metric": "percent"
+  },
+  "metrics": {
+    "business_mix_gross_margin_ratio": {
+      "definition": "主营构成表中的毛利率，按 0—1 小数保存，不能和财务指标毛利率百分比混用。",
+      "label": "主营构成毛利率（比例）",
+      "unit": "0—1 小数"
+    },
+    "eps": {
+      "definition": "基本每股收益，人民币元/股；不代表摊薄每股收益。",
+      "label": "基本每股收益",
+      "raw_fields": {
+        "A": "EPSJB",
+        "HK": "BASIC_EPS"
+      },
+      "unit": "元/股"
+    },
+    "gross_margin": {
+      "definition": "财务指标表中的毛利率，单位为百分比；不是主营构成表中的 0—1 比例。",
+      "label": "毛利率（财务指标）",
+      "raw_fields": {
+        "A": "XSMLL",
+        "HK": "GROSS_PROFIT_RATIO"
+      },
+      "unit": "百分比"
+    },
+    "net_profit": {
+      "definition": "A 股为归属于母公司股东的净利润；港股为股东应占利润。两个口径不能直接混用。",
+      "label": "净利润（口径见定义）",
+      "raw_fields": {
+        "A": "PARENTNETPROFIT",
+        "HK": "HOLDER_PROFIT"
+      },
+      "unit": "元（整数人民币）"
+    },
+    "period_basis": {
+      "definition": "A 股一季报/中报/三季报是年初至今累计值，不是单季度值；港股样本为年度值。",
+      "label": "报告期口径",
+      "values": [
+        "annual",
+        "cumulative_ytd_9m",
+        "cumulative_ytd_h1",
+        "cumulative_ytd_q1"
+      ]
+    },
+    "revenue": {
+      "definition": "A 股取总营业收入；港股取经营收入。报表金额为人民币元。",
+      "label": "营业收入",
+      "raw_fields": {
+        "A": "TOTALOPERATEREVE",
+        "HK": "OPERATE_INCOME"
+      },
+      "unit": "元（整数人民币）"
+    },
+    "roe": {
+      "definition": "接口提供的 ROE 指标，单位为百分比；A 股用 ROEJQ，港股用 ROE_AVG，具体计算口径仍以数据源为准。",
+      "label": "净资产收益率",
+      "raw_fields": {
+        "A": "ROEJQ",
+        "HK": "ROE_AVG"
+      },
+      "unit": "百分比"
+    }
+  },
+  "schema_version": "finance-metrics-v1"
+}

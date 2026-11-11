@@ -14,7 +14,7 @@ export function Sidebar({ view, onNavigate, events, overview, health }: {
 }) {
   return (
     <aside className="sidebar">
-      <div className="brand"><LogoMark size={32} /><div><strong>FinGraph</strong><span>股票量化情报</span></div></div>
+      <div className="brand"><LogoMark size={32} /><div><strong>FinGraphAgent</strong><span>股票事件研究</span></div></div>
       <nav className="side-nav" aria-label="主导航">
         {NAV.map((item) => { const Icon = item.icon; return <button key={item.key} type="button"
           className={view === item.key ? 'active' : ''} onClick={() => onNavigate(item.key)}>

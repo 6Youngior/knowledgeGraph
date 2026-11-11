@@ -98,7 +98,7 @@ export function Topbar({
   return (
     <header className="topbar">
       <div className="topbar-left">
-        <div className="breadcrumb"><span>FinGraph</span><i>/</i><strong>{VIEW_LABEL[view]}</strong></div>
+        <div className="breadcrumb"><span>FinGraphAgent</span><i>/</i><strong>{VIEW_LABEL[view]}</strong></div>
         <span className="topbar-date">资料登记至 {formatDate(overview?.as_of)}</span>
       </div>
 

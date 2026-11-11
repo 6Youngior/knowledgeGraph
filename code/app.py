@@ -17,6 +17,7 @@ from graph_store import GraphStore
 from extraction import ExtractionService
 from market import MarketData
 from research import ResearchService
+from financial_tools import FinancialResearch
 
 ROOT = Path(__file__).resolve().parents[1]
 load_dotenv(ROOT / ".env")
@@ -39,8 +40,8 @@ class BriefRequest(BaseModel):
 
 
 def create_app(data_dir: Path | None = None, persist=True):
-    application = FastAPI(title="FinGraph · 金融知识图谱", version="1.0.0",
-                          description="期中展示：真实资料、显式关系、证据路径和事件窗口。")
+    application = FastAPI(title="FinGraphAgent", version="0.2.0",
+                          description="产业事件、关联股票、金融数据与来源证据。")
     store = GraphStore(data_dir or ROOT / "data", persist=persist)
     market = MarketData(store.data_dir)
     extraction = ExtractionService(store, ROOT)
@@ -63,7 +64,7 @@ def create_app(data_dir: Path | None = None, persist=True):
     @application.get("/api/health")
     def health():
         capability = extraction.capability()
-        return {"status": "ok", "engine": "NetworkX · typed property graph", "version": "1.0.0",
+        return {"status": "ok", "engine": "NetworkX · typed property graph", "version": "0.2.0",
                 "llm_available": capability["available"], "llm_provider": capability["provider"]}
 
     @application.get("/api/overview")
@@ -73,6 +74,15 @@ def create_app(data_dir: Path | None = None, persist=True):
     @application.get("/api/events")
     def events():
         return {"events": list(store.events.values())}
+
+    @application.get("/api/finance")
+    def finance_overview(as_of: str | None = Query(default=None, pattern=r"^\d{4}-\d{2}-\d{2}$")):
+        return FinancialResearch(store.data_dir / "finance", as_of).overview()
+
+    @application.get("/api/finance/{symbol}")
+    def financial_reports(symbol: str, periods: int = Query(default=4, ge=1, le=8),
+                          as_of: str | None = Query(default=None, pattern=r"^\d{4}-\d{2}-\d{2}$")):
+        return FinancialResearch(store.data_dir / "finance", as_of).company_financials(symbol, periods)
 
     @application.get("/api/research")
     def research_overview():

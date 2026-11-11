@@ -1,0 +1,89 @@
+[
+  {
+    "akshare_version": "1.20.37",
+    "id": "eastmoney_akshare_financial_a",
+    "provider": "Eastmoney via AKShare",
+    "retrieved_at": "2026-11-11T08:39:59+00:00",
+    "terms": "provider terms; AKShare is an access library, not the data owner",
+    "type": "structured_financial_provider",
+    "url": "https://akshare.akfamily.xyz/data/stock/stock_finance.html",
+    "used_for": "A-share financial indicator snapshot"
+  },
+  {
+    "akshare_version": "1.20.37",
+    "id": "eastmoney_akshare_financial_hk",
+    "provider": "Eastmoney via AKShare",
+    "retrieved_at": "2026-11-11T08:39:59+00:00",
+    "terms": "provider terms; AKShare is an access library, not the data owner",
+    "type": "structured_financial_provider",
+    "url": "https://akshare.akfamily.xyz/data/stock/stock_finance.html",
+    "used_for": "HK financial indicator snapshot"
+  },
+  {
+    "akshare_version": "1.20.37",
+    "id": "eastmoney_akshare_business_mix",
+    "provider": "Eastmoney via AKShare",
+    "retrieved_at": "2026-11-11T08:39:59+00:00",
+    "terms": "provider terms; current aggregate only",
+    "type": "structured_business_provider",
+    "url": "https://akshare.akfamily.xyz/data/stock/stock_finance.html",
+    "used_for": "A-share business mix snapshot"
+  },
+  {
+    "akshare_version": "1.20.37",
+    "id": "eastmoney_akshare_prices_a",
+    "provider": "Eastmoney via AKShare",
+    "retrieved_at": "2026-11-11T08:39:59+00:00",
+    "terms": "provider terms",
+    "type": "daily_quotes",
+    "url": "https://akshare.akfamily.xyz/data/stock/stock_quote.html",
+    "used_for": "A-share daily qfq quotes"
+  },
+  {
+    "akshare_version": "1.20.37",
+    "id": "eastmoney_akshare_prices_hk",
+    "provider": "Eastmoney via AKShare",
+    "retrieved_at": "2026-11-11T08:39:59+00:00",
+    "terms": "provider terms",
+    "type": "daily_quotes",
+    "url": "https://akshare.akfamily.xyz/data/stock/stock_quote.html",
+    "used_for": "HK daily qfq quotes"
+  },
+  {
+    "akshare_version": "1.20.37",
+    "id": "eastmoney_akshare_index",
+    "provider": "Eastmoney via AKShare",
+    "retrieved_at": "2026-11-11T08:39:59+00:00",
+    "terms": "provider terms",
+    "type": "daily_index",
+    "url": "https://akshare.akfamily.xyz/data/stock/stock_quote.html",
+    "used_for": "CSI 300 daily index"
+  },
+  {
+    "id": "cninfo_annual_reports",
+    "provider": "巨潮资讯 CNINFO",
+    "retrieved_at": "2026-11-11T08:39:59+00:00",
+    "terms": "public disclosure site; attribution and site terms apply",
+    "type": "official_disclosure_metadata",
+    "url": "http://www.cninfo.com.cn/",
+    "used_for": "A-share annual report metadata and PDF verification"
+  },
+  {
+    "id": "alibaba_ir_annual_reports",
+    "provider": "Alibaba Group IR",
+    "retrieved_at": "2026-11-11T08:39:59+00:00",
+    "terms": "company website terms",
+    "type": "official_disclosure_metadata",
+    "url": "https://www.alibabagroup.com/en-US/ir-financial-reports-financial-results",
+    "used_for": "Alibaba FY2026 annual report metadata"
+  },
+  {
+    "id": "tencent_ir_annual_reports",
+    "provider": "Tencent IR",
+    "retrieved_at": "2026-11-11T08:39:59+00:00",
+    "terms": "company website terms",
+    "type": "official_disclosure_metadata",
+    "url": "https://www.tencent.com/en-us/investors/financial-reports.html",
+    "used_for": "Tencent FY2025 annual report metadata"
+  }
+]

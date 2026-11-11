@@ -17,6 +17,9 @@
 | TanStack React Query | 请求缓存与状态刷新 | MIT |
 | Vite 6.4.5 | 前端构建 | MIT |
 | NetworkX 3.6.1 | 有向属性图与索引 | BSD-3-Clause |
+| [Pi 1.5.2](https://github.com/earendil-works/pi) | Agent 会话、终端与 MCP 客户端 | MIT |
+| [MCP Python SDK 1.30.0](https://github.com/modelcontextprotocol/python-sdk) | 金融研究 stdio 服务 | MIT |
+| [open 10.2.0](https://github.com/sindresorhus/open) | 从终端打开研究网页 | MIT |
 | FastAPI / Pydantic / Uvicorn | 类型校验与本地 API | 以各包许可证为准 |
 
 前端已打包依赖的许可证副本保存在 `visualization/licenses/`；Python 的实际安装版本保存在 `code/requirements-lock.txt`。
@@ -24,6 +27,8 @@
 ## 数据与素材
 
 事实来源、提供方、原始链接、日期精度与短摘录均登记在 `data/sources.json` 和 `data/README.md`。行情缓存源于腾讯财经公开日线接口，原始响应及复权方式保留。事实与市场数据属于各自发布方，本项目记录来源并用于课程研究展示。
+
+新增金融样本记录在 `data/finance/`：结构化财务、主营构成和日线通过 [AKShare](https://github.com/akfamily/akshare) 访问东方财富公开数据；年报来源为巨潮资讯及公司投资者关系网站。来源、访问工具版本、快照日期和适用范围见该目录的 `sources.json`、`disclosures.json` 和 `manifest.json`。AKShare 的开源许可不替代数据提供方的条款。
 
 Demo 截图来自本项目真实运行界面；Schema、架构和路径图由本项目绘制。
 

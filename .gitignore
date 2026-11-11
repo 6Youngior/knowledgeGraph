@@ -9,6 +9,7 @@
 __pycache__/
 *.py[cod]
 .venv/
+.fingraph/
 .pytest_cache/
 node_modules/
 /data/runtime/

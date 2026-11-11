@@ -14,7 +14,7 @@ import { SourcesMethodsView } from './views/SourcesMethodsView';
 export function App() {
   const queryClient = useQueryClient();
   const [view, setView] = useState<ViewKey>('research');
-  const [eventId, setEventId] = useState<string | null>(null);
+  const [eventId, setEventId] = useState<string | null>(() => new URLSearchParams(window.location.search).get('event'));
   const [focusTarget, setFocusTarget] = useState<{ node: GraphNode; token: number } | null>(null);
   const [pendingFocusGroup, setPendingFocusGroup] = useState<string | null>(null);
   const [pendingFocusSymbol, setPendingFocusSymbol] = useState<string | null>(null);
@@ -46,7 +46,7 @@ export function App() {
 
   useEffect(() => {
     const label = view === 'research' ? '事件研究' : view === 'cases' ? '事件目录' : view === 'update' ? '资料导入' : '资料与方法';
-    document.title = `${label} · FinGraph`;
+    document.title = `${label} · FinGraphAgent`;
   }, [view]);
 
   const startDemo = () => {

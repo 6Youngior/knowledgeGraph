@@ -105,7 +105,7 @@ class McpIntegrationTests(unittest.IsolatedAsyncioTestCase):
             tools = await session.list_tools()
             self.assertEqual({t.name for t in tools.tools}, {
                 "overview", "search_entities", "related_stocks", "read_source",
-                "price_history", "company_financials",
+                "price_history", "company_financials", "entity_relations",
             })
             overview = tool_value(await session.call_tool("overview", {}))
             self.assertIn("knowledge", overview)
@@ -122,6 +122,9 @@ class McpIntegrationTests(unittest.IsolatedAsyncioTestCase):
                     for edge in path["edges"]:
                         self.assertTrue(edge["sources"])
             self.assertTrue(tool_value(await session.call_tool("search_entities", {"query": "GLM-5"}))["entities"])
+            relations = tool_value(await session.call_tool("entity_relations", {"entity_id": "model:glm5"}))
+            self.assertTrue(relations["found"])
+            self.assertTrue(relations["relations"])
         await self.exercise("2026-11-11", check)
 
     async def test_past_cutoff_is_applied_to_all_current_snapshots(self):

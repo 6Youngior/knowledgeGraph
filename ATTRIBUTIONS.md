@@ -20,6 +20,8 @@
 | [Pi 1.5.2](https://github.com/earendil-works/pi) | Agent 会话、终端与 MCP 客户端 | MIT |
 | [MCP Python SDK 1.30.0](https://github.com/modelcontextprotocol/python-sdk) | 金融研究 stdio 服务 | MIT |
 | [open 10.2.0](https://github.com/sindresorhus/open) | 从终端打开研究网页 | MIT |
+| PyMuPDF 1.27.2.3 / PyMuPDF4LLM 0.2.9 | 离线解析财报 PDF 与页码 | AGPL-3.0 或 Artifex 商业许可 |
+| LangChain Text Splitters 1.1.3 | 按中文段落切分财报原文 | MIT |
 | FastAPI / Pydantic / Uvicorn | 类型校验与本地 API | 以各包许可证为准 |
 
 前端已打包依赖的许可证副本保存在 `visualization/licenses/`；Python 的实际安装版本保存在 `code/requirements-lock.txt`。

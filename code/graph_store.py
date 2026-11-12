@@ -373,6 +373,10 @@ class GraphStore:
         for node in entities:
             if node.get("type") not in NODE_TYPES or not node.get("label"):
                 raise ValueError("抽取实体缺少有效的 type 或 label")
+            # Pronouns in reports refer to the current issuer, never global
+            # identity aliases shared by otherwise unrelated companies.
+            generic = {"公司", "本公司", "集团", "本集团", "企业", "产品", "模型", "company", "thecompany"}
+            node["aliases"] = [a for a in node.get("aliases", []) if normalized(a) not in generic]
             proposed = node.get("id", f"{node['type'].lower()}:{normalized(node['label'])}")
             names = [node.get("properties", {}).get("symbol", ""), node["label"], *node.get("aliases", [])]
             existing = next((known_aliases[(node["type"], normalized(a))] for a in names

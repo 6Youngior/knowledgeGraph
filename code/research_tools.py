@@ -143,7 +143,7 @@ def source_available_on(source, observed_today=None):
 
 
 class ResearchTools:
-    """Five read-only tools over a cutoff-filtered graph and market cache."""
+    """Read-only tools over a cutoff-filtered graph and market cache."""
 
     def __init__(self, data_dir: Path, as_of=None):
         observed_today = datetime.now(CHINA).date().isoformat()
@@ -333,6 +333,29 @@ class ResearchTools:
             or needle in normalized(node.get("properties", {}).get("symbol", ""))
         ]
         return {"as_of": self.as_of, "entities": matches[:count]}
+
+    def entity_relations(self, entity_id, limit=12):
+        """One-hop facts over the already cutoff-filtered view, with citations."""
+        if entity_id not in self.store.nodes:
+            return {"as_of": self.as_of, "found": False, "relations": []}
+        count = max(1, min(int(limit), 30))
+        rows = [edge for edge in self.store.edges.values()
+                if entity_id in (edge["source"], edge["target"])]
+        rows.sort(key=lambda edge: (edge["type"], edge["source"], edge["target"]))
+        results = []
+        for edge in rows[:count]:
+            facts = []
+            for record in edge.get("evidence_records", [])[:3]:
+                facts.append({"quote": record["evidence"], "available_at": record["disclosed_at"],
+                              "sources": [{key: self.sources[sid].get(key) for key in
+                                           ("id", "title", "url", "page", "published_at", "available_at")}
+                                          for sid in record["source_ids"][:3]]})
+            results.append({"id": edge["id"], "type": edge["type"], "label": edge.get("label", edge["type"]),
+                            "source": {k: self.store.nodes[edge["source"]][k] for k in ("id", "label", "type")},
+                            "target": {k: self.store.nodes[edge["target"]][k] for k in ("id", "label", "type")},
+                            "evidence": facts})
+        return {"as_of": self.as_of, "found": True, "entity": self.store.nodes[entity_id],
+                "available_relations": len(rows), "returned_relations": len(results), "relations": results}
 
     def related_stocks(self, event_id):
         if event_id not in self.store.events:

@@ -62,12 +62,44 @@ npm run build --prefix visualization
 .\.venv\Scripts\python.exe code/import_finance.py --input <采集目录> --output data/finance
 ```
 
-输入格式包括财务、主营、行情、指数 CSV，披露 JSONL、来源目录和采集 manifest，具体字段及合成输入见 `code/test_finance.py`。导入验证日期、单位、重复记录和披露文件哈希，输出按固定顺序生成。批量金融采集工具仍待整理，不将本地采集缓存当成发布依赖。
+输入格式包括财务、主营、行情、指数 CSV，披露 JSONL、来源目录和采集 manifest，具体字段及合成输入见 `code/test_finance.py`。导入验证日期、单位、重复记录和披露文件哈希，输出按固定顺序生成。
+
+## 财报采集与知识抽取
+
+`data/universe.json` 定义 40 家公司的研究范围。巨潮采集器只收集 A 股完整年报与中报，保存公告标识、公开日期、原始 PDF、哈希及请求记录。港股语料沿用公司官方报告，当前不由该采集器自动下载。
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r code/requirements-data.txt
+.\.venv\Scripts\python.exe code/collect_disclosures.py --universe data/universe.json --output .fingraph/disclosures --limit 80 --per-kind 1 --delay 0.5
+```
+
+全文解析复用 PyMuPDF，按 PDF 页码记录原文；LangChain 的文本切分器生成带页内偏移的片段。默认提取文字，可选 PyMuPDF4LLM Markdown；扫描件尚未加入 OCR。文档、页数和片段分开计数，重复正文只算一份文档。
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r code/requirements-documents.txt -c code/requirements-lock.txt
+.\.venv\Scripts\python.exe code/prepare_documents.py --input .fingraph/disclosures/metadata.jsonl --output .fingraph/corpus/reports --limit 100
+.\.venv\Scripts\python.exe code/catalog_documents.py --inputs .fingraph/corpus/reports --output .fingraph/catalog
+.\.venv\Scripts\python.exe code/extract_corpus.py plan --inputs .fingraph/corpus/reports --output .fingraph/extraction/plan.json --limit 8
+```
+
+以上命令不调用模型。执行下列 `run` 才产生模型用量，串行处理并共用项目 token 账本；已有同一请求的结果可复用。默认遇错停止，`--continue-invalid` 可跳过无效候选，接口错误仍停止。
+
+```powershell
+.\.venv\Scripts\python.exe code/extract_corpus.py run --plan .fingraph/extraction/plan.json --output .fingraph/extraction
+```
+
+结果先保存在 `results/`，不自动入图。检查原文主语、关系含义和日期后，在审核 JSON 中逐项填写 `file`、文件 `sha256`、`decision`、`reviewer`、`note` 和允许入图的 `relation_ids`。校验引文能定位只是必要条件，不能代替语义审核。
+
+```powershell
+.\.venv\Scripts\python.exe code/extract_corpus.py ingest --results .fingraph/extraction/results --review .fingraph/extraction/review.json
+```
+
+入图写入本地 `data/runtime/`，重复执行不增加同一事实。MCP 检测图谱和来源文件变化后刷新，`entity_relations` 返回公司、产品或模型的一跳关系及出处。仓库内已发布首轮审核后的 22 条关系证据，其中 1 条补充已有事实，因此新增关系为 21 条。[审核记录](../data/corpus/extraction_review.json)是开发样本记录，没有作为独立测试集评分。
 
 ## 时间与实验
 
 MCP 会话绑定一个研究日期，模型不能在工具参数中改写它。对没有历史归档的网页，当前正文的观察日期晚于截止日时，正文和关联证据不会返回。金融指标与复权行情也按快照可用日期过滤。
 
-现有资料的正文版本主要采集于 2026 年 11 月，早期历史查询可能没有可用证据。Web 原型的资料日期筛选与完整历史预测是不同功能；终端的 `/time`、历史会话隔离及结果验证页面尚未发布。
+定期报告已保留固定 PDF 与披露日期，普通网页仍有较多 2026 年 11 月采集的当前版本。模型事件发生时的适配资料、上市确认与行情版本还需补齐；固定 Git 提交时间也不直接作为首次公开时间。Web 原型提供资料日期筛选，终端的 `/time`、历史会话隔离及结果验证页面尚未发布。
 
 后续实验共用模型、原始资料、研究时点及相近预算，分别评估普通 Agent、RAG Agent 与图谱增强 Agent。问答正确性、证据支持、抽取质量及预测结果分别报告，不以功能测试数代替模型效果。

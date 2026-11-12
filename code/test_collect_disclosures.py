@@ -36,6 +36,8 @@ class FixtureHandler(BaseHTTPRequestHandler):
     bad_content_type = False
     query_bodies: list[dict[str, list[str]]] = []
     request_count = 0
+    pdf_requests = 0
+    omit_pdf_length = False
 
     def log_message(self, format, *args):
         return
@@ -54,12 +56,14 @@ class FixtureHandler(BaseHTTPRequestHandler):
             self._json({"stockList": [{"code": "688041", "zwjc": "测试公司", "orgId": "org-test"}]})
             return
         if self.path.startswith("/pdfs/"):
+            type(self).pdf_requests += 1
             if self.fail_pdf:
                 self._json({"error": "boom"}, status=500)
                 return
             self.send_response(200)
             self.send_header("Content-Type", "text/html" if self.bad_content_type else "application/pdf")
-            self.send_header("Content-Length", str(len(PDF)))
+            if not self.omit_pdf_length:
+                self.send_header("Content-Length", str(len(PDF)))
             self.end_headers()
             self.wfile.write(PDF)
             return
@@ -105,11 +109,14 @@ class DisclosureCollectorTests(unittest.TestCase):
     def tearDownClass(cls):
         cls.server.shutdown()
         cls.thread.join(timeout=5)
+        cls.server.server_close()
 
     def setUp(self):
         FixtureHandler.fail_pdf = False
         FixtureHandler.bad_content_type = False
+        FixtureHandler.omit_pdf_length = False
         FixtureHandler.request_count = 0
+        FixtureHandler.pdf_requests = 0
         FixtureHandler.query_bodies = []
 
     def run_cli(self, universe: Path, output: Path, *extra: str):
@@ -165,7 +172,8 @@ class DisclosureCollectorTests(unittest.TestCase):
             self.assertEqual((output / "metadata.jsonl").read_bytes(), first_meta)
             self.assertEqual({p.name: p.read_bytes() for p in (output / "cache" / "pdfs").glob("*")}, first_files)
             batch = json.loads((output / "batch.json").read_text(encoding="utf-8"))
-            self.assertEqual(batch["downloaded"], 0)
+            self.assertEqual(batch["downloaded"], 5)
+            self.assertEqual(batch["new_completed_documents"], 0)
             self.assertEqual(batch["skipped_duplicates"], 5)
             self.assertEqual(batch["metadata_records"], 5)
 
@@ -218,7 +226,7 @@ class DisclosureCollectorTests(unittest.TestCase):
 
             bad_limit = self.run_cli(make_universe(root / "u3.json"), root / "out3", "--limit", "0")
             self.assertNotEqual(bad_limit.returncode, 0)
-            self.assertIn("limit must be 1..40", bad_limit.stderr)
+            self.assertIn("limit must be 1..100", bad_limit.stderr)
 
     def test_query_uses_requested_date_range(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -245,6 +253,41 @@ class DisclosureCollectorTests(unittest.TestCase):
             failures = (output / "failures.jsonl").read_text(encoding="utf-8")
             self.assertIn("request_budget", failures)
 
+    def test_persistent_download_budget_is_not_reset_by_new_run(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            universe = make_universe(root / "universe.json")
+            output = root / "out"
+            output.mkdir()
+            (output / "requests.jsonl").write_text(
+                json.dumps({"kind": "pdf", "bytes": 100, "status": 200}) + "\n",
+                encoding="utf-8",
+            )
+            result = self.run_cli(universe, output, "--limit", "1", "--max-bytes", "10000")
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual(FixtureHandler.pdf_requests, 0)
+            self.assertEqual(FixtureHandler.request_count, 0)
+            batch = json.loads((output / "batch.json").read_text(encoding="utf-8"))
+            self.assertEqual(batch["pdf_attempts_before"], 1)
+            self.assertEqual(batch["downloaded"], 1)
+            self.assertEqual(batch["new_completed_documents"], 0)
+
+    def test_streaming_byte_budget_includes_previous_runs(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            universe = make_universe(root / "universe.json")
+            output = root / "out"
+            output.mkdir()
+            (output / "requests.jsonl").write_text(
+                json.dumps({"kind": "pdf", "bytes": 30, "status": 200}) + "\n", encoding="utf-8")
+            FixtureHandler.omit_pdf_length = True
+            result = self.run_cli(universe, output, "--limit", "10", "--max-bytes", str(30 + len(PDF) - 1))
+            self.assertEqual(result.returncode, 0, result.stderr)
+            batch = json.loads((output / "batch.json").read_text(encoding="utf-8"))
+            self.assertEqual(batch["new_completed_documents"], 0)
+            self.assertEqual(batch["downloaded_bytes"], 30 + len(PDF))
+            self.assertIn("byte_budget", (output / "failures.jsonl").read_text(encoding="utf-8"))
+
     def test_corrupt_same_length_cache_is_rehashed(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -262,7 +305,8 @@ class DisclosureCollectorTests(unittest.TestCase):
             second = self.run_cli(universe, output, "--limit", "10", "--max-bytes", "10000", "--per-kind", "2")
             self.assertEqual(second.returncode, 0, second.stderr)
             batch = json.loads((output / "batch.json").read_text(encoding="utf-8"))
-            self.assertEqual(batch["downloaded"], 1)
+            self.assertEqual(batch["downloaded"], 6)
+            self.assertEqual(batch["new_completed_documents"], 1)
             self.assertEqual(batch["skipped_duplicates"], 4)
             restored = pdf_path.read_bytes()
             self.assertTrue(restored.startswith(b"%PDF-"))
@@ -277,6 +321,11 @@ class DisclosureCollectorTests(unittest.TestCase):
                 collect_disclosures.safe_cache_path(root, "../outside.pdf")
             with self.assertRaises(ValueError):
                 collect_disclosures.safe_component("../bad", "announcement_id")
+
+    def test_hk_announcement_title_is_not_a_full_report(self):
+        self.assertFalse(collect_disclosures.eligible_title("港股公告：2024年度报告", "annual_report"))
+        self.assertTrue(collect_disclosures.eligible_title("2025年年度报告（修订版）", "annual_report"))
+        self.assertFalse(collect_disclosures.eligible_title("关于2025年年度报告的更正公告", "annual_report"))
 
     def test_public_doc_example_uses_fingraph(self):
         text = (ROOT / "code" / "collect_disclosures.py").read_text(encoding="utf-8")

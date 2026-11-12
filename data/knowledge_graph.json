@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "FinGraph",
-    "as_of": "2026-11-07",
+    "as_of": "2026-11-12",
     "description": "以 DeepSeek-R1、Qwen3、GLM-5 与 MiniMax-M2.5 等真实事件为线索，区分模型研发、硬件适配与云服务接入，连接上市公司、证券与证据路径。行情为 2024-12 至 2026-03 的真实日线缓存。"
   },
   "nodes": [
@@ -492,8 +492,9 @@
       ],
       "description": "国产 DCU 与 CPU 厂商；2022-08-12 于上交所科创板上市（688041.SH）。",
       "source_ids": [
-        "src:sse-hygon",
-        "src:hygon-adapt"
+        "src:filing-38e0177906a207432512a988:p14:0",
+        "src:hygon-adapt",
+        "src:sse-hygon"
       ],
       "properties": {
         "ticker": "688041.SH",
@@ -799,10 +800,12 @@
       "type": "Product",
       "aliases": [
         "DCU",
+        "海光协处理器（DCU）",
         "深度计算单元"
       ],
       "description": "海光信息推出的高性能 GPGPU 架构 AI 加速卡，支持 DeepSeek V3/R1 国产化适配。",
       "source_ids": [
+        "src:filing-38e0177906a207432512a988:p14:0",
         "src:hygon-adapt"
       ],
       "properties": {
@@ -1022,6 +1025,317 @@
       "properties": {
         "timezone": "Asia/Shanghai"
       }
+    },
+    {
+      "id": "company:langchao-xinxi",
+      "label": "浪潮信息",
+      "type": "Company",
+      "aliases": [],
+      "description": "报告主体，主营电子行业服务器、存储及交换类产品",
+      "source_ids": [
+        "src:filing-396f017d7ee363ae37f79a4e:p12:1"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product:server",
+      "label": "服务器产品",
+      "type": "Product",
+      "aliases": [
+        "服务器及部件"
+      ],
+      "description": "公司分产品收入中的服务器产品",
+      "source_ids": [
+        "src:filing-396f017d7ee363ae37f79a4e:p12:1"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product:storage-switch",
+      "label": "存储类、交换类等产品",
+      "type": "Product",
+      "aliases": [
+        "存储、交换类等产品"
+      ],
+      "description": "公司分产品收入中的存储类、交换类等产品",
+      "source_ids": [
+        "src:filing-396f017d7ee363ae37f79a4e:p12:1"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "industry:electronics",
+      "label": "电子行业",
+      "type": "Industry",
+      "aliases": [],
+      "description": "公司分行业收入所属行业",
+      "source_ids": [
+        "src:filing-396f017d7ee363ae37f79a4e:p12:1"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "company:shuguang",
+      "label": "曙光信息产业股份有限公司",
+      "type": "Company",
+      "aliases": [
+        "中科曙光"
+      ],
+      "description": "报告主体，从事高端计算机、存储、安全、数据中心产品研发及制造",
+      "source_ids": [
+        "src:filing-4a019403c7a57174c6c3d8e8:p7:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product:scaleX640",
+      "label": "scaleX640",
+      "type": "Product",
+      "aliases": [],
+      "description": "单机柜级640卡产品，基于开放系统硬件架构",
+      "source_ids": [
+        "src:filing-4a019403c7a57174c6c3d8e8:p7:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product:scaleX40",
+      "label": "scaleX40",
+      "type": "Product",
+      "aliases": [],
+      "description": "首款无线缆箱式超节点，单节点集成40张GPU",
+      "source_ids": [
+        "src:filing-4a019403c7a57174c6c3d8e8:p7:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "SMIC",
+      "label": "中芯国际集成电路制造有限公司",
+      "type": "Company",
+      "aliases": [
+        "中芯国际"
+      ],
+      "description": "集成电路晶圆代工企业，提供8英寸和12英寸晶圆代工与技术服务。",
+      "source_ids": [
+        "src:filing-6a44b7cfe77129d47089ae71:p11:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "wafer_foundry_service",
+      "label": "集成电路晶圆代工",
+      "type": "Product",
+      "aliases": [
+        "晶圆代工"
+      ],
+      "description": "公司基于多种技术节点和技术平台提供的集成电路晶圆代工业务。",
+      "source_ids": [
+        "src:filing-6a44b7cfe77129d47089ae71:p11:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "design_ip_service",
+      "label": "设计服务与IP支持",
+      "type": "Product",
+      "aliases": [],
+      "description": "公司提供的配套服务之一。",
+      "source_ids": [
+        "src:filing-6a44b7cfe77129d47089ae71:p11:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "photomask_manufacturing",
+      "label": "光掩模制造",
+      "type": "Product",
+      "aliases": [],
+      "description": "公司提供的配套服务之一。",
+      "source_ids": [
+        "src:filing-6a44b7cfe77129d47089ae71:p11:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "integrated_circuit_manufacturing",
+      "label": "集成电路制造业",
+      "type": "Industry",
+      "aliases": [],
+      "description": "公司所属行业，公司为中国大陆集成电路制造业领导者。",
+      "source_ids": [
+        "src:filing-6a44b7cfe77129d47089ae71:p11:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "company:中科寒武纪科技股份有限公司",
+      "label": "中科寒武纪科技股份有限公司",
+      "type": "Company",
+      "aliases": [
+        "寒武纪"
+      ],
+      "description": "报告主体，专注于人工智能芯片产品研发与技术创新",
+      "source_ids": [
+        "src:filing-eda895e90e5bbc9976bce9e9:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "industry:集成电路设计",
+      "label": "集成电路设计",
+      "type": "Industry",
+      "aliases": [],
+      "description": "公司所属行业，属软件和信息技术服务业",
+      "source_ids": [
+        "src:filing-eda895e90e5bbc9976bce9e9:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product:云端智能芯片及板卡",
+      "label": "云端智能芯片及板卡",
+      "type": "Product",
+      "aliases": [],
+      "description": "云服务器、数据中心等进行人工智能处理的核心器件",
+      "source_ids": [
+        "src:filing-eda895e90e5bbc9976bce9e9:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product:智能整机",
+      "label": "智能整机",
+      "type": "Product",
+      "aliases": [],
+      "description": "公司云端产品线组成部分",
+      "source_ids": [
+        "src:filing-eda895e90e5bbc9976bce9e9:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "紫光股份",
+      "label": "紫光股份",
+      "type": "Company",
+      "aliases": [],
+      "description": "数字化及AI解决方案提供商，提供ICT基础设施、云与智能平台及数字化转型解决方案",
+      "source_ids": [
+        "src:filing-42d0dec3e163249587eba5ca:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "网络设备",
+      "label": "网络设备",
+      "type": "Product",
+      "aliases": [],
+      "description": "包括交换机、路由器、WLAN、SDN、PON、智能管理与运维服务等",
+      "source_ids": [
+        "src:filing-42d0dec3e163249587eba5ca:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "服务器",
+      "label": "服务器",
+      "type": "Product",
+      "aliases": [],
+      "description": "包括通用计算服务器、人工智能计算服务器、关键业务计算服务器、边缘计算服务器等",
+      "source_ids": [
+        "src:filing-42d0dec3e163249587eba5ca:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "存储产品",
+      "label": "存储产品",
+      "type": "Product",
+      "aliases": [],
+      "description": "包括企业级智能全闪存存储、混合闪存存储、分布式存储、数据备份与保护、存储网络设备等",
+      "source_ids": [
+        "src:filing-42d0dec3e163249587eba5ca:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "智能终端",
+      "label": "智能终端",
+      "type": "Product",
+      "aliases": [],
+      "description": "包括商用笔记本电脑、商用台式机、智慧云屏、AI工作站等",
+      "source_ids": [
+        "src:filing-42d0dec3e163249587eba5ca:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "ICT产业",
+      "label": "ICT产业",
+      "type": "Industry",
+      "aliases": [],
+      "description": "战略性、基础性、先导性产业，信息通信基础设施及数字化解决方案行业",
+      "source_ids": [
+        "src:filing-42d0dec3e163249587eba5ca:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "company:foxconn_industrial_internet",
+      "label": "富士康工业互联网股份有限公司",
+      "type": "Company",
+      "aliases": [
+        "工业富联"
+      ],
+      "description": "高端智能制造及工业互联网解决方案服务商",
+      "source_ids": [
+        "src:filing-34d02741f6651eba443de0b3:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product:gpu_ai_rack",
+      "label": "GPU AI机柜",
+      "type": "Product",
+      "aliases": [],
+      "description": "公司出货的GPU AI机柜产品",
+      "source_ids": [
+        "src:filing-34d02741f6651eba443de0b3:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product:asic_ai_rack",
+      "label": "ASIC AI机柜",
+      "type": "Product",
+      "aliases": [],
+      "description": "公司出货的ASIC AI机柜产品",
+      "source_ids": [
+        "src:filing-34d02741f6651eba443de0b3:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product:asic_cpu_server",
+      "label": "ASIC CPU服务器",
+      "type": "Product",
+      "aliases": [],
+      "description": "公司出货的ASIC CPU服务器产品",
+      "source_ids": [
+        "src:filing-34d02741f6651eba443de0b3:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "industry:industrial_internet",
+      "label": "工业互联网",
+      "type": "Industry",
+      "aliases": [],
+      "description": "公司深耕的工业互联网领域",
+      "source_ids": [
+        "src:filing-34d02741f6651eba443de0b3:p9:0"
+      ],
+      "properties": {}
     }
   ],
   "edges": [
@@ -1584,11 +1898,28 @@
       "type": "PRODUCES",
       "label": "提供产品",
       "source_ids": [
+        "src:filing-38e0177906a207432512a988:p14:0",
         "src:hygon-adapt"
       ],
       "evidence": "DCU 是海光信息推出的高性能 GPGPU 架构 AI 加速卡",
       "disclosed_at": "2025-02-04",
-      "relation_group": "direct"
+      "relation_group": "direct",
+      "evidence_records": [
+        {
+          "source_ids": [
+            "src:hygon-adapt"
+          ],
+          "evidence": "DCU 是海光信息推出的高性能 GPGPU 架构 AI 加速卡",
+          "disclosed_at": "2025-02-04"
+        },
+        {
+          "source_ids": [
+            "src:filing-38e0177906a207432512a988:p14:0"
+          ],
+          "evidence": "公司的产品包括海光通用处理器（CPU）和海光协处理器（DCU）",
+          "disclosed_at": "2026-08-14"
+        }
+      ]
     },
     {
       "id": "rel:hygon-listed-as-688041",
@@ -2151,6 +2482,279 @@
       "evidence": "摩尔线程团队",
       "disclosed_at": "2025-04-29",
       "relation_group": "direct"
+    },
+    {
+      "source": "company:langchao-xinxi",
+      "target": "product:server",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "服务器产品           7,806,243.85",
+      "source_ids": [
+        "src:filing-396f017d7ee363ae37f79a4e:p12:1"
+      ],
+      "disclosed_at": "2026-08-29",
+      "relation_group": "direct",
+      "id": "rel:790f940644eac0e6"
+    },
+    {
+      "source": "company:langchao-xinxi",
+      "target": "product:storage-switch",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "存储类、交换类\n                         627,577.41",
+      "source_ids": [
+        "src:filing-396f017d7ee363ae37f79a4e:p12:1"
+      ],
+      "disclosed_at": "2026-08-29",
+      "relation_group": "direct",
+      "id": "rel:acafe5b6fa8216e0"
+    },
+    {
+      "source": "company:langchao-xinxi",
+      "target": "industry:electronics",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "evidence": "电子行业             8,437,872.72",
+      "source_ids": [
+        "src:filing-396f017d7ee363ae37f79a4e:p12:1"
+      ],
+      "disclosed_at": "2026-08-29",
+      "relation_group": "industry",
+      "id": "rel:1dc7c4c21a56fc2f"
+    },
+    {
+      "source": "company:shuguang",
+      "target": "product:scaleX640",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "公司推出首个单机柜级640卡产品scaleX640",
+      "source_ids": [
+        "src:filing-4a019403c7a57174c6c3d8e8:p7:0"
+      ],
+      "disclosed_at": "2026-08-26",
+      "relation_group": "direct",
+      "id": "rel:519c4d29e32b4a65"
+    },
+    {
+      "source": "company:shuguang",
+      "target": "product:scaleX40",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "公司推出首款无线缆箱式超节点scaleX40",
+      "source_ids": [
+        "src:filing-4a019403c7a57174c6c3d8e8:p7:0"
+      ],
+      "disclosed_at": "2026-08-26",
+      "relation_group": "direct",
+      "id": "rel:6d69ff6f3349ba88"
+    },
+    {
+      "source": "SMIC",
+      "target": "wafer_foundry_service",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "向全球客户提供8 英寸和12 英寸晶圆代工与技术服务",
+      "source_ids": [
+        "src:filing-6a44b7cfe77129d47089ae71:p11:0"
+      ],
+      "disclosed_at": "2026-08-28",
+      "relation_group": "direct",
+      "id": "rel:d75309078d7f20df"
+    },
+    {
+      "source": "SMIC",
+      "target": "design_ip_service",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "为客户提供设计服务与IP 支持、光掩模制造等一站式配套服务",
+      "source_ids": [
+        "src:filing-6a44b7cfe77129d47089ae71:p11:0"
+      ],
+      "disclosed_at": "2026-08-28",
+      "relation_group": "direct",
+      "id": "rel:ce5b55e168f8c10d"
+    },
+    {
+      "source": "SMIC",
+      "target": "photomask_manufacturing",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "为客户提供设计服务与IP 支持、光掩模制造等一站式配套服务",
+      "source_ids": [
+        "src:filing-6a44b7cfe77129d47089ae71:p11:0"
+      ],
+      "disclosed_at": "2026-08-28",
+      "relation_group": "direct",
+      "id": "rel:69bc6298091f0278"
+    },
+    {
+      "source": "SMIC",
+      "target": "integrated_circuit_manufacturing",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "evidence": "也是中国大陆集成电路制造业领导者",
+      "source_ids": [
+        "src:filing-6a44b7cfe77129d47089ae71:p11:0"
+      ],
+      "disclosed_at": "2026-08-28",
+      "relation_group": "industry",
+      "id": "rel:c251fb5502821557"
+    },
+    {
+      "source": "company:中科寒武纪科技股份有限公司",
+      "target": "product:云端智能芯片及板卡",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "公司云端产品线目前包括云端智能芯片及板卡、智能整机",
+      "source_ids": [
+        "src:filing-eda895e90e5bbc9976bce9e9:p9:0"
+      ],
+      "disclosed_at": "2026-08-08",
+      "relation_group": "direct",
+      "id": "rel:eae35e8c2e22a8bb"
+    },
+    {
+      "source": "company:中科寒武纪科技股份有限公司",
+      "target": "product:智能整机",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "公司云端产品线目前包括云端智能芯片及板卡、智能整机",
+      "source_ids": [
+        "src:filing-eda895e90e5bbc9976bce9e9:p9:0"
+      ],
+      "disclosed_at": "2026-08-08",
+      "relation_group": "direct",
+      "id": "rel:6037a57ab724da93"
+    },
+    {
+      "source": "company:中科寒武纪科技股份有限公司",
+      "target": "industry:集成电路设计",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "evidence": "公司所处行业属于“软件和信息技术服务业”中的“集\n成电路设计”",
+      "source_ids": [
+        "src:filing-eda895e90e5bbc9976bce9e9:p9:0"
+      ],
+      "disclosed_at": "2026-08-08",
+      "relation_group": "industry",
+      "id": "rel:e71e53cebf69c6c6"
+    },
+    {
+      "source": "紫光股份",
+      "target": "网络设备",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "1、网络设备：交换机、路由器、WLAN、SDN、PON、智能管理与运维服务等",
+      "source_ids": [
+        "src:filing-42d0dec3e163249587eba5ca:p9:0"
+      ],
+      "disclosed_at": "2026-08-29",
+      "relation_group": "direct",
+      "id": "rel:9a933d9788820667"
+    },
+    {
+      "source": "紫光股份",
+      "target": "服务器",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "2、服务器：通用计算服务器、人工智能计算服务器、关键业务计算服务器、边缘计算服务器等",
+      "source_ids": [
+        "src:filing-42d0dec3e163249587eba5ca:p9:0"
+      ],
+      "disclosed_at": "2026-08-29",
+      "relation_group": "direct",
+      "id": "rel:4a9df9116a1bc92c"
+    },
+    {
+      "source": "紫光股份",
+      "target": "存储产品",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "3、存储产品：企业级智能全闪存存储、企业级智能混合闪存存储、分布式存储、数据备份与保护、",
+      "source_ids": [
+        "src:filing-42d0dec3e163249587eba5ca:p9:0"
+      ],
+      "disclosed_at": "2026-08-29",
+      "relation_group": "direct",
+      "id": "rel:5d76220a084707b1"
+    },
+    {
+      "source": "紫光股份",
+      "target": "智能终端",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "6、智能终端：商用笔记本电脑、商用台式机、智慧云屏、AI 工作站等。",
+      "source_ids": [
+        "src:filing-42d0dec3e163249587eba5ca:p9:0"
+      ],
+      "disclosed_at": "2026-08-29",
+      "relation_group": "direct",
+      "id": "rel:d182542c4bba079d"
+    },
+    {
+      "source": "紫光股份",
+      "target": "ICT产业",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "evidence": "作为数字化及AI 解决方案领导者，公司立足新一代信息通信领域",
+      "source_ids": [
+        "src:filing-42d0dec3e163249587eba5ca:p9:0"
+      ],
+      "disclosed_at": "2026-08-29",
+      "relation_group": "industry",
+      "id": "rel:317e6f3e0ea27901"
+    },
+    {
+      "source": "company:foxconn_industrial_internet",
+      "target": "product:gpu_ai_rack",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "GPU AI 机柜出货量同比增长3.2 倍",
+      "source_ids": [
+        "src:filing-34d02741f6651eba443de0b3:p9:0"
+      ],
+      "disclosed_at": "2026-08-12",
+      "relation_group": "direct",
+      "id": "rel:10279501b3b117cd"
+    },
+    {
+      "source": "company:foxconn_industrial_internet",
+      "target": "product:asic_ai_rack",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "ASIC AI 机柜出货量同比增长3 倍",
+      "source_ids": [
+        "src:filing-34d02741f6651eba443de0b3:p9:0"
+      ],
+      "disclosed_at": "2026-08-12",
+      "relation_group": "direct",
+      "id": "rel:5d425a4e997f51f2"
+    },
+    {
+      "source": "company:foxconn_industrial_internet",
+      "target": "product:asic_cpu_server",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "ASIC CPU 服务器出货量同比增长2.5 倍",
+      "source_ids": [
+        "src:filing-34d02741f6651eba443de0b3:p9:0"
+      ],
+      "disclosed_at": "2026-08-12",
+      "relation_group": "direct",
+      "id": "rel:2cc1673be18f60df"
+    },
+    {
+      "source": "company:foxconn_industrial_internet",
+      "target": "industry:industrial_internet",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "evidence": "公司深耕工业互联网领域",
+      "source_ids": [
+        "src:filing-34d02741f6651eba443de0b3:p9:0"
+      ],
+      "disclosed_at": "2026-08-12",
+      "relation_group": "industry",
+      "id": "rel:147534d0f39bf6c3"
     }
   ],
   "events": [

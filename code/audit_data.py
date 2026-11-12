@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
 
-from graph_store import GraphStore, NODE_TYPES, RELATION_SCHEMA, normalized, read_json, write_json
+from graph_store import GraphStore, NODE_TYPES, RELATION_SCHEMA, evidence_key, read_json, write_json
 from market import MarketData
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -59,9 +59,11 @@ def audit():
         if not cited or not set(cited) <= set(source_ids):
             issues.append(f"Unknown evidence source: {eid}")
             continue
-        quote = normalized(edge.get("evidence", ""))
-        if not quote or not any(quote in normalized(store.sources[s].get("text", "")) for s in cited):
-            issues.append(f"Evidence not locatable in cited excerpts: {eid}")
+        for record in edge.get("evidence_records") or [edge]:
+            quote = evidence_key(record.get("evidence", ""))
+            if not quote or not any(quote in evidence_key(store.sources.get(s, {}).get("text", ""))
+                                    for s in record.get("source_ids", [])):
+                issues.append(f"Evidence not locatable in cited excerpts: {eid}")
         published = [store.sources[s].get("published_at", "")[:10] for s in cited if store.sources[s].get("published_at")]
         disclosed = edge.get("disclosed_at")
         if published and disclosed and disclosed[:10] < min(published):

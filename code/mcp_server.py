@@ -117,6 +117,12 @@ def search_entities(query: str, limit: int = 8) -> dict:
 
 
 @mcp.tool()
+def entity_relations(entity_id: str, limit: int = 12) -> dict:
+    """查看公司、产品或模型的一跳关系及财报页码和原文证据；先用search_entities定位。"""
+    return research_cache.get().entity_relations(entity_id, limit)
+
+
+@mcp.tool()
 def related_stocks(event_id: str) -> dict:
     """查询事件关联股票、产业角色、逐步关系路径和原文出处。"""
     return research_cache.get().related_stocks(event_id)

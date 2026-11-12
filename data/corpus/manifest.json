@@ -1,16 +1,17 @@
 {
   "schema_version": "document-catalog-v1",
-  "documents": 34,
-  "input_prepared_records": 37,
+  "documents": 96,
+  "input_prepared_records": 99,
   "duplicates": 3,
-  "companies": 10,
-  "pages": 7244,
-  "chunks": 12393,
-  "text_characters": 13096379,
+  "companies": 40,
+  "pages": 20191,
+  "chunks": 34669,
+  "text_characters": 36350983,
   "version_counts": {
     "observed_version": 2,
-    "original_filing": 32
+    "original_filing": 92,
+    "updated_filing": 2
   },
-  "catalog_sha256": "5b455a7beed39084e459275d7a211b609f35a491773ed15de1824a950c07fc94",
+  "catalog_sha256": "2ad32e0db7bfa489ffa2826c614325d81ad62595e2a8262b038a1d4bf836a52f",
   "text_included": false
 }

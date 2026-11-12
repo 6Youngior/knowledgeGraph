@@ -153,9 +153,9 @@ export default function fingraphExtension(pi: ExtensionAPI) {
           return;
         }
         ctx.ui.notify(`已打开研究网页：${targetUrl}`, "info");
-      } catch (error) {
+      } catch {
         ctx.ui.notify(
-          `研究服务不可达：${base}\n请重新运行项目启动命令。\n${String(error instanceof Error ? error.message : error)}`,
+          `研究服务不可达：${base}\n请重新运行项目启动命令。`,
           "warning",
         );
       }

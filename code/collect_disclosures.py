@@ -114,6 +114,8 @@ def eligible_title(title: str, document_type: str) -> bool:
         return False
     if any(token in title for token in ("摘要", "英文", "英文版", "取消", "已取消")):
         return False
+    if title.strip().startswith("港股公告"):
+        return False
     marker = "年度报告" if document_type == "annual_report" else "半年度报告"
     if marker not in title:
         return False
@@ -170,10 +172,17 @@ class Collector:
             for row in read_jsonl(self.metadata_path)
             if row.get("source_url")
         }
-        self.requests_before = len(read_jsonl(self.requests_path))
+        prior_requests = read_jsonl(self.requests_path)
+        self.requests_before = len(prior_requests)
+        prior_pdfs = [row for row in prior_requests if row.get("kind") == "pdf"]
+        self.pdf_attempts_before = len(prior_pdfs)
+        self.pdf_bytes_before = sum(int(row.get("bytes") or 0) for row in prior_pdfs)
         self.request_count = self.requests_before
+        self.pdf_attempts = self.pdf_attempts_before
+        self.pdf_bytes = self.pdf_bytes_before
         self.new_count = 0
         self.new_bytes = 0
+        self.new_pdf_attempts = 0
         self.skipped_duplicates = 0
         self.stop_after_budget = False
         self.client = httpx.Client(
@@ -379,13 +388,16 @@ class Collector:
         return [row for row in candidates if row["report_period"] in keep]
 
     def remaining_bytes(self) -> int:
-        return max(0, self.args.max_bytes - self.new_bytes)
+        return max(0, self.args.max_bytes - self.pdf_bytes)
 
     def download(self, candidate: dict[str, Any]) -> bool:
-        if self.new_count >= self.args.limit:
+        if self.pdf_attempts >= self.args.limit:
+            self.fail("download_budget", "persistent PDF attempt budget exhausted; no HTTP request sent",
+                      security=candidate["security"])
+            self.stop_after_budget = True
             return False
-        if self.new_bytes >= self.args.max_bytes:
-            self.fail("byte_budget", "max-bytes already reached", security=candidate["security"])
+        if self.pdf_bytes >= self.args.max_bytes:
+            self.fail("byte_budget", "persistent max-bytes exhausted; no HTTP request sent", security=candidate["security"])
             self.stop_after_budget = True
             return False
         existing = self.existing.get(candidate["source_url"])
@@ -406,13 +418,17 @@ class Collector:
         cache_path = self.pdf_dir / file_name
         temp_path = cache_path.with_suffix(".part")
         logged = False
+        declared_bytes, byte_count = None, 0
         self.reserve_request()
+        self.pdf_attempts += 1
+        self.new_pdf_attempts += 1
         try:
             with self.client.stream("GET", candidate["source_url"]) as response:
                 content_type = (response.headers.get("content-type") or "").lower()
                 content_length = response.headers.get("content-length")
+                declared_bytes = int(content_length) if content_length and content_length.isdigit() else None
                 self.log_request("pdf", "GET", candidate["source_url"], response.status_code,
-                                 int(content_length) if content_length and content_length.isdigit() else None)
+                                 declared_bytes if declared_bytes is not None else self.remaining_bytes())
                 logged = True
                 if response.status_code != 200:
                     self.fail("pdf", f"HTTP {response.status_code}", security=candidate["security"], title=candidate["title"])
@@ -428,13 +444,10 @@ class Collector:
                 digest = hashlib.sha256()
                 byte_count = 0
                 with temp_path.open("wb") as handle:
-                    for chunk in response.iter_bytes():
+                    for chunk in response.iter_bytes(chunk_size=64 * 1024):
                         byte_count += len(chunk)
-                        if self.new_bytes + byte_count > self.args.max_bytes:
-                            temp_path.unlink(missing_ok=True)
-                            self.fail("byte_budget", "PDF exceeds max-bytes", security=candidate["security"], title=candidate["title"])
-                            self.stop_after_budget = True
-                            return False
+                        if self.pdf_bytes + byte_count > self.args.max_bytes:
+                            raise BudgetError("PDF exceeds persistent max-bytes while streaming")
                         digest.update(chunk)
                         handle.write(chunk)
                 if not temp_path.read_bytes().startswith(b"%PDF-"):
@@ -461,13 +474,30 @@ class Collector:
             return True
         except BudgetError:
             temp_path.unlink(missing_ok=True)
-            raise
+            self.fail("byte_budget", "PDF exceeds persistent max-bytes", security=candidate["security"])
+            self.stop_after_budget = True
+            return False
         except Exception as exc:
             temp_path.unlink(missing_ok=True)
             if not logged:
                 self.log_request("pdf", "GET", candidate["source_url"], None, None, f"{type(exc).__name__}: {exc}")
             self.fail("pdf", f"{type(exc).__name__}: {exc}", security=candidate["security"], title=candidate["title"])
             return False
+        finally:
+            # Count failed transfers too. Before an unknown-length body is
+            # read, the ledger reserves the remainder so a crash cannot make
+            # it free; after closing the stream reconcile the observed bytes.
+            charged = max(declared_bytes or 0, byte_count)
+            self.pdf_bytes += charged
+            if logged and (declared_bytes is None or charged > declared_bytes):
+                rows = read_jsonl(self.requests_path)
+                rows[-1]["bytes"] = charged
+                temp_log = self.requests_path.with_suffix(".tmp")
+                with temp_log.open("w", encoding="utf-8", newline="\n") as stream:
+                    for row in rows:
+                        stream.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
+                temp_log.replace(self.requests_path)
+                self.requests[-1]["bytes"] = charged
 
     def run(self) -> dict[str, Any]:
         securities = self.universe.get("securities") if isinstance(self.universe, dict) else None
@@ -479,9 +509,10 @@ class Collector:
         ]
         if not a_securities:
             raise ValueError("universe has no A_primary securities")
-        directory = self.get_directory()
+        can_collect = self.pdf_attempts < self.args.limit and self.pdf_bytes < self.args.max_bytes
+        directory = self.get_directory() if can_collect else {}
         for security in a_securities:
-            if self.new_count >= self.args.limit or self.new_bytes >= self.args.max_bytes:
+            if self.pdf_attempts >= self.args.limit or self.pdf_bytes >= self.args.max_bytes:
                 break
             code = str(security.get("code") or "")
             item = directory.get(code)
@@ -508,14 +539,14 @@ class Collector:
                 if candidates:
                     for candidate in candidates:
                         self.download(candidate)
-                        if (self.stop_after_budget or self.new_count >= self.args.limit
-                                or self.new_bytes >= self.args.max_bytes):
+                        if (self.stop_after_budget or self.pdf_attempts >= self.args.limit
+                                or self.pdf_bytes >= self.args.max_bytes):
                             break
                 else:
                     self.fail("no_eligible_announcement", f"no full {DOC_LABEL[document_type]}",
                               security=security.get("symbol"), document_type=document_type)
-                if (self.stop_after_budget or self.new_count >= self.args.limit
-                        or self.new_bytes >= self.args.max_bytes):
+                if (self.stop_after_budget or self.pdf_attempts >= self.args.limit
+                        or self.pdf_bytes >= self.args.max_bytes):
                     break
             if self.stop_after_budget:
                 break
@@ -535,8 +566,13 @@ class Collector:
             "requests_before": self.requests_before,
             "requests_this_run": len(self.requests),
             "requests": self.request_count,
-            "downloaded": self.new_count,
-            "downloaded_bytes": self.new_bytes,
+            "pdf_attempts_before": self.pdf_attempts_before,
+            "pdf_bytes_before": self.pdf_bytes_before,
+            "pdf_attempts_this_run": self.new_pdf_attempts,
+            "new_completed_documents": self.new_count,
+            "new_completed_bytes": self.new_bytes,
+            "downloaded": self.pdf_attempts,
+            "downloaded_bytes": self.pdf_bytes,
             "skipped_duplicates": self.skipped_duplicates,
             "metadata_records": len(metadata),
             "failures": len(self.failures),
@@ -553,10 +589,10 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--universe", default=str(DEFAULT_UNIVERSE), help="universe JSON (default: data/universe.json)")
     parser.add_argument("--output", required=True, help="batch directory for metadata, logs and PDF cache")
-    parser.add_argument("--limit", type=int, default=4, help="maximum new PDFs in this run (1-40)")
+    parser.add_argument("--limit", type=int, default=4, help="cumulative PDF attempt limit for this batch, including resumes (1-100)")
     parser.add_argument("--per-kind", type=int, default=1, help="distinct report periods per document type (1-3)")
-    parser.add_argument("--request-budget", type=int, default=120, help="hard HTTP request budget (1-120)")
-    parser.add_argument("--max-bytes", type=int, default=50_000_000, help="maximum new PDF bytes in this run (<=300MB)")
+    parser.add_argument("--request-budget", type=int, default=120, help="hard HTTP request budget (1-250)")
+    parser.add_argument("--max-bytes", type=int, default=50_000_000, help="cumulative accounted PDF bytes for this batch (<=400MB)")
     parser.add_argument("--start", default="2024-01-01", help="announcement start date YYYY-MM-DD")
     parser.add_argument("--end", default=date.today().isoformat(), help="announcement end date YYYY-MM-DD")
     parser.add_argument("--cninfo-base", default=DEFAULT_CNINFO_BASE, help="CNINFO API base URL")
@@ -576,14 +612,14 @@ def main(argv: list[str] | None = None) -> int:
             raise ValueError("end must be on or after start")
         args.start = start.isoformat()
         args.end = end.isoformat()
-        if not 1 <= args.limit <= 40:
-            raise ValueError("limit must be 1..40")
+        if not 1 <= args.limit <= 100:
+            raise ValueError("limit must be 1..100")
         if not 1 <= args.per_kind <= 3:
             raise ValueError("per-kind must be 1..3")
-        if not 1 <= args.request_budget <= 120:
-            raise ValueError("request-budget must be 1..120")
-        if not 0 < args.max_bytes <= 300_000_000:
-            raise ValueError("max-bytes must be in 1..300000000")
+        if not 1 <= args.request_budget <= 250:
+            raise ValueError("request-budget must be 1..250")
+        if not 0 < args.max_bytes <= 400_000_000:
+            raise ValueError("max-bytes must be in 1..400000000")
         if args.timeout <= 0:
             raise ValueError("timeout must be positive")
         if args.delay < 0:

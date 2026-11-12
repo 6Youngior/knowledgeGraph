@@ -1,0 +1,197 @@
+{
+  "schema_version": "development-extraction-review-v1",
+  "model": "deepseek-v4.1-flash",
+  "date": "2026-11-12",
+  "passages": 12,
+  "reviewed_relations": 22,
+  "added_relations": 21,
+  "updated_existing_relations": 1,
+  "scope": "开发样本；没有独立标注答案，不用于报告Precision/Recall/F1。",
+  "records": [
+    {
+      "document_id": "src:filing-e0ecd7c365c65e90b1fa4b46:p10:0",
+      "symbol": "300308.SZ",
+      "page": 10,
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-22/1225491753.PDF#page=10",
+      "status": "failed",
+      "decision": "reject",
+      "note": "未纳入：没有有效关系、引文无法定位或行业分类不成立；保留原始提案用于分析。",
+      "reviewed_relation_ids": [],
+      "proposed_relations": 4,
+      "result_sha256": "c2c184776b2cdf119fa97cfd4e21b61cb1bd68382014d6f015bea33d18e66a55",
+      "error": "证据片段无法在来源中定位：公司提供全面的1.6T OSFP 224 光模块产品组合"
+    },
+    {
+      "document_id": "src:filing-396f017d7ee363ae37f79a4e:p12:1",
+      "symbol": "000977.SZ",
+      "page": 12,
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-29/1225530925.PDF#page=12",
+      "status": "needs_review",
+      "decision": "accept",
+      "note": "这是该公司主营收入的分行业、分产品表。报告主体由公告证券标识和公司完整年报核实，表中不必重复全称。只采用分类，不抽取金额或预测。",
+      "reviewed_relation_ids": [
+        "rel:790f940644eac0e6",
+        "rel:acafe5b6fa8216e0",
+        "rel:1dc7c4c21a56fc2f"
+      ],
+      "proposed_relations": 3,
+      "result_sha256": "faf1bfaceff83ae047c2bd4aa2864639000a2171482e4ad72ac934b9eaebc890",
+      "error": null
+    },
+    {
+      "document_id": "src:filing-4a019403c7a57174c6c3d8e8:p7:0",
+      "symbol": "603019.SH",
+      "page": 7,
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-26/1225507613.PDF#page=7",
+      "status": "needs_review",
+      "decision": "accept",
+      "note": "报告明确说明已推出scaleX640与scaleX40。不采用将高端计算机产品类别当行业的关系。",
+      "reviewed_relation_ids": [
+        "rel:519c4d29e32b4a65",
+        "rel:6d69ff6f3349ba88"
+      ],
+      "proposed_relations": 3,
+      "result_sha256": "d4677135d3f4123d00f8fe80e64f76ba59279df73f0145612c047cee8644f872",
+      "error": null
+    },
+    {
+      "document_id": "src:filing-396f017d7ee363ae37f79a4e:p11:0",
+      "symbol": "000977.SZ",
+      "page": 11,
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-29/1225530925.PDF#page=11",
+      "status": "needs_review",
+      "decision": "reject",
+      "note": "未纳入：没有有效关系、引文无法定位或行业分类不成立；保留原始提案用于分析。",
+      "reviewed_relation_ids": [],
+      "proposed_relations": 1,
+      "result_sha256": "da4d292934c8f5b4533c6a03b0cbc56e68c4e4f674eb466948acec35ee4f7195",
+      "error": null
+    },
+    {
+      "document_id": "src:filing-e0ecd7c365c65e90b1fa4b46:p30:0",
+      "symbol": "300308.SZ",
+      "page": 30,
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-22/1225491753.PDF#page=30",
+      "status": "failed",
+      "decision": "reject",
+      "note": "未纳入：没有有效关系、引文无法定位或行业分类不成立；保留原始提案用于分析。",
+      "reviewed_relation_ids": [],
+      "proposed_relations": 2,
+      "result_sha256": "c2cfda23ea42929b3fddd6ec2cc1383eef8e18abf69469f7990de1d484bb3dba",
+      "error": "证据片段无法在来源中定位：主要从事高速光通信收发模块的研发、设计与制造销售"
+    },
+    {
+      "document_id": "src:filing-6a44b7cfe77129d47089ae71:p11:0",
+      "symbol": "688981.SH",
+      "page": 11,
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225520297.PDF#page=11",
+      "status": "needs_review",
+      "decision": "accept",
+      "note": "明确提供晶圆代工、设计与IP支持、光掩模制造服务，并明述集成电路制造业。现有Product包含平台/API与服务产品，PRODUCES表示提供而非仅制造实物。",
+      "reviewed_relation_ids": [
+        "rel:d75309078d7f20df",
+        "rel:ce5b55e168f8c10d",
+        "rel:69bc6298091f0278",
+        "rel:c251fb5502821557"
+      ],
+      "proposed_relations": 4,
+      "result_sha256": "760eb6bea3923b4f4d6bffac4866d0c32fb8a2b8c09ebc75918251473d4d9ef1",
+      "error": null
+    },
+    {
+      "document_id": "src:filing-38e0177906a207432512a988:p14:0",
+      "symbol": "688041.SH",
+      "page": 14,
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-14/1225472510.PDF#page=14",
+      "status": "needs_review",
+      "decision": "accept",
+      "note": "原文明列海光DCU为公司产品；AI用途不当作行业归属。此关系已有旧证据，本次补充财报来源。",
+      "reviewed_relation_ids": [
+        "rel:e2bba19740e33338"
+      ],
+      "proposed_relations": 2,
+      "result_sha256": "6e25d4e2131e260ef5bb639734031ad5bd3da3f485bceba52331fbf9e8368877",
+      "error": null
+    },
+    {
+      "document_id": "src:filing-34d02741f6651eba443de0b3:p10:0",
+      "symbol": "601138.SH",
+      "page": 10,
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-12/1225468066.PDF#page=10",
+      "status": "needs_review",
+      "decision": "reject",
+      "note": "未纳入：没有有效关系、引文无法定位或行业分类不成立；保留原始提案用于分析。",
+      "reviewed_relation_ids": [],
+      "proposed_relations": 0,
+      "result_sha256": "ee33e21fedad2c72c8fcb2c266d6b4e497e97b4f996d1022e66c50c5ca7158be",
+      "error": null
+    },
+    {
+      "document_id": "src:filing-42d0dec3e163249587eba5ca:p14:0",
+      "symbol": "000938.SZ",
+      "page": 14,
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-29/1225524307.PDF#page=14",
+      "status": "needs_review",
+      "decision": "reject",
+      "note": "未纳入：没有有效关系、引文无法定位或行业分类不成立；保留原始提案用于分析。",
+      "reviewed_relation_ids": [],
+      "proposed_relations": 0,
+      "result_sha256": "e8a8acfe435d6502b5940215648d58b48912bfde23213f8d3ba8b54e835a7234",
+      "error": null
+    },
+    {
+      "document_id": "src:filing-eda895e90e5bbc9976bce9e9:p9:0",
+      "symbol": "688256.SH",
+      "page": 9,
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-08/1225464969.PDF#page=9",
+      "status": "needs_review",
+      "decision": "accept",
+      "note": "云端芯片板卡、智能整机和证监会行业分类均有直接说明。暂不纳入较宽的IP与软件业务线。",
+      "reviewed_relation_ids": [
+        "rel:eae35e8c2e22a8bb",
+        "rel:6037a57ab724da93",
+        "rel:e71e53cebf69c6c6"
+      ],
+      "proposed_relations": 4,
+      "result_sha256": "28a7921e03d042523b7ccd33d59f7beb990708ecdc1d2b98b1cd769c7abfdd30",
+      "error": null
+    },
+    {
+      "document_id": "src:filing-42d0dec3e163249587eba5ca:p9:0",
+      "symbol": "000938.SZ",
+      "page": 9,
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-29/1225524307.PDF#page=9",
+      "status": "needs_review",
+      "decision": "accept",
+      "note": "主营产品目录明确列出设备、服务器、存储、终端；ICT归属有明确描述。暂不纳入较宽的云与安全业务分类。",
+      "reviewed_relation_ids": [
+        "rel:9a933d9788820667",
+        "rel:4a9df9116a1bc92c",
+        "rel:5d76220a084707b1",
+        "rel:d182542c4bba079d",
+        "rel:317e6f3e0ea27901"
+      ],
+      "proposed_relations": 7,
+      "result_sha256": "7d40280820f1b183663ee71a255b32d0945029ef9c8f65897e4f0c00b7b93572",
+      "error": null
+    },
+    {
+      "document_id": "src:filing-34d02741f6651eba443de0b3:p9:0",
+      "symbol": "601138.SH",
+      "page": 9,
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-12/1225468066.PDF#page=9",
+      "status": "needs_review",
+      "decision": "accept",
+      "note": "公司主营云计算段落明确报告三类机柜/服务器出货，主体来自同段公司陈述，原文与整页一起保留。工业互联网有直接说明。未采用引文过于宽泛的AI服务器关系。",
+      "reviewed_relation_ids": [
+        "rel:10279501b3b117cd",
+        "rel:5d425a4e997f51f2",
+        "rel:2cc1673be18f60df",
+        "rel:147534d0f39bf6c3"
+      ],
+      "proposed_relations": 5,
+      "result_sha256": "5e6604428b632a41bc70b82f2b7e3eb17e6677c3e13e53eb05c2f8723a00e05a",
+      "error": null
+    }
+  ]
+}

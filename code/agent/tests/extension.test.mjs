@@ -5,6 +5,7 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { test } from "node:test";
 import { createJiti } from "jiti";
+import { visibleWidth } from "@earendil-works/pi-tui";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const extensionPath = resolve(here, "..", "extensions", "fingraph.ts");
@@ -74,9 +75,9 @@ test("brand header and command surface", async () => {
   makeContext();
   await startSession();
   const header = state.ui.headerFactory({}, { fg: (_color, text) => text }).render(120).join("\n");
-  assert.match(header, /FinGraphAgent/);
+  assert.match(header, /FinGragh Agent/);
   assert.match(header, /0\.2\.0/);
-  assert.match(header, /股票事件研究/);
+  assert.match(header, /金融知识图谱智能体/);
   assert.match(header, /DeepSeek V4\.1 Flash/);
   assert.match(header, /2026-11-11/);
   assert.match(header, /\/web/);
@@ -88,7 +89,18 @@ test("brand header and command surface", async () => {
   assert.ok(!state.commands.usage);
   assert.ok(!state.commands.time);
   assert.deepEqual(state.tools, []);
-  assert.equal(state.ui.title, "FinGraphAgent · 股票事件研究");
+  assert.equal(state.ui.title, "FinGragh Agent · 金融知识图谱智能体");
+});
+
+test("pixel header survives terminal resizing and long model names", () => {
+  const theme = { fg: (_color, text) => `\x1b[36m${text}\x1b[0m` };
+  const header = extension.buildHeader(theme, { model: { name: "很长的模型名称".repeat(30) } });
+  for (const width of [1, 12, 24, 40, 60, 80, 100, 160]) {
+    const lines = header.render(width);
+    assert.ok(lines.every(line => visibleWidth(line) <= width), `overflow at ${width} columns`);
+    if (width >= 24) assert.ok(lines.some(line => line.includes("█")), `no pixel logo at ${width}`);
+  }
+  assert.match(header.render(80).join("\n"), /FinGragh Agent/);
 });
 
 test("/web --no-open checks health without opening", async () => {

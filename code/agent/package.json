@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@earendil-works/pi-coding-agent": "1.5.2",
+    "@earendil-works/pi-tui": "1.5.2",
     "open": "10.2.0"
   },
   "devDependencies": {

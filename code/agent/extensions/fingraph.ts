@@ -9,8 +9,12 @@
  */
 
 import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-agent";
+import { truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
 import open from "open";
+import { WORDMARK } from "../ui/wordmark.ts";
 
+export const PRODUCT_NAME = "FinGragh Agent";
+export const PRODUCT_DESCRIPTION = "金融知识图谱智能体";
 export const PRODUCT_VERSION = "0.2.0";
 
 type ThemeLike = {
@@ -59,19 +63,32 @@ export function buildHeader(theme: ThemeLike, ctx: HeaderContext): {
   render(width: number): string[];
 } {
   const accent = (text: string) => theme.fg("accent", text);
-  const dim = (text: string) => theme.fg("dim", text);
+  const muted = (text: string) => theme.fg("muted", text);
   const model = getModelLabel(ctx);
   const asOf = getResearchDate();
 
   return {
     invalidate() {},
-    render(_width: number): string[] {
+    render(width: number): string[] {
+      const columns = Math.max(1, width);
+      const indent = columns >= 24 ? "  " : "";
+      const wide = WORDMARK.finGragh.map((line, row) =>
+        accent(line) + " " + theme.fg("mdHeading", WORDMARK.agent[row]));
+      const logo = columns >= visibleWidth(WORDMARK.finGragh[0] + " " + WORDMARK.agent[0]) + indent.length
+        ? wide
+        : columns >= visibleWidth(WORDMARK.finGragh[0]) + indent.length
+          ? [...WORDMARK.finGragh.map(accent), "", ...WORDMARK.agent.map(line => theme.fg("mdHeading", line))]
+          : columns >= visibleWidth(WORDMARK.compact[0]) + indent.length
+            ? WORDMARK.compact.map(accent)
+            : [];
+      const fit = (line: string) => truncateToWidth(indent + line, columns);
       return [
         "",
-        `  ${accent("FinGraphAgent")}  ${dim(PRODUCT_VERSION)}`,
-        `  ${accent("股票事件研究")}`,
-        `  ${dim("模型：")}${model}   ${dim("研究日期：")}${asOf}`,
-        `  ${dim("命令：/web 打开图谱  /model 查看模型  /usage 查看用量")}`,
+        ...logo.map(fit),
+        "",
+        fit(`${accent(PRODUCT_NAME)}  ${muted(PRODUCT_VERSION)}  ·  ${PRODUCT_DESCRIPTION}`),
+        fit(`${model}  ${muted("·")}  研究日期 ${asOf}`),
+        fit(`${accent("/web")} 打开图谱   ${accent("/model")} 模型   ${accent("/usage")} 用量`),
         "",
       ];
     },
@@ -84,7 +101,7 @@ export default function fingraphExtension(pi: ExtensionAPI) {
     currentEvent = undefined;
     if (ctx.mode !== "tui") return;
     ctx.ui.setHeader((_tui, theme) => buildHeader(theme, ctx));
-    ctx.ui.setTitle("FinGraphAgent · 股票事件研究");
+    ctx.ui.setTitle(`${PRODUCT_NAME} · ${PRODUCT_DESCRIPTION}`);
     ctx.ui.setStatus("fingraph", "/web · /model · /usage");
   });
 

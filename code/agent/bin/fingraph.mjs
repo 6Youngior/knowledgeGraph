@@ -14,7 +14,7 @@ if (nodeMajor < 22 || (nodeMajor === 22 && nodeMinor < 19)) {
 }
 
 if (args.includes('--help') || args.includes('-h')) {
-  console.log('FinGraphAgent\n\n项目内启动：.\\fingraph.ps1\n首次安装：.\\fingraph.ps1 -Setup\n检查配置：.\\fingraph.ps1 -Check\n\n终端命令：/web 打开图谱，/usage 查看测试用量，/model 查看模型。');
+  console.log('FinGragh Agent\n\n项目内启动：.\\fingraph.ps1\n首次安装：.\\fingraph.ps1 -Setup\n检查配置：.\\fingraph.ps1 -Check\n\n终端命令：/web 打开图谱，/usage 查看测试用量，/model 查看模型。');
   process.exit(0);
 }
 if (existsSync(join(root, '.env'))) process.loadEnvFile(join(root, '.env'));
@@ -40,6 +40,7 @@ mkdirSync(profile, { recursive: true });
 writeFileSync(join(profile, 'settings.json'), JSON.stringify({
   defaultProvider: 'opencode-go', defaultModel: model, defaultThinkingLevel: 'off',
   retry: { enabled: false }, defaultTools: [], quietStartup: 'header',
+  theme: 'fingraph-gold',
 }, null, 2));
 writeFileSync(join(profile, 'models.json'), JSON.stringify({ providers: {
   'opencode-go': { modelOverrides: { [model]: {
@@ -76,6 +77,7 @@ const env = {
 };
 const child = spawn(process.execPath, [
   piCli, '--no-extensions', '--no-skills', '--no-context-files', '--no-prompt-templates', '--no-themes',
+  '--theme', join(packageRoot, 'themes', 'fingraph-gold.json'), '--use-theme', 'fingraph-gold',
   '-e', 'builtin:mcp',
   '-e', join(packageRoot, 'extensions', 'fingraph.ts'),
   '-e', join(packageRoot, 'extensions', 'usage.mjs'),

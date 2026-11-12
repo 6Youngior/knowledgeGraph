@@ -26,6 +26,8 @@
 
 前端已打包依赖的许可证副本保存在 `visualization/licenses/`；Python 的实际安装版本保存在 `code/requirements-lock.txt`。
 
+终端金色主题基于 Pi 的 dark theme 调整，沿用 MIT 许可；主题与许可说明位于 `code/agent/themes/`。
+
 ## 数据与素材
 
 事实来源、提供方、原始链接、日期精度与短摘录均登记在 `data/sources.json` 和 `data/README.md`。行情缓存源于腾讯财经公开日线接口，原始响应及复权方式保留。事实与市场数据属于各自发布方，本项目记录来源并用于课程研究展示。

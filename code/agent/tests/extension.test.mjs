@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import { test } from "node:test";
 import { createJiti } from "jiti";
 import { visibleWidth } from "@earendil-works/pi-tui";
+import { WORDMARK_GAP } from "../src/branding.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const extensionPath = resolve(here, "..", "extensions", "fingraph.ts");
@@ -101,6 +102,12 @@ test("pixel header survives terminal resizing and long model names", () => {
     if (width >= 24) assert.ok(lines.some(line => line.includes("█")), `no pixel logo at ${width}`);
   }
   assert.match(header.render(80).join("\n"), /FinGragh Agent/);
+  // At 80 columns both words fit with a word gap wider than letter spacing.
+  const plain = extension.buildHeader({ fg: (_color, text) => text }, {});
+  const pixels = plain.render(80).filter(line => line.includes("█"));
+  assert.equal(pixels.length, 7);
+  assert.equal(WORDMARK_GAP.length, 4);
+  assert.ok(pixels.every(line => line.slice(47, 51) === WORDMARK_GAP));
 });
 
 test("/web --no-open checks health without opening", async () => {

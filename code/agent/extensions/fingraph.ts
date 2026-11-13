@@ -12,8 +12,9 @@ import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-a
 import { truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
 import open from "open";
 import { WORDMARK } from "../ui/wordmark.ts";
+import { PRODUCT_NAME, WORDMARK_GAP } from "../src/branding.mjs";
 
-export const PRODUCT_NAME = "FinGragh Agent";
+export { PRODUCT_NAME };
 export const PRODUCT_DESCRIPTION = "金融知识图谱智能体";
 export const PRODUCT_VERSION = "0.2.0";
 
@@ -73,8 +74,9 @@ export function buildHeader(theme: ThemeLike, ctx: HeaderContext): {
       const columns = Math.max(1, width);
       const indent = columns >= 24 ? "  " : "";
       const wide = WORDMARK.finGragh.map((line, row) =>
-        accent(line) + " " + theme.fg("mdHeading", WORDMARK.agent[row]));
-      const logo = columns >= visibleWidth(WORDMARK.finGragh[0] + " " + WORDMARK.agent[0]) + indent.length
+        accent(line) + WORDMARK_GAP + theme.fg("mdHeading", WORDMARK.agent[row]));
+      const wideWidth = visibleWidth(WORDMARK.finGragh[0] + WORDMARK_GAP + WORDMARK.agent[0]);
+      const logo = columns >= wideWidth
         ? wide
         : columns >= visibleWidth(WORDMARK.finGragh[0]) + indent.length
           ? [...WORDMARK.finGragh.map(accent), "", ...WORDMARK.agent.map(line => theme.fg("mdHeading", line))]
@@ -82,9 +84,10 @@ export function buildHeader(theme: ThemeLike, ctx: HeaderContext): {
             ? WORDMARK.compact.map(accent)
             : [];
       const fit = (line: string) => truncateToWidth(indent + line, columns);
+      const logoIndent = columns >= wideWidth && columns < wideWidth + indent.length ? "" : indent;
       return [
         "",
-        ...logo.map(fit),
+        ...logo.map(line => truncateToWidth(logoIndent + line, columns)),
         "",
         fit(`${accent(PRODUCT_NAME)}  ${muted(PRODUCT_VERSION)}  ·  ${PRODUCT_DESCRIPTION}`),
         fit(`${model}  ${muted("·")}  研究日期 ${asOf}`),

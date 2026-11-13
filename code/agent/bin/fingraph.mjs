@@ -3,13 +3,15 @@ import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { spawn } from 'node:child_process';
 import { dirname, resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { PRODUCT_NAME } from '../src/branding.mjs';
+import { prepareBrandPackage } from '../src/brand-package.mjs';
 
 const packageRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const root = resolve(packageRoot, '../..');
 const args = process.argv.slice(2);
 const [nodeMajor, nodeMinor] = process.versions.node.split('.').map(Number);
 if (nodeMajor < 22 || (nodeMajor === 22 && nodeMinor < 19)) {
-  console.error('FinGraphAgent 需要 Node.js 22.19 或更新版本。');
+  console.error(`${PRODUCT_NAME} 需要 Node.js 22.19 或更新版本。`);
   process.exit(2);
 }
 
@@ -37,9 +39,10 @@ if (!apiKey) {
 }
 
 mkdirSync(profile, { recursive: true });
+const brandPackage = prepareBrandPackage(dirname(dirname(dirname(piCli))), profile);
 writeFileSync(join(profile, 'settings.json'), JSON.stringify({
   defaultProvider: 'opencode-go', defaultModel: model, defaultThinkingLevel: 'off',
-  retry: { enabled: false }, defaultTools: [], quietStartup: 'header',
+  retry: { enabled: false }, defaultTools: [], quietStartup: true,
   theme: 'fingraph-gold',
 }, null, 2));
 writeFileSync(join(profile, 'models.json'), JSON.stringify({ providers: {
@@ -56,7 +59,7 @@ writeFileSync(join(profile, 'mcp.json'), JSON.stringify({
 
 if (args.includes('--check')) {
   console.log(JSON.stringify({
-    project: 'FinGraphAgent', model, modelConfigured: Boolean(apiKey),
+    project: PRODUCT_NAME, model, modelConfigured: Boolean(apiKey),
     profile, dependency: piCli, python,
     web: `http://127.0.0.1:${port}`, asOf,
     note: '配置检查不产生模型调用。',
@@ -69,6 +72,9 @@ const env = {
   OPENCODE_API_KEY: apiKey,
   PI_CODING_AGENT_DIR: profile,
   PI_CODING_AGENT_SESSION_DIR: join(profile, 'sessions'),
+  PI_PACKAGE_DIR: brandPackage,
+  [`${PRODUCT_NAME.toUpperCase()}_CODING_AGENT_DIR`]: profile,
+  [`${PRODUCT_NAME.toUpperCase()}_CODING_AGENT_SESSION_DIR`]: join(profile, 'sessions'),
   // FinGraph doesn't use coding tools or fd; skip optional catalog/tool downloads.
   PI_OFFLINE: '1',
   FINGRAPH_AS_OF: asOf,
@@ -86,5 +92,5 @@ const child = spawn(process.execPath, [
   '--system-prompt', join(packageRoot, 'config', 'research.md'),
   ...args,
 ], { cwd: root, env, stdio: 'inherit' });
-child.on('error', error => { console.error(`FinGraphAgent 启动失败：${error.message}`); process.exit(1); });
+child.on('error', error => { console.error(`${PRODUCT_NAME} 启动失败：${error.message}`); process.exit(1); });
 child.on('exit', code => process.exit(code ?? 1));

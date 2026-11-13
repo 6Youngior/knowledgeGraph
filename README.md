@@ -23,6 +23,14 @@
 
 Pi、Python 环境、会话及配置均放在项目目录。退出终端时，启动器会关闭由它启动的 Web 服务。
 
+可以注册 `FinGragh` 快捷命令，从任意目录启动：
+
+```powershell
+.\fingraph.cmd -RegisterCommand
+```
+
+重新打开终端后输入 `FinGragh`。这只添加当前 Windows 用户的启动命令，Pi 仍安装在项目内。
+
 ## 试着问
 
 ```text

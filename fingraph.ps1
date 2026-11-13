@@ -1,6 +1,7 @@
 ﻿param(
     [switch]$Setup,
     [switch]$Check,
+    [switch]$RegisterCommand,
     [string]$Python,
     [string]$Prompt
 )
@@ -19,6 +20,10 @@ function Invoke-Checked {
 
 Push-Location $projectRoot
 try {
+    if ($RegisterCommand) {
+        & (Join-Path $agentRoot 'install-command.ps1')
+        exit 0
+    }
     if (-not (Get-Command node -ErrorAction SilentlyContinue)) { throw '需要 Node.js 22.19 或更新版本。' }
     if ($Setup) {
         if (-not (Test-Path -LiteralPath $localPython)) {

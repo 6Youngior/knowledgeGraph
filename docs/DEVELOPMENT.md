@@ -4,7 +4,9 @@
 
 在仓库根目录运行 `fingraph.cmd -Setup`，依赖会安装到 `.venv/` 与 `code/agent/node_modules/`。模型配置放在 `.env`；Pi 的设置、会话和用量数据库放在 `.fingraph/`。这些目录不会进入 Git。
 
-启动器仅加载项目的金融工具和扩展。Pi 包保持原样，通过官方扩展接口定制 FinGraphAgent 界面，未修改依赖中的品牌配置。
+启动器仅加载项目的金融工具和扩展。Pi 安装文件保持原样，通过扩展定制界面；`PI_PACKAGE_DIR` 指向项目内的品牌配置，复用原包资源，使初始化与会话切换时的窗口标题也保持 `FinGragh Agent`。
+
+`fingraph.cmd -RegisterCommand` 在当前用户的 `%LOCALAPPDATA%\FinGragh\bin` 写入启动脚本，并将该目录加入用户 PATH。快捷命令转发到本仓库的入口；移动项目后重新注册即可更新路径，不会安装全局 Pi。启动时关闭 Pi 默认标题，由项目扩展显示带单词间距的 `FinGragh Agent` 像素标识。
 
 当前终端使用 Pi 原生的 OpenCode Go provider。`.env` 中的 `LLM_API_KEY` 在子进程内映射为 `OPENCODE_API_KEY`；`LLM_BASE_URL` 用于 Web 的兼容 API 抽取接口。接入说明见 [OpenCode Go 的 Pi 文档](https://opencode.ai/docs/console/harnesses/pi/)。
 

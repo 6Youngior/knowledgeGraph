@@ -8,13 +8,23 @@ from unittest.mock import patch
 
 import httpx
 
-from extract_corpus import ingest_reviewed, plan_extraction, run_plan, write
+from extract_corpus import ingest_reviewed, plan_extraction, relevance, run_plan, write
 from extraction import ExtractionService
 from graph_store import GraphStore
 from llm_budget import TokenBudget
 
 
 class CorpusExtractionTests(unittest.TestCase):
+    def test_business_section_precedes_keyword_dense_risk_discussion(self):
+        business = "报告期内公司从事的主要业务。公司主营业务为服务器研发、生产及销售。" + "本期提供计算设备与服务。" * 30
+        risk = "公司面临的风险和应对措施。" + "公司主要产品服务器、GPU芯片、CPU芯片的研发和主营业务面临市场风险。" * 15
+        self.assertGreater(relevance(business), relevance(risk))
+        self.assertEqual(relevance("重大风险提示。" + risk), 0)
+        reference = '三、主营业务分析。概述参见“一、报告期内公司从事的主要业务”相关内容。' + "营业收入和毛利率同比变动情况。" * 30
+        self.assertGreater(relevance(business), relevance(reference))
+        shanghai = "一、报告期内公司所属行业及主营业务情况说明。公司主要从事集成电路设计。" + "本期提供芯片产品。" * 35
+        self.assertGreater(relevance(shanghai), relevance(reference))
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)

@@ -21,7 +21,7 @@ export function Sidebar({ view, onNavigate, events, overview, health }: {
           className={view === item.key ? 'active' : ''} onClick={() => onNavigate(item.key)}>
           <Icon size={18} /><span>{item.label}</span></button>; })}
       </nav>
-      <div className="side-dataset"><span>研究范围</span><p>事件图谱与原文证据<br />{events.length} 个产业事件<br />{overview?.stats.entities ?? '—'} 个图谱实体</p></div>
+      <div className="side-dataset"><span>研究范围</span><p>AI 产业与公司业务<br />{overview?.stats.entities ?? '—'} 实体 · {overview?.stats.relations ?? '—'} 关系<br />{events.length} 个产业事件</p></div>
       <div className="side-spacer" />
       <div className="side-system"><div><StatusDot online={health?.status === 'ok'} /> {health?.status === 'ok' ? '本地数据已连接' : '服务未连接'}</div><span>知识图谱课程项目</span></div>
     </aside>

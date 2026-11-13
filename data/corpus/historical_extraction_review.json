@@ -1,0 +1,146 @@
+{
+  "schema_version": "development-extraction-review-v1",
+  "model": "deepseek-v4.1-flash",
+  "date": "2026-11-13",
+  "passages": 8,
+  "proposed_relations": 36,
+  "accepted_relation_evidence": 29,
+  "added_relations": 22,
+  "updated_existing_relations": 7,
+  "scope": "2023年原始披露开发样本；逐条复核原文、主语及日期，没有独立标注答案，不作为Precision/Recall/F1评测。",
+  "records": [
+    {
+      "document_id": "src:filing-4dcdc2280f8683512f1b63da:p9:0",
+      "symbol": "000938.SZ",
+      "page": 9,
+      "url": "https://static.cninfo.com.cn/finalpage/2023-08-25/1217635185.PDF#page=9",
+      "published_at": "2023-08-25",
+      "available_at": "2023-08-25",
+      "proposed_relations": 4,
+      "accepted_relation_ids": [
+        "rel:9a933d9788820667",
+        "rel:4a9df9116a1bc92c",
+        "rel:5d76220a084707b1",
+        "rel:d182542c4bba079d"
+      ],
+      "note": "原文以公司为主语列出网络设备、服务器、存储及终端。PRODUCES表示提供产品，不等同于亲自制造。",
+      "result_sha256": "b91dad0c629a3c32b3ee239a614a7029920199cd829891ca10516e200eb5a646"
+    },
+    {
+      "document_id": "src:filing-81fc1a53e6d2714eba7891f1:p10:0",
+      "symbol": "002185.SZ",
+      "page": 10,
+      "url": "https://static.cninfo.com.cn/finalpage/2023-08-29/1217677663.PDF#page=10",
+      "published_at": "2023-08-29",
+      "available_at": "2023-08-29",
+      "proposed_relations": 8,
+      "accepted_relation_ids": [
+        "rel:87f038883abd5651",
+        "rel:a2dd46f078a2625a",
+        "rel:3797bf3d4fa3dd7f",
+        "rel:08f696ead6b74468",
+        "rel:81252e2cde25b4d6",
+        "rel:02ce90714967d046",
+        "rel:5a962ae652ea9aa9",
+        "rel:ca25cac4aec2423b"
+      ],
+      "note": "主营业务明确为集成电路封装测试，所列封装系列均为实际产品；不从应用领域推定行业。",
+      "result_sha256": "2d4ea083ae5f73be47b11b38536c1cc4e4acba9eeb6ca8faf907e45f7661c014"
+    },
+    {
+      "document_id": "src:filing-ce88f3199a41c6addafd9dfb:p9:0",
+      "symbol": "002281.SZ",
+      "page": 9,
+      "url": "https://static.cninfo.com.cn/finalpage/2023-08-26/1217651472.PDF#page=9",
+      "published_at": "2023-08-26",
+      "available_at": "2023-08-26",
+      "proposed_relations": 8,
+      "accepted_relation_ids": [
+        "rel:02de110331e1ab83",
+        "rel:581c198b6ef81475",
+        "rel:f54696604870b9c4",
+        "rel:25f0a058e8363d41",
+        "rel:43bd686e183da9cf",
+        "rel:9ae8dbee102b91fa",
+        "rel:1f6350af8d600126",
+        "rel:1377bf717ef022fd"
+      ],
+      "note": "保留报告明确提供的产品及光器件行业身份，不纳入行业增长预测。",
+      "result_sha256": "a08682c6e458c35d25758a8c5a0c344151d4218ce76a22ec88f5366096c5007d"
+    },
+    {
+      "document_id": "src:filing-be61b02069c49a983b3555d7:p10:0",
+      "symbol": "300308.SZ",
+      "page": 10,
+      "url": "https://static.cninfo.com.cn/finalpage/2023-08-28/1217655323.PDF#page=10",
+      "published_at": "2023-08-28",
+      "available_at": "2023-08-28",
+      "proposed_relations": 6,
+      "accepted_relation_ids": [
+        "rel:8252965f8712e6d4",
+        "rel:c472cdaf1bf21c21"
+      ],
+      "note": "保留公司光通信业务分类及苏州旭创的明确产品。其余子公司产品归给母公司、光组件泛化为光器件的提案暂不采用。",
+      "result_sha256": "942520ef374ad01e845ff158490279c4564177e28338adcc2a57fe54b23048ae"
+    },
+    {
+      "document_id": "src:filing-b81391d19a7c6f18f68a4f63:p11:0",
+      "symbol": "688008.SH",
+      "page": 11,
+      "url": "https://static.cninfo.com.cn/finalpage/2023-08-24/1217620067.PDF#page=11",
+      "published_at": "2023-08-24",
+      "available_at": "2023-08-24",
+      "proposed_relations": 1,
+      "accepted_relation_ids": [
+        "rel:1a9670e291a54684"
+      ],
+      "note": "仅采用集成电路设计企业身份；行业趋势与服务器需求预测不是该公司的事实关系。",
+      "result_sha256": "b9e751269e22b873b4d64578b85db7700929e5bde69146a765d864a1956e2fe6"
+    },
+    {
+      "document_id": "src:filing-b9786528a76fb929019261c6:p9:0",
+      "symbol": "688041.SH",
+      "page": 9,
+      "url": "https://static.cninfo.com.cn/finalpage/2023-08-25/1217637267.PDF#page=9",
+      "published_at": "2023-08-25",
+      "available_at": "2023-08-25",
+      "proposed_relations": 1,
+      "accepted_relation_ids": [
+        "rel:19ab3eae85834102"
+      ],
+      "note": "仅采用报告明确列示的集成电路设计分类，不把行业背景中的其他业务归给公司。",
+      "result_sha256": "04aab5792d3a7badb1a776aad256f95c76929927ea5b0d2f5b87ee3c2df51087"
+    },
+    {
+      "document_id": "src:filing-6f3033ef7691b965a676f94c:p10:0",
+      "symbol": "688498.SH",
+      "page": 10,
+      "url": "https://static.cninfo.com.cn/finalpage/2023-08-25/1217634421.PDF#page=10",
+      "published_at": "2023-08-25",
+      "available_at": "2023-08-25",
+      "proposed_relations": 5,
+      "accepted_relation_ids": [
+        "rel:c3a9fe8a809ae6c6",
+        "rel:82c26b8896301d11"
+      ],
+      "note": "保留光芯片产品及光芯片行业身份；过宽的制造业和重复层级分类不纳入本批。",
+      "result_sha256": "1974ad110d9b5635ffd67ce4d5ff9f2e89f0fbcbdc52feea59a2cddc0bcbd673"
+    },
+    {
+      "document_id": "src:filing-229b1f1c5a52d5d5fb300f86:p10:0",
+      "symbol": "688981.SH",
+      "page": 10,
+      "url": "https://static.cninfo.com.cn/finalpage/2023-08-26/1217654777.PDF#page=10",
+      "published_at": "2023-08-26",
+      "available_at": "2023-08-26",
+      "proposed_relations": 3,
+      "accepted_relation_ids": [
+        "rel:d75309078d7f20df",
+        "rel:69bc6298091f0278",
+        "rel:c251fb5502821557"
+      ],
+      "note": "报告集团全称与中芯国际核对一致；原文明示晶圆代工、光掩模及集成电路制造业务。",
+      "result_sha256": "8572993ea63e192bd6a415e333ed8e27ece5bbef4b8fab38ef1b0a1a6c83e4d2"
+    }
+  ]
+}

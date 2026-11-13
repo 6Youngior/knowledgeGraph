@@ -9,6 +9,7 @@ import argparse
 import copy
 import hashlib
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -38,11 +39,26 @@ def local_path(directory, name):
 
 def relevance(text):
     """Select passages for review, without claiming the keywords are facts."""
+    compact = re.sub(r"\s+", "", text)
+    # Financial tables often refer back to the business section by its exact
+    # heading. That reference is not itself a description of the business.
+    compact = re.sub(r"参见[^。]{0,120}相关内容", "", compact)
     headings = ["主营业务", "主要业务", "主要产品", "核心产品", "公司产品", "公司主要"]
-    if len(text) < 300 or not any(word in text for word in headings):
+    if len(text) < 300 or not any(word in compact for word in headings):
         return 0
-    return 10 * sum(word in text for word in headings) + sum(
-        min(text.count(word), 3) for word in ["芯片", "CPU", "DCU", "GPU", "服务器", "光模块", "产品", "研发"])
+    score = 10 * sum(word in compact for word in headings) + sum(
+        min(compact.count(word), 3) for word in ["芯片", "CPU", "DCU", "GPU", "服务器", "光模块", "产品", "研发"])
+    # A report's risk or financial discussion can repeat more product words
+    # than the actual business description. Prefer explicit business sections.
+    if re.search(r"报告期内公司从事的主要业务|报告期内公司所属行业及主营业务情况", compact):
+        score += 200
+    if re.search(r"公司的主要产品|主要产品及[^。]{0,20}用途", compact):
+        score += 60
+    if re.search(r"公司主要从事|公司主营业务为|公司的主营业务是", compact):
+        score += 40
+    if re.search(r"公司面临的风险|风险和应对措施|主要风险因素|重大风险提示", compact[:500]):
+        score -= 150
+    return max(score, 0)
 
 
 def plan_extraction(inputs, *, limit=8, per_document=2, universe=None):

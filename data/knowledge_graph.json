@@ -1,8 +1,8 @@
 {
   "meta": {
     "title": "FinGraph",
-    "as_of": "2026-11-12",
-    "description": "以 DeepSeek-R1、Qwen3、GLM-5 与 MiniMax-M2.5 等真实事件为线索，区分模型研发、硬件适配与云服务接入，连接上市公司、证券与证据路径。行情为 2024-12 至 2026-03 的真实日线缓存。"
+    "as_of": "2026-11-13",
+    "description": "面向人工智能产业，记录公司、产品、行业及证券之间的关系，并保留原文证据与披露日期。"
   },
   "nodes": [
     {
@@ -493,6 +493,7 @@
       "description": "国产 DCU 与 CPU 厂商；2022-08-12 于上交所科创板上市（688041.SH）。",
       "source_ids": [
         "src:filing-38e0177906a207432512a988:p14:0",
+        "src:filing-b9786528a76fb929019261c6:p9:0",
         "src:hygon-adapt",
         "src:sse-hygon"
       ],
@@ -1118,6 +1119,7 @@
       ],
       "description": "集成电路晶圆代工企业，提供8英寸和12英寸晶圆代工与技术服务。",
       "source_ids": [
+        "src:filing-229b1f1c5a52d5d5fb300f86:p10:0",
         "src:filing-6a44b7cfe77129d47089ae71:p11:0"
       ],
       "properties": {}
@@ -1131,6 +1133,7 @@
       ],
       "description": "公司基于多种技术节点和技术平台提供的集成电路晶圆代工业务。",
       "source_ids": [
+        "src:filing-229b1f1c5a52d5d5fb300f86:p10:0",
         "src:filing-6a44b7cfe77129d47089ae71:p11:0"
       ],
       "properties": {}
@@ -1153,6 +1156,7 @@
       "aliases": [],
       "description": "公司提供的配套服务之一。",
       "source_ids": [
+        "src:filing-229b1f1c5a52d5d5fb300f86:p10:0",
         "src:filing-6a44b7cfe77129d47089ae71:p11:0"
       ],
       "properties": {}
@@ -1164,6 +1168,7 @@
       "aliases": [],
       "description": "公司所属行业，公司为中国大陆集成电路制造业领导者。",
       "source_ids": [
+        "src:filing-229b1f1c5a52d5d5fb300f86:p10:0",
         "src:filing-6a44b7cfe77129d47089ae71:p11:0"
       ],
       "properties": {}
@@ -1188,6 +1193,8 @@
       "aliases": [],
       "description": "公司所属行业，属软件和信息技术服务业",
       "source_ids": [
+        "src:filing-b81391d19a7c6f18f68a4f63:p11:0",
+        "src:filing-b9786528a76fb929019261c6:p9:0",
         "src:filing-eda895e90e5bbc9976bce9e9:p9:0"
       ],
       "properties": {}
@@ -1221,7 +1228,8 @@
       "aliases": [],
       "description": "数字化及AI解决方案提供商，提供ICT基础设施、云与智能平台及数字化转型解决方案",
       "source_ids": [
-        "src:filing-42d0dec3e163249587eba5ca:p9:0"
+        "src:filing-42d0dec3e163249587eba5ca:p9:0",
+        "src:filing-4dcdc2280f8683512f1b63da:p9:0"
       ],
       "properties": {}
     },
@@ -1232,7 +1240,8 @@
       "aliases": [],
       "description": "包括交换机、路由器、WLAN、SDN、PON、智能管理与运维服务等",
       "source_ids": [
-        "src:filing-42d0dec3e163249587eba5ca:p9:0"
+        "src:filing-42d0dec3e163249587eba5ca:p9:0",
+        "src:filing-4dcdc2280f8683512f1b63da:p9:0"
       ],
       "properties": {}
     },
@@ -1243,7 +1252,8 @@
       "aliases": [],
       "description": "包括通用计算服务器、人工智能计算服务器、关键业务计算服务器、边缘计算服务器等",
       "source_ids": [
-        "src:filing-42d0dec3e163249587eba5ca:p9:0"
+        "src:filing-42d0dec3e163249587eba5ca:p9:0",
+        "src:filing-4dcdc2280f8683512f1b63da:p9:0"
       ],
       "properties": {}
     },
@@ -1254,7 +1264,8 @@
       "aliases": [],
       "description": "包括企业级智能全闪存存储、混合闪存存储、分布式存储、数据备份与保护、存储网络设备等",
       "source_ids": [
-        "src:filing-42d0dec3e163249587eba5ca:p9:0"
+        "src:filing-42d0dec3e163249587eba5ca:p9:0",
+        "src:filing-4dcdc2280f8683512f1b63da:p9:0"
       ],
       "properties": {}
     },
@@ -1265,7 +1276,8 @@
       "aliases": [],
       "description": "包括商用笔记本电脑、商用台式机、智慧云屏、AI工作站等",
       "source_ids": [
-        "src:filing-42d0dec3e163249587eba5ca:p9:0"
+        "src:filing-42d0dec3e163249587eba5ca:p9:0",
+        "src:filing-4dcdc2280f8683512f1b63da:p9:0"
       ],
       "properties": {}
     },
@@ -1334,6 +1346,306 @@
       "description": "公司深耕的工业互联网领域",
       "source_ids": [
         "src:filing-34d02741f6651eba443de0b3:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "company_yuanguang",
+      "label": "陕西源杰半导体科技股份有限公司",
+      "type": "Company",
+      "aliases": [
+        "源杰科技"
+      ],
+      "description": "聚焦光芯片行业，主营光芯片研发、设计、生产与销售",
+      "source_ids": [
+        "src:filing-6f3033ef7691b965a676f94c:p10:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product_optical_chip",
+      "label": "光芯片",
+      "type": "Product",
+      "aliases": [],
+      "description": "公司研发、设计、生产与销售的产品",
+      "source_ids": [
+        "src:filing-6f3033ef7691b965a676f94c:p10:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "industry_optical_chip",
+      "label": "光芯片行业",
+      "type": "Industry",
+      "aliases": [],
+      "description": "公司所属行业",
+      "source_ids": [
+        "src:filing-6f3033ef7691b965a676f94c:p10:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "company:光迅科技",
+      "label": "武汉光迅科技股份有限公司",
+      "type": "Company",
+      "aliases": [
+        "光迅科技"
+      ],
+      "description": "光电子器件、模块和子系统产品的研发、生产及销售企业",
+      "source_ids": [
+        "src:filing-ce88f3199a41c6addafd9dfb:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product:传输类光收发模块",
+      "label": "传输类光收发模块",
+      "type": "Product",
+      "aliases": [],
+      "description": "包括直接调制光模块和相干光模块，支持10Gb/s、100Gb/s、400Gb/s等速率",
+      "source_ids": [
+        "src:filing-ce88f3199a41c6addafd9dfb:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product:光放大器",
+      "label": "光放大器",
+      "type": "Product",
+      "aliases": [],
+      "description": "包括EDFA、RFA、RFA/Hybrid、EDFA array、Pluggable Amplifier等",
+      "source_ids": [
+        "src:filing-ce88f3199a41c6addafd9dfb:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product:波长管理类光器件",
+      "label": "波长管理类光器件",
+      "type": "Product",
+      "aliases": [],
+      "description": "包括MUX/DEMUX、WSS、MCS等，用于合分波、波长交换",
+      "source_ids": [
+        "src:filing-ce88f3199a41c6addafd9dfb:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product:数据中心内光模块",
+      "label": "数据中心内光模块",
+      "type": "Product",
+      "aliases": [],
+      "description": "支持100Gb/s至800Gb/s速率，支持QSFP、QSFP-DD、OSFP等封装",
+      "source_ids": [
+        "src:filing-ce88f3199a41c6addafd9dfb:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product:数据中心互联光模块",
+      "label": "数据中心互联光模块",
+      "type": "Product",
+      "aliases": [],
+      "description": "包括400G ZR QSFP-DD DCO、400G ZR+ QSFP-DD DCO等产品",
+      "source_ids": [
+        "src:filing-ce88f3199a41c6addafd9dfb:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product:AOC",
+      "label": "AOC（有源光缆）",
+      "type": "Product",
+      "aliases": [
+        "有源光缆"
+      ],
+      "description": "数据中心内互联用有源光缆产品",
+      "source_ids": [
+        "src:filing-ce88f3199a41c6addafd9dfb:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product:接入类产品",
+      "label": "接入类产品",
+      "type": "Product",
+      "aliases": [],
+      "description": "支持固网接入和无线接入应用，包括GPON OLT/ONU、10GPON BOSA和光收发模块、前传光收发模块等",
+      "source_ids": [
+        "src:filing-ce88f3199a41c6addafd9dfb:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "industry:光器件行业",
+      "label": "光器件行业",
+      "type": "Industry",
+      "aliases": [],
+      "description": "公司所处的光电子器件行业",
+      "source_ids": [
+        "src:filing-ce88f3199a41c6addafd9dfb:p9:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "company:澜起科技",
+      "label": "澜起科技",
+      "type": "Company",
+      "aliases": [],
+      "description": "集成电路设计企业，报告主体",
+      "source_ids": [
+        "src:filing-b81391d19a7c6f18f68a4f63:p11:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "company_huatian_tech",
+      "label": "天水华天科技股份有限公司",
+      "type": "Company",
+      "aliases": [
+        "华天科技"
+      ],
+      "description": "集成电路封装测试代工企业",
+      "source_ids": [
+        "src:filing-81fc1a53e6d2714eba7891f1:p10:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "industry_ic_packaging_testing",
+      "label": "集成电路封装测试",
+      "type": "Industry",
+      "aliases": [],
+      "description": "公司所属行业，提供封装测试代工服务",
+      "source_ids": [
+        "src:filing-81fc1a53e6d2714eba7891f1:p10:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product_dip_sdip",
+      "label": "DIP/SDIP封装产品",
+      "type": "Product",
+      "aliases": [],
+      "description": "公司集成电路封装产品系列之一",
+      "source_ids": [
+        "src:filing-81fc1a53e6d2714eba7891f1:p10:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product_sot",
+      "label": "SOT封装产品",
+      "type": "Product",
+      "aliases": [],
+      "description": "公司集成电路封装产品系列之一",
+      "source_ids": [
+        "src:filing-81fc1a53e6d2714eba7891f1:p10:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product_sop",
+      "label": "SOP封装产品",
+      "type": "Product",
+      "aliases": [],
+      "description": "公司集成电路封装产品系列之一",
+      "source_ids": [
+        "src:filing-81fc1a53e6d2714eba7891f1:p10:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product_qfn_dfn",
+      "label": "QFN/DFN封装产品",
+      "type": "Product",
+      "aliases": [],
+      "description": "公司集成电路封装产品系列之一",
+      "source_ids": [
+        "src:filing-81fc1a53e6d2714eba7891f1:p10:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product_bga_lga",
+      "label": "BGA/LGA封装产品",
+      "type": "Product",
+      "aliases": [],
+      "description": "公司集成电路封装产品系列之一",
+      "source_ids": [
+        "src:filing-81fc1a53e6d2714eba7891f1:p10:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product_sip",
+      "label": "SiP封装产品",
+      "type": "Product",
+      "aliases": [],
+      "description": "公司集成电路封装产品系列之一",
+      "source_ids": [
+        "src:filing-81fc1a53e6d2714eba7891f1:p10:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product_wlp",
+      "label": "WLP封装产品",
+      "type": "Product",
+      "aliases": [],
+      "description": "公司集成电路封装产品系列之一",
+      "source_ids": [
+        "src:filing-81fc1a53e6d2714eba7891f1:p10:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "company:中际旭创",
+      "label": "中际旭创",
+      "type": "Company",
+      "aliases": [
+        "中际旭创股份有限公司"
+      ],
+      "description": "报告主体，主营高端光通信收发模块及光器件研发、生产及销售。",
+      "source_ids": [
+        "src:filing-be61b02069c49a983b3555d7:p10:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "company:苏州旭创",
+      "label": "苏州旭创",
+      "type": "Company",
+      "aliases": [],
+      "description": "中际旭创全资子公司，从事高端光通信收发模块研发、设计、封装、测试和销售。",
+      "source_ids": [
+        "src:filing-be61b02069c49a983b3555d7:p10:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "product:高速光模块",
+      "label": "高速光模块",
+      "type": "Product",
+      "aliases": [
+        "100G、200G、400G 和800G 的高速光模块"
+      ],
+      "description": "为云数据中心客户提供的高速光模块产品。",
+      "source_ids": [
+        "src:filing-be61b02069c49a983b3555d7:p10:0"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "industry:光通信",
+      "label": "光通信",
+      "type": "Industry",
+      "aliases": [
+        "高端光通信"
+      ],
+      "description": "公司主营业务所属的高端光通信领域。",
+      "source_ids": [
+        "src:filing-be61b02069c49a983b3555d7:p10:0"
       ],
       "properties": {}
     }
@@ -2555,11 +2867,28 @@
       "label": "提供产品",
       "evidence": "向全球客户提供8 英寸和12 英寸晶圆代工与技术服务",
       "source_ids": [
+        "src:filing-229b1f1c5a52d5d5fb300f86:p10:0",
         "src:filing-6a44b7cfe77129d47089ae71:p11:0"
       ],
-      "disclosed_at": "2026-08-28",
+      "disclosed_at": "2023-08-26",
       "relation_group": "direct",
-      "id": "rel:d75309078d7f20df"
+      "id": "rel:d75309078d7f20df",
+      "evidence_records": [
+        {
+          "source_ids": [
+            "src:filing-6a44b7cfe77129d47089ae71:p11:0"
+          ],
+          "evidence": "向全球客户提供8 英寸和12 英寸晶圆代工与技术服务",
+          "disclosed_at": "2026-08-28"
+        },
+        {
+          "source_ids": [
+            "src:filing-229b1f1c5a52d5d5fb300f86:p10:0"
+          ],
+          "evidence": "向全球客户提供0.35 微米到FinFET 不同技术节点的晶圆代工与技术服务",
+          "disclosed_at": "2023-08-26"
+        }
+      ]
     },
     {
       "source": "SMIC",
@@ -2581,11 +2910,28 @@
       "label": "提供产品",
       "evidence": "为客户提供设计服务与IP 支持、光掩模制造等一站式配套服务",
       "source_ids": [
+        "src:filing-229b1f1c5a52d5d5fb300f86:p10:0",
         "src:filing-6a44b7cfe77129d47089ae71:p11:0"
       ],
-      "disclosed_at": "2026-08-28",
+      "disclosed_at": "2023-08-26",
       "relation_group": "direct",
-      "id": "rel:69bc6298091f0278"
+      "id": "rel:69bc6298091f0278",
+      "evidence_records": [
+        {
+          "source_ids": [
+            "src:filing-6a44b7cfe77129d47089ae71:p11:0"
+          ],
+          "evidence": "为客户提供设计服务与IP 支持、光掩模制造等一站式配套服务",
+          "disclosed_at": "2026-08-28"
+        },
+        {
+          "source_ids": [
+            "src:filing-229b1f1c5a52d5d5fb300f86:p10:0"
+          ],
+          "evidence": "为客户提供设计服务与 IP 支持、光掩模制造等一站式配套服务",
+          "disclosed_at": "2023-08-26"
+        }
+      ]
     },
     {
       "source": "SMIC",
@@ -2594,11 +2940,28 @@
       "label": "所属产业",
       "evidence": "也是中国大陆集成电路制造业领导者",
       "source_ids": [
+        "src:filing-229b1f1c5a52d5d5fb300f86:p10:0",
         "src:filing-6a44b7cfe77129d47089ae71:p11:0"
       ],
-      "disclosed_at": "2026-08-28",
+      "disclosed_at": "2023-08-26",
       "relation_group": "industry",
-      "id": "rel:c251fb5502821557"
+      "id": "rel:c251fb5502821557",
+      "evidence_records": [
+        {
+          "source_ids": [
+            "src:filing-6a44b7cfe77129d47089ae71:p11:0"
+          ],
+          "evidence": "也是中国大陆集成电路制造业领导者",
+          "disclosed_at": "2026-08-28"
+        },
+        {
+          "source_ids": [
+            "src:filing-229b1f1c5a52d5d5fb300f86:p10:0"
+          ],
+          "evidence": "也是中国大陆集成电路制造业领导者",
+          "disclosed_at": "2023-08-26"
+        }
+      ]
     },
     {
       "source": "company:中科寒武纪科技股份有限公司",
@@ -2646,11 +3009,28 @@
       "label": "提供产品",
       "evidence": "1、网络设备：交换机、路由器、WLAN、SDN、PON、智能管理与运维服务等",
       "source_ids": [
-        "src:filing-42d0dec3e163249587eba5ca:p9:0"
+        "src:filing-42d0dec3e163249587eba5ca:p9:0",
+        "src:filing-4dcdc2280f8683512f1b63da:p9:0"
       ],
-      "disclosed_at": "2026-08-29",
+      "disclosed_at": "2023-08-25",
       "relation_group": "direct",
-      "id": "rel:9a933d9788820667"
+      "id": "rel:9a933d9788820667",
+      "evidence_records": [
+        {
+          "source_ids": [
+            "src:filing-42d0dec3e163249587eba5ca:p9:0"
+          ],
+          "evidence": "1、网络设备：交换机、路由器、WLAN、SDN、PON、智能管理与运维服务等",
+          "disclosed_at": "2026-08-29"
+        },
+        {
+          "source_ids": [
+            "src:filing-4dcdc2280f8683512f1b63da:p9:0"
+          ],
+          "evidence": "网络设备：交换机、路由器",
+          "disclosed_at": "2023-08-25"
+        }
+      ]
     },
     {
       "source": "紫光股份",
@@ -2659,11 +3039,28 @@
       "label": "提供产品",
       "evidence": "2、服务器：通用计算服务器、人工智能计算服务器、关键业务计算服务器、边缘计算服务器等",
       "source_ids": [
-        "src:filing-42d0dec3e163249587eba5ca:p9:0"
+        "src:filing-42d0dec3e163249587eba5ca:p9:0",
+        "src:filing-4dcdc2280f8683512f1b63da:p9:0"
       ],
-      "disclosed_at": "2026-08-29",
+      "disclosed_at": "2023-08-25",
       "relation_group": "direct",
-      "id": "rel:4a9df9116a1bc92c"
+      "id": "rel:4a9df9116a1bc92c",
+      "evidence_records": [
+        {
+          "source_ids": [
+            "src:filing-42d0dec3e163249587eba5ca:p9:0"
+          ],
+          "evidence": "2、服务器：通用计算服务器、人工智能计算服务器、关键业务计算服务器、边缘计算服务器等",
+          "disclosed_at": "2026-08-29"
+        },
+        {
+          "source_ids": [
+            "src:filing-4dcdc2280f8683512f1b63da:p9:0"
+          ],
+          "evidence": "服务器：通用服务器、塑合刀片服务器、关键业务服务器、边缘服务器等",
+          "disclosed_at": "2023-08-25"
+        }
+      ]
     },
     {
       "source": "紫光股份",
@@ -2672,11 +3069,28 @@
       "label": "提供产品",
       "evidence": "3、存储产品：企业级智能全闪存存储、企业级智能混合闪存存储、分布式存储、数据备份与保护、",
       "source_ids": [
-        "src:filing-42d0dec3e163249587eba5ca:p9:0"
+        "src:filing-42d0dec3e163249587eba5ca:p9:0",
+        "src:filing-4dcdc2280f8683512f1b63da:p9:0"
       ],
-      "disclosed_at": "2026-08-29",
+      "disclosed_at": "2023-08-25",
       "relation_group": "direct",
-      "id": "rel:5d76220a084707b1"
+      "id": "rel:5d76220a084707b1",
+      "evidence_records": [
+        {
+          "source_ids": [
+            "src:filing-42d0dec3e163249587eba5ca:p9:0"
+          ],
+          "evidence": "3、存储产品：企业级智能全闪存存储、企业级智能混合闪存存储、分布式存储、数据备份与保护、",
+          "disclosed_at": "2026-08-29"
+        },
+        {
+          "source_ids": [
+            "src:filing-4dcdc2280f8683512f1b63da:p9:0"
+          ],
+          "evidence": "存储产品：全闪存集中式存储、混合闪存集中式存储、分布式存储、备份、容灾设备和存储网络",
+          "disclosed_at": "2023-08-25"
+        }
+      ]
     },
     {
       "source": "紫光股份",
@@ -2685,11 +3099,28 @@
       "label": "提供产品",
       "evidence": "6、智能终端：商用笔记本电脑、商用台式机、智慧云屏、AI 工作站等。",
       "source_ids": [
-        "src:filing-42d0dec3e163249587eba5ca:p9:0"
+        "src:filing-42d0dec3e163249587eba5ca:p9:0",
+        "src:filing-4dcdc2280f8683512f1b63da:p9:0"
       ],
-      "disclosed_at": "2026-08-29",
+      "disclosed_at": "2023-08-25",
       "relation_group": "direct",
-      "id": "rel:d182542c4bba079d"
+      "id": "rel:d182542c4bba079d",
+      "evidence_records": [
+        {
+          "source_ids": [
+            "src:filing-42d0dec3e163249587eba5ca:p9:0"
+          ],
+          "evidence": "6、智能终端：商用笔记本电脑、商用台式机、智慧云屏、AI 工作站等。",
+          "disclosed_at": "2026-08-29"
+        },
+        {
+          "source_ids": [
+            "src:filing-4dcdc2280f8683512f1b63da:p9:0"
+          ],
+          "evidence": "智能终端：商用笔记本电脑、商用台式机、智慧屏等",
+          "disclosed_at": "2023-08-25"
+        }
+      ]
     },
     {
       "source": "紫光股份",
@@ -2755,6 +3186,292 @@
       "disclosed_at": "2026-08-12",
       "relation_group": "industry",
       "id": "rel:147534d0f39bf6c3"
+    },
+    {
+      "source": "company_yuanguang",
+      "target": "product_optical_chip",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "主营业务为光芯片的研发、设计、生产与销售",
+      "source_ids": [
+        "src:filing-6f3033ef7691b965a676f94c:p10:0"
+      ],
+      "disclosed_at": "2023-08-25",
+      "relation_group": "direct",
+      "id": "rel:c3a9fe8a809ae6c6"
+    },
+    {
+      "source": "company_yuanguang",
+      "target": "industry_optical_chip",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "evidence": "公司聚焦于光芯片行业",
+      "source_ids": [
+        "src:filing-6f3033ef7691b965a676f94c:p10:0"
+      ],
+      "disclosed_at": "2023-08-25",
+      "relation_group": "industry",
+      "id": "rel:82c26b8896301d11"
+    },
+    {
+      "source": "company:光迅科技",
+      "target": "product:传输类光收发模块",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "传输类光收发模块、光放大器、波长管理类光器件",
+      "source_ids": [
+        "src:filing-ce88f3199a41c6addafd9dfb:p9:0"
+      ],
+      "disclosed_at": "2023-08-26",
+      "relation_group": "direct",
+      "id": "rel:02de110331e1ab83"
+    },
+    {
+      "source": "company:光迅科技",
+      "target": "product:光放大器",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "光放大器包括：EDFA（掺铒光纤放大器）、RFA（拉曼放大器）",
+      "source_ids": [
+        "src:filing-ce88f3199a41c6addafd9dfb:p9:0"
+      ],
+      "disclosed_at": "2023-08-26",
+      "relation_group": "direct",
+      "id": "rel:581c198b6ef81475"
+    },
+    {
+      "source": "company:光迅科技",
+      "target": "product:波长管理类光器件",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "波长和功率管理类光器件包括：MUX/DEMUX（复用/解复用）、WSS（波长交换开关）、MCS（Multicast Switch）等",
+      "source_ids": [
+        "src:filing-ce88f3199a41c6addafd9dfb:p9:0"
+      ],
+      "disclosed_at": "2023-08-26",
+      "relation_group": "direct",
+      "id": "rel:f54696604870b9c4"
+    },
+    {
+      "source": "company:光迅科技",
+      "target": "product:数据中心内光模块",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "提供数据中心内互联光模块、数据中心互联光模块、AOC（有源光缆）等产品",
+      "source_ids": [
+        "src:filing-ce88f3199a41c6addafd9dfb:p9:0"
+      ],
+      "disclosed_at": "2023-08-26",
+      "relation_group": "direct",
+      "id": "rel:25f0a058e8363d41"
+    },
+    {
+      "source": "company:光迅科技",
+      "target": "product:数据中心互联光模块",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "数据中心互联光模块包括400G ZR QSFP-DD DCO、400G ZR+ QSFP-DD DCO 等产品",
+      "source_ids": [
+        "src:filing-ce88f3199a41c6addafd9dfb:p9:0"
+      ],
+      "disclosed_at": "2023-08-26",
+      "relation_group": "direct",
+      "id": "rel:43bd686e183da9cf"
+    },
+    {
+      "source": "company:光迅科技",
+      "target": "product:AOC",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "提供数据中心内互联光模块、数据中心互联光模块、AOC（有源光缆）等产品",
+      "source_ids": [
+        "src:filing-ce88f3199a41c6addafd9dfb:p9:0"
+      ],
+      "disclosed_at": "2023-08-26",
+      "relation_group": "direct",
+      "id": "rel:9ae8dbee102b91fa"
+    },
+    {
+      "source": "company:光迅科技",
+      "target": "product:接入类产品",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "公司接入类产品支持固网接入和无线接入应用",
+      "source_ids": [
+        "src:filing-ce88f3199a41c6addafd9dfb:p9:0"
+      ],
+      "disclosed_at": "2023-08-26",
+      "relation_group": "direct",
+      "id": "rel:1f6350af8d600126"
+    },
+    {
+      "source": "company:光迅科技",
+      "target": "industry:光器件行业",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "evidence": "公司在全球光器件行业排名保持第四",
+      "source_ids": [
+        "src:filing-ce88f3199a41c6addafd9dfb:p9:0"
+      ],
+      "disclosed_at": "2023-08-26",
+      "relation_group": "industry",
+      "id": "rel:1377bf717ef022fd"
+    },
+    {
+      "source": "company:澜起科技",
+      "target": "industry:集成电路设计",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "evidence": "公司是一家集成电路设计企业",
+      "source_ids": [
+        "src:filing-b81391d19a7c6f18f68a4f63:p11:0"
+      ],
+      "disclosed_at": "2023-08-24",
+      "relation_group": "industry",
+      "id": "rel:1a9670e291a54684"
+    },
+    {
+      "source": "company_huatian_tech",
+      "target": "industry_ic_packaging_testing",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "evidence": "公司的主营业务为集成电路封装测试",
+      "source_ids": [
+        "src:filing-81fc1a53e6d2714eba7891f1:p10:0"
+      ],
+      "disclosed_at": "2023-08-29",
+      "relation_group": "industry",
+      "id": "rel:87f038883abd5651"
+    },
+    {
+      "source": "company_huatian_tech",
+      "target": "product_dip_sdip",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "目前公司集成电路封装产品主要有 DIP/SDIP、SOT、SOP、SSOP、TSSOP/ETSSOP、QFP/LQFP/TQFP、QFN/DFN、BGA/LGA、FC、MCM（MCP）、SiP、WLP、TSV、Bumping、MEMS、Fan-Out 等多个系列",
+      "source_ids": [
+        "src:filing-81fc1a53e6d2714eba7891f1:p10:0"
+      ],
+      "disclosed_at": "2023-08-29",
+      "relation_group": "direct",
+      "id": "rel:a2dd46f078a2625a"
+    },
+    {
+      "source": "company_huatian_tech",
+      "target": "product_sot",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "目前公司集成电路封装产品主要有 DIP/SDIP、SOT、SOP、SSOP、TSSOP/ETSSOP、QFP/LQFP/TQFP、QFN/DFN、BGA/LGA、FC、MCM（MCP）、SiP、WLP、TSV、Bumping、MEMS、Fan-Out 等多个系列",
+      "source_ids": [
+        "src:filing-81fc1a53e6d2714eba7891f1:p10:0"
+      ],
+      "disclosed_at": "2023-08-29",
+      "relation_group": "direct",
+      "id": "rel:3797bf3d4fa3dd7f"
+    },
+    {
+      "source": "company_huatian_tech",
+      "target": "product_sop",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "目前公司集成电路封装产品主要有 DIP/SDIP、SOT、SOP、SSOP、TSSOP/ETSSOP、QFP/LQFP/TQFP、QFN/DFN、BGA/LGA、FC、MCM（MCP）、SiP、WLP、TSV、Bumping、MEMS、Fan-Out 等多个系列",
+      "source_ids": [
+        "src:filing-81fc1a53e6d2714eba7891f1:p10:0"
+      ],
+      "disclosed_at": "2023-08-29",
+      "relation_group": "direct",
+      "id": "rel:08f696ead6b74468"
+    },
+    {
+      "source": "company_huatian_tech",
+      "target": "product_qfn_dfn",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "目前公司集成电路封装产品主要有 DIP/SDIP、SOT、SOP、SSOP、TSSOP/ETSSOP、QFP/LQFP/TQFP、QFN/DFN、BGA/LGA、FC、MCM（MCP）、SiP、WLP、TSV、Bumping、MEMS、Fan-Out 等多个系列",
+      "source_ids": [
+        "src:filing-81fc1a53e6d2714eba7891f1:p10:0"
+      ],
+      "disclosed_at": "2023-08-29",
+      "relation_group": "direct",
+      "id": "rel:81252e2cde25b4d6"
+    },
+    {
+      "source": "company_huatian_tech",
+      "target": "product_bga_lga",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "目前公司集成电路封装产品主要有 DIP/SDIP、SOT、SOP、SSOP、TSSOP/ETSSOP、QFP/LQFP/TQFP、QFN/DFN、BGA/LGA、FC、MCM（MCP）、SiP、WLP、TSV、Bumping、MEMS、Fan-Out 等多个系列",
+      "source_ids": [
+        "src:filing-81fc1a53e6d2714eba7891f1:p10:0"
+      ],
+      "disclosed_at": "2023-08-29",
+      "relation_group": "direct",
+      "id": "rel:02ce90714967d046"
+    },
+    {
+      "source": "company_huatian_tech",
+      "target": "product_sip",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "目前公司集成电路封装产品主要有 DIP/SDIP、SOT、SOP、SSOP、TSSOP/ETSSOP、QFP/LQFP/TQFP、QFN/DFN、BGA/LGA、FC、MCM（MCP）、SiP、WLP、TSV、Bumping、MEMS、Fan-Out 等多个系列",
+      "source_ids": [
+        "src:filing-81fc1a53e6d2714eba7891f1:p10:0"
+      ],
+      "disclosed_at": "2023-08-29",
+      "relation_group": "direct",
+      "id": "rel:5a962ae652ea9aa9"
+    },
+    {
+      "source": "company_huatian_tech",
+      "target": "product_wlp",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "目前公司集成电路封装产品主要有 DIP/SDIP、SOT、SOP、SSOP、TSSOP/ETSSOP、QFP/LQFP/TQFP、QFN/DFN、BGA/LGA、FC、MCM（MCP）、SiP、WLP、TSV、Bumping、MEMS、Fan-Out 等多个系列",
+      "source_ids": [
+        "src:filing-81fc1a53e6d2714eba7891f1:p10:0"
+      ],
+      "disclosed_at": "2023-08-29",
+      "relation_group": "direct",
+      "id": "rel:ca25cac4aec2423b"
+    },
+    {
+      "source": "company:苏州旭创",
+      "target": "product:高速光模块",
+      "type": "PRODUCES",
+      "label": "提供产品",
+      "evidence": "全资子公司苏州旭创致力于高端光通信收发模块的研发、设计、封装、测试和销售",
+      "source_ids": [
+        "src:filing-be61b02069c49a983b3555d7:p10:0"
+      ],
+      "disclosed_at": "2023-08-28",
+      "relation_group": "direct",
+      "id": "rel:8252965f8712e6d4"
+    },
+    {
+      "source": "company:中际旭创",
+      "target": "industry:光通信",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "evidence": "公司主营业务为高端光通信收发模块以及光器件的研发、生产及销售",
+      "source_ids": [
+        "src:filing-be61b02069c49a983b3555d7:p10:0"
+      ],
+      "disclosed_at": "2023-08-28",
+      "relation_group": "industry",
+      "id": "rel:c472cdaf1bf21c21"
+    },
+    {
+      "source": "company:hygon",
+      "target": "industry:集成电路设计",
+      "type": "BELONGS_TO",
+      "label": "所属产业",
+      "evidence": "公司属于“1、新一代信息技术产业”中“1.3、新兴软件和新型信息技术服务”中“1.3.4、新型信息技术服务”之“6520、集成电路设计”",
+      "source_ids": [
+        "src:filing-b9786528a76fb929019261c6:p9:0"
+      ],
+      "disclosed_at": "2023-08-25",
+      "relation_group": "industry",
+      "id": "rel:19ab3eae85834102"
     }
   ],
   "events": [

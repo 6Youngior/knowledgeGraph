@@ -1,0 +1,5 @@
+# Optional Qlib stack: install in a separate project-local Python 3.11 venv.
+# See docs/DEVELOPMENT.md for commands and requirements-quant-lock.txt for
+# the Windows/Python 3.11 resolved environment. No GPU dependencies required.
+pyqlib==0.9.7
+lightgbm==4.7.0

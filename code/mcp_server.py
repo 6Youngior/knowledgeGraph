@@ -10,6 +10,7 @@ from mcp.server.fastmcp import FastMCP
 
 from financial_tools import FinancialResearch
 from research_tools import ResearchTools
+from quant_tools import QuantResearch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -147,6 +148,12 @@ def price_history(symbol: str, days: int = 30) -> dict:
 def company_financials(symbol: str, periods: int = 4) -> dict:
     """查询上市公司财务指标、报告期、单位、来源和证券代码。"""
     return financial.company_financials(symbol, periods)
+
+
+@mcp.tool()
+def quant_research(view: str = "ranking", limit: int = 10) -> dict:
+    """查询AI股票池的Qlib量价基线；view为ranking预测排序、backtest模拟结果、overview实验信息。"""
+    return QuantResearch(DATA_DIR / "quant" / "baseline.json", service.as_of).analyze(view, limit)
 
 
 if __name__ == "__main__":

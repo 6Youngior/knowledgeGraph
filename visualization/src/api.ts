@@ -10,6 +10,7 @@ import type {
   IngestResult,
   MarketData,
   Overview,
+  QuantResponse,
   ResearchBrief,
   ResearchDetail,
   ResearchOverview,
@@ -146,6 +147,8 @@ export const api = {
     request<{ status: string; stats: Overview['stats'] }>('/reset', {
       method: 'POST',
     }),
+  quant: (view: 'ranking' | 'backtest' | 'overview', limit = 30) =>
+    request<QuantResponse>(withQuery('/quant', { view, limit }), undefined, 15000),
   research: () => request<ResearchOverview>('/research', undefined, 12000),
   researchDetail: (eventId: string, asOf?: string) =>
     request<ResearchDetail>(

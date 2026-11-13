@@ -45,7 +45,35 @@ npm ci --prefix visualization
 npm run build --prefix visualization
 ```
 
-构建结果由 FastAPI 提供，默认端口 `8017`。`/web` 将最近研究的事件传给页面，例如 `/?event=event%3Aglm5-release`。
+构建结果由 FastAPI 提供，默认端口 `8017`。默认打开量化研究页；事件图谱保留独立入口及 `/?event=event%3Aglm5-release` 链接。
+
+## Qlib 量化实验
+
+查看仓库内已有排序与回测不需要 Qlib。重新训练时，使用独立的项目内环境，避免将量化依赖加入终端和 API 的基础环境：
+
+```powershell
+.\.venv\Scripts\python.exe -m venv .fingraph/quant-env
+.\.fingraph\quant-env\Scripts\python.exe -m pip install -r code/requirements-quant.txt -c code/requirements-quant-lock.txt
+```
+
+锁定文件记录本次 Windows / Python 3.11 的依赖版本。该环境使用 CPU，模型不调用 LLM。
+
+采集 38 只 A 股的原始、前复权日线和沪深 300：
+
+```powershell
+.\.venv\Scripts\python.exe code/collect_prices.py --universe data/universe.json --output .fingraph/market/ai-a-share --start 2021-01-01 --end 2026-11-12
+```
+
+采集器最多发起 80 次请求、接收约 40 MB 响应，并记录累计用量；匹配日期、身份和哈希的已有文件可直接复用。使用其他日期范围时选择新的输出目录，以保留旧实验快照。
+
+```powershell
+.\.fingraph\quant-env\Scripts\python.exe code/run_quant.py --source .fingraph/market/ai-a-share --output .fingraph/quant/baseline
+.\.fingraph\quant-env\Scripts\python.exe -m unittest discover -s code -p "test_quant_data.py" -v
+```
+
+运行生成 Qlib 二进制行情、LightGBM 文本模型、预测与回测 CSV，以及 `result.json`。数据适配校验哈希、OHLC、原始与复权日历、成交量单位；测试额外检查停牌日历、价格还原与标签跨段隔离。三组模拟净值均核对实际 Qlib 账户余额。
+
+当前发布的 `data/quant/baseline.json` 是本轮检查后的 `result.json`，`quant_research` MCP 工具及 `/api/quant` 读取同一个文件。重新训练保存在本地，核验后再更新发布文件。区间、结果与实验限制见 [data/quant/](../data/quant/)。
 
 ## 金融数据
 

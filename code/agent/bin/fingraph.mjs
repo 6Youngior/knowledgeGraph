@@ -14,7 +14,7 @@ if (nodeMajor < 22 || (nodeMajor === 22 && nodeMinor < 19)) {
 }
 
 if (args.includes('--help') || args.includes('-h')) {
-  console.log('FinGragh Agent\n\n项目内启动：.\\fingraph.ps1\n首次安装：.\\fingraph.ps1 -Setup\n检查配置：.\\fingraph.ps1 -Check\n\n终端命令：/web 打开图谱，/usage 查看测试用量，/model 查看模型。');
+  console.log('FinGragh Agent\n\n项目内启动：.\\fingraph.ps1\n首次安装：.\\fingraph.ps1 -Setup\n检查配置：.\\fingraph.ps1 -Check\n\n终端命令：/web 打开研究页，/usage 查看测试用量，/model 查看模型。');
   process.exit(0);
 }
 if (existsSync(join(root, '.env'))) process.loadEnvFile(join(root, '.env'));

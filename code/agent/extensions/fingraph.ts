@@ -88,7 +88,7 @@ export function buildHeader(theme: ThemeLike, ctx: HeaderContext): {
         "",
         fit(`${accent(PRODUCT_NAME)}  ${muted(PRODUCT_VERSION)}  ·  ${PRODUCT_DESCRIPTION}`),
         fit(`${model}  ${muted("·")}  研究日期 ${asOf}`),
-        fit(`${accent("/web")} 打开图谱   ${accent("/model")} 模型   ${accent("/usage")} 用量`),
+        fit(`${accent("/web")} 打开研究页   ${accent("/model")} 模型   ${accent("/usage")} 用量`),
         "",
       ];
     },
@@ -117,7 +117,7 @@ export default function fingraphExtension(pi: ExtensionAPI) {
   });
 
   pi.registerCommand("web", {
-    description: "检查研究服务并打开图谱网页；--no-open 只检查",
+    description: "检查研究服务并打开研究网页；--no-open 只检查",
     handler: async (rawArgs: string, ctx: ExtensionContext) => {
       const arg = rawArgs.trim();
       if (arg && arg !== "--no-open") {

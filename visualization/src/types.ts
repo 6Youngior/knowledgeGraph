@@ -1,4 +1,4 @@
-export type ViewKey = 'research' | 'cases' | 'update' | 'sources';
+export type ViewKey = 'quant' | 'research' | 'cases' | 'update' | 'sources';
 
 export type RelationGroup = 'direct' | 'adaptation' | 'industry' | 'distribution';
 
@@ -318,3 +318,65 @@ export interface GraphQuery {
   relation_group?: string;
   as_of?: string;
 }
+
+
+export interface QuantCommon {
+  found: boolean;
+  view?: string;
+  as_of?: string;
+  model?: string;
+  engine?: string;
+  feature_as_of?: string;
+  available_at?: string;
+  universe_size?: number;
+  horizon_trading_days?: number;
+  status?: string;
+  experiment_id?: string;
+  segments?: Record<string, [string, string]>;
+}
+
+export interface QuantRankingItem {
+  rank: number;
+  symbol: string;
+  name: string;
+  score: number;
+}
+
+export interface QuantCostAssumption {
+  open_rate?: number;
+  close_rate?: number;
+  min_cost_cny?: number;
+}
+
+export interface QuantCurvePoint {
+  date: string;
+  strategy: number;
+  benchmark: number;
+  ai_equal_weight?: number;
+  momentum_20d?: number;
+}
+
+export interface QuantRanking extends QuantCommon {
+  ranking?: QuantRankingItem[];
+  score_type?: string;
+  note?: string;
+}
+
+export interface QuantBacktest extends QuantCommon {
+  start?: string;
+  end?: string;
+  test_predictions?: number;
+  controls?: Record<string, { net_cumulative_return: number; max_drawdown: number }>;
+  ic_mean?: number;
+  rank_ic_mean?: number;
+  net_cumulative_return?: number;
+  benchmark_cumulative_return?: number;
+  max_drawdown?: number;
+  topk?: number;
+  rebalance_sessions?: number;
+  cost_assumption?: QuantCostAssumption;
+  curve?: QuantCurvePoint[];
+  limitations?: string[];
+}
+
+export type QuantResponse = QuantRanking & QuantBacktest;

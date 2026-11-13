@@ -18,6 +18,7 @@ from extraction import ExtractionService
 from market import MarketData
 from research import ResearchService
 from financial_tools import FinancialResearch
+from quant_tools import QuantResearch
 
 ROOT = Path(__file__).resolve().parents[1]
 load_dotenv(ROOT / ".env")
@@ -41,7 +42,7 @@ class BriefRequest(BaseModel):
 
 def create_app(data_dir: Path | None = None, persist=True):
     application = FastAPI(title="FinGraphAgent", version="0.2.0",
-                          description="产业事件、关联股票、金融数据与来源证据。")
+                          description="人工智能产业股票的金融分析、知识图谱与量化研究。")
     store = GraphStore(data_dir or ROOT / "data", persist=persist)
     market = MarketData(store.data_dir)
     extraction = ExtractionService(store, ROOT)
@@ -78,6 +79,12 @@ def create_app(data_dir: Path | None = None, persist=True):
     @application.get("/api/finance")
     def finance_overview(as_of: str | None = Query(default=None, pattern=r"^\d{4}-\d{2}-\d{2}$")):
         return FinancialResearch(store.data_dir / "finance", as_of).overview()
+
+    @application.get("/api/quant")
+    def quant_results(view: Literal["overview", "ranking", "backtest"] = "ranking",
+                      limit: int = Query(default=10, ge=1, le=50),
+                      as_of: str | None = Query(default=None, pattern=r"^\d{4}-\d{2}-\d{2}$")):
+        return QuantResearch(store.data_dir / "quant" / "baseline.json", as_of).analyze(view, limit, include_curve=True)
 
     @application.get("/api/finance/{symbol}")
     def financial_reports(symbol: str, periods: int = Query(default=4, ge=1, le=8),

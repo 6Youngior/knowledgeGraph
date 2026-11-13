@@ -100,12 +100,38 @@ class McpIntegrationTests(unittest.IsolatedAsyncioTestCase):
                 await session.initialize()
                 await callback(session)
 
+    async def test_quant_result_is_hidden_until_its_available_date(self):
+        temp, data = make_synthetic_data()
+        self.addCleanup(temp.cleanup)
+        (data / "quant").mkdir()
+        write_json(data / "quant/baseline.json", {
+            "schema_version": "quant-baseline-v1", "available_at": "2024-02-02",
+            "feature_as_of": "2024-02-01", "model": "fixture", "engine": "Qlib",
+            "horizon_trading_days": 5, "capture": {"stocks": [{}, {}]}, "segments": {},
+            "latest_ranking": [{"rank": 1, "symbol": "A", "score": 0.3},
+                               {"rank": 1, "symbol": "B", "score": 0.3}],
+        })
+
+        async def before(session):
+            result = tool_value(await session.call_tool("quant_research", {}))
+            self.assertFalse(result["found"])
+            self.assertNotIn("ranking", result)
+
+        async def after(session):
+            result = tool_value(await session.call_tool("quant_research", {"limit": 2}))
+            self.assertTrue(result["found"])
+            self.assertEqual([row["rank"] for row in result["ranking"]], [1, 1])
+            self.assertEqual(result["available_at"], "2024-02-02")
+
+        await self.exercise("2024-02-01", before, data)
+        await self.exercise("2024-02-02", after, data)
+
     async def test_current_seed_graph_structure_and_sources(self):
         async def check(session):
             tools = await session.list_tools()
             self.assertEqual({t.name for t in tools.tools}, {
                 "overview", "search_entities", "related_stocks", "read_source",
-                "price_history", "company_financials", "entity_relations",
+                "price_history", "company_financials", "entity_relations", "quant_research",
             })
             overview = tool_value(await session.call_tool("overview", {}))
             self.assertIn("knowledge", overview)

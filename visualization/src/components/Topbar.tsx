@@ -8,6 +8,7 @@ import type { GraphNode, Health, Overview, ViewKey } from '../types';
 import { formatDate } from '../lib/format';
 
 const VIEW_LABEL: Record<ViewKey, string> = {
+  quant: '量化研究',
   research: '事件研究',
   cases: '事件目录',
   update: '资料导入',
@@ -98,8 +99,8 @@ export function Topbar({
   return (
     <header className="topbar">
       <div className="topbar-left">
-        <div className="breadcrumb"><span>FinGraphAgent</span><i>/</i><strong>{VIEW_LABEL[view]}</strong></div>
-        <span className="topbar-date">资料登记至 {formatDate(overview?.as_of)}</span>
+        <div className="breadcrumb"><span>FinGragh Agent</span><i>/</i><strong>{VIEW_LABEL[view]}</strong></div>
+        {view !== 'quant' ? <span className="topbar-date">资料登记至 {formatDate(overview?.as_of)}</span> : null}
       </div>
 
       <div className="topbar-right">

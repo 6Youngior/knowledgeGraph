@@ -59,7 +59,7 @@ try {
         }
         if (-not $healthy) { throw 'Web 服务未能及时启动，详见 .fingraph\web.stderr.log。' }
     }
-    Write-Host "FinGragh Agent · $webUrl · 输入 /web 打开图谱"
+    Write-Host "FinGragh Agent · $webUrl · 输入 /web 打开研究页"
     $agentArguments = @((Join-Path $agentRoot 'bin\fingraph.mjs'))
     if ($Prompt) { $agentArguments += @('--print', '--no-session', $Prompt) }
     Invoke-Checked 'node' $agentArguments

@@ -22,6 +22,8 @@
 | [open 10.2.0](https://github.com/sindresorhus/open) | 从终端打开研究网页 | MIT |
 | PyMuPDF 1.27.2.3 / PyMuPDF4LLM 0.2.9 | 离线解析财报 PDF 与页码 | AGPL-3.0 或 Artifex 商业许可 |
 | LangChain Text Splitters 1.1.3 | 按中文段落切分财报原文 | MIT |
+| [Qlib 0.9.7](https://github.com/microsoft/qlib) | Alpha158、模型训练、投资组合及回测；二进制数据适配参考官方 dump_bin.py | MIT |
+| [LightGBM 4.7.0](https://github.com/microsoft/LightGBM) | Qlib 量价排序基线 | MIT |
 | FastAPI / Pydantic / Uvicorn | 类型校验与本地 API | 以各包许可证为准 |
 
 前端已打包依赖的许可证副本保存在 `visualization/licenses/`；Python 的实际安装版本保存在 `code/requirements-lock.txt`。
@@ -35,6 +37,8 @@
 新增金融样本记录在 `data/finance/`：结构化财务、主营构成和日线通过 [AKShare](https://github.com/akfamily/akshare) 访问东方财富公开数据；年报来源为巨潮资讯及公司投资者关系网站。来源、访问工具版本、快照日期和适用范围见该目录的 `sources.json`、`disclosures.json` 和 `manifest.json`。AKShare 的开源许可不替代数据提供方的条款。
 
 Demo 截图来自本项目真实运行界面；Schema、架构和路径图由本项目绘制。
+
+`data/quant/market_manifest.json` 记录新增 38 只 A 股及沪深 300 的东方财富日线来源、访问日期、复权方式和文件哈希；请求字段参考 AKShare 1.20.37。行情原始响应与完整快照保存在本地，仓库发布研究结果及来源目录。
 
 ## 设计参考
 

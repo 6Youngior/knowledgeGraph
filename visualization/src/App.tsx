@@ -6,6 +6,7 @@ import type { GraphNode, ViewKey } from './types';
 import { Sidebar } from './components/Sidebar';
 import { Topbar } from './components/Topbar';
 import { DemoOverlay } from './components/DemoOverlay';
+import { QuantView } from './views/QuantView';
 import { ResearchView } from './views/ResearchView';
 import { CaseLibraryView } from './views/CaseLibraryView';
 import { KnowledgeUpdateView } from './views/KnowledgeUpdateView';
@@ -13,7 +14,13 @@ import { SourcesMethodsView } from './views/SourcesMethodsView';
 
 export function App() {
   const queryClient = useQueryClient();
-  const [view, setView] = useState<ViewKey>('research');
+  const [view, setView] = useState<ViewKey>(() => {
+    const params = new URLSearchParams(window.location.search);
+    const requested = params.get('view');
+    return requested === 'research' || requested === 'cases' || requested === 'update' || requested === 'sources'
+      ? requested
+      : requested === 'quant' ? 'quant' : params.has('event') ? 'research' : 'quant';
+  });
   const [eventId, setEventId] = useState<string | null>(() => new URLSearchParams(window.location.search).get('event'));
   const [focusTarget, setFocusTarget] = useState<{ node: GraphNode; token: number } | null>(null);
   const [pendingFocusGroup, setPendingFocusGroup] = useState<string | null>(null);
@@ -42,11 +49,14 @@ export function App() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    const url = new URL(window.location.href);
+    url.searchParams.set('view', view);
+    window.history.replaceState({}, '', `${url.pathname}${url.search}${url.hash}`);
   }, [view]);
 
   useEffect(() => {
-    const label = view === 'research' ? '事件研究' : view === 'cases' ? '事件目录' : view === 'update' ? '资料导入' : '资料与方法';
-    document.title = `${label} · FinGraphAgent`;
+    const label = view === 'quant' ? '量化研究' : view === 'research' ? '事件研究' : view === 'cases' ? '事件目录' : view === 'update' ? '资料导入' : '资料与方法';
+    document.title = `${label} · FinGragh Agent`;
   }, [view]);
 
   const startDemo = () => {
@@ -102,6 +112,8 @@ export function App() {
         ) : null}
 
         <div className="content">
+          {view === 'quant' ? <QuantView /> : null}
+
           {view === 'research' ? (
             <ResearchView
               key={eventId ?? 'initial'}
